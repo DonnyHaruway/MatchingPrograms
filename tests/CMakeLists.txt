@@ -18,6 +18,16 @@ target_include_directories(test_generate PUBLIC ../include)
 # GoogleTest ライブラリにリンク
 target_link_libraries(test_generate gtest_main)
 
+add_executable(test_manual_add
+    test_manual_add.cpp
+    ../src/MatchingSystem.cpp
+    ../src/Utils.cpp
+)
+
+target_include_directories(test_manual_add PUBLIC ../include)
+target_link_libraries(test_manual_add gtest_main)
+
 # gtestによるテスト検出
 include(GoogleTest)
 gtest_discover_tests(test_generate)
+gtest_discover_tests(test_manual_add)

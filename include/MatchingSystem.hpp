@@ -12,18 +12,16 @@ public:
     // コンストラクタ
     MatchingSystem(
         int n_agents, 
-        int n_firms, 
-        const std::string &preference_type);
+        int n_firms
+    );
 
     // 選好の生成
     void generate_preferences(
+        std::string preference_type,
         unsigned int seed,
-        int agent_score_min = 0,
-        int agent_score_max = 10,
-        int firm_score_min = 0,
-        int firm_score_max = 10,
-        int agent_col_score_min = 0,
-        int agent_col_score_max = 10
+        int agent_score_min = 0, int agent_score_max = 10,
+        int firm_score_min = 0, int firm_score_max = 10,
+        int agent_col_score_min = 0, int agent_col_score_max = 10
     );
 
     // 選好の指定

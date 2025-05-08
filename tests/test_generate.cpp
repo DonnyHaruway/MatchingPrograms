@@ -2,8 +2,8 @@
 #include "MatchingSystem.hpp"
 
 TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
-    MatchingSystem ms(3, 2, "ranked");
-    ms.generate_preferences(42);  // seed付き
+    MatchingSystem ms(3, 2);
+    ms.generate_preferences("ranked", 42);  // seed付き
 
     const auto& prefs = ms.get_agent_preferences();
 
@@ -16,8 +16,8 @@ TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
 }
 
 TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
-    MatchingSystem ms(4, 3, "numeric");
-    ms.generate_preferences(99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
+    MatchingSystem ms(4, 3);
+    ms.generate_preferences("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
 
     const auto& prefs = ms.get_agent_preferences();
 

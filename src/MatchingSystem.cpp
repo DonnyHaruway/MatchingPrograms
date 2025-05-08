@@ -2,17 +2,15 @@
 #include "Utils.hpp"
 #include <algorithm>
 
-MatchingSystem::MatchingSystem(int n_agents, int n_firms, const std::string& preference_type)
-    : n_agents(n_agents), n_firms(n_firms), preference_type(preference_type) {}
+MatchingSystem::MatchingSystem(int n_agents, int n_firms)
+    : n_agents(n_agents), n_firms(n_firms) {}
 
-void MatchingSystem::generate_preferences(
+void MatchingSystem::generate_preferences( 
+    std::string preference_type,
     unsigned int seed,
-    int agent_score_min,
-    int agent_score_max,
-    int firm_score_min,
-    int firm_score_max,
-    int agent_col_score_min,
-    int agent_col_score_max
+    int agent_score_min, int agent_score_max,
+    int firm_score_min, int firm_score_max,
+    int agent_col_score_min, int agent_col_score_max
 ) {
     rng.seed(seed);
 
@@ -69,4 +67,14 @@ const std::vector<std::vector<int>>& MatchingSystem::get_firm_preferences() cons
 }
 const std::vector<std::vector<int>>& MatchingSystem::get_agent_col_preferences() const {
     return agent_col_prefs;
+}
+
+void MatchingSystem::add_preferences(
+    const std::vector<std::vector<int>> &agent_pref,
+    const std::vector<std::vector<int>> &firm_pref,
+    std::vector<std::vector<int>> &agent_col_pref
+) {
+    agent_prefs = agent_pref;
+    firm_prefs = firm_pref;
+    agent_col_prefs = agent_col_pref;
 }
