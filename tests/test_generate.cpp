@@ -1,0 +1,30 @@
+#include <gtest/gtest.h>
+#include "MatchingSystem.hpp"
+
+TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
+    MatchingSystem ms(3, 2, "ranked");
+    ms.generate_preferences(42);  // seed付き
+
+    const auto& prefs = ms.get_agent_preferences();
+
+    // エージェント数 = 3
+    EXPECT_EQ(prefs.size(), 3);
+    // 各エージェントが持つ選好リストのサイズ = 企業数 = 2
+    for (const auto& pref_list : prefs) {
+        EXPECT_EQ(pref_list.size(), 2);
+    }
+}
+
+TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
+    MatchingSystem ms(4, 3, "numeric");
+    ms.generate_preferences(99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
+
+    const auto& prefs = ms.get_agent_preferences();
+
+    for (const auto& pref_list : prefs) {
+        for (int firm_score : pref_list) {
+            EXPECT_GE(firm_score, 10);
+            EXPECT_LE(firm_score, 20);  
+        }
+    }
+}
