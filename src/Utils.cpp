@@ -20,3 +20,77 @@ std::vector<int> generate_random_number(int size, int min_val, int max_val, std:
     for (int& x : v) x = dist(rng);
     return v;
 }
+
+std::vector<std::vector<int>> generate_combinations(const std::vector<int>& set, int k) {
+    std::vector<std::vector<int>> result;
+
+    std::vector<bool> bitmask(set.size(), false);
+    std::fill(bitmask.end() - k, bitmask.end(), true);  // k個だけtrue（選ばれる）
+
+    do {
+        std::vector<int> comb;
+        for (size_t i = 0; i < set.size(); ++i) {
+            if (bitmask[i]) comb.push_back(set[i]);
+        }
+        result.push_back(comb);
+    } while (std::next_permutation(bitmask.begin(), bitmask.end()));
+
+    return result;
+}
+
+/// この関数は agent の部分集合を生成します。
+/// @param set 入力となるagentの集合
+/// @param k 選ぶ人数
+/// @return k人選んだ組み合わせのリスト
+std::map<int, std::vector<std::vector<int>>> generate_all_subsets_by_size(
+    const std::vector<int>& set,
+    int max_size
+) {
+    std::map<int, std::vector<std::vector<int>>> all_combinations;
+
+    for (int k = 0; k <= max_size; ++k) {
+        all_combinations[k] = generate_combinations(set, k);
+    }
+
+    return all_combinations;
+}
+
+void generate_matchings_recursive(
+    int firm_idx,
+    const std::vector<std::vector<std::vector<int>>>& all_candidates,
+    std::vector<std::pair<int, std::vector<int>>>& current_matching,
+    std::set<int>& used_agents,
+    std::vector<std::vector<std::pair<int, std::vector<int>>>>& result
+) {
+    // ベースケース：すべての企業に割り当て終わったら結果に追加
+    if (firm_idx == all_candidates.size()) {
+        result.push_back(current_matching);
+        return;
+    }
+
+    // 候補をすべて試す
+    for (const auto& group : all_candidates[firm_idx]) {
+        bool valid = true;
+
+        // 重複agentチェック
+        for (int agent : group) {
+            if (used_agents.count(agent)) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (!valid) continue;
+
+        // 割り当てを追加
+        for (int agent : group) used_agents.insert(agent);
+        current_matching.emplace_back(firm_idx, group);
+
+        // 再帰的に次の企業へ
+        generate_matchings_recursive(firm_idx + 1, all_candidates, current_matching, used_agents, result);
+
+        // バックトラック
+        current_matching.pop_back();
+        for (int agent : group) used_agents.erase(agent);
+    }
+}

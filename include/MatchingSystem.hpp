@@ -12,7 +12,8 @@ public:
     // コンストラクタ
     MatchingSystem(
         int n_agents, 
-        int n_firms
+        int n_firms,
+        std::vector<int> capacities
     );
 
     // 選好の生成
@@ -26,16 +27,17 @@ public:
 
     // 選好の指定
     void add_preferences(
-        const std::vector<std::vector<int>> &agent_pref,
-        const std::vector<std::vector<int>> &firm_pref,
-        std::vector<std::vector<int>> &agent_col_pref
+        const std::vector<std::vector<int>>& agent_pref,
+        const std::vector<std::vector<int>>& firm_pref,
+        std::vector<std::vector<int>>& agent_col_pref
     );
 
     // 全マッチングの評価を返す
-    std::vector<std::pair<int, int>> evaluate_all_matchings() const;
+    std::vector<std::pair<std::vector<int>, std::vector<int>>>
+        MatchingSystem::evaluate_all_matchings() const;
 
     // 指定したアルゴリズムでのマッチングの実行
-    std::vector<int> run_algorithm(const std::string &algorithm_name) const;
+    std::vector<int> run_algorithm(const std::string& algorithm_name) const;
 
     // デバッグ用：選好の表示
     const std::vector<std::vector<int>>& get_agent_preferences() const;
@@ -45,6 +47,7 @@ public:
 private:
     int n_agents;
     int n_firms;
+    std::vector<int> firm_capacities;
     std::string preference_type;
     std::mt19937 rng;
 
