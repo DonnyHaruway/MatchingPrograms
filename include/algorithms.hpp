@@ -1,0 +1,15 @@
+#pragma once
+#include <vector>
+#include <utility>
+
+std::pair<
+    std::vector<std::pair<int, std::vector<int>>>,
+    std::pair<std::vector<int>, std::vector<int>>> 
+run_dictator_like_algorithm(
+    const int& n_agents,
+    const int& n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+);

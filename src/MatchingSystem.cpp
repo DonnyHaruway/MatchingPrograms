@@ -1,6 +1,8 @@
 #include "MatchingSystem.hpp"
 #include "Utils.hpp"
+#include "algorithms.hpp"
 #include <algorithm>
+#include <stdexcept>
 
 MatchingSystem::MatchingSystem(int n_agents, int n_firms, std::vector<int> firm_capacities)
     : n_agents(n_agents), n_firms(n_firms), firm_capacities(firm_capacities) {}
@@ -93,6 +95,7 @@ void MatchingSystem::add_preferences(
     firm_prefs = firm_pref;
     agent_col_prefs = agent_col_pref;
 }
+
 /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力します。
 /// @return 各マッチングに対する個人、企業の評価関数
 std::vector<std::pair<
@@ -136,12 +139,12 @@ MatchingSystem::evaluate_all_matchings() const
         std::pair<std::vector<int>, std::vector<int>>>>
         result;
 
-    for (const auto& matching : all_matchings)
+    for (const auto &matching : all_matchings)
     {
         std::vector<int> firm_scores(n_firms, 0);
         std::vector<int> agent_scores(n_agents, 0);
 
-        for (const auto& [firm_id, agents] : matching)
+        for (const auto &[firm_id, agents] : matching)
         {
             for (int agent_id : agents)
             {
@@ -149,7 +152,8 @@ MatchingSystem::evaluate_all_matchings() const
                 agent_scores[agent_id] += agent_prefs[agent_id][firm_id];
                 for (int _agent_id : agents)
                 {
-                    if (_agent_id == agent_id) continue;
+                    if (_agent_id == agent_id)
+                        continue;
                     agent_scores[agent_id] += agent_col_prefs[agent_id][_agent_id];
                 }
             }
@@ -159,4 +163,19 @@ MatchingSystem::evaluate_all_matchings() const
     }
 
     return result;
+}
+
+std::pair<
+    std::vector<std::pair<int, std::vector<int>>>,
+    std::pair<std::vector<int>, std::vector<int>>>
+MatchingSystem::run_algorithm(const std::string &algorithm_name) const
+{
+    if (algorithm_name == "dictator-like")
+    {
+        return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    }
+    else
+    {
+        throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);
+    }
 }

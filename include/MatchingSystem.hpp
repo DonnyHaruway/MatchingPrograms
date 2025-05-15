@@ -3,7 +3,6 @@
 #include "Utils.hpp"
 #include <vector>
 #include <string>
-#include <random>
 #include <utility>
 
 class MatchingSystem
@@ -36,7 +35,10 @@ public:
     evaluate_all_matchings() const;
 
     // 指定したアルゴリズムでのマッチングの実行
-    std::vector<int> run_algorithm(const std::string &algorithm_name) const;
+    std::pair<
+        std::vector<std::pair<int, std::vector<int>>>,
+        std::pair<std::vector<int>, std::vector<int>>>
+    run_algorithm(const std::string &algorithm_name) const;
 
     // デバッグ用：選好の表示
     const std::vector<std::vector<int>> &get_agent_preferences() const;
