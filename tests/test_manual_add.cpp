@@ -3,7 +3,8 @@
 
 using namespace std;
 TEST(ManualAddTest, AddPreferences) {
-    MatchingSystem ms(3, 2);
+    vector<int> cap = {2, 2};
+    MatchingSystem ms(3, 2, cap);
     vector<vector<int>> agent_pref = {
         {0, 1},
         {1, 0},
@@ -14,9 +15,9 @@ TEST(ManualAddTest, AddPreferences) {
         {1, 0}
     };
     vector<vector<int>> agent_col_pref = {
-        {0, 1},
-        {1, 0},
-        {0, 1}
+        {0, 1, 1},
+        {1, 0, 1},
+        {0, 1, 0}
     };
 
     ms.add_preferences(agent_pref, firm_pref, agent_col_pref);

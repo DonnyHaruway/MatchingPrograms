@@ -1,8 +1,10 @@
 #include <gtest/gtest.h>
 #include "MatchingSystem.hpp"
 
+using namespace std;
 TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
-    MatchingSystem ms(3, 2);
+    vector<int> cap = {2, 2};
+    MatchingSystem ms(3, 2, cap);
     ms.generate_preferences("ranked", 42);  // seed付き
 
     const auto& prefs = ms.get_agent_preferences();
@@ -16,7 +18,8 @@ TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
 }
 
 TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
-    MatchingSystem ms(4, 3);
+    vector<int> cap = {3, 3, 2, 2};
+    MatchingSystem ms(4, 3, cap);
     ms.generate_preferences("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
 
     const auto& prefs = ms.get_agent_preferences();

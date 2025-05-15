@@ -95,8 +95,11 @@ void MatchingSystem::add_preferences(
 }
 /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力します。
 /// @return 各マッチングに対する個人、企業の評価関数
-std::vector<std::pair<std::vector<int>, std::vector<int>>>
-    MatchingSystem::evaluate_all_matchings() const {
+std::vector<std::pair<
+    std::vector<std::pair<int, std::vector<int>>>,
+    std::pair<std::vector<int>, std::vector<int>>>>
+MatchingSystem::evaluate_all_matchings() const
+{
     // 1. agent集合を準備
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
@@ -109,10 +112,12 @@ std::vector<std::pair<std::vector<int>, std::vector<int>>>
 
     std::vector<std::vector<std::vector<int>>> all_candidates;
 
-    for (int cap : firm_capacities) {
+    for (int cap : firm_capacities)
+    {
         std::vector<std::vector<int>> merged;
-        for (int k=0; k<=cap; ++k) {
-            const auto& subsets = subset_map.at(k);
+        for (int k = 0; k <= cap; ++k)
+        {
+            const auto &subsets = subset_map.at(k);
             merged.insert(merged.end(), subsets.begin(), subsets.end());
         }
         all_candidates.push_back(merged);
@@ -124,4 +129,34 @@ std::vector<std::pair<std::vector<int>, std::vector<int>>>
     std::set<int> used_agents;
 
     generate_matchings_recursive(0, all_candidates, current_matching, used_agents, all_matchings);
+
+    // 5. 各マッチングの評価計算
+    std::vector<std::pair<
+        std::vector<std::pair<int, std::vector<int>>>,
+        std::pair<std::vector<int>, std::vector<int>>>>
+        result;
+
+    for (const auto& matching : all_matchings)
+    {
+        std::vector<int> firm_scores(n_firms, 0);
+        std::vector<int> agent_scores(n_agents, 0);
+
+        for (const auto& [firm_id, agents] : matching)
+        {
+            for (int agent_id : agents)
+            {
+                firm_scores[firm_id] += firm_prefs[firm_id][agent_id];
+                agent_scores[agent_id] += agent_prefs[agent_id][firm_id];
+                for (int _agent_id : agents)
+                {
+                    if (_agent_id == agent_id) continue;
+                    agent_scores[agent_id] += agent_col_prefs[agent_id][_agent_id];
+                }
+            }
+        }
+
+        result.emplace_back(matching, std::make_pair(firm_scores, agent_scores));
+    }
+
+    return result;
 }
