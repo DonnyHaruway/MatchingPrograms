@@ -38,10 +38,6 @@ std::vector<std::vector<int>> generate_combinations(const std::vector<int>& set,
     return result;
 }
 
-/// この関数は agent の部分集合を生成します。
-/// @param set 入力となるagentの集合
-/// @param k 選ぶ人数
-/// @return k人選んだ組み合わせのリスト
 std::map<int, std::vector<std::vector<int>>> generate_all_subsets_by_size(
     const std::vector<int>& set,
     int max_size

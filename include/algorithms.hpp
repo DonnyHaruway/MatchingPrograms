@@ -2,6 +2,8 @@
 #include <vector>
 #include <utility>
 
+/// @brief return the matching result of serial dictator-like algorithm
+/// @return matching result
 std::pair<
     std::vector<std::pair<int, std::vector<int>>>,
     std::pair<std::vector<int>, std::vector<int>>> 
