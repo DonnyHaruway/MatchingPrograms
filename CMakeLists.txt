@@ -10,6 +10,7 @@ include_directories(include)    # ヘッダファイルの場所
 add_executable(matching_sim
     main.cpp
     src/MatchingSystem.cpp
+    src/Matching.cpp
     src/Utils.cpp
 )
 

@@ -51,16 +51,38 @@ std::map<int, std::vector<std::vector<int>>> generate_all_subsets_by_size(
     return all_combinations;
 }
 
+std::vector<std::vector<std::vector<int>>> prepare_all_candidates(
+    const std::vector<int>& agent_ids,
+    const std::vector<int>& firm_capacities
+) {
+    int max_capacity = *std::max_element(firm_capacities.begin(), firm_capacities.end());
+    auto subset_map = generate_all_subsets_by_size(agent_ids, max_capacity);
+
+    std::vector<std::vector<std::vector<int>>> all_candidates;
+    for (int cap : firm_capacities)
+    {
+        std::vector<std::vector<int>> merged;
+        for (int k = 0; k <= cap; ++k)
+        {
+            const auto& subsets = subset_map.at(k);
+            merged.insert(merged.end(), subsets.begin(), subsets.end());
+        }
+        all_candidates.push_back(merged);
+    }
+    return all_candidates;
+};
+
 void generate_matchings_recursive(
     int firm_idx,
     const std::vector<std::vector<std::vector<int>>>& all_candidates,
-    std::vector<std::pair<int, std::vector<int>>>& current_matching,
+    std::vector<std::vector<int>>& current_matching,
     std::set<int>& used_agents,
-    std::vector<std::vector<std::pair<int, std::vector<int>>>>& result
+    std::vector<Matching>& result
 ) {
     // ベースケース：すべての企業に割り当て終わったら結果に追加
     if (firm_idx == all_candidates.size()) {
-        result.push_back(current_matching);
+        Matching matching = Matching::from_firm_assignment(current_matching);
+        result.push_back(matching);
         return;
     }
 
@@ -72,7 +94,7 @@ void generate_matchings_recursive(
         for (int agent : group) {
             if (used_agents.count(agent)) {
                 valid = false;
-                break;
+                break;  
             }
         }
 
@@ -80,7 +102,7 @@ void generate_matchings_recursive(
 
         // 割り当てを追加
         for (int agent : group) used_agents.insert(agent);
-        current_matching.emplace_back(firm_idx, group);
+        current_matching.push_back(group);
 
         // 再帰的に次の企業へ
         generate_matchings_recursive(firm_idx + 1, all_candidates, current_matching, used_agents, result);
@@ -90,3 +112,4 @@ void generate_matchings_recursive(
         for (int agent : group) used_agents.erase(agent);
     }
 }
+

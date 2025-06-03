@@ -1,13 +1,11 @@
 #include "MatchingSystem.hpp"
-#include "Utils.hpp"
-#include "algorithms.hpp"
 #include <algorithm>
 #include <stdexcept>
 
 MatchingSystem::MatchingSystem(int n_agents, int n_firms, std::vector<int> firm_capacities)
     : n_agents(n_agents), n_firms(n_firms), firm_capacities(firm_capacities) {}
 
-void MatchingSystem::generate_preferences(
+void MatchingSystem::generate_prefs(
     std::string preference_type,
     unsigned int seed,
     int agent_score_min, int agent_score_max,
@@ -71,8 +69,59 @@ void MatchingSystem::generate_preferences(
         }
         agent_col_prefs.push_back(pref);
     }
+
+    pref_flag =true;
 }
 
+void MatchingSystem::add_prefs(
+    const std::vector<std::vector<int>> &agent_pref,
+    const std::vector<std::vector<int>> &firm_pref,
+    const std::vector<std::vector<int>> &agent_col_pref)
+{
+    agent_prefs = agent_pref;
+    firm_prefs = firm_pref;
+    agent_col_prefs = agent_col_pref;
+    pref_flag=true;
+}
+
+std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
+{
+    if (!pref_flag) {
+        throw std::runtime_error("Prefrences have not been set yet.");
+    }
+    std::vector<int> agent_ids(n_agents);
+    std::iota(agent_ids.begin(), agent_ids.end(), 0);
+
+    auto all_candidates = prepare_all_candidates(agent_ids, firm_capacities);
+
+    // 全マッチングの列挙
+    std::vector<Matching> result;
+    std::vector<std::vector<int>> current_matching;
+    std::set<int> used_agents;
+
+    generate_matchings_recursive(0, all_candidates, current_matching, used_agents, result);
+
+    // 計算する
+    for (Matching& matching : result) {
+        matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    }
+
+    return result;
+}
+
+Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
+{
+    if (algorithm_name == "dictator-like")
+    {
+        return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    }
+    else
+    {
+        throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);
+    }
+}
+
+// アクセッサ
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_preferences() const
 {
     return agent_prefs;
@@ -84,98 +133,4 @@ const std::vector<std::vector<int>> &MatchingSystem::get_firm_preferences() cons
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_col_preferences() const
 {
     return agent_col_prefs;
-}
-
-void MatchingSystem::add_preferences(
-    const std::vector<std::vector<int>> &agent_pref,
-    const std::vector<std::vector<int>> &firm_pref,
-    std::vector<std::vector<int>> &agent_col_pref)
-{
-    agent_prefs = agent_pref;
-    firm_prefs = firm_pref;
-    agent_col_prefs = agent_col_pref;
-}
-
-/// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力します。
-/// @return 各マッチングに対する個人、企業の評価関数
-std::vector<std::pair<
-    std::vector<std::pair<int, std::vector<int>>>,
-    std::pair<std::vector<int>, std::vector<int>>>>
-MatchingSystem::evaluate_all_matchings() const
-{
-    // 1. agent集合を準備
-    std::vector<int> agent_ids(n_agents);
-    std::iota(agent_ids.begin(), agent_ids.end(), 0);
-
-    // 2. 各人数の部分集合を前計算
-    int max_capacity = *std::max_element(firm_capacities.begin(), firm_capacities.end());
-
-    // 3. 各企業の候補割り当てパターンを生成
-    auto subset_map = generate_all_subsets_by_size(agent_ids, max_capacity);
-
-    std::vector<std::vector<std::vector<int>>> all_candidates;
-
-    for (int cap : firm_capacities)
-    {
-        std::vector<std::vector<int>> merged;
-        for (int k = 0; k <= cap; ++k)
-        {
-            const auto &subsets = subset_map.at(k);
-            merged.insert(merged.end(), subsets.begin(), subsets.end());
-        }
-        all_candidates.push_back(merged);
-    }
-
-    // 4. 全マッチングの列挙
-    std::vector<std::vector<std::pair<int, std::vector<int>>>> all_matchings;
-    std::vector<std::pair<int, std::vector<int>>> current_matching;
-    std::set<int> used_agents;
-
-    generate_matchings_recursive(0, all_candidates, current_matching, used_agents, all_matchings);
-
-    // 5. 各マッチングの評価計算
-    std::vector<std::pair<
-        std::vector<std::pair<int, std::vector<int>>>,
-        std::pair<std::vector<int>, std::vector<int>>>>
-        result;
-
-    for (const auto &matching : all_matchings)
-    {
-        std::vector<int> firm_scores(n_firms, 0);
-        std::vector<int> agent_scores(n_agents, 0);
-
-        for (const auto &[firm_id, agents] : matching)
-        {
-            for (int agent_id : agents)
-            {
-                firm_scores[firm_id] += firm_prefs[firm_id][agent_id];
-                agent_scores[agent_id] += agent_prefs[agent_id][firm_id];
-                for (int _agent_id : agents)
-                {
-                    if (_agent_id == agent_id)
-                        continue;
-                    agent_scores[agent_id] += agent_col_prefs[agent_id][_agent_id];
-                }
-            }
-        }
-
-        result.emplace_back(matching, std::make_pair(firm_scores, agent_scores));
-    }
-
-    return result;
-}
-
-std::pair<
-    std::vector<std::pair<int, std::vector<int>>>,
-    std::pair<std::vector<int>, std::vector<int>>>
-MatchingSystem::run_algorithm(const std::string &algorithm_name) const
-{
-    if (algorithm_name == "dictator-like")
-    {
-        return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
-    }
-    else
-    {
-        throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);
-    }
 }

@@ -1,13 +1,14 @@
 #pragma once
+
+#include "Matching.hpp"
+#include "algorithmsUtils.hpp"
 #include <vector>
 #include <utility>
 
 /// @brief return the matching result of serial dictator-like algorithm
 /// @return matching result
-std::pair<
-    std::vector<std::pair<int, std::vector<int>>>,
-    std::pair<std::vector<int>, std::vector<int>>> 
-run_dictator_like_algorithm(
+
+Matching run_dictator_like_algorithm(
     const int& n_agents,
     const int& n_firms,
     const std::vector<int> &firm_capacities,

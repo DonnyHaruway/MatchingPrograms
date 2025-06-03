@@ -1,13 +1,9 @@
 #include "algorithms.hpp"
-#include "algorithmsUtils.hpp"
 #include <queue>
 #include <algorithm>
 #include <random>
 
-std::pair<
-    std::vector<std::pair<int, std::vector<int>>>,
-    std::pair<std::vector<int>, std::vector<int>>>
-run_dictator_like_algorithm(
+Matching run_dictator_like_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,
@@ -32,5 +28,5 @@ run_dictator_like_algorithm(
     std::vector<int> firm_scores(n_firms, 0);
     std::vector<int> agent_scores(n_agents, 0);
 
-    
-}
+    return Matching();
+};
