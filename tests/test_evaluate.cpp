@@ -26,10 +26,11 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
     };
 
     ms.add_prefs(agent_pref, firm_pref, agent_col_pref);
+    std::cout << "before evaluate_all_matchings" << std::endl;
 
     vector<Matching> result = ms.evaluate_all_matchings();
 
-    std::cout << "after add_prefs" << std::endl;
+    std::cout << "after evaluate_all_matchings" << std::endl;
 
     map<vector<int>, int> idx_map = {
         {{-1, -1}, 0},

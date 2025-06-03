@@ -20,7 +20,7 @@ TEST(ManualAddTest, AddPreferences) {
         {0, 1, 0}
     };
 
-    ms.add_preferences(agent_pref, firm_pref, agent_col_pref);
+    ms.add_prefs(agent_pref, firm_pref, agent_col_pref);
 
     const auto& agent_pref_ms = ms.get_agent_preferences();
     const auto& firm_pref_ms = ms.get_firm_preferences();

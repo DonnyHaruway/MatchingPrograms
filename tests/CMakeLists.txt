@@ -51,6 +51,16 @@ add_executable(test_matching
 target_include_directories(test_matching PUBLIC ../include)
 target_link_libraries(test_matching gtest_main)
 
+# test_utils.cppをコンパイル
+add_executable(test_utils
+    test_utils.cpp
+    ../src/Utils.cpp
+    ../src/Matching.cpp
+)
+
+target_include_directories(test_utils PUBLIC ../include)
+target_link_libraries(test_utils gtest_main)
+
 # gtestによるテスト検出
 include(GoogleTest)
 gtest_discover_tests(test_generate)
