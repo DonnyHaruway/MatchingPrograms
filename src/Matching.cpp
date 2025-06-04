@@ -5,21 +5,24 @@ Matching::Matching(const std::vector<int> &agent_match,
     : agent_match(agent_match), firm_match(firm_match) {}
 
 Matching Matching::from_firm_assignment(
-  const std::vector<std::vector<int>>& firm_match) 
+    const std::vector<std::vector<int>>& firm_match) 
 {
-  std::vector<int> agent_match;
-
-  int firm_id = 0;
-  for (const std::vector<int>& agents : firm_match) {
-    for (int agent : agents) {
-      if (agent >= agent_match.size()) {
-        agent_match.resize(agent + 1, -1); 
+    int max_agent_id = -1;
+    for (const auto& agents : firm_match) {
+        for (int agent : agents) {
+            max_agent_id = std::max(max_agent_id, agent);
         }
-      agent_match[agent] = firm_id;
     }
-    firm_id++;
-  }
-  return Matching(agent_match, firm_match);
+
+    std::vector<int> agent_match(max_agent_id + 1, -1);
+
+    for (int firm_id = 0; firm_id < firm_match.size(); ++firm_id) {
+        for (int agent : firm_match[firm_id]) {
+            agent_match[agent] = firm_id;
+        }
+    }
+
+    return Matching(agent_match, firm_match);
 }
 
 void Matching::compute_scores(

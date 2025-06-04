@@ -144,10 +144,11 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
         cout << "Matching" << i << endl;
 
         auto agent_match = matching.get_agent_match();
-        cout << "agents" << endl;
-        for (int i=0; i<n_agents; i++) {
-            cout << "agent" << i << " = " << agent_match[i] << endl;
-        }
+        cout << "---- agents ----" << endl;
+        // for (int i=0; i<n_agents; i++) {
+        //     cout << "agent" << i << " = " << agent_match[i] << endl;
+        // }
+        cout << agent_match.size() << endl;
         cout << endl;
 
         auto firm_match = matching.get_firm_match();

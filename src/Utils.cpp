@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <numeric>
 #include <stdexcept>
+#include <iostream>
 
 std::vector<int> generate_random_ranked(int size, std::mt19937& rng) {
     std::vector<int> order(size);
@@ -103,6 +104,19 @@ void generate_matchings_recursive(
         // 割り当てを追加
         for (int agent : group) used_agents.insert(agent);
         current_matching.push_back(group);
+
+        // std::cout << "used_agents" << "\n";
+        // for (int agent : used_agents) std::cout << agent << " ";
+        // std::cout << "\n\n";
+
+        // std::cout << "current_matching" << "\n";
+        // for (int i=0; i<current_matching.size(); i++) {
+        //     auto match = current_matching[i];
+        //     std::cout << "match" << i << "\n";
+        //     for (int agent : match) std::cout << agent << " ";
+        //     std::cout << "\n\n";
+        // }
+
 
         // 再帰的に次の企業へ
         generate_matchings_recursive(firm_idx + 1, all_candidates, current_matching, used_agents, result);
