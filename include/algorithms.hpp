@@ -4,6 +4,11 @@
 #include "algorithmsUtils.hpp"
 #include <vector>
 #include <utility>
+#include <queue>
+#include <algorithm>
+#include <random>
+#include <set>
+#include <map>
 
 /// @brief return the matching result of serial dictator-like algorithm
 /// @return matching result

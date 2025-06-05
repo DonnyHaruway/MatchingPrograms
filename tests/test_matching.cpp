@@ -52,4 +52,5 @@ TEST(MatchingTest, ComputeScores) {
 
     EXPECT_EQ(firm_scores[0], 9);
     EXPECT_EQ(firm_scores[1], 4);
+    m.print();
 }

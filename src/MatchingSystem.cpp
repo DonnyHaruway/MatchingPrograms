@@ -118,7 +118,7 @@ std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 
 Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
 {
-    if (algorithm_name == "dictator-like")
+    if (algorithm_name == "dictator")
     {
         return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
     }

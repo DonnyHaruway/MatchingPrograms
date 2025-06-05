@@ -29,8 +29,8 @@ Matching::Matching(const std::vector<int> &agent_match,
 
 Matching Matching::from_firm_assignment(
     const std::vector<std::vector<int>>& input_firm_match,
-    const int& n_agents) 
-{
+    const int& n_agents
+) {
     std::vector<int> agent_match(n_agents, -1);
     std::vector<std::vector<int>> firm_match;
 
@@ -80,6 +80,57 @@ void Matching::compute_scores(
     }
   }
   scores_computed = true;
+}
+
+// print関数
+void Matching::print() const {
+    std::cout << "=== Matching Information ===\n";
+
+    std::cout << "\n[Agent Match]\n";
+    for (int i = 0; i < agent_match.size(); ++i) {
+        std::cout << "  Agent " << i << " → Firm ";
+        if (agent_match[i] == -1) std::cout << "unmatched";
+        else std::cout << agent_match[i];
+        std::cout << "\n";
+    }
+
+    std::cout << "\n[Firm Match]\n";
+    for (int i = 0; i < firm_match.size(); ++i) {
+        std::cout << "  Firm " << i << " ← ";
+        if (firm_match[i].size() == 1 && firm_match[i][0] == -1) {
+            std::cout << "unmatched";
+        } else {
+            for (int a : firm_match[i]) std::cout << a << " ";
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << "\n[Agent Colleagues]\n";
+    for (int i = 0; i < agent_col_match.size(); ++i) {
+        std::cout << "  Agent " << i << " has colleagues: ";
+        if (agent_col_match[i].size() == 1 && agent_col_match[i][0] == -1) {
+            std::cout << "none";
+        } else {
+            for (int c : agent_col_match[i]) std::cout << c << " ";
+        }
+        std::cout << "\n";
+    }
+
+    if (scores_computed) {
+        std::cout << "\n[Agent Scores]\n";
+        for (int i = 0; i < agent_scores.size(); ++i) {
+            std::cout << "  Agent " << i << ": " << agent_scores[i] << "\n";
+        }
+
+        std::cout << "\n[Firm Scores]\n";
+        for (int i = 0; i < firm_scores.size(); ++i) {
+            std::cout << "  Firm " << i << ": " << firm_scores[i] << "\n";
+        }
+    } else {
+        std::cout << "\n[Scores not computed yet]\n";
+    }
+
+    std::cout << "=============================\n";
 }
 
 // アクセッサ
