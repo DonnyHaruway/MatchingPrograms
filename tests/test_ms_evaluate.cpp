@@ -32,6 +32,7 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
 
     std::cout << "after evaluate_all_matchings" << std::endl;
 
+    // firm0のマッチ, idxのmap
     map<vector<int>, int> idx_map = {
         {{-1, -1}, 0},
         {{0, -1}, 1},
@@ -50,26 +51,26 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
         {0}, {8}, {9}, {17}
     };
 
-    // for (const auto& matching : result) {
-    // std::cout << "Checking matching..." << std::endl;
+    for (const auto& matching : result) {
+    std::cout << "Checking matching..." << std::endl;
 
-    // auto key = matching.get_agent_match();  // ここで落ちる可能性がある
-    // std::cout << "agent_match = " << ::testing::PrintToString(key) << std::endl;
+    auto key = matching.get_agent_match();
+    std::cout << "agent_match = " << ::testing::PrintToString(key) << std::endl;
 
-    // if (idx_map.find(key) == idx_map.end()) {
-    //     std::cout << "Key not found in idx_map" << std::endl;
-    //     FAIL() << "Unexpected agent_match: " << ::testing::PrintToString(key);
-    // } else {
-    //     int idx = idx_map[key];
-    //     std::cout << "Index matched: " << idx << std::endl;
+    if (idx_map.find(key) == idx_map.end()) {
+        std::cout << "Key not found in idx_map" << std::endl;
+        FAIL() << "Unexpected agent_match: " << ::testing::PrintToString(key);
+    } else {
+        int idx = idx_map[key];
+        std::cout << "Index matched: " << idx << std::endl;
 
-    //     auto agent_scores = matching.get_agent_scores();
-    //     auto firm_scores = matching.get_firm_scores();
-    //     std::cout << "Agent scores: " << ::testing::PrintToString(agent_scores) << std::endl;
-    //     std::cout << "Firm scores: " << ::testing::PrintToString(firm_scores) << std::endl;
+        auto agent_scores = matching.get_agent_scores();
+        auto firm_scores = matching.get_firm_scores();
+        std::cout << "Agent scores: " << ::testing::PrintToString(agent_scores) << std::endl;
+        std::cout << "Firm scores: " << ::testing::PrintToString(firm_scores) << std::endl;
 
-    //     EXPECT_EQ(expected_agents[idx], agent_scores);
-    //     EXPECT_EQ(expected_firms[idx], firm_scores);
-    // }
-    // }
+        EXPECT_EQ(expected_agents[idx], agent_scores);
+        EXPECT_EQ(expected_firms[idx], firm_scores);
+    }
+    }
 }

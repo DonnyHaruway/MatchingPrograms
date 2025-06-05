@@ -61,6 +61,7 @@ std::vector<std::vector<std::vector<int>>> prepare_all_candidates(
 /// @param result 有効なマッチングの結果を格納するvector
 void generate_matchings_recursive(
     int firm_idx,
+    const int& n_agents,
     const std::vector<std::vector<std::vector<int>>>& all_candidates,
     std::vector<std::vector<int>>& current_matching,
     std::set<int>& used_agents,

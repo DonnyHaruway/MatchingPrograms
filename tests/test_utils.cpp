@@ -133,7 +133,7 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
     vector<Matching> result;
     vector<std::vector<int>> current_matching;
     set<int> used_agents;
-    generate_matchings_recursive(0, all_candidates, current_matching, used_agents, result);
+    generate_matchings_recursive(0, n_agents, all_candidates, current_matching, used_agents, result);
 
     int expected_size = 19;
 
@@ -145,14 +145,14 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
 
         auto agent_match = matching.get_agent_match();
         cout << "---- agents ----" << endl;
-        // for (int i=0; i<n_agents; i++) {
-        //     cout << "agent" << i << " = " << agent_match[i] << endl;
-        // }
+        for (int i=0; i<n_agents; i++) {
+            cout << "agent" << i << " = " << agent_match[i] << endl;
+        }
         cout << agent_match.size() << endl;
         cout << endl;
 
         auto firm_match = matching.get_firm_match();
-        cout << "firms" << endl;
+        cout << "---- firms ----" << endl;
         for (int i=0; i<firm_capacities.size(); i++) {
             cout << "firm" << i << " = ";
             for (auto _agent : firm_match[i]) {
@@ -163,7 +163,7 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
         cout << endl;
 
         auto agent_col_match = matching.get_agent_col_match();
-        cout << "agent_cols" << endl;
+        cout << "---- agent_cols ----" << endl;
         for (int i=0; i<n_agents; i++) {
             cout << "agent" << i << " = ";
             for (auto _agent : agent_col_match[i]) {
@@ -172,5 +172,6 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
             cout << endl;
         }
         cout << endl;
+        i++;
     }
 }

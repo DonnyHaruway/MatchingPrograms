@@ -75,6 +75,7 @@ std::vector<std::vector<std::vector<int>>> prepare_all_candidates(
 
 void generate_matchings_recursive(
     int firm_idx,
+    const int& n_agents,
     const std::vector<std::vector<std::vector<int>>>& all_candidates,
     std::vector<std::vector<int>>& current_matching,
     std::set<int>& used_agents,
@@ -82,7 +83,7 @@ void generate_matchings_recursive(
 ) {
     // ベースケース：すべての企業に割り当て終わったら結果に追加
     if (firm_idx == all_candidates.size()) {
-        Matching matching = Matching::from_firm_assignment(current_matching);
+        Matching matching = Matching::from_firm_assignment(current_matching, n_agents);
         result.push_back(matching);
         return;
     }
@@ -119,7 +120,7 @@ void generate_matchings_recursive(
 
 
         // 再帰的に次の企業へ
-        generate_matchings_recursive(firm_idx + 1, all_candidates, current_matching, used_agents, result);
+        generate_matchings_recursive(firm_idx + 1, n_agents, all_candidates, current_matching, used_agents, result);
 
         // バックトラック
         current_matching.pop_back();

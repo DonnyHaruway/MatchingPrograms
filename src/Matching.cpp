@@ -2,24 +2,53 @@
 
 Matching::Matching(const std::vector<int> &agent_match,
                    const std::vector<std::vector<int>> &firm_match)
-    : agent_match(agent_match), firm_match(firm_match) {}
-
-Matching Matching::from_firm_assignment(
-    const std::vector<std::vector<int>>& firm_match) 
+    : agent_match(agent_match), firm_match(firm_match) 
 {
-    int max_agent_id = -1;
-    for (const auto& agents : firm_match) {
-        for (int agent : agents) {
-            max_agent_id = std::max(max_agent_id, agent);
+    int n_agents = agent_match.size();
+    agent_col_match.resize(n_agents);
+
+    for (int i = 0; i < n_agents; ++i) {
+        int firm = agent_match[i];
+        if (firm == -1) {
+            agent_col_match[i].push_back(-1);  // マッチしていない
+            continue;
+        }
+
+        for (int other_agent : firm_match[firm]) {
+            if (other_agent != i && other_agent != -1) {
+                agent_col_match[i].push_back(other_agent);
+            }
+        }
+
+        // 同僚がいなかった場合
+        if (agent_col_match[i].empty()) {
+            agent_col_match[i].push_back(-1);
         }
     }
+}
 
-    std::vector<int> agent_match(max_agent_id + 1, -1);
+Matching Matching::from_firm_assignment(
+    const std::vector<std::vector<int>>& input_firm_match,
+    const int& n_agents) 
+{
+    std::vector<int> agent_match(n_agents, -1);
+    std::vector<std::vector<int>> firm_match;
 
-    for (int firm_id = 0; firm_id < firm_match.size(); ++firm_id) {
-        for (int agent : firm_match[firm_id]) {
-            agent_match[agent] = firm_id;
+    // firm_match を構築しながら agent_match に割り当て
+    for (int firm_id = 0; firm_id < input_firm_match.size(); ++firm_id) {
+        const auto& agents = input_firm_match[firm_id];
+        std::vector<int> firm_agents;
+
+        if (agents.empty()) {
+            firm_agents.push_back(-1);  // 誰ともマッチしていない
+        } else {
+            for (int agent : agents) {
+                agent_match[agent] = firm_id;
+                firm_agents.push_back(agent);
+            }
         }
+
+        firm_match.push_back(firm_agents);
     }
 
     return Matching(agent_match, firm_match);
@@ -61,17 +90,6 @@ const std::vector<std::vector<int>>& Matching::get_firm_match() const {
   return firm_match;
 };
 const std::vector<std::vector<int>> Matching::get_agent_col_match() const {
-  auto agent_match = this->get_agent_match();
-  auto firm_match = this->get_firm_match();
-  
-  std::vector<std::vector<int>> agent_col_match(agent_match.size());
-
-  for (int i=0; i<agent_match.size(); i++) {
-    for (int agent : firm_match[agent_match[i]]) {
-      if (agent==i) continue;
-      agent_col_match[i].push_back(agent);
-    }
-  }
   return agent_col_match;
 }
 

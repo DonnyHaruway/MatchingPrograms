@@ -99,7 +99,14 @@ std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
     std::vector<std::vector<int>> current_matching;
     std::set<int> used_agents;
 
-    generate_matchings_recursive(0, all_candidates, current_matching, used_agents, result);
+    generate_matchings_recursive(
+        0,
+        n_agents,
+        all_candidates,
+        current_matching,
+        used_agents,
+        result  
+    );
 
     // 計算する
     for (Matching& matching : result) {

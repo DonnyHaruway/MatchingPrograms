@@ -5,32 +5,32 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# テスト実行ファイル(test_generate.cppをコンパイル)
-add_executable(test_generate
-    test_generate.cpp
+# テスト実行ファイル(test_ms_generate.cppをコンパイル)
+add_executable(test_ms_generate
+    test_ms_generate.cpp
     ../src/MatchingSystem.cpp
     ../src/Utils.cpp
 )
 
 # ヘッダファイルの場所を指定
-target_include_directories(test_generate PUBLIC ../include)
+target_include_directories(test_ms_generate PUBLIC ../include)
 
 # GoogleTest ライブラリにリンク
-target_link_libraries(test_generate gtest_main)
+target_link_libraries(test_ms_generate gtest_main)
 
-# test_manual_add.cppをコンパイル
-add_executable(test_manual_add
-    test_manual_add.cpp
+# test_ms_manual_add.cppをコンパイル
+add_executable(test_ms_manual_add
+    test_ms_manual_add.cpp
     ../src/MatchingSystem.cpp
     ../src/Utils.cpp
 )
 
-target_include_directories(test_manual_add PUBLIC ../include)
-target_link_libraries(test_manual_add gtest_main)
+target_include_directories(test_ms_manual_add PUBLIC ../include)
+target_link_libraries(test_ms_manual_add gtest_main)
 
-# test_evaluate.cppをコンパイル
-add_executable(test_evaluate
-    test_evaluate.cpp
+# test_ms_evaluate.cppをコンパイル
+add_executable(test_ms_evaluate
+    test_ms_evaluate.cpp
     ../src/MatchingSystem.cpp
     ../src/Matching.cpp
     ../src/Utils.cpp
@@ -38,8 +38,8 @@ add_executable(test_evaluate
     ../src/algorithmsUtils.cpp 
 )
 
-target_include_directories(test_evaluate PUBLIC ../include)
-target_link_libraries(test_evaluate gtest_main)
+target_include_directories(test_ms_evaluate PUBLIC ../include)
+target_link_libraries(test_ms_evaluate gtest_main)
 
 # test_matching.cppをコンパイル
 add_executable(test_matching
@@ -63,7 +63,7 @@ target_link_libraries(test_utils gtest_main)
 
 # gtestによるテスト検出
 include(GoogleTest)
-gtest_discover_tests(test_generate)
-gtest_discover_tests(test_manual_add)
-gtest_discover_tests(test_evaluate)
+gtest_discover_tests(test_ms_generate)
+gtest_discover_tests(test_ms_manual_add)
+gtest_discover_tests(test_ms_evaluate)
 gtest_discover_tests(test_matching)

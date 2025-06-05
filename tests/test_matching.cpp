@@ -9,7 +9,7 @@ TEST(MatchingTest, FromFirmAssignmentWorkers) {
         {2}         // firm 1 -> agent 2
     };
 
-    Matching m = Matching::from_firm_assignment(firm_assignments);
+    Matching m = Matching::from_firm_assignment(firm_assignments, 3);
     const auto& a2f = m.get_agent_match();
     EXPECT_EQ(a2f[0], 0);
     EXPECT_EQ(a2f[1], 0);
