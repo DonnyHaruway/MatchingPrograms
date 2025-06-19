@@ -1,7 +1,7 @@
 #include "Matching.hpp"
 
 Matching::Matching(const std::vector<int> &agent_match,
-                   const std::vector<std::vector<int>> &firm_match)
+                   const std::vector<std::set<int>> &firm_match)
     : agent_match(agent_match), firm_match(firm_match) 
 {
     int n_agents = agent_match.size();
@@ -10,41 +10,40 @@ Matching::Matching(const std::vector<int> &agent_match,
     for (int i = 0; i < n_agents; ++i) {
         int firm = agent_match[i];
         if (firm == -1) {
-            agent_col_match[i].push_back(-1);  // マッチしていない
+            agent_col_match[i].insert(-1);  // マッチしていない
             continue;
         }
 
         for (int other_agent : firm_match[firm]) {
             if (other_agent != i && other_agent != -1) {
-                agent_col_match[i].push_back(other_agent);
+                agent_col_match[i].insert(other_agent);
             }
         }
 
         // 同僚がいなかった場合
         if (agent_col_match[i].empty()) {
-            agent_col_match[i].push_back(-1);
+            agent_col_match[i].insert(-1);
         }
     }
 }
 
 Matching Matching::from_firm_assignment(
-    const std::vector<std::vector<int>>& input_firm_match,
+    const std::vector<std::set<int>>& input_firm_match,
     const int& n_agents
 ) {
     std::vector<int> agent_match(n_agents, -1);
-    std::vector<std::vector<int>> firm_match;
+    std::vector<std::set<int>> firm_match;
 
-    // firm_match を構築しながら agent_match に割り当て
     for (int firm_id = 0; firm_id < input_firm_match.size(); ++firm_id) {
         const auto& agents = input_firm_match[firm_id];
-        std::vector<int> firm_agents;
+        std::set<int> firm_agents;
 
         if (agents.empty()) {
-            firm_agents.push_back(-1);  // 誰ともマッチしていない
+            firm_agents.insert(-1);  // 誰ともマッチしていない
         } else {
             for (int agent : agents) {
                 agent_match[agent] = firm_id;
-                firm_agents.push_back(agent);
+                firm_agents.insert(agent);
             }
         }
 
@@ -97,7 +96,7 @@ void Matching::print() const {
     std::cout << "\n[Firm Match]\n";
     for (int i = 0; i < firm_match.size(); ++i) {
         std::cout << "  Firm " << i << " ← ";
-        if (firm_match[i].size() == 1 && firm_match[i][0] == -1) {
+        if (firm_match[i].size() == 1 && firm_match[i] == std::set<int>{-1}) {
             std::cout << "unmatched";
         } else {
             for (int a : firm_match[i]) std::cout << a << " ";
@@ -108,7 +107,7 @@ void Matching::print() const {
     std::cout << "\n[Agent Colleagues]\n";
     for (int i = 0; i < agent_col_match.size(); ++i) {
         std::cout << "  Agent " << i << " has colleagues: ";
-        if (agent_col_match[i].size() == 1 && agent_col_match[i][0] == -1) {
+        if (agent_col_match[i].size() == 1 && agent_col_match[i] == std::set<int>{-1}) {
             std::cout << "none";
         } else {
             for (int c : agent_col_match[i]) std::cout << c << " ";
@@ -137,10 +136,10 @@ void Matching::print() const {
 const std::vector<int>& Matching::get_agent_match() const {
   return agent_match;
 };
-const std::vector<std::vector<int>>& Matching::get_firm_match() const {
+const std::vector<std::set<int>>& Matching::get_firm_match() const {
   return firm_match;
 };
-const std::vector<std::vector<int>> Matching::get_agent_col_match() const {
+const std::vector<std::set<int>> Matching::get_agent_col_match() const {
   return agent_col_match;
 }
 

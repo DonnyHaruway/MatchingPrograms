@@ -76,8 +76,8 @@ std::vector<std::vector<std::vector<int>>> prepare_all_candidates(
 void generate_matchings_recursive(
     int firm_idx,
     const int& n_agents,
-    const std::vector<std::vector<std::vector<int>>>& all_candidates,
-    std::vector<std::vector<int>>& current_matching,
+    const std::vector<std::vector<std::set<int>>>& all_candidates,
+    std::vector<std::set<int>>& current_matching,
     std::set<int>& used_agents,
     std::vector<Matching>& result
 ) {
