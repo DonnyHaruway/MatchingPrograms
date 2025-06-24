@@ -7,8 +7,8 @@
 class Matching {
 private:
     std::vector<int> agent_match;                       // agent[i]のマッチ先
-    std::vector<std::set<int>> firm_match;           // firm[i]にマッチしたagentの集合
-    std::vector<std::set<int>> agent_col_match;      // agent[i]の同僚の集合
+    std::vector<std::set<int>> firm_match;              // firm[i]にマッチしたagentの集合
+    std::vector<std::set<int>> agent_col_match;         // agent[i]の同僚の集合
     std::vector<int> agent_scores;                      // agent[i]のマッチングに対する評価
     std::vector<int> firm_scores;                       // firm[i]のマッチングに対する評価
     bool scores_computed = false;

@@ -4,7 +4,7 @@
 using namespace std;
 
 TEST(MatchingTest, FromFirmAssignmentWorkers) {
-    vector<vector<int>> firm_assignments = {
+    vector<set<int>> firm_assignments = {
         {0, 1},     // firm 0 -> agent 0, 1
         {2}         // firm 1 -> agent 2
     };
@@ -21,7 +21,7 @@ TEST(MatchingTest, ComputeScores) {
 
     vector<int> agent_match = {0, 1, 0};
 
-    vector<vector<int>> firm_match = {
+    vector<set<int>> firm_match = {
         {0, 2}, // firm0 -> agent 0, 2
         {1}     // firm1 -> agent 1
     };

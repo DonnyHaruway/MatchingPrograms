@@ -5,12 +5,16 @@
 #include <random>
 #include <map>
 #include <set>
+#include <algorithm>
+#include <numeric>
+#include <stdexcept>
+#include <iostream>
 
 /// @brief 相手に対するランク順をランダムに生成する
 /// @param size 相手の人数
 /// @param rng 乱数生成器
 /// @return ランキング（整数のvector）
-std::vector<int> generate_random_ranked(int size, std::mt19937& rng);
+std::vector<int> generate_random_ranked(int size, std::mt19937& rng, std::string type="opponent", int who=-1);
 
 /// @brief 相手に対する評価値をランダムに生成する
 /// @param size 相手の人数
@@ -18,7 +22,7 @@ std::vector<int> generate_random_ranked(int size, std::mt19937& rng);
 /// @param max_val 評価値の最大値
 /// @param rng 乱数生成器
 /// @return 評価値（整数のvector）
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng);
+std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng, std::string type="opponent", int who=-1);
 
 /// @brief 集合の指定サイズの組み合わせを生成する
 /// @param set 元の整数集合
@@ -66,4 +70,20 @@ void generate_matchings_recursive(
     std::vector<std::set<int>>& current_matching,
     std::set<int>& used_agents,
     std::vector<Matching>& result
+);
+
+/// @brief 与えられた企業のマッチを計算
+/// @param firm_match 企業の現在のマッチ相手
+/// @param firm_prefs 企業の選好
+/// @return 企業の現在のマッチに対するスコア
+int compute_firm_score(
+    const std::set<int>& firm_match,
+    const std::vector<int>& firm_pref
+);
+
+int compute_agent_score(
+    const int& firm,
+    const std::set<int>& firm_match,
+    const std::vector<int>& agent_pref,
+    const std::vector<int>& agent_col_pref
 );

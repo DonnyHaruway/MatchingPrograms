@@ -19,13 +19,14 @@ Matching run_dictator_like_algorithm(
     for (int id : agent_ids)
         agent_queue.push(id);
 
-    // step2: firmのマッチング, 各firm, agentのスコアの初期化
-    std::vector<std::set<int>> matching(n_firms);
+    // step2: agentのマッチング, firmのマッチング, 各firm, agentのスコアの初期化
+    std::vector<int> agent_matching(n_agents, -1);
+    std::vector<std::set<int>> firm_matching(n_firms);
     std::vector<int> firm_scores(n_firms, 0);
     std::vector<int> agent_scores(n_agents, 0);
 
     // 同僚が原因でエージェントのマッチが決まらなかった時にその状態を記録する
-    // agent : 各企業とそのマッチ相手のvectorの集合
+    // agent : 個人のqueue、各企業とそのマッチ相手のvectorの集合のpair
     std::map<int, std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> mp_declined;
 
     // 告白できない企業のリスト
@@ -35,28 +36,25 @@ Matching run_dictator_like_algorithm(
     // step3: queueの先頭のエージェントが最も好む集合にマッチさせる
     while (agent_queue.size())
     {
-        int agent = agent_queue.front();
-        agent_queue.pop();
+        int agent = agent_queue.front(); agent_queue.pop();
         int prefered_firm = -1;
         int agent_score_tmp = agent_scores[agent];
 
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
         {
-            // 告白可能ならば計算`
+            // 告白可能ならば計算
             if (!unofferable[agent].count(firm))
             {
                 agent_score_tmp += agent_prefs[agent][firm];
                 // 現在のmatchingにおけるキャパシティを比較
-                if (matching[firm].size() == firm_capacities[firm])
+                if (firm_matching[firm].size() == firm_capacities[firm])
                 {
-                    for (int agent_del : matching[firm])
-                    {
-                    }
+                    
                 }
                 else
                 {
-                    for (int agent_col : matching[firm])
+                    for (int agent_col : firm_matching[firm])
                         agent_score_tmp += agent_col_prefs[agent][agent_col];
                 }
                 // match相手を決定
@@ -67,20 +65,22 @@ Matching run_dictator_like_algorithm(
             continue;
 
         // 受け入れ可能か確認
-        auto [acceptable_firm, acceptable_agent] = is_acceptable(agent, prefered_firm, matching, firm_prefs, agent_col_prefs);
+        bool acceptable_firm = firm_acceptable(agent, prefered_firm, firm_matching, firm_prefs, firm_capacities);
         // 受け入れ可能なら追加
-        if (acceptable_firm && acceptable_agent)
-            matching[prefered_firm].insert(agent);
+        if (acceptable_firm && acceptable_agent) {
+                firm_matching[prefered_firm].insert(agent);
+                agent_matching[agent] = prefered_firm;
+            }
         // 同僚が原因で弾かれた場合
         else if (acceptable_firm)
         {
             // 過去に弾かれた状況と今が同じかどうかを判定
-            bool same = should_reconsider_matching(agent, matching, mp_declined);
+            bool same = should_reconsider_matching(agent, agent_queue, firm_matching, mp_declined);
             // 過去の状況と異なればqueueに追加
             if (!same)
             {
                 agent_queue.push(agent);
-                mp_declined[agent].push_back(std::pair(agent_queue, matching));
+                mp_declined[agent].push_back(std::pair(agent_queue, firm_matching));
             }
         }
         // 企業側に弾かれた場合
@@ -90,5 +90,5 @@ Matching run_dictator_like_algorithm(
             agent_queue.push(agent);
         }
     }
-    return Matching::from_firm_assignment(matching, n_agents);
+    return Matching::from_firm_assignment(firm_matching, n_agents);
 };

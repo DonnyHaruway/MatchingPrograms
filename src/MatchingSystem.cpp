@@ -61,11 +61,11 @@ void MatchingSystem::generate_prefs(
 
         if (preference_type == "ranked")
         {
-            pref = generate_random_ranked(n_agents, rng);
+            pref = generate_random_ranked(n_agents, rng, "col", i);
         }
         else if (preference_type == "numeric")
         {
-            pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng);
+            pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng, "col", i);
         }
         agent_col_prefs.push_back(pref);
     }
@@ -96,7 +96,7 @@ std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 
     // 全マッチングの列挙
     std::vector<Matching> result;
-    std::vector<std::vector<int>> current_matching;
+    std::vector<std::set<int>> current_matching;
     std::set<int> used_agents;
 
     generate_matchings_recursive(
