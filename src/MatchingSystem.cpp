@@ -70,7 +70,7 @@ void MatchingSystem::generate_prefs(
         agent_col_prefs.push_back(pref);
     }
 
-    pref_flag =true;
+    pref_flag = true;
 }
 
 void MatchingSystem::add_prefs(
@@ -81,12 +81,13 @@ void MatchingSystem::add_prefs(
     agent_prefs = agent_pref;
     firm_prefs = firm_pref;
     agent_col_prefs = agent_col_pref;
-    pref_flag=true;
+    pref_flag = true;
 }
 
 std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 {
-    if (!pref_flag) {
+    if (!pref_flag)
+    {
         throw std::runtime_error("Prefrences have not been set yet.");
     }
     std::vector<int> agent_ids(n_agents);
@@ -105,11 +106,11 @@ std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
         all_candidates,
         current_matching,
         used_agents,
-        result  
-    );
+        result);
 
     // 計算する
-    for (Matching& matching : result) {
+    for (Matching &matching : result)
+    {
         matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
     }
 

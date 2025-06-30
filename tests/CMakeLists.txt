@@ -61,7 +61,7 @@ add_executable(test_utils
 target_include_directories(test_utils PUBLIC ../include)
 target_link_libraries(test_utils gtest_main)
 
-# test_utils.cppをコンパイル
+# test_alg_dictator.cppをコンパイル
 add_executable(test_alg_dictator
     test_alg_dictator.cpp
     ../src/MatchingSystem.cpp

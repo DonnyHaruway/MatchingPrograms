@@ -36,27 +36,22 @@ Matching run_dictator_like_algorithm(
     // step3: queueの先頭のエージェントが最も好む集合にマッチさせる
     while (agent_queue.size())
     {
-        int agent = agent_queue.front(); agent_queue.pop();
+        int agent = agent_queue.front();
+        agent_queue.pop();
         int prefered_firm = -1;
         int agent_score_tmp = agent_scores[agent];
 
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
-        {
+        {   
+            // 受け入れ可能か確認
+            bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
+            bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_col_prefs, firm_capacities[firm]);
             // 告白可能ならば計算
-            if (!unofferable[agent].count(firm))
+            if (!unofferable[agent].count(firm) && acceptable_firm && acceptable_agent)
             {
                 agent_score_tmp += agent_prefs[agent][firm];
                 // 現在のmatchingにおけるキャパシティを比較
-                if (firm_matching[firm].size() == firm_capacities[firm])
-                {
-                    
-                }
-                else
-                {
-                    for (int agent_col : firm_matching[firm])
-                        agent_score_tmp += agent_col_prefs[agent][agent_col];
-                }
                 // match相手を決定
                 prefered_firm = agent_scores[agent] < agent_score_tmp ? firm : prefered_firm;
             }
@@ -64,31 +59,8 @@ Matching run_dictator_like_algorithm(
         if (prefered_firm == -1)
             continue;
 
-        // 受け入れ可能か確認
-        bool acceptable_firm = firm_acceptable(agent, prefered_firm, firm_matching, firm_prefs, firm_capacities);
-        // 受け入れ可能なら追加
-        if (acceptable_firm && acceptable_agent) {
-                firm_matching[prefered_firm].insert(agent);
-                agent_matching[agent] = prefered_firm;
-            }
-        // 同僚が原因で弾かれた場合
-        else if (acceptable_firm)
-        {
-            // 過去に弾かれた状況と今が同じかどうかを判定
-            bool same = should_reconsider_matching(agent, agent_queue, firm_matching, mp_declined);
-            // 過去の状況と異なればqueueに追加
-            if (!same)
-            {
-                agent_queue.push(agent);
-                mp_declined[agent].push_back(std::pair(agent_queue, firm_matching));
-            }
-        }
-        // 企業側に弾かれた場合
-        else
-        {
-            unofferable[agent].insert(prefered_firm);
-            agent_queue.push(agent);
-        }
+        firm_matching[prefered_firm].insert(agent);
+        agent_matching[agent] = prefered_firm;
     }
     return Matching::from_firm_assignment(firm_matching, n_agents);
 };
