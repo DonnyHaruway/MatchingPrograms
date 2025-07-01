@@ -46,7 +46,7 @@ Matching run_dictator_like_algorithm(
         {   
             // 受け入れ可能か確認
             bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
-            bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_col_prefs, firm_capacities[firm]);
+            bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
             // 告白可能ならば計算
             if (!unofferable[agent].count(firm) && acceptable_firm && acceptable_agent)
             {

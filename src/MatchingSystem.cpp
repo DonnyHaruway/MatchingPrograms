@@ -26,11 +26,11 @@ void MatchingSystem::generate_prefs(
 
         if (preference_type == "ranked")
         {
-            pref = generate_random_ranked(n_firms, rng);
+            pref = generate_random_ranked(n_firms, rng, "opponent", -1);
         }
         else if (preference_type == "numeric")
         {
-            pref = generate_random_number(n_firms, agent_score_min, agent_score_max, rng);
+            pref = generate_random_number(n_firms, agent_score_min, agent_score_max, rng, "opponent", -1);
         }
         agent_prefs.push_back(pref);
     }
@@ -43,11 +43,11 @@ void MatchingSystem::generate_prefs(
 
         if (preference_type == "ranked")
         {
-            pref = generate_random_ranked(n_agents, rng);
+            pref = generate_random_ranked(n_agents, rng, "opponent", -1);
         }
         else if (preference_type == "numeric")
         {
-            pref = generate_random_number(n_agents, firm_score_min, firm_score_max, rng);
+            pref = generate_random_number(n_agents, firm_score_min, firm_score_max, rng, "opponent", -1);
         }
 
         firm_prefs.push_back(pref);

@@ -10,7 +10,7 @@ TEST(UtilTest, GenerateCombinations_Test) {
     auto result = generate_combinations(elems, k);
     EXPECT_EQ(result.size(), expected_size);
 
-    set<vector<int>> st = {
+    set<set<int>> st = {
         {0, 1},
         {0, 2},
         {0, 3},
@@ -32,18 +32,18 @@ TEST(UtilTest, GenerateAllSubsetsBySize) {
     const int expected_size = 11;
     auto result = generate_all_subsets_by_size(elems, k);
 
-    set<vector<int>> st0 = {
+    set<set<int>> st0 = {
         {},
     };
 
-    set<vector<int>> st1 = {
+    set<set<int>> st1 = {
         {0},
         {1},
         {2},
         {3},
     };
 
-    set<vector<int>> st2 = {
+    set<set<int>> st2 = {
         {0, 1},
         {0, 2},
         {0, 3},
@@ -52,11 +52,11 @@ TEST(UtilTest, GenerateAllSubsetsBySize) {
         {2, 3}
     };
 
-    vector<set<vector<int>>> st = {st0, st1, st2};
+    vector<set<set<int>>> st = {st0, st1, st2};
 
     int sum = 0;
     for (auto [x, subset] : result) {
-        set<vector<int>> tmp = st[x];
+        set<set<int>> tmp = st[x];
         for (auto S : subset) {
             if (!tmp.count(S)) cout << "Not found" << endl;
         }
@@ -72,21 +72,21 @@ TEST(UtilTest, PrepareAllCandidates) {
 
     auto result = prepare_all_candidates(agent_ids, firm_capacities);
 
-    set<vector<int>> result1(result[0].begin(), result[0].end());
-    set<vector<int>> result2(result[1].begin(), result[1].end());
+    set<set<int>> result1(result[0].begin(), result[0].end());
+    set<set<int>> result2(result[1].begin(), result[1].end());
 
-    set<vector<int>> st0 = {
+    set<set<int>> st0 = {
         {},
     };
 
-    set<vector<int>> st1 = {
+    set<set<int>> st1 = {
         {0},
         {1},
         {2},
         {3},
     };
 
-    set<vector<int>> st2 = {
+    set<set<int>> st2 = {
         {0, 1},
         {0, 2},
         {0, 3},
@@ -95,19 +95,19 @@ TEST(UtilTest, PrepareAllCandidates) {
         {2, 3}
     };
 
-    set<vector<int>> st3 = {
+    set<set<int>> st3 = {
         {0, 1, 2},
         {0, 1, 3},
         {0, 2, 3},
         {1, 2, 3},
     };
 
-    set<vector<int>> merged1 = st0;
+    set<set<int>> merged1 = st0;
     merged1.insert(st1.begin(), st1.end());
     merged1.insert(st2.begin(), st2.end());
     merged1.insert(st3.begin(), st3.end());
 
-    set<vector<int>> merged2 = st0;
+    set<set<int>> merged2 = st0;
     merged2.insert(st1.begin(), st1.end());
     merged2.insert(st2.begin(), st2.end());
 
@@ -131,7 +131,7 @@ TEST(UtilTest, GenerateMatchingsRecursive) {
     auto all_candidates = prepare_all_candidates(agent_ids, firm_capacities);
 
     vector<Matching> result;
-    vector<std::vector<int>> current_matching;
+    vector<std::set<int>> current_matching;
     set<int> used_agents;
     generate_matchings_recursive(0, n_agents, all_candidates, current_matching, used_agents, result);
 

@@ -10,6 +10,9 @@ add_executable(test_ms_generate
     test_ms_generate.cpp
     ../src/MatchingSystem.cpp
     ../src/Utils.cpp
+    ../src/Matching.cpp
+    ../src/algorithms.cpp        
+    ../src/algorithmsUtils.cpp 
 )
 
 # ヘッダファイルの場所を指定
@@ -23,6 +26,9 @@ add_executable(test_ms_manual_add
     test_ms_manual_add.cpp
     ../src/MatchingSystem.cpp
     ../src/Utils.cpp
+    ../src/Matching.cpp
+    ../src/algorithms.cpp        
+    ../src/algorithmsUtils.cpp 
 )
 
 target_include_directories(test_ms_manual_add PUBLIC ../include)
@@ -32,8 +38,8 @@ target_link_libraries(test_ms_manual_add gtest_main)
 add_executable(test_ms_evaluate
     test_ms_evaluate.cpp
     ../src/MatchingSystem.cpp
-    ../src/Matching.cpp
     ../src/Utils.cpp
+    ../src/Matching.cpp
     ../src/algorithms.cpp        
     ../src/algorithmsUtils.cpp 
 )

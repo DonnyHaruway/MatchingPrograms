@@ -12,6 +12,8 @@ add_executable(matching_sim
     src/MatchingSystem.cpp
     src/Matching.cpp
     src/Utils.cpp
+    src/algorithms.cpp
+    src/algorithmsUtils.cpp
 )
 
 # (あとで追加)テストフォルダもビルドに含めたいので準備

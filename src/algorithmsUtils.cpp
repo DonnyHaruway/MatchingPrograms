@@ -40,9 +40,8 @@ bool agent_acceptable(int agent, int firm,
                       const std::vector<std::set<int>> &matching,
                       const std::vector<std::vector<int>> &agent_prefs,
                       const std::vector<std::vector<int>> &agent_col_prefs,
-                      const std::vector<int> &firm_capacities)
+                      const int &firm_capacity)
 {
-    int firm_capacity = firm_capacities[firm];
     bool acceptable_agent = true;
 
     if (matching[firm].size() == firm_capacity)

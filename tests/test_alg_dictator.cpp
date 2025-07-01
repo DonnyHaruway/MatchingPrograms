@@ -29,5 +29,6 @@ TEST(DictatorLikeAlgorithm, dictatorlikealg) {
 
     ms.add_prefs(agent_prefs, firm_prefs, agent_col_prefs);
     Matching matching = ms.run_algorithm("dictator");
+    matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
     matching.print();
 }

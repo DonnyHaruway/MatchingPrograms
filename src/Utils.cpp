@@ -1,6 +1,6 @@
 #include "Utils.hpp"
 
-std::vector<int> generate_random_ranked(int size, std::mt19937 &rng, std::string type, int who)
+std::vector<int> generate_random_ranked(int size, std::mt19937& rng, std::string type="opponent", int who=-1)
 {
     std::vector<int> order(size);
 
@@ -33,7 +33,7 @@ std::vector<int> generate_random_ranked(int size, std::mt19937 &rng, std::string
     return order;
 }
 
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937 &rng, std::string type, int who)
+std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng, std::string type="opponent", int who=-1)
 {
     if (min_val > max_val)
     {
@@ -66,20 +66,20 @@ std::vector<int> generate_random_number(int size, int min_val, int max_val, std:
     return v;
 }
 
-std::vector<std::vector<int>> generate_combinations(const std::vector<int> &set, int k)
+std::vector<std::set<int>> generate_combinations(const std::vector<int> &set, int k)
 {
-    std::vector<std::vector<int>> result;
+    std::vector<std::set<int>> result;
 
     std::vector<bool> bitmask(set.size(), false);
     std::fill(bitmask.end() - k, bitmask.end(), true); // k個だけtrue（選ばれる）
 
     do
     {
-        std::vector<int> comb;
+        std::set<int> comb;
         for (size_t i = 0; i < set.size(); ++i)
         {
             if (bitmask[i])
-                comb.push_back(set[i]);
+                comb.insert(set[i]);
         }
         result.push_back(comb);
     } while (std::next_permutation(bitmask.begin(), bitmask.end()));
@@ -87,11 +87,11 @@ std::vector<std::vector<int>> generate_combinations(const std::vector<int> &set,
     return result;
 }
 
-std::map<int, std::vector<std::vector<int>>> generate_all_subsets_by_size(
+std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
     const std::vector<int> &set,
     int max_size)
 {
-    std::map<int, std::vector<std::vector<int>>> all_combinations;
+    std::map<int, std::vector<std::set<int>>> all_combinations;
 
     for (int k = 0; k <= max_size; ++k)
     {
@@ -101,17 +101,18 @@ std::map<int, std::vector<std::vector<int>>> generate_all_subsets_by_size(
     return all_combinations;
 }
 
-std::vector<std::vector<std::vector<int>>> prepare_all_candidates(
+std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     const std::vector<int> &agent_ids,
     const std::vector<int> &firm_capacities)
 {
     int max_capacity = *std::max_element(firm_capacities.begin(), firm_capacities.end());
+    // もしsetとvectorの変換がダメだったらここ
     auto subset_map = generate_all_subsets_by_size(agent_ids, max_capacity);
 
-    std::vector<std::vector<std::vector<int>>> all_candidates;
+    std::vector<std::vector<std::set<int>>> all_candidates;
     for (int cap : firm_capacities)
     {
-        std::vector<std::vector<int>> merged;
+        std::vector<std::set<int>> merged;
         for (int k = 0; k <= cap; ++k)
         {
             const auto &subsets = subset_map.at(k);
@@ -190,22 +191,14 @@ int compute_firm_score(
 int compute_agent_score(
     const int &firm,
     const std::set<int> &firm_match,
-    const std::vector<int> &agent_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs)
+    const std::vector<int> &agent_pref,
+    const std::vector<int> &agent_col_pref)
 {
     int score = 0;
     for (int agent_col : firm_match)
     {
-        if (agent_col < 0 || agent_col >= agent_col_prefs.size())
-        {
-            throw std::out_of_range("Agent colleague index out of range in agent preferences");
-        }
-        score += agent_col_prefs[agent_col][firm];
+        score += agent_col_pref[agent_col];
     }
-    if (firm < 0 || firm >= agent_prefs.size())
-    {
-        throw std::out_of_range("Firm index out of range in agent preferences");
-    }
-    score += agent_prefs[firm];
+    score += agent_pref[firm];
     return score;
 }

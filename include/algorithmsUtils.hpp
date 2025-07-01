@@ -18,12 +18,11 @@ bool firm_acceptable(int agent, int firm,
                      const std::vector<std::vector<int>> &firm_prefs,
                      const int &firm_capacity);
 
-bool agent_acceptable(
-    int agent,
-    int firm,
-    const std::vector<std::set<int>> &matching,
-    const std::vector<std::vector<int>> &agent_col_prefs,
-    const int &firm_capacity);
+bool agent_acceptable(int agent, int firm,
+                      const std::vector<std::set<int>> &matching,
+                      const std::vector<std::vector<int>> &agent_prefs,
+                      const std::vector<std::vector<int>> &agent_col_prefs,
+                      const int &firm_capacitiy);
 
 /// @brief
 /// @param agent
