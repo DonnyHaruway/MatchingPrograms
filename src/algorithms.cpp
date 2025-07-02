@@ -39,25 +39,41 @@ Matching run_dictator_like_algorithm(
         int agent = agent_queue.front();
         agent_queue.pop();
         int prefered_firm = -1;
-        int agent_score_tmp = agent_scores[agent];
-
+        std::vector<bool> firm_accept(n_firms);
+        std::vector<bool> agent_accept(n_firms);
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
-        {   
-            // 受け入れ可能か確認
+        {
+            if (unofferable[agent].count(firm)) continue;
+            int agent_score_tmp = 0;
+
             bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
             bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
-            // 告白可能ならば計算
-            if (!unofferable[agent].count(firm) && acceptable_firm && acceptable_agent)
+
+            firm_accept[firm] = acceptable_firm;
+            agent_accept[firm] = acceptable_agent;
+
+            if (acceptable_firm && acceptable_agent)
             {
                 agent_score_tmp += agent_prefs[agent][firm];
-                // 現在のmatchingにおけるキャパシティを比較
-                // match相手を決定
-                prefered_firm = agent_scores[agent] < agent_score_tmp ? firm : prefered_firm;
+                for (int agent_col : firm_matching[firm]) agent_score_tmp += agent_col_prefs[agent][agent_col];
+                if (agent_score_tmp > agent_scores[agent]) {
+                    prefered_firm = firm;
+                    agent_scores[agent] = agent_score_tmp;
+                }
+            } else if (!acceptable_firm) {
+                unofferable[agent].insert(firm);
             }
         }
-        if (prefered_firm == -1)
-            continue;
+        
+        if (prefered_firm == -1) {
+            if (!std::any_of(firm_accept.begin(), firm_accept.end(), [] (bool v) { return !v; })) {
+                mp_declined[agent].emplace_back(agent_queue, firm_matching);
+                continue;
+            } else {
+                continue;
+            }
+        }
 
         firm_matching[prefered_firm].insert(agent);
         agent_matching[agent] = prefered_firm;

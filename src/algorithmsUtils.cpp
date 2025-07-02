@@ -31,7 +31,7 @@ bool firm_acceptable(int agent, int firm,
     }
     else
     {
-        acceptable_firm = firm_prefs[firm][agent] >= 0;
+        acceptable_firm = firm_prefs[firm][agent] > 0;
     }
     return acceptable_firm;
 }
