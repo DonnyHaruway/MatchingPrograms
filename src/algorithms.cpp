@@ -38,9 +38,12 @@ Matching run_dictator_like_algorithm(
     {
         int agent = agent_queue.front();
         agent_queue.pop();
+        if (should_reconsider_matching(agent, agent_queue, firm_matching, mp_declined)) continue;
+
         int prefered_firm = -1;
         std::vector<bool> firm_accept(n_firms);
         std::vector<bool> agent_accept(n_firms);
+
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
         {
@@ -69,14 +72,18 @@ Matching run_dictator_like_algorithm(
         if (prefered_firm == -1) {
             if (!std::any_of(firm_accept.begin(), firm_accept.end(), [] (bool v) { return !v; })) {
                 mp_declined[agent].emplace_back(agent_queue, firm_matching);
+                agent_queue.push(agent);
                 continue;
             } else {
                 continue;
             }
         }
-
-        firm_matching[prefered_firm].insert(agent);
-        agent_matching[agent] = prefered_firm;
+        if (firm_matching[prefered_firm].size() == firm_capacities[prefered_firm]) {
+            //
+        } else {
+            firm_matching[prefered_firm].insert(agent);
+            agent_matching[agent] = prefered_firm;
+        }
     }
     return Matching::from_firm_assignment(firm_matching, n_agents);
 };
