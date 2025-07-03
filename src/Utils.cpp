@@ -193,12 +193,9 @@ int compute_agent_score(
     const std::set<int> &firm_match,
     const std::vector<int> &agent_pref,
     const std::vector<int> &agent_col_pref)
-{
+{   
     int score = 0;
-    for (int agent_col : firm_match)
-    {
-        score += agent_col_pref[agent_col];
-    }
+    for (int agent_col : firm_match) score += agent_col_pref[agent_col];
     score += agent_pref[firm];
     return score;
 }

@@ -26,9 +26,9 @@ public:
 
     // 選好の指定
     void add_prefs(
-        const std::vector<std::vector<int>> &agent_pref,
-        const std::vector<std::vector<int>> &firm_pref,
-        const std::vector<std::vector<int>> &agent_col_pref);
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs);
 
     /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力する。
     /// @return Matchingオブジェクトのvector(スコア計算済み)

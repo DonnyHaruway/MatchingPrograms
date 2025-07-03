@@ -1,6 +1,7 @@
 #include "MatchingSystem.hpp"
 #include <algorithm>
 #include <stdexcept>
+#include <cassert>
 
 MatchingSystem::MatchingSystem(int n_agents, int n_firms, std::vector<int> firm_capacities)
     : n_agents(n_agents), n_firms(n_firms), firm_capacities(firm_capacities) {}
@@ -74,16 +75,26 @@ void MatchingSystem::generate_prefs(
 }
 
 void MatchingSystem::add_prefs(
-    const std::vector<std::vector<int>> &agent_pref,
-    const std::vector<std::vector<int>> &firm_pref,
-    const std::vector<std::vector<int>> &agent_col_pref)
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs)
 {
-    agent_prefs = agent_pref;
-    firm_prefs = firm_pref;
-    agent_col_prefs = agent_col_pref;
-    pref_flag = true;
-}
+    assert(agent_prefs.size() == n_agents);
+    for (const auto &row : agent_prefs)
+        assert(row.size() == n_firms);
 
+    assert(firm_prefs.size() == n_firms);
+    for (const auto &row : firm_prefs)
+        assert(row.size() == n_agents);
+
+    assert(agent_col_prefs.size() == n_agents);
+    for (const auto &row : agent_col_prefs)
+        assert(row.size() == n_agents);
+
+    this->agent_prefs = agent_prefs;
+    this->firm_prefs = firm_prefs;
+    this->agent_col_prefs = agent_col_prefs;
+}
 std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 {
     if (!pref_flag)

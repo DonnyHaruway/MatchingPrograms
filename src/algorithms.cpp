@@ -8,6 +8,7 @@ Matching run_dictator_like_algorithm(
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs)
 {
+    std::cout << "\n=== run_dictator_like_algorithm ===" << '\n';
     // step1: agentをランダムに並べてqueueに格納
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
@@ -20,14 +21,13 @@ Matching run_dictator_like_algorithm(
         agent_queue.push(id);
 
     // step2: agentのマッチング, firmのマッチング, 各firm, agentのスコアの初期化
-    std::vector<int> agent_matching(n_agents, -1);
     std::vector<std::set<int>> firm_matching(n_firms);
     std::vector<int> firm_scores(n_firms, 0);
     std::vector<int> agent_scores(n_agents, 0);
 
     // 同僚が原因でエージェントのマッチが決まらなかった時にその状態を記録する
     // agent : 個人のqueue、各企業とそのマッチ相手のvectorの集合のpair
-    std::map<int, std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> mp_declined;
+    std::vector<std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> declined(n_agents);
 
     // 告白できない企業のリスト
     // agent : 告白できない企業set
@@ -38,7 +38,8 @@ Matching run_dictator_like_algorithm(
     {
         int agent = agent_queue.front();
         agent_queue.pop();
-        if (should_reconsider_matching(agent, agent_queue, firm_matching, mp_declined)) continue;
+        if (should_reconsider_matching(agent, agent_queue, firm_matching, declined))
+            continue;
 
         int prefered_firm = -1;
         std::vector<bool> firm_accept(n_firms);
@@ -47,9 +48,11 @@ Matching run_dictator_like_algorithm(
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
         {
-            if (unofferable[agent].count(firm)) continue;
-            int agent_score_tmp = 0;
 
+            if (unofferable[agent].count(firm))
+                continue;
+
+            int agent_score_tmp = 0;
             bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
             bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
 
@@ -59,31 +62,53 @@ Matching run_dictator_like_algorithm(
             if (acceptable_firm && acceptable_agent)
             {
                 agent_score_tmp += agent_prefs[agent][firm];
-                for (int agent_col : firm_matching[firm]) agent_score_tmp += agent_col_prefs[agent][agent_col];
-                if (agent_score_tmp > agent_scores[agent]) {
+                for (int agent_col : firm_matching[firm])
+                    agent_score_tmp += agent_col_prefs[agent][agent_col];
+                if (agent_score_tmp > agent_scores[agent])
+                {
                     prefered_firm = firm;
                     agent_scores[agent] = agent_score_tmp;
                 }
-            } else if (!acceptable_firm) {
+            }
+            else if (!acceptable_firm)
+            {
                 unofferable[agent].insert(firm);
             }
         }
-        
-        if (prefered_firm == -1) {
-            if (!std::any_of(firm_accept.begin(), firm_accept.end(), [] (bool v) { return !v; })) {
-                mp_declined[agent].emplace_back(agent_queue, firm_matching);
+
+        if (prefered_firm == -1)
+        {
+            if (!std::any_of(firm_accept.begin(), firm_accept.end(), [](bool v)
+                             { return !v; }))
+            {
+                declined[agent].emplace_back(agent_queue, firm_matching);
                 agent_queue.push(agent);
                 continue;
-            } else {
+            }
+            else
+            {
                 continue;
             }
         }
-        if (firm_matching[prefered_firm].size() == firm_capacities[prefered_firm]) {
-            //
-        } else {
+        if (firm_matching[prefered_firm].size() == firm_capacities[prefered_firm])
+        {
+            int excluded_agent = exclude_one_agent(agent, prefered_firm, firm_matching, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities[prefered_firm]);
+            std::cout << "excluded_agent = " << excluded_agent << '\n';
+            std::cout << "agent = " << agent << ", prefered_firm = " << prefered_firm << '\n';
+            std::cout << "--- firm_matching[" << prefered_firm << "] ---" <<'\n';
+            for (int x : firm_matching[prefered_firm]) {
+                std::cout << x << ' ';
+            } 
+            std::cout << '\n';
+            firm_matching[prefered_firm].erase(excluded_agent);
             firm_matching[prefered_firm].insert(agent);
-            agent_matching[agent] = prefered_firm;
+        }
+        else
+        {
+            firm_matching[prefered_firm].insert(agent);
         }
     }
+
+    std::cout << "=== run_dictator_like_algorithm END ===\n\n";
     return Matching::from_firm_assignment(firm_matching, n_agents);
 };

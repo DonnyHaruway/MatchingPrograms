@@ -1,90 +1,35 @@
+# tests/CMakeLists.txt
+
 include(FetchContent)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/heads/main.zip
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 FetchContent_MakeAvailable(googletest)
 
-# テスト実行ファイル(test_ms_generate.cppをコンパイル)
-add_executable(test_ms_generate
-    test_ms_generate.cpp
-    ../src/MatchingSystem.cpp
-    ../src/Utils.cpp
-    ../src/Matching.cpp
-    ../src/algorithms.cpp        
-    ../src/algorithmsUtils.cpp 
-)
-
-# ヘッダファイルの場所を指定
-target_include_directories(test_ms_generate PUBLIC ../include)
-
-# GoogleTest ライブラリにリンク
-target_link_libraries(test_ms_generate gtest_main)
-
-# test_ms_manual_add.cppをコンパイル
-add_executable(test_ms_manual_add
-    test_ms_manual_add.cpp
-    ../src/MatchingSystem.cpp
-    ../src/Utils.cpp
-    ../src/Matching.cpp
-    ../src/algorithms.cpp        
-    ../src/algorithmsUtils.cpp 
-)
-
-target_include_directories(test_ms_manual_add PUBLIC ../include)
-target_link_libraries(test_ms_manual_add gtest_main)
-
-# test_ms_evaluate.cppをコンパイル
-add_executable(test_ms_evaluate
-    test_ms_evaluate.cpp
-    ../src/MatchingSystem.cpp
-    ../src/Utils.cpp
-    ../src/Matching.cpp
-    ../src/algorithms.cpp        
-    ../src/algorithmsUtils.cpp 
-)
-
-target_include_directories(test_ms_evaluate PUBLIC ../include)
-target_link_libraries(test_ms_evaluate gtest_main)
-
-# test_matching.cppをコンパイル
-add_executable(test_matching
-    test_matching.cpp
-    ../src/Matching.cpp
-    ../src/Utils.cpp
-)
-
-target_include_directories(test_matching PUBLIC ../include)
-target_link_libraries(test_matching gtest_main)
-
-# test_utils.cppをコンパイル
-add_executable(test_utils
-    test_utils.cpp
-    ../src/Utils.cpp
-    ../src/Matching.cpp
-)
-
-target_include_directories(test_utils PUBLIC ../include)
-target_link_libraries(test_utils gtest_main)
-
-# test_alg_dictator.cppをコンパイル
-add_executable(test_alg_dictator
-    test_alg_dictator.cpp
-    ../src/MatchingSystem.cpp
-    ../src/Matching.cpp
-    ../src/Utils.cpp
-    ../src/algorithms.cpp        
-    ../src/algorithmsUtils.cpp 
-)
-
-target_include_directories(test_alg_dictator PUBLIC ../include)
-target_link_libraries(test_alg_dictator gtest_main)
-
-# gtestによるテスト検出
 include(GoogleTest)
-gtest_discover_tests(test_ms_generate)
-gtest_discover_tests(test_ms_manual_add)
-gtest_discover_tests(test_ms_evaluate)
-gtest_discover_tests(test_matching)
-gtest_discover_tests(test_utils)
-gtest_discover_tests(test_alg_dictator)
+
+enable_testing()
+
+# includeディレクトリを設定
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+# テストディレクトリの一覧
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*/*.cpp")
+
+foreach(TEST_SRC ${TEST_SOURCES})
+    get_filename_component(TEST_NAME ${TEST_SRC} NAME_WE)
+
+    add_executable(${TEST_NAME}
+        ${TEST_SRC}
+        ${CMAKE_SOURCE_DIR}/src/MatchingSystem.cpp
+        ${CMAKE_SOURCE_DIR}/src/Matching.cpp
+        ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+        ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
+        ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
+    )
+
+    target_link_libraries(${TEST_NAME} gtest_main)
+    gtest_discover_tests(${TEST_NAME})
+endforeach()
