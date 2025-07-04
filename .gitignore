@@ -14,5 +14,10 @@ _deps/
 *.app
 *.bin
 
+# test_results.txt
+
+test_results.txt
+test_results2.txt
+
 # VSCodeなどエディタ設定
 .vscode/
