@@ -7,7 +7,7 @@ TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
     MatchingSystem ms(3, 2, cap);
     ms.generate_prefs("ranked", 42);  // seed付き
 
-    const auto& prefs = ms.get_agent_preferences();
+    const auto& prefs = ms.get_agent_prefs();
 
     // エージェント数 = 3
     EXPECT_EQ(prefs.size(), 3);
@@ -22,7 +22,7 @@ TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
     MatchingSystem ms(4, 3, cap);
     ms.generate_prefs("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
 
-    const auto& prefs = ms.get_agent_preferences();
+    const auto& prefs = ms.get_agent_prefs();
 
     for (const auto& pref_list : prefs) {
         for (int firm_score : pref_list) {

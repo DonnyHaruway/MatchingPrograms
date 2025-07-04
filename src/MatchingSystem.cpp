@@ -74,7 +74,7 @@ void MatchingSystem::generate_prefs(
     pref_flag = true;
 }
 
-void MatchingSystem::add_prefs(
+void MatchingSystem::set_prefs(
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs)
@@ -141,15 +141,15 @@ Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
 }
 
 // アクセッサ
-const std::vector<std::vector<int>> &MatchingSystem::get_agent_preferences() const
+const std::vector<std::vector<int>> &MatchingSystem::get_agent_prefs() const
 {
     return agent_prefs;
 }
-const std::vector<std::vector<int>> &MatchingSystem::get_firm_preferences() const
+const std::vector<std::vector<int>> &MatchingSystem::get_firm_prefs() const
 {
     return firm_prefs;
 }
-const std::vector<std::vector<int>> &MatchingSystem::get_agent_col_preferences() const
+const std::vector<std::vector<int>> &MatchingSystem::get_agent_col_prefs() const
 {
     return agent_col_prefs;
 }

@@ -103,7 +103,7 @@ TEST(AlgorithmsUtils, exclude_one_agent_case2) {
         firm  -> {0 : 坂東}
         agent -> {0 : 清水, 1: 高瀬, 2: 小久保, 3: X}
     */
-    int agent = 2;
+    int agent = 1;
     int firm = 0;
     vector<set<int>> matching = {
         {0, 3}
@@ -122,6 +122,35 @@ TEST(AlgorithmsUtils, exclude_one_agent_case2) {
     };
     int capacity = 2;
     int excluded = exclude_one_agent(agent, firm, matching, agent_prefs, firm_prefs, agent_col_prefs, capacity);
-    cout << excluded << endl;
-    EXPECT_TRUE(excluded == 2);
+    cout << excluded << '\n';
+    EXPECT_TRUE(excluded == -1);
+}
+
+TEST(AlgorithmsUtils, exclude_one_agent_case3) {
+    /*
+    ・輪講で扱った例
+        firm  -> {0 : 坂東}
+        agent -> {0 : 清水, 1: 高瀬, 2: 小久保, 3: X}
+    */
+    int agent = 1;
+    int firm = 0;
+    vector<set<int>> matching = {
+        {0, 3}
+    };
+    vector<vector<int>> agent_prefs = {
+        {3}, {3}, {3}, {3}
+    };
+    vector<vector<int>> firm_prefs = {
+        {2, 4, 1, 3},
+    };
+    vector<vector<int>> agent_col_prefs = {
+        {0, -3, 3, 3},
+        {1, 0, 3, 5},
+        {7, -5, 0, 4},
+        {4, 5, 3, 0}
+    };
+    int capacity = 2;
+    int excluded = exclude_one_agent(agent, firm, matching, agent_prefs, firm_prefs, agent_col_prefs, capacity);
+    cout << excluded << '\n';
+    EXPECT_TRUE(excluded == 0);
 }

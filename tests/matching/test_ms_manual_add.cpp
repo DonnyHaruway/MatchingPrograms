@@ -20,11 +20,11 @@ TEST(ManualAddTest, AddPreferences) {
         {0, 1, 0}
     };
 
-    ms.add_prefs(agent_pref, firm_pref, agent_col_pref);
+    ms.set_prefs(agent_pref, firm_pref, agent_col_pref);
 
-    const auto& agent_pref_ms = ms.get_agent_preferences();
-    const auto& firm_pref_ms = ms.get_firm_preferences();
-    const auto& agent_col_pref_ms = ms.get_agent_col_preferences();
+    const auto& agent_pref_ms = ms.get_agent_prefs();
+    const auto& firm_pref_ms = ms.get_firm_prefs();
+    const auto& agent_col_pref_ms = ms.get_agent_col_prefs();
 
     EXPECT_EQ(agent_pref_ms.size(), 3);
     EXPECT_EQ(firm_pref_ms.size(), 2);

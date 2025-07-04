@@ -25,7 +25,7 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
         {-10, 0},
     };
 
-    ms.add_prefs(agent_pref, firm_pref, agent_col_pref);
+    ms.set_prefs(agent_pref, firm_pref, agent_col_pref);
     std::cout << "before evaluate_all_matchings" << std::endl;
 
     vector<Matching> result = ms.evaluate_all_matchings();

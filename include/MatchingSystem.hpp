@@ -16,7 +16,15 @@ public:
         int n_firms,
         std::vector<int> capacities);
 
-    // 選好の生成
+    /// @brief ランダムに先行を作成
+    /// @param preference_type 選好のタイプを指定する -> "ranked" : 同順位なし, "numeric" : 同順位あり
+    /// @param seed 
+    /// @param agent_score_min 
+    /// @param agent_score_max 
+    /// @param firm_score_min 
+    /// @param firm_score_max 
+    /// @param agent_col_score_min 
+    /// @param agent_col_score_max 
     void generate_prefs(
         std::string preference_type,
         unsigned int seed,
@@ -25,7 +33,7 @@ public:
         int agent_col_score_min = 0, int agent_col_score_max = 10);
 
     // 選好の指定
-    void add_prefs(
+    void set_prefs(
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs);
@@ -39,10 +47,12 @@ public:
     /// @return Matching
     Matching run_algorithm(const std::string &algorithm_name) const;
 
-    // デバッグ用：選好の表示
-    const std::vector<std::vector<int>> &get_agent_preferences() const;
-    const std::vector<std::vector<int>> &get_firm_preferences() const;
-    const std::vector<std::vector<int>> &get_agent_col_preferences() const;
+    // 選好のゲッタ
+    const std::vector<std::vector<int>> &get_agent_prefs() const;
+    const std::vector<std::vector<int>> &get_firm_prefs() const;
+    const std::vector<std::vector<int>> &get_agent_col_prefs() const;
+
+    
 
 private:
     int n_agents;

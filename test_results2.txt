@@ -1,0 +1,3967 @@
+=== Run #1 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[ RUN      ] Algorithms.DictatorLikeAlgorithms2
+agent_prefs:
+  [0]: 6, 3
+  [1]: 10, 7
+  [2]: 4, 6
+  [3]: 9, 2
+
+firm_prefs:
+  [0]: 6, 10, 10, 7
+  [1]: 4, 3, 7, 7
+
+agent_col_prefs:
+  [0]: 0, 2, 5, 4
+  [1]: 1, 0, 7, 5
+  [2]: 1, 4, 0, 0
+  [3]: 9, 5, 8, 0
+
+Run #0
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #1
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #2
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #3
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #4
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #5
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #6
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #7
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #8
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #9
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #10
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #11
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #12
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #13
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #14
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #15
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #16
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #17
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #18
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #19
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #20
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #21
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #22
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #23
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #24
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #25
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #26
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #27
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #28
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #29
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #30
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #31
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #32
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #33
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #34
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #35
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #36
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #37
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #38
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #39
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #40
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #41
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #42
+agent_ids
+2 1 0 3 
+=== agent_queue at start of loop ===
+2 1 0 3 
+=== agent_queue at start of loop ===
+1 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #43
+agent_ids
+2 1 0 3 
+=== agent_queue at start of loop ===
+2 1 0 3 
+=== agent_queue at start of loop ===
+1 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #44
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #45
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #46
+agent_ids
+2 1 0 3 
+=== agent_queue at start of loop ===
+2 1 0 3 
+=== agent_queue at start of loop ===
+1 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #47
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #48
+agent_ids
+2 0 1 3 
+=== agent_queue at start of loop ===
+2 0 1 3 
+=== agent_queue at start of loop ===
+0 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #49
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #50
+agent_ids
+2 0 1 3 
+=== agent_queue at start of loop ===
+2 0 1 3 
+=== agent_queue at start of loop ===
+0 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #51
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #52
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #53
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #54
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #55
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #56
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #57
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #58
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #59
+agent_ids
+3 2 1 0 
+=== agent_queue at start of loop ===
+3 2 1 0 
+=== agent_queue at start of loop ===
+2 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #60
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #61
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #62
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #63
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #64
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #65
+agent_ids
+2 0 1 3 
+=== agent_queue at start of loop ===
+2 0 1 3 
+=== agent_queue at start of loop ===
+0 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #66
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #67
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #68
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #69
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #70
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #71
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #72
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #73
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #74
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #75
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #76
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #77
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #78
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #79
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #80
+agent_ids
+3 0 2 1 
+=== agent_queue at start of loop ===
+3 0 2 1 
+=== agent_queue at start of loop ===
+0 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #81
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #82
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #83
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #84
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #85
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #86
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 2
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #87
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #88
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 3
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 4
+=============================
+Run #89
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #90
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #91
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #92
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #93
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+Run #94
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 0 1 
+  Firm 1 ← 2 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 1 
+  Agent 1 has colleagues: 0 
+  Agent 2 has colleagues: 3 
+  Agent 3 has colleagues: 2 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 11
+  Agent 2: 6
+  Agent 3: 10
+
+[Firm Scores]
+  Firm 0: 16
+  Firm 1: 14
+=============================
+Run #95
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 0
+  Agent 1 → Firm 1
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 0 3 
+  Firm 1 ← 1 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 10
+  Agent 1: 14
+  Agent 2: 10
+  Agent 3: 18
+
+[Firm Scores]
+  Firm 0: 13
+  Firm 1: 10
+=============================
+Run #96
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #97
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm 1
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← 0 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 3 
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: 0 
+
+[Agent Scores]
+  Agent 0: 7
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 11
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 11
+=============================
+Run #98
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm 0
+  Agent 3 → Firm unmatched
+
+[Firm Match]
+  Firm 0 ← 1 2 
+  Firm 1 ← unmatched
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 2 
+  Agent 2 has colleagues: 1 
+  Agent 3 has colleagues: none
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 17
+  Agent 2: 8
+  Agent 3: 0
+
+[Firm Scores]
+  Firm 0: 20
+  Firm 1: 7
+=============================
+Run #99
+agent_ids
+3 2 1 0 
+=== agent_queue at start of loop ===
+3 2 1 0 
+=== agent_queue at start of loop ===
+2 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm 1
+  Agent 1 → Firm 0
+  Agent 2 → Firm 1
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+  Firm 1 ← 0 2 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: 2 
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: 0 
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 8
+  Agent 1: 15
+  Agent 2: 7
+  Agent 3: 14
+
+[Firm Scores]
+  Firm 0: 17
+  Firm 1: 11
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithms2 (4 ms)
+[----------] 2 tests from Algorithms (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (4 ms total)
+[  PASSED  ] 2 tests.
+

@@ -2,9 +2,9 @@
 #include <iostream>
 
 bool firm_acceptable(int agent, int firm,
-                     const std::vector<std::set<int>> &matching,
-                     const std::vector<std::vector<int>> &firm_prefs,
-                     const int &firm_capacity)
+                    const std::vector<std::set<int>> &matching,
+                    const std::vector<std::vector<int>> &firm_prefs,
+                    const int &firm_capacity)
 {
     bool acceptable_firm;
 
@@ -38,12 +38,11 @@ bool firm_acceptable(int agent, int firm,
 }
 
 bool agent_acceptable(int agent, int firm,
-                      const std::vector<std::set<int>> &matching,
-                      const std::vector<std::vector<int>> &agent_prefs,
-                      const std::vector<std::vector<int>> &agent_col_prefs,
-                      const int &firm_capacity)
+                    const std::vector<std::set<int>> &matching,
+                    const std::vector<std::vector<int>> &agent_prefs,
+                    const std::vector<std::vector<int>> &agent_col_prefs,
+                    const int &firm_capacity)
 {
-    std::cout << "=== agent_acceptable ===\n";
     bool acceptable_agent = true;
 
     if (matching[firm].size() == firm_capacity)
@@ -54,7 +53,6 @@ bool agent_acceptable(int agent, int firm,
             std::set<int> matching_deleted = matching[firm];
             matching_deleted.erase(agent_del);
             matching_deleted.insert(agent);
-            std::cout << "agent_del : " << agent_del << ", agent : " << agent << '\n';
             combinationBool.push_back(can_swap_agents(firm, agent, agent_prefs, agent_col_prefs, matching[firm], matching_deleted));
         }
         if (!std::any_of(combinationBool.begin(), combinationBool.end(), [](bool v)
@@ -69,7 +67,7 @@ bool agent_acceptable(int agent, int firm,
         for (int agent_col : matching[firm])
         {
             // ここの定義は要検討
-            if (agent_prefs[agent_col][firm] + agent_col_prefs[agent_col][agent] < 0)
+            if (agent_col_prefs[agent_col][agent] < 0)
             {
                 acceptable_agent = false;
                 break;

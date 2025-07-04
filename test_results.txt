@@ -1,0 +1,4984 @@
+=== Run #1 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #2 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #3 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #4 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #5 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #6 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #7 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 1 0 
+=== agent_queue at start of loop ===
+3 2 1 0 
+=== agent_queue at start of loop ===
+2 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #8 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #9 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #10 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #11 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #12 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #13 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #14 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #15 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #16 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #17 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #18 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #19 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #20 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #21 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #22 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #23 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #24 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 1 3 
+=== agent_queue at start of loop ===
+0 2 1 3 
+=== agent_queue at start of loop ===
+2 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #25 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #26 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #27 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #28 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #29 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #30 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #31 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #32 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #33 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #34 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #35 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #36 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #37 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #38 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #39 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #40 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #41 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #42 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #43 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #44 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #45 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #46 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #47 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #48 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 2 1 
+=== agent_queue at start of loop ===
+3 0 2 1 
+=== agent_queue at start of loop ===
+0 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #49 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #50 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #51 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #52 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #53 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #54 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #55 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #56 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #57 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 1 0 3 
+=== agent_queue at start of loop ===
+2 1 0 3 
+=== agent_queue at start of loop ===
+1 0 3 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #58 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #59 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #60 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 1 2 
+=== agent_queue at start of loop ===
+3 0 1 2 
+=== agent_queue at start of loop ===
+0 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #61 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #62 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #63 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #64 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #65 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #66 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 2 1 
+=== agent_queue at start of loop ===
+3 0 2 1 
+=== agent_queue at start of loop ===
+0 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #67 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #68 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #69 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #70 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #71 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 1 0 
+=== agent_queue at start of loop ===
+3 2 1 0 
+=== agent_queue at start of loop ===
+2 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #72 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #73 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #74 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 1 3 
+=== agent_queue at start of loop ===
+2 0 1 3 
+=== agent_queue at start of loop ===
+0 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #75 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 0 1 
+=== agent_queue at start of loop ===
+2 3 0 1 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #76 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 1 3 0 
+=== agent_queue at start of loop ===
+2 1 3 0 
+=== agent_queue at start of loop ===
+1 3 0 
+=== agent_queue at start of loop ===
+3 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #77 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 0 2 1 
+=== agent_queue at start of loop ===
+3 0 2 1 
+=== agent_queue at start of loop ===
+0 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #78 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 3 0 
+=== agent_queue at start of loop ===
+1 2 3 0 
+=== agent_queue at start of loop ===
+2 3 0 
+=== agent_queue at start of loop ===
+3 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #79 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #80 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 2 0 3 
+=== agent_queue at start of loop ===
+1 2 0 3 
+=== agent_queue at start of loop ===
+2 0 3 
+=== agent_queue at start of loop ===
+0 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #81 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #82 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 2 3 
+=== agent_queue at start of loop ===
+1 0 2 3 
+=== agent_queue at start of loop ===
+0 2 3 
+=== agent_queue at start of loop ===
+2 3 
+=== agent_queue at start of loop ===
+3 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #83 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #84 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #85 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 1 3 
+=== agent_queue at start of loop ===
+2 0 1 3 
+=== agent_queue at start of loop ===
+0 1 3 
+=== agent_queue at start of loop ===
+1 3 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #86 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 3 1 0 
+=== agent_queue at start of loop ===
+2 3 1 0 
+=== agent_queue at start of loop ===
+3 1 0 
+=== agent_queue at start of loop ===
+1 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #87 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+2 0 3 1 
+=== agent_queue at start of loop ===
+2 0 3 1 
+=== agent_queue at start of loop ===
+0 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #88 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 3 2 
+=== agent_queue at start of loop ===
+0 1 3 2 
+=== agent_queue at start of loop ===
+1 3 2 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #89 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 1 2 3 
+=== agent_queue at start of loop ===
+0 1 2 3 
+=== agent_queue at start of loop ===
+1 2 3 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #90 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #91 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 0 2 
+=== agent_queue at start of loop ===
+1 3 0 2 
+=== agent_queue at start of loop ===
+3 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #92 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 1 2 
+=== agent_queue at start of loop ===
+0 3 1 2 
+=== agent_queue at start of loop ===
+3 1 2 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #93 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 2 0 1 
+=== agent_queue at start of loop ===
+3 2 0 1 
+=== agent_queue at start of loop ===
+2 0 1 
+=== agent_queue at start of loop ===
+0 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #94 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #95 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 3 2 1 
+=== agent_queue at start of loop ===
+0 3 2 1 
+=== agent_queue at start of loop ===
+3 2 1 
+=== agent_queue at start of loop ===
+2 1 
+=== agent_queue at start of loop ===
+1 2 
+=== agent_queue at start of loop ===
+2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #96 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 0 3 2 
+=== agent_queue at start of loop ===
+1 0 3 2 
+=== agent_queue at start of loop ===
+0 3 2 
+=== agent_queue at start of loop ===
+3 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #97 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+0 2 3 1 
+=== agent_queue at start of loop ===
+0 2 3 1 
+=== agent_queue at start of loop ===
+2 3 1 
+=== agent_queue at start of loop ===
+3 1 
+=== agent_queue at start of loop ===
+1 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #98 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+1 3 2 0 
+=== agent_queue at start of loop ===
+1 3 2 0 
+=== agent_queue at start of loop ===
+3 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #99 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 0 2 
+=== agent_queue at start of loop ===
+3 1 0 2 
+=== agent_queue at start of loop ===
+1 0 2 
+=== agent_queue at start of loop ===
+0 2 
+=== agent_queue at start of loop ===
+2 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+=== Run #100 ===
+Running main() from /Users/tki0052/MyResearch/MatchingPrograms/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Algorithms
+[ RUN      ] Algorithms.DictatorLikeAlgorithm1
+agent_ids
+3 1 2 0 
+=== agent_queue at start of loop ===
+3 1 2 0 
+=== agent_queue at start of loop ===
+1 2 0 
+=== agent_queue at start of loop ===
+2 0 
+=== agent_queue at start of loop ===
+0 
+=== Matching Information ===
+
+[Agent Match]
+  Agent 0 → Firm unmatched
+  Agent 1 → Firm 0
+  Agent 2 → Firm unmatched
+  Agent 3 → Firm 0
+
+[Firm Match]
+  Firm 0 ← 1 3 
+
+[Agent Colleagues]
+  Agent 0 has colleagues: none
+  Agent 1 has colleagues: 3 
+  Agent 2 has colleagues: none
+  Agent 3 has colleagues: 1 
+
+[Agent Scores]
+  Agent 0: 0
+  Agent 1: 5
+  Agent 2: 0
+  Agent 3: 8
+
+[Firm Scores]
+  Firm 0: 7
+=============================
+[       OK ] Algorithms.DictatorLikeAlgorithm1 (0 ms)
+[----------] 1 test from Algorithms (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
