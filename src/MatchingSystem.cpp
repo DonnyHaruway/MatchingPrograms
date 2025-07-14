@@ -134,6 +134,9 @@ Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
     {
         return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
     }
+    else if (algorithm_name == "doctor_propose_DA") {
+        return run_doctor_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs);
+    }
     else
     {
         throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);

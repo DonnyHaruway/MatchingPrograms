@@ -151,3 +151,16 @@ bool can_swap_agents(int firm, int agent, const std::vector<std::vector<int>> &a
     }
     return can_swap;
 }
+
+bool all_rejected(const std::vector<bool> &is_matched, const std::vector<std::vector<bool>> &confess_lists) {
+    std::vector<int> unmatched_agents;
+    int n_agents = is_matched.size();
+    for (int agent=0; agent<n_agents; agent++) {
+        if (!is_matched[agent]) unmatched_agents.push_back(agent);
+    }
+
+    for (int agent : unmatched_agents) {
+        if (std::any_of(confess_lists[agent].begin(), confess_lists[agent].end(), [] (bool b) { return !b; })) return false;
+    }
+    return true;
+}

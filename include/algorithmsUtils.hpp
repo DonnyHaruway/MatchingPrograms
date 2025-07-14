@@ -44,3 +44,5 @@ int exclude_one_agent(
     const int &firm_capacitiy);
 
 bool can_swap_agents(int firm, int agent, const std::vector<std::vector<int>> &agent_prefs, const std::vector<std::vector<int>> &agent_col_prefs, const std::set<int> &matching_before, const std::set<int> &matching_after);
+
+bool all_rejected(const std::vector<bool> &is_matched, const std::vector<std::vector<bool>> &confess_lists);

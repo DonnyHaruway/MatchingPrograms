@@ -88,7 +88,7 @@ Matching run_dictator_like_algorithm(
         if (prefered_firm == -1)
         {
             if (!std::any_of(agent_accept.begin(), agent_accept.end(), [](bool v)
-                            { return v; }))
+                             { return v; }))
             {
                 declined[agent].emplace_back(agent_queue, firm_matching);
                 agent_queue.push(agent);
@@ -112,3 +112,45 @@ Matching run_dictator_like_algorithm(
     }
     return Matching::from_firm_assignment(firm_matching, n_agents);
 };
+
+Matching run_doctor_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs)
+{
+    std::vector<std::set<int>> firm_matching(n_firms);
+    std::vector<bool> is_matched(n_agents);
+    std::vector<std::vector<bool>> confess_lists(n_agents, std::vector<bool>(n_firms));
+    while (true) {
+        std::vector<int> confess(n_agents);
+        for (int agent=0; agent<n_agents; agent++) {
+            if (is_matched[agent]) continue;
+            int target_firm = -1;
+            int max_score = -1;
+            for (int firm=0; firm<n_agents; firm++) {
+                if (agent_prefs[agent][firm] > max_score && !confess_lists[agent][firm]) {
+                    max_score = agent_prefs[agent][firm];
+                    target_firm = firm;
+                }
+            }
+            confess[agent] = target_firm;
+        }
+        
+        for (int agent=0; agent<n_agents; agent++) {
+            if (is_matched[agent]) continue;
+            int target_firm = confess[agent];
+            if (firm_prefs[target_firm][agent] >= 0 && firm_matching[target_firm].size() < firm_capacities[target_firm]) {
+                firm_matching[target_firm].insert(agent);
+                is_matched[agent] = true;
+            } else {
+                confess_lists[agent][target_firm] = true;
+            }
+        }
+        if (std::all_of(is_matched.begin(), is_matched.end(), [](bool b) { return b; })) break;
+        if (all_rejected(is_matched, confess_lists)) break;
+    }
+
+    return Matching::from_firm_assignment(firm_matching, n_agents);
+}

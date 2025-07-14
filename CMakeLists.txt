@@ -16,6 +16,6 @@ add_executable(matching_sim
     src/algorithmsUtils.cpp
 )
 
-# (あとで追加)テストフォルダもビルドに含めたいので準備
+# テストフォルダもビルドに含める
 enable_testing()
 add_subdirectory(tests)
