@@ -16,6 +16,28 @@ TEST(MatchingTest, FromFirmAssignmentWorkers) {
     EXPECT_EQ(a2f[2], 1);
 }
 
+TEST(MatchingTest, Equal) {
+    vector<set<int>> firm_assignments1 = {
+        {0, 1},     // firm 0 -> agent 0, 1
+        {2}         // firm 1 -> agent 2
+    };
+    vector<set<int>> firm_assignments2 = {
+        {0, 1},     // firm 0 -> agent 0, 1
+        {2}         // firm 1 -> agent 2
+    };
+    vector<set<int>> firm_assignments3 = {
+        {2, 0},
+        {1}
+    };
+
+    Matching m1 = Matching::from_firm_assignment(firm_assignments1, 3);
+    Matching m2 = Matching::from_firm_assignment(firm_assignments2, 3);
+    Matching m3 = Matching::from_firm_assignment(firm_assignments3, 3);
+    
+    if (m1 == m2) cout << "success!!" << endl;
+    if (m1 != m3) cout << "success!!2" << endl;
+}
+
 TEST(MatchingTest, ComputeScores) {
     // 卒論のExample2を利用
 

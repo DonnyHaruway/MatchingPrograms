@@ -74,6 +74,36 @@ void MatchingSystem::generate_prefs(
     pref_flag = true;
 }
 
+void MatchingSystem::set_agent_prefs(const std::vector<std::vector<int>> &prefs)
+{
+    assert(prefs.size() == n_agents);
+    for (const auto &row : prefs)
+        assert(row.size() == n_firms);
+
+    agent_prefs = prefs;
+    pref_flag = true;  // 少なくとも何か1つセットされたらON
+}
+
+void MatchingSystem::set_firm_prefs(const std::vector<std::vector<int>> &prefs)
+{
+    assert(prefs.size() == n_firms);
+    for (const auto &row : prefs)
+        assert(row.size() == n_agents);
+
+    firm_prefs = prefs;
+    pref_flag = true;
+}
+
+void MatchingSystem::set_agent_col_prefs(const std::vector<std::vector<int>> &prefs)
+{
+    assert(prefs.size() == n_agents);
+    for (const auto &row : prefs)
+        assert(row.size() == n_agents);
+
+    agent_col_prefs = prefs;
+    pref_flag = true;
+}
+
 void MatchingSystem::set_prefs(
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,

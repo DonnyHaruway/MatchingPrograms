@@ -9,7 +9,6 @@ bool firm_acceptable(int agent, int firm,
     bool acceptable_firm;
 
     const int FIRM_SCORE = compute_firm_score(matching[firm], firm_prefs[firm]);
-
     // 企業のマッチングが満杯ならば、企業がマッチ相手を一人削除して新しいエージェントを受け入れるかどうかを確認
     if (matching[firm].size() == firm_capacity)
     {

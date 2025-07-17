@@ -167,6 +167,18 @@ void Matching::print() const
     std::cout << "=============================\n";
 }
 
+bool Matching::operator==(const Matching &other) const
+{
+    // agent_matchとfirm_matchが両方とも等しければ、trueを返す
+    return this->agent_match == other.agent_match &&
+            this->firm_match == other.firm_match;
+}
+
+bool operator!=(const Matching &lhs, const Matching &rhs)
+{
+    return !(lhs == rhs);
+}
+
 // アクセッサ
 const std::vector<int> &Matching::get_agent_match() const
 {

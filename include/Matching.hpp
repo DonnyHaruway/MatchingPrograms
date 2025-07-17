@@ -34,6 +34,9 @@ public:
     // 出力
     void print() const;
 
+    // 比較演算子を追加
+    bool operator==(const Matching &other) const;
+
     // アクセッサ
     const std::vector<int> &get_agent_match() const;
     const std::vector<std::set<int>> &get_firm_match() const;
@@ -41,3 +44,6 @@ public:
     const std::vector<int> &get_agent_scores() const;
     const std::vector<int> &get_firm_scores() const;
 };
+
+// クラス外に以下を追加（ヘッダ末尾など）
+bool operator!=(const Matching &lhs, const Matching &rhs);

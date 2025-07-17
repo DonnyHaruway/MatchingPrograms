@@ -14,14 +14,9 @@ Matching run_dictator_like_algorithm(
     std::random_device rd;
     std::mt19937 rng(rd());
     std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
-    std::cout << "agent_ids\n";
-    for (int x : agent_ids)
-        std::cout << x << ' ';
-    std::cout << '\n';
     std::queue<int> agent_queue;
     for (int id : agent_ids)
         agent_queue.push(id);
-
     // step2: agentのマッチング, firmのマッチング, 各firm, agentのスコアの初期化
     std::vector<std::set<int>> firm_matching(n_firms);
     std::vector<int> firm_scores(n_firms, 0);
@@ -38,19 +33,10 @@ Matching run_dictator_like_algorithm(
     // step3: queueの先頭のエージェントが最も好む集合にマッチさせる
     while (agent_queue.size())
     {
-        std::cout << "=== agent_queue at start of loop ===\n";
-        std::queue<int> tmp_q = agent_queue;
-        while (!tmp_q.empty())
-        {
-            std::cout << tmp_q.front() << ' ';
-            tmp_q.pop();
-        }
-        std::cout << '\n';
         int agent = agent_queue.front();
         agent_queue.pop();
         if (should_reconsider_matching(agent, agent_queue, firm_matching, declined))
             continue;
-
         int prefered_firm = -1;
         std::vector<bool> firm_accept(n_firms);
         std::vector<bool> agent_accept(n_firms);
@@ -58,17 +44,14 @@ Matching run_dictator_like_algorithm(
         // 全てのマッチ先のスコアを検索
         for (int firm = 0; firm < n_firms; firm++)
         {
-
             if (unofferable[agent].count(firm))
                 continue;
-
+            std::cout << "p\n";
             int agent_score_tmp = 0;
             bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
             bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
-
             firm_accept[firm] = acceptable_firm;
             agent_accept[firm] = acceptable_agent;
-
             if (acceptable_firm && acceptable_agent)
             {
                 agent_score_tmp += agent_prefs[agent][firm];
@@ -88,7 +71,7 @@ Matching run_dictator_like_algorithm(
         if (prefered_firm == -1)
         {
             if (!std::any_of(agent_accept.begin(), agent_accept.end(), [](bool v)
-                             { return v; }))
+                            { return v; }))
             {
                 declined[agent].emplace_back(agent_queue, firm_matching);
                 agent_queue.push(agent);
