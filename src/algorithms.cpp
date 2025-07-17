@@ -38,7 +38,6 @@ Matching run_dictator_like_algorithm(
         if (should_reconsider_matching(agent, agent_queue, firm_matching, declined))
             continue;
         int prefered_firm = -1;
-        std::vector<bool> firm_accept(n_firms);
         std::vector<bool> agent_accept(n_firms);
 
         // 全てのマッチ先のスコアを検索
@@ -46,11 +45,9 @@ Matching run_dictator_like_algorithm(
         {
             if (unofferable[agent].count(firm))
                 continue;
-            std::cout << "p\n";
             int agent_score_tmp = 0;
             bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
             bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
-            firm_accept[firm] = acceptable_firm;
             agent_accept[firm] = acceptable_agent;
             if (acceptable_firm && acceptable_agent)
             {

@@ -18,6 +18,7 @@ _deps/
 
 test_results.txt
 test_results2.txt
+a.txt
 
 # VSCodeなどエディタ設定
 .vscode/

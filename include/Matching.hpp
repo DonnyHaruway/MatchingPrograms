@@ -40,7 +40,7 @@ public:
     // アクセッサ
     const std::vector<int> &get_agent_match() const;
     const std::vector<std::set<int>> &get_firm_match() const;
-    const std::vector<std::set<int>> get_agent_col_match() const;
+    const std::vector<std::set<int>> &get_agent_col_match() const;
     const std::vector<int> &get_agent_scores() const;
     const std::vector<int> &get_firm_scores() const;
 };

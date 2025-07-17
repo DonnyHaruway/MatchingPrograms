@@ -188,7 +188,7 @@ const std::vector<std::set<int>> &Matching::get_firm_match() const
 {
     return firm_match;
 };
-const std::vector<std::set<int>> Matching::get_agent_col_match() const
+const std::vector<std::set<int>> &Matching::get_agent_col_match() const
 {
     return agent_col_match;
 }
