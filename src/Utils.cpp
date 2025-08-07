@@ -50,6 +50,7 @@ std::vector<int> generate_random_number(int size, int min_val, int max_val, std:
     }
     else if (type == "col")
     {
+        // 自分自身は0になる
         v[who] = 0;
         for (int i = 0; i < size; ++i)
         {
@@ -106,7 +107,6 @@ std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     const std::vector<int> &firm_capacities)
 {
     int max_capacity = *std::max_element(firm_capacities.begin(), firm_capacities.end());
-    // もしsetとvectorの変換がダメだったらここ
     auto subset_map = generate_all_subsets_by_size(agent_ids, max_capacity);
 
     std::vector<std::vector<std::set<int>>> all_candidates;
@@ -122,55 +122,6 @@ std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     }
     return all_candidates;
 };
-
-void generate_matchings_recursive(
-    int firm_idx,
-    const int &n_agents,
-    const std::vector<std::vector<std::set<int>>> &all_candidates,
-    std::vector<std::set<int>> &current_matching,
-    std::set<int> &used_agents,
-    std::vector<Matching> &result)
-{
-    // ベースケース：すべての企業に割り当て終わったら結果に追加
-    if (firm_idx == all_candidates.size())
-    {
-        Matching matching = Matching::from_firm_assignment(current_matching, n_agents);
-        result.push_back(matching);
-        return;
-    }
-
-    // 候補をすべて試す
-    for (const auto &group : all_candidates[firm_idx])
-    {
-        bool valid = true;
-
-        // 重複agentチェック
-        for (int agent : group)
-        {
-            if (used_agents.count(agent))
-            {
-                valid = false;
-                break;
-            }
-        }
-
-        if (!valid)
-            continue;
-
-        // 割り当てを追加
-        for (int agent : group)
-            used_agents.insert(agent);
-        current_matching.push_back(group);
-
-        // 再帰的に次の企業へ
-        generate_matchings_recursive(firm_idx + 1, n_agents, all_candidates, current_matching, used_agents, result);
-
-        // バックトラック
-        current_matching.pop_back();
-        for (int agent : group)
-            used_agents.erase(agent);
-    }
-}
 
 int compute_firm_score(
     const std::set<int> &firm_match,
@@ -198,4 +149,20 @@ int compute_agent_score(
     for (int agent_col : firm_match) score += agent_col_pref[agent_col];
     score += agent_pref[firm];
     return score;
+}
+
+std::map<int,int> agent_scores_mp(
+    const int &firm,
+    const std::set<int> &firm_matching,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    std::map<int,int> score_mp;
+    for (int agent : firm_matching) {
+        int agent_score = compute_agent_score(firm, firm_matching, agent_prefs[agent], agent_col_prefs[agent]);
+        score_mp[agent] = agent_score;
+    }
+
+    return score_mp;
 }

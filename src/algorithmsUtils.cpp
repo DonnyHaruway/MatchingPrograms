@@ -1,95 +1,83 @@
 #include "algorithmsUtils.hpp"
-#include <iostream>
+#include "CommonTypes.hpp"
 
-bool firm_acceptable(int agent, int firm,
-                    const std::vector<std::set<int>> &matching,
-                    const std::vector<std::vector<int>> &firm_prefs,
-                    const int &firm_capacity)
+using namespace MatchingTypes;
+
+std::vector<FirmMatching> create_all_firm_matching(
+    const std::vector<std::set<int>> &firm_matching, 
+    const std::vector<int> &firm_capacities
+)
 {
-    bool acceptable_firm;
+    std::vector<FirmMatching> all_firm_matching;
+    int n_firms = firm_matching.size();
 
-    const int FIRM_SCORE = compute_firm_score(matching[firm], firm_prefs[firm]);
-    // 企業のマッチングが満杯ならば、企業がマッチ相手を一人削除して新しいエージェントを受け入れるかどうかを確認
-    if (matching[firm].size() == firm_capacity)
-    {
-        for (int agent_del : matching[firm])
-        {
-            std::set<int> matching_deleted = matching[firm];
-            matching_deleted.erase(agent_del);
-            matching_deleted.insert(agent);
-            int tmp_score = compute_firm_score(matching_deleted, firm_prefs[firm]);
-            if (tmp_score > FIRM_SCORE)
-            {
-                acceptable_firm = true;
-                break;
-            }
-            else
-            {
-                acceptable_firm = false;
-            }
+    for (int firm=0; firm<n_firms; firm++) {
+        if (firm_matching[firm].size() < firm_capacities[firm]) all_firm_matching.emplace_back(firm, firm_matching[firm]);
+        for (int agent_del : firm_matching[firm]) {
+            std::set<int> firm_matching_del = firm_matching[firm];
+            firm_matching_del.erase(agent_del);
+            all_firm_matching.emplace_back(firm, firm_matching_del);
         }
     }
-    else
-    {
-        acceptable_firm = firm_prefs[firm][agent] > 0;
-    }
-    return acceptable_firm;
+
+    return all_firm_matching;
 }
 
-bool agent_acceptable(int agent, int firm,
-                    const std::vector<std::set<int>> &matching,
-                    const std::vector<std::vector<int>> &agent_prefs,
-                    const std::vector<std::vector<int>> &agent_col_prefs,
-                    const int &firm_capacity)
+FirmMatching find_prefered_match(
+    const int &agent, 
+    const std::vector<int> &agent_pref, 
+    const std::vector<int> &agent_col_pref, 
+    const std::vector<FirmMatching> &all_firm_matching,
+    const std::set<FirmMatching> &unofferable
+) 
 {
-    bool acceptable_agent = true;
-
-    if (matching[firm].size() == firm_capacity)
-    {
-        std::vector<bool> combinationBool;
-        for (int agent_del : matching[firm])
-        {
-            std::set<int> matching_deleted = matching[firm];
-            matching_deleted.erase(agent_del);
-            matching_deleted.insert(agent);
-            combinationBool.push_back(can_swap_agents(firm, agent, agent_prefs, agent_col_prefs, matching[firm], matching_deleted));
-        }
-        if (!std::any_of(combinationBool.begin(), combinationBool.end(), [](bool v)
-                        { return v; }))
-        {
-            acceptable_agent = false;
+    FirmMatching prefered_match = {-1, {}};
+    int score = 0;
+    for (FirmMatching firm_matching : all_firm_matching) {
+        if (unofferable.count(firm_matching)) continue;
+        int tmp_score = compute_agent_score(firm_matching.first, firm_matching.second, agent_pref, agent_col_pref);
+        if (tmp_score > score) {
+            score = tmp_score;
+            prefered_match = firm_matching;
         }
     }
-    else
-    {
-        // 企業のマッチングが満杯でない場合、同僚がエージェントを受け入れるかどうかを確認
-        for (int agent_col : matching[firm])
-        {
-            // ここの定義は要検討
-            if (agent_col_prefs[agent_col][agent] < 0)
-            {
-                acceptable_agent = false;
-                break;
-            }
-        }
-    }
-
-    return acceptable_agent;
+    return prefered_match;
 }
 
-bool should_reconsider_matching(
-    int agent,
-    const std::queue<int> &agent_queue,
-    const std::vector<std::set<int>> &matching,
-    std::vector<std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> &declined)
+bool firm_match_accept_propose(
+    const int &agent, 
+    const FirmMatching &prefered_match, 
+    const std::set<int> &firm_matching_before, 
+    const std::vector<std::vector<int>> &agent_prefs, 
+    const std::vector<std::vector<int>> &firm_prefs, 
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
 {
-    auto declined_matchings = declined[agent];
-    for (auto [declined_queue, declined_matching] : declined_matchings)
-    {
-        if (declined_queue == agent_queue && declined_matching == matching)
-            return true;
+    int firm = prefered_match.first;
+    std::set<int> firm_matching_after = prefered_match.second;
+    firm_matching_after.insert(agent);
+    if (compute_firm_score(firm_matching_after, firm_prefs[firm]) < compute_firm_score(firm_matching_before, firm_prefs[firm])) return false;
+    for (int _agent : firm_matching_after) {
+        if (_agent == agent) continue;
+        int score_before = compute_agent_score(firm, firm_matching_before, agent_prefs[_agent], agent_col_prefs[_agent]);
+        int score_after = compute_agent_score(firm, firm_matching_after, agent_prefs[_agent], agent_col_prefs[_agent]);
+        if (score_after < score_before) return false;
     }
-    return false;
+
+    return true;
+}
+
+int find_agent_deleted(
+    const std::set<int> &firm_matching_before, 
+    const std::set<int> &firm_matching_after
+)
+{
+    int agent_deleted = -1;
+    for (int agent : firm_matching_before) {
+        if (!firm_matching_after.count(agent)) agent_deleted = agent;
+    }
+
+    return agent_deleted;
 }
 
 int exclude_one_agent(
@@ -98,7 +86,8 @@ int exclude_one_agent(
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs,
-    const int &firm_capacitiy)
+    const int &firm_capacitiy
+)
 {
     int excluded_agent = -1;
     int score_diff_max = 0;

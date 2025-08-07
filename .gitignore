@@ -16,9 +16,8 @@ _deps/
 
 # test_results.txt
 
-test_results.txt
-test_results2.txt
-a.txt
+run_test*
+test_results*
 
 # VSCodeなどエディタ設定
 .vscode/

@@ -1,6 +1,5 @@
 #pragma
 
-#include "Matching.hpp"
 #include <vector>
 #include <random>
 #include <map>
@@ -47,31 +46,27 @@ std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     const std::vector<int>& firm_capacities
 );
 
-/// @brief 再帰的に全てのマッチングを生成する
-/// @param firm_idx 現在割り当てを行っている企業のインデックス
-/// @param all_candidates 各企業に対する候補のエージェントグループ
-/// @param current_matching 現在構築中のマッチング
-/// @param used_agents 既にどこかの企業に割り当てられたエージェントの集合
-/// @param result 有効なマッチングの結果を格納するvector
-void generate_matchings_recursive(
-    int firm_idx,
-    const int &n_agents,
-    const std::vector<std::vector<std::set<int>>> &all_candidates,
-    std::vector<std::set<int>> &current_matching,
-    std::set<int> &used_agents,
-    std::vector<Matching> &result);
-
-/// @brief 与えられた企業のマッチを計算
-/// @param firm_match 企業の現在のマッチ相手
-/// @param firm_prefs 企業の選好
-/// @return 企業の現在のマッチに対するスコア
 int compute_firm_score(
     const std::set<int>& firm_match,
     const std::vector<int>& firm_pref
 );
 
+/// @brief agent_colの自分自身のスコアは0前提で計算
+/// @param firm 
+/// @param firm_match 
+/// @param agent_pref 
+/// @param agent_col_pref 
+/// @return 
 int compute_agent_score(
     const int &firm,
     const std::set<int> &firm_match,
     const std::vector<int> &agent_pref,
-    const std::vector<int> &agent_col_pref);
+    const std::vector<int> &agent_col_pref
+);
+
+std::map<int,int> agent_scores_mp(
+    const int &firm,
+    const std::set<int> &firm_matching,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+);

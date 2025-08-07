@@ -54,7 +54,7 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
     for (const auto& matching : result) {
     std::cout << "Checking matching..." << std::endl;
 
-    auto key = matching.get_agent_match();
+    auto key = matching.get_agent_matchs();
     std::cout << "agent_match = " << ::testing::PrintToString(key) << std::endl;
 
     if (idx_map.find(key) == idx_map.end()) {

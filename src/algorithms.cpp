@@ -1,4 +1,8 @@
 #include "algorithms.hpp"
+#include "CommonTypes.hpp"
+
+using namespace MatchingTypes;
+
 
 Matching run_dictator_like_algorithm(
     const int &n_agents,
@@ -8,7 +12,7 @@ Matching run_dictator_like_algorithm(
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs)
 {
-    // step1: agentをランダムに並べてqueueに格納
+    // agentをランダムに並べてqueueに格納
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
     std::random_device rd;
@@ -17,77 +21,37 @@ Matching run_dictator_like_algorithm(
     std::queue<int> agent_queue;
     for (int id : agent_ids)
         agent_queue.push(id);
-    // step2: agentのマッチング, firmのマッチング, 各firm, agentのスコアの初期化
+
     std::vector<std::set<int>> firm_matching(n_firms);
-    std::vector<int> firm_scores(n_firms, 0);
-    std::vector<int> agent_scores(n_agents, 0);
 
-    // 同僚が原因でエージェントのマッチが決まらなかった時にその状態を記録する
-    // agent : 個人のqueue、各企業とそのマッチ相手のvectorの集合のpair
-    std::vector<std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> declined(n_agents);
+    // 告白リスト
+    // agent : (企業, 個人の集合)
+    std::vector<std::set<FirmMatching>> unofferable_list(n_agents);
 
-    // 告白できない企業のリスト
-    // agent : 告白できない企業set
-    std::vector<std::set<int>> unofferable(n_agents);
-
-    // step3: queueの先頭のエージェントが最も好む集合にマッチさせる
-    while (agent_queue.size())
+    // queueが空になるまでqueueの先頭のエージェントが最も好む集合にマッチさせる
+    while (!agent_queue.empty())
     {
         int agent = agent_queue.front();
         agent_queue.pop();
-        if (should_reconsider_matching(agent, agent_queue, firm_matching, declined))
-            continue;
-        int prefered_firm = -1;
-        std::vector<bool> agent_accept(n_firms);
+        std::vector<FirmMatching> all_firm_matching = create_all_firm_matching(firm_matching, firm_capacities);
+        FirmMatching prefered_match = find_prefered_match(agent, agent_prefs[agent], agent_col_prefs[agent], all_firm_matching, unofferable_list[agent]);
+        // もう告白したい集合がない
+        if (prefered_match.first == -1) continue;
 
-        // 全てのマッチ先のスコアを検索
-        for (int firm = 0; firm < n_firms; firm++)
-        {
-            if (unofferable[agent].count(firm))
-                continue;
-            int agent_score_tmp = 0;
-            bool acceptable_firm = firm_acceptable(agent, firm, firm_matching, firm_prefs, firm_capacities[firm]);
-            bool acceptable_agent = agent_acceptable(agent, firm, firm_matching, agent_prefs, agent_col_prefs, firm_capacities[firm]);
-            agent_accept[firm] = acceptable_agent;
-            if (acceptable_firm && acceptable_agent)
-            {
-                agent_score_tmp += agent_prefs[agent][firm];
-                for (int agent_col : firm_matching[firm])
-                    agent_score_tmp += agent_col_prefs[agent][agent_col];
-                if (agent_score_tmp > agent_scores[agent])
-                {
-                    prefered_firm = firm;
-                    agent_scores[agent] = agent_score_tmp;
-                }
-            }
-            else if (!acceptable_firm)
-            {
-                unofferable[agent].insert(firm);
-            }
-        }
-        if (prefered_firm == -1)
-        {
-            if (!std::any_of(agent_accept.begin(), agent_accept.end(), [](bool v)
-                            { return v; }))
-            {
-                declined[agent].emplace_back(agent_queue, firm_matching);
-                agent_queue.push(agent);
-                continue;
-            }
-            else
-            {
-                continue;
-            }
-        }
-        if (firm_matching[prefered_firm].size() == firm_capacities[prefered_firm])
-        {
-            int excluded_agent = exclude_one_agent(agent, prefered_firm, firm_matching, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities[prefered_firm]);
-            firm_matching[prefered_firm].erase(excluded_agent);
-            firm_matching[prefered_firm].insert(agent);
-        }
-        else
-        {
-            firm_matching[prefered_firm].insert(agent);
+        // 告白先が受け入れ可能な場合
+        if (firm_match_accept_propose(agent, prefered_match, firm_matching[prefered_match.first], agent_prefs, firm_prefs, agent_col_prefs)) {
+            // 削除されたエージェントがいればqueueに追加する
+            std::set<int> firm_matching_before = firm_matching[prefered_match.first];
+            std::set<int> firm_matching_after = prefered_match.second;
+            int agent_deleted = find_agent_deleted(firm_matching_before, firm_matching_after);
+            if (agent_deleted != -1) agent_queue.push(agent_deleted);
+
+            // 告白先の集合を更新
+            prefered_match.second.insert(agent);
+            firm_matching[prefered_match.first] = prefered_match.second;
+        } else {
+            unofferable_list[agent].emplace(prefered_match);
+            agent_queue.push(agent);
         }
     }
     return Matching::from_firm_assignment(firm_matching, n_agents);

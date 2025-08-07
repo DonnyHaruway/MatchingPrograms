@@ -12,7 +12,8 @@ TEST(Algorithms, DictatorVSdoctorProposeDA)
         {0, 0, 0, 0},
         {0, 0, 0, 0},
         {0, 0, 0, 0},
-        {0, 0, 0, 0}};
+        {0, 0, 0, 0}
+    };
     int cnt = 0;
     auto print_2d_vector = [](const vector<vector<int>> &vec, const string &name)
         {

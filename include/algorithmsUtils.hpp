@@ -1,48 +1,68 @@
-#pragma
+#pragma once
 
 #include <vector>
 #include <set>
 #include <map>
 #include <queue>
-#include <Utils.hpp>
+#include "Utils.hpp"
+#include "CommonTypes.hpp"
 
-/// @brief 指定したfirmがagentを受け入れ可能かどうかを表す
-/// @param agent
-/// @param firm
-/// @param matching
-/// @param firm_prefs
-/// @param agent_col_prefs
-/// @return
-bool firm_acceptable(int agent, int firm,
-                     const std::vector<std::set<int>> &matching,
-                     const std::vector<std::vector<int>> &firm_prefs,
-                     const int &firm_capacity);
+using MatchingTypes::FirmMatching;
 
-bool agent_acceptable(int agent, int firm,
-                      const std::vector<std::set<int>> &matching,
-                      const std::vector<std::vector<int>> &agent_prefs,
-                      const std::vector<std::vector<int>> &agent_col_prefs,
-                      const int &firm_capacitiy);
+std::vector<FirmMatching> create_all_firm_matching (
+    const std::vector<std::set<int>> &firm_matching, 
+    const std::vector<int> &firm_capacities
+);
 
-/// @brief
-/// @param agent
-/// @param matching
-/// @param declined
-/// @return
-bool should_reconsider_matching(
-    int agent,
-    const std::queue<int> &agent_queue,
-    const std::vector<std::set<int>> &matching,
-    std::vector<std::vector<std::pair<std::queue<int>, std::vector<std::set<int>>>>> &declined);
+/// @brief agent自身は評価対象のマッチングに含まれていない
+/// @param agent 
+/// @param agent_prefs 
+/// @param agent_col_prefs 
+/// @param all_firm_matching 
+/// @param unofferable 
+/// @return 
+FirmMatching find_prefered_match (
+    const int &agent, 
+    const std::vector<int> &agent_pref, 
+    const std::vector<int> &agent_col_pref, 
+    const std::vector<FirmMatching> &all_firm_matching,
+    const std::set<FirmMatching> &unofferable
+);
 
-int exclude_one_agent(
-    int agent, int firm,
+bool firm_match_accept_propose(
+    const int &agent, 
+    const FirmMatching &prefered_match, 
+    const std::set<int> &firm_matching_before, 
+    const std::vector<std::vector<int>> &agent_prefs, 
+    const std::vector<std::vector<int>> &firm_prefs, 
+    const std::vector<std::vector<int>> &agent_col_prefs
+);
+
+int find_agent_deleted(
+    const std::set<int> &firm_matching_before, 
+    const std::set<int> &firm_matching_after
+);
+
+int exclude_one_agent (
+    int agent, 
+    int firm,
     const std::vector<std::set<int>> &matching,
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
     const std::vector<std::vector<int>> &agent_col_prefs,
-    const int &firm_capacitiy);
+    const int &firm_capacitiy
+);
 
-bool can_swap_agents(int firm, int agent, const std::vector<std::vector<int>> &agent_prefs, const std::vector<std::vector<int>> &agent_col_prefs, const std::set<int> &matching_before, const std::set<int> &matching_after);
+bool can_swap_agents (
+    int firm, 
+    int agent, 
+    const std::vector<std::vector<int>> &agent_prefs, 
+    const std::vector<std::vector<int>> &agent_col_prefs, 
+    const std::set<int> &matching_before, 
+    const std::set<int> &matching_after
+);
 
-bool all_rejected(const std::vector<bool> &is_matched, const std::vector<std::vector<bool>> &confess_lists);
+bool all_rejected (
+    const std::vector<bool> &is_matched, 
+    const std::vector<std::vector<bool>> &confess_lists
+);

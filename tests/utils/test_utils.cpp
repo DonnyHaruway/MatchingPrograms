@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(UtilTest, GenerateCombinations_Test) {
+TEST(UtilsTest, GenerateCombinations_Test) {
     const vector<int> elems = {0, 1, 2, 3};
     const int k = 2;
     const int expected_size = 6;
@@ -25,7 +25,7 @@ TEST(UtilTest, GenerateCombinations_Test) {
     }
 }
 
-TEST(UtilTest, GenerateAllSubsetsBySize) {
+TEST(UtilsTest, GenerateAllSubsetsBySize) {
     const vector<int> elems = {0, 1, 2, 3};
     const int k = 2;
 
@@ -66,7 +66,7 @@ TEST(UtilTest, GenerateAllSubsetsBySize) {
     EXPECT_EQ(expected_size, sum);
 }
 
-TEST(UtilTest, PrepareAllCandidates) {
+TEST(UtilsTest, PrepareAllCandidates) {
     const vector<int> agent_ids = {0, 1, 2, 3};
     const vector<int> firm_capacities = {3, 2};
 
@@ -121,57 +121,53 @@ TEST(UtilTest, PrepareAllCandidates) {
     EXPECT_EQ(result2.size(), merged2.size());
 }
 
-TEST(UtilTest, GenerateMatchingsRecursive) {
-    int n_agents = 3;
-    const vector<int> firm_capacities = {1, 2};
+TEST(UtilsTest, ComputeFirmScore) {
+    // 簡単な例
+    set<int> firm_match = {0, 2, 3};
+    vector<int> firm_pref = {2, 3, 4, 5, 6};
 
-    vector<int> agent_ids(n_agents);
-    iota(agent_ids.begin(), agent_ids.end(), 0);
+    int score = compute_firm_score(firm_match, firm_pref);
+    EXPECT_EQ(score, 11);
+}
 
-    auto all_candidates = prepare_all_candidates(agent_ids, firm_capacities);
+TEST(UtilsTest, ComputeAgentScore) {
+    int firm = 2;
+    set<int> firm_match = {1, 2, 3};
+    vector<int> agent_pref = {2, 3, 4, 5, 6};
+    vector<int> agent_col_pref = {-3, 0, 6, 2, 4};
+    
+    int score = compute_agent_score(firm, firm_match, agent_pref, agent_col_pref);
+    EXPECT_EQ(score, 12);
+}
 
-    vector<Matching> result;
-    vector<std::set<int>> current_matching;
-    set<int> used_agents;
-    generate_matchings_recursive(0, n_agents, all_candidates, current_matching, used_agents, result);
+TEST(UtilsTest, AgentScoresMp) {
+    int firm = 2;
+    set<int> firm_matching = {1, 3, 2};
+    vector<vector<int>> agent_prefs = {
+        {3, 5, 2},
+        {1, 8, 3},
+        {4, 9, 7},
+        {6, 7, 1}
+    };
+    vector<vector<int>> agent_col_prefs = {
+        {0, 3, 4, 9},
+        {2, 0, -5, 8},
+        {3, 8, 0, -2},
+        {1, 5, 4, 0}
+    };
 
-    int expected_size = 19;
+    map<int,int> expected_mp = {
+        {1, 6},
+        {2, 13},
+        {3, 10}
+    };
 
-    EXPECT_EQ(expected_size, result.size());
+    map<int,int> agent_score_mp = agent_scores_mp(
+        firm,
+        firm_matching,
+        agent_prefs,
+        agent_col_prefs
+    );
 
-    int i = 0;
-    for (auto& matching : result) {
-        cout << "Matching" << i << endl;
-
-        auto agent_match = matching.get_agent_match();
-        cout << "---- agents ----" << endl;
-        for (int i=0; i<n_agents; i++) {
-            cout << "agent" << i << " = " << agent_match[i] << endl;
-        }
-        cout << agent_match.size() << endl;
-        cout << endl;
-
-        auto firm_match = matching.get_firm_match();
-        cout << "---- firms ----" << endl;
-        for (int i=0; i<firm_capacities.size(); i++) {
-            cout << "firm" << i << " = ";
-            for (auto _agent : firm_match[i]) {
-                cout << _agent << ", ";
-            }
-            cout << endl;
-        }
-        cout << endl;
-
-        auto agent_col_match = matching.get_agent_col_match();
-        cout << "---- agent_cols ----" << endl;
-        for (int i=0; i<n_agents; i++) {
-            cout << "agent" << i << " = ";
-            for (auto _agent : agent_col_match[i]) {
-                cout << _agent << ", ";
-            }
-            cout << endl;
-        }
-        cout << endl;
-        i++;
-    }
+    EXPECT_EQ(expected_mp, agent_score_mp);
 }

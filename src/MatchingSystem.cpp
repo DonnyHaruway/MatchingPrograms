@@ -62,6 +62,7 @@ void MatchingSystem::generate_prefs(
 
         if (preference_type == "ranked")
         {
+            // whoを自分自身にする
             pref = generate_random_ranked(n_agents, rng, "col", i);
         }
         else if (preference_type == "numeric")

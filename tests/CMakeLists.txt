@@ -21,11 +21,13 @@ file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*/
 foreach(TEST_SRC ${TEST_SOURCES})
     get_filename_component(TEST_NAME ${TEST_SRC} NAME_WE)
 
-    add_executable(${TEST_NAME}
+    add_executable(
+        ${TEST_NAME}
         ${TEST_SRC}
         ${CMAKE_SOURCE_DIR}/src/MatchingSystem.cpp
         ${CMAKE_SOURCE_DIR}/src/Matching.cpp
         ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+        ${CMAKE_SOURCE_DIR}/src/MatchingUtils.cpp
         ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
         ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
     )

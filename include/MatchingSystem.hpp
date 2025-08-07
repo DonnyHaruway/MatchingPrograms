@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Utils.hpp"
+#include "MatchingUtils.hpp"
 #include "algorithms.hpp"
 #include "Matching.hpp"
 #include <vector>
@@ -9,6 +10,18 @@
 
 class MatchingSystem
 {
+private:
+    int n_agents;
+    int n_firms;
+    std::vector<int> firm_capacities;
+    std::string preference_type;
+    std::mt19937 rng;
+    bool pref_flag = false;
+
+    std::vector<std::vector<int>> agent_prefs;     // agent_prefs[i][j]: agent i が firm j に対して持つスコア
+    std::vector<std::vector<int>> firm_prefs;      // firm_prefs[j][i] : agent j が firm i に対して持つスコア
+    std::vector<std::vector<int>> agent_col_prefs; // agent_col_prefs[i][j]: agent i が agent j に対して持つスコア
+
 public:
     // コンストラクタ
     MatchingSystem(
@@ -36,6 +49,9 @@ public:
 
     void set_agent_prefs(const std::vector<std::vector<int>> &agent_prefs);
     void set_firm_prefs(const std::vector<std::vector<int>> &firm_prefs);
+
+    /// @brief 自分自身のスコアは0である必要がある
+    /// @param agent_col_prefs 
     void set_agent_col_prefs(const std::vector<std::vector<int>> &agent_col_prefs);
 
     void set_prefs(
@@ -56,16 +72,4 @@ public:
     const std::vector<std::vector<int>> &get_agent_prefs() const;
     const std::vector<std::vector<int>> &get_firm_prefs() const;
     const std::vector<std::vector<int>> &get_agent_col_prefs() const;
-
-private:
-    int n_agents;
-    int n_firms;
-    std::vector<int> firm_capacities;
-    std::string preference_type;
-    std::mt19937 rng;
-    bool pref_flag = false;
-
-    std::vector<std::vector<int>> agent_prefs;     // agent_prefs[i][j]: agent i が firm j に対して持つスコア
-    std::vector<std::vector<int>> firm_prefs;      // firm_prefs[j][i] : agent j が firm i に対して持つスコア
-    std::vector<std::vector<int>> agent_col_prefs; // agent_col_prefs[i][j]: agent i が agent j に対して持つスコア
 };
