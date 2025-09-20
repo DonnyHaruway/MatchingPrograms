@@ -122,7 +122,13 @@ int exclude_one_agent(
     return excluded_agent;
 }
 
-bool can_swap_agents(int firm, int agent, const std::vector<std::vector<int>> &agent_prefs, const std::vector<std::vector<int>> &agent_col_prefs, const std::set<int> &matching_before, const std::set<int> &matching_after)
+bool can_swap_agents(
+    int firm, int agent, 
+    const std::vector<std::vector<int>> &agent_prefs, 
+    const std::vector<std::vector<int>> &agent_col_prefs, 
+    const std::set<int> &matching_before, 
+    const std::set<int> &matching_after
+)
 {   
     bool can_swap = true;
     for (int agent_col : matching_after)
@@ -140,7 +146,10 @@ bool can_swap_agents(int firm, int agent, const std::vector<std::vector<int>> &a
     return can_swap;
 }
 
-bool all_rejected(const std::vector<bool> &is_matched, const std::vector<std::vector<bool>> &confess_lists) {
+bool all_rejected(
+    const std::vector<bool> &is_matched, 
+    const std::vector<std::vector<bool>> &confess_lists
+) {
     std::vector<int> unmatched_agents;
     int n_agents = is_matched.size();
     for (int agent=0; agent<n_agents; agent++) {

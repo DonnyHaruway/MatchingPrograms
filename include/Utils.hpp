@@ -59,11 +59,18 @@ int compute_firm_score(
 /// @return 
 int compute_agent_score(
     const int &firm,
-    const std::set<int> &firm_match,
+    const std::set<int> &agent_col_match,
     const std::vector<int> &agent_pref,
     const std::vector<int> &agent_col_pref
 );
 
+
+/// @brief 全ての個人の現状のマッチに対する計算をして、mapで返す
+/// @param firm 
+/// @param firm_matching 
+/// @param agent_prefs 
+/// @param agent_col_prefs 
+/// @return (agent, score)のmap
 std::map<int,int> agent_scores_mp(
     const int &firm,
     const std::set<int> &firm_matching,

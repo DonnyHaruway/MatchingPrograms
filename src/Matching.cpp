@@ -35,7 +35,8 @@ Matching::Matching(
 
 Matching Matching::from_firm_assignment(
     const std::vector<std::set<int>> &input_firm_match,
-    const int &n_agents)
+    const int &n_agents
+)
 {
     std::vector<int> agent_matchs(n_agents, -1);
     std::vector<std::set<int>> firm_match;
@@ -106,13 +107,14 @@ bool Matching::is_stable(
         const std::vector<int> &firm_capacities
     )
 {   
+    // (firm, agent)が逸脱ペアであるかどうかを確認する
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
             int score_firm_now = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
-            int score_agent_now = compute_agent_score(agent_matchs[agent], firm_matchs[agent_matchs[agent]], agent_prefs[agent], agent_col_prefs[agent]);
             std::map<int,int> agent_scores_now = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
+            int score_agent_now = agent_scores_now[agent];
 
-            // fの中のagentを一人消すパターン
+            // firmの中のagentを一人消すパターン
             for (int agent_del : firm_matchs[firm]) {
                 if (agent_del == agent) continue;
 
@@ -136,7 +138,7 @@ bool Matching::is_stable(
                 if (score_firm_tmp > score_firm_now && score_agent_tmp > score_agent_tmp) return false;
             }
 
-            // fのキャパに余裕がある場合
+            // firmの現状のマッチにagentが入る余裕がある時
             if (firm_capacities[firm] > firm_matchs[firm].size()) {
                 std::set<int> firm_match_add = firm_matchs[firm];
                 firm_match_add.insert(agent);

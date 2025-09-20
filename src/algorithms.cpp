@@ -10,7 +10,8 @@ Matching run_dictator_like_algorithm(
     const std::vector<int> &firm_capacities,
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs)
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
 {
     // agentをランダムに並べてqueueに格納
     std::vector<int> agent_ids(n_agents);
@@ -62,7 +63,8 @@ Matching run_doctor_proposing_DA_algorithm(
     const int &n_firms,
     const std::vector<int> &firm_capacities,
     const std::vector<std::vector<int>> &agent_prefs,
-    const std::vector<std::vector<int>> &firm_prefs)
+    const std::vector<std::vector<int>> &firm_prefs
+)
 {
     std::vector<std::set<int>> firm_matching(n_firms);
     std::vector<bool> is_matched(n_agents);

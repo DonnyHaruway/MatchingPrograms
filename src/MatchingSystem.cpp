@@ -11,7 +11,8 @@ void MatchingSystem::generate_prefs(
     unsigned int seed,
     int agent_score_min, int agent_score_max,
     int firm_score_min, int firm_score_max,
-    int agent_col_score_min, int agent_col_score_max)
+    int agent_col_score_min, int agent_col_score_max
+)
 {
     rng.seed(seed);
 
@@ -126,6 +127,7 @@ void MatchingSystem::set_prefs(
     this->firm_prefs = firm_prefs;
     this->agent_col_prefs = agent_col_prefs;
 }
+
 std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 {
     if (!pref_flag)
