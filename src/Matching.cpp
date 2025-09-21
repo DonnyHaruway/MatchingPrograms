@@ -110,34 +110,28 @@ bool Matching::is_stable(
     // (firm, agent)が逸脱ペアであるかどうかを確認する
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
-            int score_firm_before = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
+            int firm_score_before = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
             std::map<int,int> agent_scores_before = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
-            int score_agent_now = agent_scores_before[agent];
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
-            // firmの選択できる全ての部分集合に対してagentが追加される場合を確認する。
-            std::map<int, std::vector<std::set<int>>> match_subsets = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
-            for (auto [size, sets] : match_subsets) {
+            std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
+            for (auto [size, subset] : subset_map) {
                 if (size+1 > firm_capacities[firm]) continue;
-                for (auto set : sets) {
+                for (auto set : subset) {
                     if (set.count(agent)) continue;
-                    set.insert(agent);
-                    int score_firm_after = compute_firm_score(set, firm_prefs[firm]);
-                    std::cout << "(firm, agent) = " << firm << ", " << agent << '\n';
-                    std::cout << "score_firm_before = " << score_firm_before << '\n';
-                    std::cout << "score_firm_after = " << score_firm_after << '\n';
-                    if (score_firm_before > score_firm_after) continue;
+                    std::set<int> set_tmp = set;
+                    set_tmp.insert(agent);
+                    int firm_score_after = compute_firm_score(set_tmp, firm_prefs[firm]);
+                    if (firm_score_before >= firm_score_after) continue;
                     bool blocking_flag = true;
-                    for (int agent_matched : set) {
-                        int agent_score_after = compute_agent_score(firm, set, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
-                        if (agent_scores_before[agent_matched] > agent_score_after) {
+                    for (int agent_matched : set_tmp) {
+                        int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
+                        if (agent_scores_before[agent_matched] >= agent_score_after) {
                             blocking_flag=false;
                             break;
                         }
                     }
                     if (!blocking_flag) continue;
                     // もしblocking pairだったらfalseを返す
-                    std::cout << "firm = " << firm << '\n';
-                    std::cout << "agent = " << agent << '\n';
                     return false;
                 }
             }

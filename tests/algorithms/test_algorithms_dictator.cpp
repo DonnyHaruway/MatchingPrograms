@@ -55,25 +55,20 @@ TEST(Algorithms, DictatorLikeAlgorithm1)
     matching.print();
 }
 
-// TEST(Algorithms, DictatorLikeAlgorithms2)
-// {
-//     const int n_agents = 4;
-//     const int n_firms = 2;
-//     const vector<int> capacities = {2, 2};
-//     MatchingSystem ms(n_agents, n_firms, capacities);
-//     ms.generate_prefs("numeric", 42);
-//     const vector<vector<int>> agent_prefs = ms.get_agent_prefs();
-//     const vector<vector<int>> firm_prefs = ms.get_firm_prefs();
-//     const vector<vector<int>> agent_col_prefs = ms.get_agent_col_prefs();
-//     print_2d_vector(agent_prefs, "agent_prefs");
-//     print_2d_vector(firm_prefs, "firm_prefs");
-//     print_2d_vector(agent_col_prefs, "agent_col_prefs");
+TEST(Algorithms, DictatorLikeAlgorithm2)
+{
+    const int n_agents = 4;
+    const int n_firms = 2;
+    const vector<int> capacities = {3, 3};
 
-//     for (int i = 0; i < 100; i++)
-//     {
-//         cout << "Run #" << i << '\n';
-//         Matching matching = ms.run_algorithm("dictator");
-//         matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
-//         matching.print();
-//     }
-// }
+    int cnt = 0;
+    for (int i = 0; i < 1e5; i++)
+    {
+        MatchingSystem ms(n_agents, n_firms, capacities);
+        ms.generate_prefs("numeric", 42, 0, 10, 0, 10, -10, 0);
+        Matching m = ms.run_algorithm("dictator"); 
+        if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) cnt++;
+    }
+
+    cout << cnt << endl;
+}

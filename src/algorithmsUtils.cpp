@@ -4,19 +4,21 @@
 using namespace MatchingTypes;
 
 std::vector<FirmMatching> create_all_firm_matching(
-    const std::vector<std::set<int>> &firm_matching, 
+    const std::vector<std::set<int>> &firm_matchings, 
     const std::vector<int> &firm_capacities
 )
 {
     std::vector<FirmMatching> all_firm_matching;
-    int n_firms = firm_matching.size();
+    int n_firms = firm_matchings.size();
 
     for (int firm=0; firm<n_firms; firm++) {
-        if (firm_matching[firm].size() < firm_capacities[firm]) all_firm_matching.emplace_back(firm, firm_matching[firm]);
-        for (int agent_del : firm_matching[firm]) {
-            std::set<int> firm_matching_del = firm_matching[firm];
-            firm_matching_del.erase(agent_del);
-            all_firm_matching.emplace_back(firm, firm_matching_del);
+        std::vector<int> firm_matching(firm_matchings[firm].begin(), firm_matchings[firm].end());
+        auto subset_map = generate_all_subsets_by_size(firm_matching, firm_capacities[firm]); 
+        for (auto [size, subset] : subset_map) {
+            if (size + 1 > firm_capacities[firm]) continue;
+            for (auto set : subset) {
+                all_firm_matching.emplace_back(firm, set);
+            }
         }
     }
 

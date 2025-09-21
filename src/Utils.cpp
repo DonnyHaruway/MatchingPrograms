@@ -40,7 +40,7 @@ std::vector<int> generate_random_number(int size, int min_val, int max_val, std:
         throw std::invalid_argument("min_val must not be greater than max_val");
     }
 
-    std::uniform_int_distribution<> dist(min_val, max_val);
+    std::uniform_int_distribution<> dist(min_val, max_val); // 閉区間[min_val, max_val]から乱数を生成
     std::vector<int> v(size);
 
     if (type == "opponent")
@@ -94,7 +94,7 @@ std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
 )
 {
     std::map<int, std::vector<std::set<int>>> all_combinations;
-
+    if (set.size() < max_size) max_size = set.size();
     for (int k = 0; k <= max_size; ++k)
     {
         all_combinations[k] = generate_combinations(set, k);

@@ -29,21 +29,22 @@ public:
         int n_firms,
         std::vector<int> capacities);
 
-    /// @brief ランダムに先行を作成
+    /// @brief ランダムに選好を作成
     /// @param preference_type 選好のタイプを指定する -> "ranked" : 同順位なし, "numeric" : 同順位あり
-    /// @param seed
-    /// @param agent_score_min
-    /// @param agent_score_max
-    /// @param firm_score_min
-    /// @param firm_score_max
-    /// @param agent_col_score_min
-    /// @param agent_col_score_max
+    /// @param seed 乱数シード
+    /// @param agent_score_min agent->firmのスコアの最小値
+    /// @param agent_score_max agent->firmのスコアの最大値
+    /// @param firm_score_min firm->agentのスコアの最小値
+    /// @param firm_score_max firm->agentのスコアの最大値
+    /// @param agent_col_score_min agent->agentのスコアの最小値
+    /// @param agent_col_score_max agent->agentのスコアの最大値
     void generate_prefs(
         std::string preference_type,
         unsigned int seed,
         int agent_score_min = 0, int agent_score_max = 10,
         int firm_score_min = 0, int firm_score_max = 10,
-        int agent_col_score_min = 0, int agent_col_score_max = 10);
+        int agent_col_score_min = 0, int agent_col_score_max = 10
+    );
 
     // 選好の指定
 
@@ -57,7 +58,8 @@ public:
     void set_prefs(
         const std::vector<std::vector<int>> &agent_prefs,
         const std::vector<std::vector<int>> &firm_prefs,
-        const std::vector<std::vector<int>> &agent_col_prefs);
+        const std::vector<std::vector<int>> &agent_col_prefs
+    );
 
     /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力する。
     /// @return Matchingオブジェクトのvector(スコア計算済み)
