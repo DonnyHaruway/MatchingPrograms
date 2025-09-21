@@ -32,5 +32,29 @@ TEST(MatchingTest, IsStable1) {
 }
 
 TEST(MatchingTest, IsStable2) {
-    
+    vector<int> agent_match = {0, 1, 0};
+
+    vector<set<int>> firm_match = {
+        {0, 2}, // firm0 -> agent 0, 2
+        {1}     // firm1 -> agent 1
+    };
+
+    vector<vector<int>> agent_prefs = {
+        {1, -1},
+        {-1, 1},
+        {1, -1}
+    };
+    vector<vector<int>> firm_prefs = {
+        {1, -1, 1},
+        {-1, 1, -1}
+    };
+    vector<vector<int>> agent_col_prefs = {
+        {0, -1, 1},
+        {-1, 0, -1},
+        {1, -1, 0}
+    };
+
+    vector<int> firm_capacities = {2, 2};
+    Matching m = Matching(agent_match, firm_match);
+    EXPECT_EQ(m.is_stable(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities), true);
 }

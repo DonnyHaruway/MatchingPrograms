@@ -110,57 +110,39 @@ bool Matching::is_stable(
     // (firm, agent)が逸脱ペアであるかどうかを確認する
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
-            int score_firm_now = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
-            std::map<int,int> agent_scores_now = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
-            int score_agent_now = agent_scores_now[agent];
-
-            // firmの中のagentを一人消すパターン
-            for (int agent_del : firm_matchs[firm]) {
-                if (agent_del == agent) continue;
-
-                std::set<int> firm_match_del = firm_matchs[firm];
-                firm_match_del.erase(agent_del);
-                firm_match_del.insert(agent);
-
-                // 先に同僚の評価を確認
-                std::map<int,int> agent_scores_tmp = agent_scores_mp(firm, firm_match_del, agent_prefs, agent_col_prefs);
-                bool cols_ok = true;
-                for (auto [agent_col, agent_col_score_now] : agent_scores_now) {
-                    if (agent_del == agent_col) continue;
-                    int agent_col_score_tmp = agent_scores_tmp[agent_col];
-                    if (agent_col_score_now > agent_col_score_tmp) cols_ok = false;
+            int score_firm_before = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
+            std::map<int,int> agent_scores_before = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
+            int score_agent_now = agent_scores_before[agent];
+            std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
+            // firmの選択できる全ての部分集合に対してagentが追加される場合を確認する。
+            std::map<int, std::vector<std::set<int>>> match_subsets = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
+            for (auto [size, sets] : match_subsets) {
+                if (size+1 > firm_capacities[firm]) continue;
+                for (auto set : sets) {
+                    if (set.count(agent)) continue;
+                    set.insert(agent);
+                    int score_firm_after = compute_firm_score(set, firm_prefs[firm]);
+                    std::cout << "(firm, agent) = " << firm << ", " << agent << '\n';
+                    std::cout << "score_firm_before = " << score_firm_before << '\n';
+                    std::cout << "score_firm_after = " << score_firm_after << '\n';
+                    if (score_firm_before > score_firm_after) continue;
+                    bool blocking_flag = true;
+                    for (int agent_matched : set) {
+                        int agent_score_after = compute_agent_score(firm, set, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
+                        if (agent_scores_before[agent_matched] > agent_score_after) {
+                            blocking_flag=false;
+                            break;
+                        }
+                    }
+                    if (!blocking_flag) continue;
+                    // もしblocking pairだったらfalseを返す
+                    std::cout << "firm = " << firm << '\n';
+                    std::cout << "agent = " << agent << '\n';
+                    return false;
                 }
-                if (!cols_ok) continue;
-
-                // 最後に逸脱ペアの(f,w)の確認
-                int score_firm_tmp = compute_firm_score(firm_match_del, firm_prefs[firm]);
-                int score_agent_tmp = compute_agent_score(agent_matchs[agent], firm_match_del, agent_prefs[agent], agent_col_prefs[agent]);
-                if (score_firm_tmp > score_firm_now && score_agent_tmp > score_agent_tmp) return false;
-            }
-
-            // firmの現状のマッチにagentが入る余裕がある時
-            if (firm_capacities[firm] > firm_matchs[firm].size()) {
-                std::set<int> firm_match_add = firm_matchs[firm];
-                firm_match_add.insert(agent);
-
-                // 先に同僚の評価を確認
-                std::map<int,int> agent_scores_tmp = agent_scores_mp(firm, firm_match_add, agent_prefs, agent_col_prefs);
-                bool cols_ok = true;
-                for (auto [agent_col, agent_col_score_now] : agent_scores_now) {
-                    int agent_col_score_tmp = agent_scores_tmp[agent_col];
-                    if (agent_col_score_now > agent_col_score_tmp) cols_ok = false;
-                }
-
-                if (!cols_ok) continue;
-                
-                // 最後に逸脱ペアの(f,w)の確認
-                int score_firm_tmp = compute_firm_score(firm_match_add, firm_prefs[firm]);
-                int score_agent_tmp = compute_agent_score(agent_matchs[agent], firm_matchs[firm], agent_prefs[agent], agent_col_prefs[agent]);
-                if (score_firm_tmp > score_firm_now && score_agent_tmp > score_agent_tmp) return false;
             }
         }
     }
-
     return true;
 }
 

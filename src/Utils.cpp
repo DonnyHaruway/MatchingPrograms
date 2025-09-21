@@ -90,7 +90,8 @@ std::vector<std::set<int>> generate_combinations(const std::vector<int> &set, in
 
 std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
     const std::vector<int> &set,
-    int max_size)
+    int max_size
+)
 {
     std::map<int, std::vector<std::set<int>>> all_combinations;
 
