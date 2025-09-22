@@ -4,8 +4,8 @@
 using namespace std;
 TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
     vector<int> cap = {2, 2};
-    MatchingSystem ms(3, 2, cap);
-    ms.generate_prefs("ranked", 42);  // seed付き
+    MatchingSystem ms(3, 2);
+    ms.generate_random_prefs("ranked", 42);  // seed付き
 
     const auto& prefs = ms.get_agent_prefs();
 
@@ -19,8 +19,8 @@ TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
 
 TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
     vector<int> cap = {3, 3, 2, 2};
-    MatchingSystem ms(4, 3, cap);
-    ms.generate_prefs("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
+    MatchingSystem ms(4, 3);
+    ms.generate_random_prefs("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
 
     const auto& prefs = ms.get_agent_prefs();
 

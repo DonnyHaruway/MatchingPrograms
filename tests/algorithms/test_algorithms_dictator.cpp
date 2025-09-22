@@ -47,9 +47,10 @@ TEST(Algorithms, DictatorLikeAlgorithm1)
         {4, 5, 3, 0}
     };
 
-    MatchingSystem ms(n_agents, n_firms, capacities);
+    MatchingSystem ms(n_agents, n_firms);
 
     ms.set_prefs(agent_prefs, firm_prefs, agent_col_prefs);
+    ms.set_firm_capacities(capacities);
     Matching matching = ms.run_algorithm("dictator");
     matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
     matching.print();
@@ -64,8 +65,9 @@ TEST(Algorithms, DictatorLikeAlgorithm2)
     int cnt = 0;
     for (int i = 0; i < 1e5; i++)
     {
-        MatchingSystem ms(n_agents, n_firms, capacities);
-        ms.generate_prefs("numeric", 42, 0, 10, 0, 10, -10, 0);
+        MatchingSystem ms(n_agents, n_firms);
+        ms.set_firm_capacities(capacities);
+        ms.generate_random_prefs("numeric", 42, 0, 10, 0, 10, -10, 0);
         Matching m = ms.run_algorithm("dictator"); 
         if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) cnt++;
     }

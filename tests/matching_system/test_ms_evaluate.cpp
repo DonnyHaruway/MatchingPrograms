@@ -11,7 +11,7 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
     const int n_firms = 1;
     const vector<int> capacities = {2};
 
-    MatchingSystem ms(n_agents, n_firms, capacities);
+    MatchingSystem ms(n_agents, n_firms);
     
     const vector<vector<int>> agent_pref = {
         {-4,},
@@ -26,6 +26,7 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
     };
 
     ms.set_prefs(agent_pref, firm_pref, agent_col_pref);
+    ms.set_firm_capacities(capacities);
     std::cout << "before evaluate_all_matchings" << std::endl;
 
     vector<Matching> result = ms.evaluate_all_matchings();

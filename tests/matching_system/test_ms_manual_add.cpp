@@ -4,7 +4,7 @@
 using namespace std;
 TEST(ManualAddTest, AddPreferences) {
     vector<int> cap = {2, 2};
-    MatchingSystem ms(3, 2, cap);
+    MatchingSystem ms(3, 2);
     vector<vector<int>> agent_pref = {
         {0, 1},
         {1, 0},
@@ -21,6 +21,7 @@ TEST(ManualAddTest, AddPreferences) {
     };
 
     ms.set_prefs(agent_pref, firm_pref, agent_col_pref);
+    ms.set_firm_capacities(cap);
 
     const auto& agent_pref_ms = ms.get_agent_prefs();
     const auto& firm_pref_ms = ms.get_firm_prefs();

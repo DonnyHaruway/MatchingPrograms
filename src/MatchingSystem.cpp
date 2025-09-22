@@ -3,10 +3,10 @@
 #include <stdexcept>
 #include <cassert>
 
-MatchingSystem::MatchingSystem(int n_agents, int n_firms, std::vector<int> firm_capacities)
-    : n_agents(n_agents), n_firms(n_firms), firm_capacities(firm_capacities) {}
+MatchingSystem::MatchingSystem(int n_agents, int n_firms)
+    : n_agents(n_agents), n_firms(n_firms) {}
 
-void MatchingSystem::generate_prefs(
+void MatchingSystem::generate_random_prefs(
     std::string preference_type,
     unsigned int seed,
     int agent_score_min, int agent_score_max,
@@ -76,11 +76,27 @@ void MatchingSystem::generate_prefs(
     pref_flag = true;
 }
 
+void MatchingSystem::generate_random_capacities(unsigned int seed)
+{
+    firm_capacities.clear();
+    rng.seed(seed);
+    std::uniform_int_distribution<int> capacity_dist(1, n_agents); // キャパシティは1からn_agentsまでの範囲でランダムに設定
+    for (int i = 0; i < n_firms; i++)
+    {
+        firm_capacities.push_back(capacity_dist(rng));
+    }
+}
+
 void MatchingSystem::set_agent_prefs(const std::vector<std::vector<int>> &prefs)
 {
-    assert(prefs.size() == n_agents);
-    for (const auto &row : prefs)
-        assert(row.size() == n_firms);
+    if (prefs.size() != n_agents) {
+        throw std::invalid_argument("agent_prefs size mismatch");
+    }
+    for (auto agent_pref : prefs) {
+        if (agent_pref.size() != n_firms) {
+            throw std::invalid_argument("agent_prefs size mismatch");
+        }
+    }
 
     agent_prefs = prefs;
     pref_flag = true;  // 少なくとも何か1つセットされたらON
@@ -88,9 +104,15 @@ void MatchingSystem::set_agent_prefs(const std::vector<std::vector<int>> &prefs)
 
 void MatchingSystem::set_firm_prefs(const std::vector<std::vector<int>> &prefs)
 {
-    assert(prefs.size() == n_firms);
-    for (const auto &row : prefs)
-        assert(row.size() == n_agents);
+    if (prefs.size() != n_firms) {
+        throw std::invalid_argument("firm_capacities size mismatch");
+    }
+
+    for (auto firm_pref : prefs) {
+        if (firm_pref.size() != n_agents) {
+            throw std::invalid_argument("firm_capacities size mismatch");
+        }
+    }
 
     firm_prefs = prefs;
     pref_flag = true;
@@ -98,9 +120,14 @@ void MatchingSystem::set_firm_prefs(const std::vector<std::vector<int>> &prefs)
 
 void MatchingSystem::set_agent_col_prefs(const std::vector<std::vector<int>> &prefs)
 {
-    assert(prefs.size() == n_agents);
-    for (const auto &row : prefs)
-        assert(row.size() == n_agents);
+    if (prefs.size() != n_agents) {
+        throw std::invalid_argument("agent_col_prefs size mismatch");
+    }
+    for (auto agent_col_pref : prefs) {
+        if (agent_col_pref.size() != n_agents) {
+            throw std::invalid_argument("agent_col_prefs size mismatch");
+        }
+    }
 
     agent_col_prefs = prefs;
     pref_flag = true;
@@ -128,11 +155,19 @@ void MatchingSystem::set_prefs(
     this->agent_col_prefs = agent_col_prefs;
 }
 
+void MatchingSystem::set_firm_capacities(const std::vector<int> &firm_capacities)
+{
+    if (firm_capacities.size() != n_firms) {
+        throw std::length_error("firm_capacities has wrong length");
+    }
+    this->firm_capacities = firm_capacities;
+}
+
 std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
 {
     if (!pref_flag)
     {
-        throw std::runtime_error("Prefrences have not been set yet.");
+        throw std::runtime_error("Prefrences have not been set yet");
     }
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
@@ -150,7 +185,8 @@ std::vector<Matching> MatchingSystem::evaluate_all_matchings() const
         all_candidates,
         current_matching,
         used_agents,
-        result);
+        result
+    );
 
     // 計算する
     for (Matching &matching : result)
@@ -188,4 +224,9 @@ const std::vector<std::vector<int>> &MatchingSystem::get_firm_prefs() const
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_col_prefs() const
 {
     return agent_col_prefs;
+}
+
+const std::vector<int> &MatchingSystem::get_firm_capacities() const
+{
+    return firm_capacities;
 }

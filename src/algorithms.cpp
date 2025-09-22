@@ -75,7 +75,7 @@ Matching run_doctor_proposing_DA_algorithm(
             if (is_matched[agent]) continue;
             int target_firm = -1;
             int max_score = -1;
-            for (int firm=0; firm<n_agents; firm++) {
+            for (int firm=0; firm<n_firms; firm++) {
                 if (agent_prefs[agent][firm] > max_score && !confess_lists[agent][firm]) {
                     max_score = agent_prefs[agent][firm];
                     target_firm = firm;
@@ -83,10 +83,11 @@ Matching run_doctor_proposing_DA_algorithm(
             }
             confess[agent] = target_firm;
         }
-        
+
         for (int agent=0; agent<n_agents; agent++) {
             if (is_matched[agent]) continue;
             int target_firm = confess[agent];
+            if (target_firm == -1) continue;
             if (firm_prefs[target_firm][agent] >= 0 && firm_matching[target_firm].size() < firm_capacities[target_firm]) {
                 firm_matching[target_firm].insert(agent);
                 is_matched[agent] = true;
@@ -95,7 +96,7 @@ Matching run_doctor_proposing_DA_algorithm(
             }
         }
         if (std::all_of(is_matched.begin(), is_matched.end(), [](bool b) { return b; })) break;
-        if (all_rejected(is_matched, confess_lists)) break;
+        // 明日リファクタする -> 全員が告白できる人がいなくなった場合
     }
 
     return Matching::from_firm_assignment(firm_matching, n_agents);

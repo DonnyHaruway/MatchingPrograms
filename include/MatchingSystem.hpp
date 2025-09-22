@@ -13,7 +13,6 @@ class MatchingSystem
 private:
     int n_agents;
     int n_firms;
-    std::vector<int> firm_capacities;
     std::string preference_type;
     std::mt19937 rng;
     bool pref_flag = false;
@@ -22,12 +21,14 @@ private:
     std::vector<std::vector<int>> firm_prefs;      // firm_prefs[j][i] : agent j が firm i に対して持つスコア
     std::vector<std::vector<int>> agent_col_prefs; // agent_col_prefs[i][j]: agent i が agent j に対して持つスコア
 
+    std::vector<int> firm_capacities; // firmのキャパシティ配列
+
 public:
     // コンストラクタ
     MatchingSystem(
         int n_agents,
-        int n_firms,
-        std::vector<int> capacities);
+        int n_firms
+    );
 
     /// @brief ランダムに選好を作成
     /// @param preference_type 選好のタイプを指定する -> "ranked" : 同順位なし, "numeric" : 同順位あり
@@ -38,13 +39,15 @@ public:
     /// @param firm_score_max firm->agentのスコアの最大値
     /// @param agent_col_score_min agent->agentのスコアの最小値
     /// @param agent_col_score_max agent->agentのスコアの最大値
-    void generate_prefs(
+    void generate_random_prefs(
         std::string preference_type,
         unsigned int seed,
         int agent_score_min = 0, int agent_score_max = 10,
         int firm_score_min = 0, int firm_score_max = 10,
         int agent_col_score_min = 0, int agent_col_score_max = 10
     );
+
+    void generate_random_capacities(unsigned int seed);
 
     // 選好の指定
 
@@ -61,6 +64,8 @@ public:
         const std::vector<std::vector<int>> &agent_col_prefs
     );
 
+    void set_firm_capacities(const std::vector<int> &firm_capacities);
+
     /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力する。
     /// @return Matchingオブジェクトのvector(スコア計算済み)
     std::vector<Matching> evaluate_all_matchings() const;
@@ -70,8 +75,9 @@ public:
     /// @return Matching
     Matching run_algorithm(const std::string &algorithm_name) const;
 
-    // 選好のゲッタ
     const std::vector<std::vector<int>> &get_agent_prefs() const;
     const std::vector<std::vector<int>> &get_firm_prefs() const;
     const std::vector<std::vector<int>> &get_agent_col_prefs() const;
+
+    const std::vector<int> &get_firm_capacities() const;
 };
