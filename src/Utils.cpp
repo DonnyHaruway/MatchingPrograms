@@ -126,11 +126,15 @@ std::vector<std::vector<std::set<int>>> prepare_all_candidates(
 
 int compute_firm_score(
     const std::set<int> &firm_match,
-    const std::vector<int> &firm_pref)
+    const std::vector<int> &firm_pref
+)
 {
+    // std::cout << "[compute_firm_score] Step1" << std::endl;
     int score = 0;
+    // std::cout << "[compute_firm_score] Step2" << std::endl;
     for (int agent : firm_match)
     {
+        // std::cout << "[compute_firm_score] agent = " << agent << std::endl;
         if (agent < 0 || agent >= firm_pref.size())
         {
             throw std::out_of_range("Agent index out of range in firm preferences");
@@ -164,6 +168,5 @@ std::map<int,int> agent_scores_mp(
         int agent_score = compute_agent_score(firm, firm_matching, agent_prefs[agent], agent_col_prefs[agent]);
         score_mp[agent] = agent_score;
     }
-
     return score_mp;
 }

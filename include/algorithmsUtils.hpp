@@ -9,8 +9,8 @@
 
 using MatchingTypes::FirmMatching;
 
-std::vector<FirmMatching> create_all_firm_matching (
-    const std::vector<std::set<int>> &firm_matching, 
+std::vector<FirmMatching> create_all_firm_match (
+    const std::vector<std::set<int>> &firm_match, 
     const std::vector<int> &firm_capacities
 );
 
@@ -18,29 +18,29 @@ std::vector<FirmMatching> create_all_firm_matching (
 /// @param agent 
 /// @param agent_prefs 
 /// @param agent_col_prefs 
-/// @param all_firm_matching 
+/// @param all_firm_match 
 /// @param unofferable 
 /// @return 
 FirmMatching find_prefered_match (
     const int &agent, 
     const std::vector<int> &agent_pref, 
     const std::vector<int> &agent_col_pref, 
-    const std::vector<FirmMatching> &all_firm_matching,
+    const std::vector<FirmMatching> &all_firm_match,
     const std::set<FirmMatching> &unofferable
 );
 
 bool firm_match_accept_propose(
     const int &agent, 
     const FirmMatching &prefered_match, 
-    const std::set<int> &firm_matching_before, 
+    const std::set<int> &firm_match_before, 
     const std::vector<std::vector<int>> &agent_prefs, 
     const std::vector<std::vector<int>> &firm_prefs, 
     const std::vector<std::vector<int>> &agent_col_prefs
 );
 
 int find_agent_deleted(
-    const std::set<int> &firm_matching_before, 
-    const std::set<int> &firm_matching_after
+    const std::set<int> &firm_match_before, 
+    const std::set<int> &firm_match_after
 );
 
 int exclude_one_agent (

@@ -80,4 +80,6 @@ public:
     const std::vector<std::vector<int>> &get_agent_col_prefs() const;
 
     const std::vector<int> &get_firm_capacities() const;
+
+    void MatchingSystem::print_prefs() const;
 };

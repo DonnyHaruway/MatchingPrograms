@@ -15,7 +15,7 @@ void printFirmMatchings(const vector<FirmMatching>& matchings) {
 }
 
 TEST(AlgorithmsUtils, CreateAllFirmMatching) {
-    vector<set<int>> firm_matching = {
+    vector<set<int>> firm_match = {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9}
@@ -23,25 +23,25 @@ TEST(AlgorithmsUtils, CreateAllFirmMatching) {
 
     vector<int> firm_capacities = {3, 3, 4};
 
-    vector<FirmMatching> all_firm_matching = create_all_firm_matching(firm_matching, firm_capacities);
-    printFirmMatchings(all_firm_matching);
+    vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
+    printFirmMatchings(all_firm_match);
 }
 
 TEST(AlgorithmsUtils, FindPreferedMatch) {
-    vector<set<int>> firm_matching = {
+    vector<set<int>> firm_match = {
         {1, 2, 3},
         {4, 5, 6},
         {7, 8, 9}
     };
     vector<int> firm_capacities = {3, 3, 4};
-    vector<FirmMatching> all_firm_matching = create_all_firm_matching(firm_matching, firm_capacities);
+    vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
     int agent = 0;
     vector<int> agent_pref = {0, 1, 2, 3, 4};
     vector<int> agent_col_pref = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     set<FirmMatching> unofferable = {
         {2, {7, 8, 9}}
     };
-    FirmMatching prefered_match = find_prefered_match(agent, agent_pref, agent_col_pref, all_firm_matching, unofferable);
+    FirmMatching prefered_match = find_prefered_match(agent, agent_pref, agent_col_pref, all_firm_match, unofferable);
     FirmMatching expected = {
         1, {4, 5, 6}
     };

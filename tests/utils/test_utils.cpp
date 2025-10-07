@@ -66,6 +66,83 @@ TEST(UtilsTest, GenerateAllSubsetsBySize) {
     EXPECT_EQ(expected_size, sum);
 }
 
+TEST(UtilsTest, GenerateAllSubsetsBySize_MaxSize) {
+    const vector<int> elems = {0, 1, 2, 3};
+    const int k = 5;
+
+    const int expected_size = 16;
+    auto result = generate_all_subsets_by_size(elems, k);
+
+    set<set<int>> st0 = {
+        {},
+    };
+
+    set<set<int>> st1 = {
+        {0},
+        {1},
+        {2},
+        {3},
+    };
+
+    set<set<int>> st2 = {
+        {0, 1},
+        {0, 2},
+        {0, 3},
+        {1, 2},
+        {1, 3},
+        {2, 3}
+    };
+
+    set<set<int>> st3 = {
+        {0, 1, 2},
+        {0, 1, 3},
+        {0, 2, 3},
+        {1, 2, 3},
+    };
+
+    set<set<int>> st4 = {
+        {0, 1, 2, 3}
+    };
+
+    vector<set<set<int>>> st = {st0, st1, st2, st3, st4};
+
+    int sum = 0;
+    for (auto [x, subset] : result) {
+        set<set<int>> tmp = st[x];
+        for (auto S : subset) {
+            if (!tmp.count(S)) cout << "Not found" << endl;
+        }
+        sum += subset.size();
+    }
+
+    EXPECT_EQ(expected_size, sum);
+}
+
+TEST(UtilsTest, GenerateAllSubsetsBySize_Empty) {
+    const vector<int> elems = {};
+    const int k = 5;
+
+    const int expected_size = 1;
+    auto result = generate_all_subsets_by_size(elems, k);
+
+    set<set<int>> st0 = {
+        {},
+    };
+
+    vector<set<set<int>>> st = {st0};
+
+    int sum = 0;
+    for (auto [x, subset] : result) {
+        set<set<int>> tmp = st[x];
+        for (auto S : subset) {
+            if (!tmp.count(S)) cout << "Not found" << endl;
+        }
+        sum += subset.size();
+    }
+
+    EXPECT_EQ(expected_size, sum);
+}
+
 TEST(UtilsTest, PrepareAllCandidates) {
     const vector<int> agent_ids = {0, 1, 2, 3};
     const vector<int> firm_capacities = {3, 2};
@@ -140,7 +217,7 @@ TEST(UtilsTest, ComputeAgentScore) {
     EXPECT_EQ(score, 12);
 }
 
-TEST(UtilsTest, AgentScoresMp) {
+TEST(UtilsTest, AgentScoresMap) {
     int firm = 2;
     set<int> firm_matching = {1, 3, 2};
     vector<vector<int>> agent_prefs = {

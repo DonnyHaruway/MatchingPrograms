@@ -3,7 +3,7 @@
 
 using namespace std;
 
-TEST(MatchingTest, IsStable1) {
+TEST(StableTest, IsStable1) {
     vector<int> agent_match = {0, 1, 0};
 
     vector<set<int>> firm_match = {
@@ -31,7 +31,7 @@ TEST(MatchingTest, IsStable1) {
     EXPECT_EQ(m.is_stable(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities), false);
 }
 
-TEST(MatchingTest, IsStable2) {
+TEST(StableTest, IsStable2) {
     vector<int> agent_match = {0, 1, 0};
 
     vector<set<int>> firm_match = {
@@ -57,4 +57,32 @@ TEST(MatchingTest, IsStable2) {
     vector<int> firm_capacities = {2, 2};
     Matching m = Matching(agent_match, firm_match);
     EXPECT_EQ(m.is_stable(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities), true);
+}
+
+TEST(StableTest, IsStable3) {
+    vector<int> agent_match = {-1, 1, 0};
+
+    vector<set<int>> firm_match = {
+        {2},
+        {0}
+    };
+
+    vector<vector<int>> agent_prefs = {
+        {2, 1},
+        {2, 1},
+        {2, 1}
+    };
+    vector<vector<int>> firm_prefs = {
+        {2, 1, 3},
+        {2, 3, 1}
+    };
+    vector<vector<int>> agent_col_prefs = {
+        {0, 0, 0},
+        {-10, 0, 0},
+        {-10, 0, 0}
+    };
+
+    vector<int> firm_capacities = {2, 1};
+    Matching m = Matching(agent_match, firm_match);
+    EXPECT_EQ(m.is_stable(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities), false);
 }

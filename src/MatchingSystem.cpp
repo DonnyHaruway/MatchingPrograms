@@ -230,3 +230,45 @@ const std::vector<int> &MatchingSystem::get_firm_capacities() const
 {
     return firm_capacities;
 }
+
+void MatchingSystem::print_prefs() const
+{
+    std::cout << "Agent Preferences:\n";
+    for (int i = 0; i < n_agents; i++)
+    {
+        std::cout << "Agent " << i << ": ";
+        for (int j = 0; j < n_firms; j++)
+        {
+            std::cout << agent_prefs[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << "\nFirm Preferences:\n";
+    for (int j = 0; j < n_firms; j++)
+    {
+        std::cout << "Firm " << j << ": ";
+        for (int i = 0; i < n_agents; i++)
+        {
+            std::cout << firm_prefs[j][i] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << "\nAgent Colleague Preferences:\n";
+    for (int i = 0; i < n_agents; i++)
+    {
+        std::cout << "Agent " << i << ": ";
+        for (int j = 0; j < n_agents; j++)
+        {
+            std::cout << agent_col_prefs[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    std::cout << "\nFirm Capacities:\n";
+    for (int j = 0; j < n_firms; j++)
+    {
+        std::cout << "Firm " << j << ": " << firm_capacities[j] << "\n";
+    }
+}

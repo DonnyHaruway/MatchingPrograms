@@ -45,20 +45,10 @@ Matching Matching::from_firm_assignment(
     {
         const auto &agents = input_firm_match[firm_id];
         std::set<int> firm_agents;
-
-        if (agents.empty())
-        {
-            firm_agents.insert(-1); // 誰ともマッチしていない
+        for (int agent : agents) {
+            agent_matchs[agent] = firm_id;
+            firm_agents.insert(agent);
         }
-        else
-        {
-            for (int agent : agents)
-            {
-                agent_matchs[agent] = firm_id;
-                firm_agents.insert(agent);
-            }
-        }
-
         firm_match.push_back(firm_agents);
     }
 
@@ -105,13 +95,16 @@ bool Matching::is_stable(
         const std::vector<std::vector<int>> &firm_prefs,
         const std::vector<std::vector<int>> &agent_col_prefs,
         const std::vector<int> &firm_capacities
-    )
+)
 {   
+    // std::cout << "[is_stable] : START" << std::endl;
     // (firm, agent)が逸脱ペアであるかどうかを確認する
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
+            // std::cout << "[is_stable] : firm = " << firm << ", agent = " << agent << std::endl;
             int firm_score_before = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
             std::map<int,int> agent_scores_before = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
+            // std::cout << "[is_stable] : firm_score_before = " << firm_score_before << std::endl;
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
             std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
             for (auto [size, subset] : subset_map) {
