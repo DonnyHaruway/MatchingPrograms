@@ -9,6 +9,7 @@ MatchingSystem::MatchingSystem(int n_agents, int n_firms)
 void MatchingSystem::generate_random_prefs(
     std::string preference_type,
     unsigned int seed,
+    bool colPref,
     int agent_score_min, int agent_score_max,
     int firm_score_min, int firm_score_max,
     int agent_col_score_min, int agent_col_score_max
@@ -60,15 +61,20 @@ void MatchingSystem::generate_random_prefs(
     {
 
         std::vector<int> pref;
-
-        if (preference_type == "ranked")
-        {
-            // whoを自分自身にする
-            pref = generate_random_ranked(n_agents, rng, "col", i);
-        }
-        else if (preference_type == "numeric")
-        {
-            pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng, "col", i);
+        if (!colPref) {
+            pref = std::vector<int>(n_agents, 0);
+            agent_col_prefs.push_back(pref);
+            continue;
+        } else {
+            if (preference_type == "ranked")
+            {
+                // whoを自分自身にする
+                pref = generate_random_ranked(n_agents, rng, "col", i);
+            }
+            else if (preference_type == "numeric")
+            {
+                pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng, "col", i);
+            }
         }
         agent_col_prefs.push_back(pref);
     }

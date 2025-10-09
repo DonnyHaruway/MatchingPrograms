@@ -20,7 +20,7 @@ TEST(PreferenceGenerationTest, AgentPreferenceSizeCorrect) {
 TEST(PreferenceGenerationTest, ValuesInRangeForRandomScores) {
     vector<int> cap = {3, 3, 2, 2};
     MatchingSystem ms(4, 3);
-    ms.generate_random_prefs("numeric", 99, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
+    ms.generate_random_prefs("numeric", 99, true, 10, 20, 0, 100, 0, 100);  // agent score min-max = [10,20]
 
     const auto& prefs = ms.get_agent_prefs();
 

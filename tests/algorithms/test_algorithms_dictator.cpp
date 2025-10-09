@@ -67,7 +67,7 @@ TEST(Algorithms, DictatorLikeAlgorithm2)
     {
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
-        ms.generate_random_prefs("numeric", rd() ^ (time(NULL)+i), 0, 10, 0, 10, -10, 0);
+        ms.generate_random_prefs("numeric", rd() ^ (time(NULL)+i), true, 0, 10, 0, 10, -10, 0);
         Matching m = ms.run_algorithm("dictator");
         if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) {
             cnt++;

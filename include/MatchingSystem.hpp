@@ -37,11 +37,13 @@ public:
     /// @param agent_score_max agent->firmのスコアの最大値
     /// @param firm_score_min firm->agentのスコアの最小値
     /// @param firm_score_max firm->agentのスコアの最大値
+    /// @param colPref 同僚の選好を生成するかどうか
     /// @param agent_col_score_min agent->agentのスコアの最小値
     /// @param agent_col_score_max agent->agentのスコアの最大値
     void generate_random_prefs(
         std::string preference_type,
         unsigned int seed,
+        bool colPref = false,
         int agent_score_min = 0, int agent_score_max = 10,
         int firm_score_min = 0, int firm_score_max = 10,
         int agent_col_score_min = 0, int agent_col_score_max = 10
@@ -81,5 +83,5 @@ public:
 
     const std::vector<int> &get_firm_capacities() const;
 
-    void MatchingSystem::print_prefs() const;
+    void print_prefs() const;
 };

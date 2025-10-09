@@ -98,13 +98,10 @@ bool Matching::is_stable(
 )
 {   
     // std::cout << "[is_stable] : START" << std::endl;
-    // (firm, agent)が逸脱ペアであるかどうかを確認する
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
-            // std::cout << "[is_stable] : firm = " << firm << ", agent = " << agent << std::endl;
             int firm_score_before = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
             std::map<int,int> agent_scores_before = agent_scores_mp(firm, firm_matchs[firm], agent_prefs, agent_col_prefs);
-            // std::cout << "[is_stable] : firm_score_before = " << firm_score_before << std::endl;
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
             std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
             for (auto [size, subset] : subset_map) {

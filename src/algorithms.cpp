@@ -73,7 +73,6 @@ Matching run_doctor_proposing_DA_algorithm(
     std::vector<std::set<int>> firm_match(n_firms);
     std::vector<std::vector<int>> agent_order(n_agents);
     agent_order.assign(n_agents, {});
-    // std::cout << "[doctor_proposing_DA] START" << std::endl;
     for (int a = 0; a < n_agents; ++a) {
         std::vector<int> firms(n_firms);
         std::iota(firms.begin(), firms.end(), 0);
@@ -82,12 +81,9 @@ Matching run_doctor_proposing_DA_algorithm(
         });
         agent_order[a] = firms;
     }
-    // std::cout << "[doctor_proposing_DA] agent_order done" << std::endl;
     std::vector<int> next_idx(n_agents, 0);
     std::queue<int> free_agents;
-    // std::cout << "[doctor_proposing_DA] queue init done" << std::endl;
     for (int a = 0; a < n_agents; ++a) free_agents.push(a);
-    // std::cout << "[doctor_proposing_DA] queue fill done" << std::endl;
     auto worst_in = [&](int firm) -> int {
         int worst = -1;
         int worst_score = -1e9; // とりあえず
@@ -118,12 +114,5 @@ Matching run_doctor_proposing_DA_algorithm(
             }
         }
     }
-    // std::cout << "[doctor_proposing_DA] firm_match result" << std::endl;
-    // for (int f = 0; f < n_firms; f++) {
-    //     std::cout << "  Firm " << f << " : ";
-    //     for (int a : firm_match[f]) std::cout << a << " ";
-    //     std::cout << std::endl;
-    // }
-    // std::cout << "[doctor_proposing_DA] END" << std::endl;
     return Matching::from_firm_assignment(firm_match, n_agents);
 }
