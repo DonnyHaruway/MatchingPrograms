@@ -58,12 +58,107 @@ TEST(Algorithms, DictatorLikeAlgorithm1)
 
 TEST(Algorithms, DictatorLikeAlgorithm2)
 {
+    /*
+    ・ご指定の選好
+    Agent Preferences:
+    Agent 0: 9 3 
+    Agent 1: 10 1 
+    Agent 2: 9 2 
+
+    Firm Preferences:
+    Firm 0: 4 0 4 
+    Firm 1: 5 6 4 
+
+    Agent Colleague Preferences:
+    Agent 0: 0 -5 -9 
+    Agent 1: -2 0 -4 
+    Agent 2: -10 0 0 
+
+    Firm Capacities:
+    Firm 0: 2
+    Firm 1: 2
+    */
+
+    const int n_agents = 3;
+    const int n_firms = 2;
+    const vector<int> capacities = {2, 2};
+
+    // 各エージェントの企業に対する選好
+    vector<vector<int>> agent_prefs = {
+        {9, 3},
+        {10, 1},
+        {9, 2}};
+
+    // 各企業のワーカーに対する選好
+    vector<vector<int>> firm_prefs = {
+        {4, 0, 4},
+        {5, 6, 4},
+    };
+
+    // 各エージェントの同僚に対する選好
+    vector<vector<int>> agent_col_prefs = {
+        {0, -5, -9},
+        {-2, 0, -4},
+        {-10, 0, 0}};
+
+    MatchingSystem ms(n_agents, n_firms);
+
+    ms.set_prefs(agent_prefs, firm_prefs, agent_col_prefs);
+    ms.set_firm_capacities(capacities);
+    Matching matching = ms.run_algorithm("dictator");
+    matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    matching.print();
+    if (matching.is_stable(agent_prefs, firm_prefs, agent_col_prefs, capacities)) {
+        cout << "The matching is stable." << endl;
+    } else {
+        cout << "The matching is not stable." << endl;
+    }
+}
+
+TEST(Algorithms, DictatorLikeAlgorithm3)
+{
+    const int INF = 2e9;
+    const int n_agents = 3;
+    const int n_firms = 2;
+    const vector<int> capacities = {2, 1};
+
+    vector<vector<int>> agent_prefs = {
+        {2, 1},
+        {2, 1},
+        {1, 2}
+    };
+    vector<vector<int>> firm_prefs = {
+        {2, 1, 3},
+        {1, 3, 2}
+    };
+    vector<vector<int>> agent_col_prefs = {
+        {0, 0, 0},
+        {-INF, 0, 0},
+        {-INF, 0, 0}
+    };
+
+    MatchingSystem ms(n_agents, n_firms);
+
+    ms.set_prefs(agent_prefs, firm_prefs, agent_col_prefs);
+    ms.set_firm_capacities(capacities);
+    Matching matching = ms.run_algorithm("dictator");
+    matching.print();
+    if (matching.is_stable(agent_prefs, firm_prefs, agent_col_prefs, capacities)) {
+        cout << "The matching is stable." << endl;
+    } else {
+        cout << "The matching is not stable." << endl;
+    }
+}
+
+TEST(Algorithms, DictatorLikeAlgorithm4)
+{
     const int n_agents = 3;
     const int n_firms = 2;
     const vector<int> capacities = {2, 2};
     random_device rd;
     int cnt = 0;
-    for (int i = 0; i < 100; i++)
+    int iter = 1e2;
+    for (int i = 0; i < iter; i++)
     {
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
@@ -72,10 +167,12 @@ TEST(Algorithms, DictatorLikeAlgorithm2)
         if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) {
             cnt++;
         } else {
-            cout << "Unstable matching found!" << endl;
+            cout << "Unstable matching found in trial " << i << "!" << endl;
+            ms.print_prefs();
             m.print();
+            cout << endl << endl;
         }
     }
 
-    cout << "[DictatorLikeAlgorithm2] stable matchings: " << cnt << " / 100" << endl;
+    cout << "[DictatorLikeAlgorithm2] stable matchings: " << cnt << " / " << iter << endl;
 }

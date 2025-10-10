@@ -70,17 +70,17 @@ bool firm_match_accept_propose(
     return true;
 }
 
-int find_agent_deleted(
+std::set<int> find_agent_deleted(
     const std::set<int> &firm_match_before, 
     const std::set<int> &firm_match_after
 )
 {
-    int agent_deleted = -1;
+    std::set<int> agent_deleted_set;
     for (int agent : firm_match_before) {
-        if (!firm_match_after.count(agent)) agent_deleted = agent;
+        if (!firm_match_after.count(agent)) agent_deleted_set.insert(agent);
     }
 
-    return agent_deleted;
+    return agent_deleted_set;
 }
 
 int exclude_one_agent(

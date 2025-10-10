@@ -38,7 +38,7 @@ bool firm_match_accept_propose(
     const std::vector<std::vector<int>> &agent_col_prefs
 );
 
-int find_agent_deleted(
+std::set<int> find_agent_deleted(
     const std::set<int> &firm_match_before, 
     const std::set<int> &firm_match_after
 );

@@ -38,17 +38,17 @@ TEST(Algorithms, DoctorProposeDAStabilityCheck)
     random_device rd;
 
     int cnt = 0;
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 1e5; i++)
     {
-        cout << "Trial " << i << endl;
+        // cout << "\nTrial " << i << endl;
         MatchingSystem ms(n_agents, n_firms);
         ms.generate_random_prefs("ranked", rd() ^ (time(NULL)+i), false);
         ms.generate_random_capacities(rd() ^ (time(NULL)+i));
-        ms.print_prefs();
+        // ms.print_prefs();
         Matching m = ms.run_algorithm("doctor_propose_DA");
-        m.print();
+        // m.print();
         if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), ms.get_firm_capacities())) cnt++;
     }
 
-    cout << "Stable matchings found: " << cnt << " out of " << 100 << endl;
+    cout << "Stable matchings found: " << cnt << " out of " << 1e5 << endl;
 }
