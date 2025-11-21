@@ -15,9 +15,11 @@ _deps/
 *.bin
 
 # test_results.txt
-
 run_test*
 test_results*
+
+# 実験用ディレクトリ
+experiments/
 
 # VSCodeなどエディタ設定
 .vscode/

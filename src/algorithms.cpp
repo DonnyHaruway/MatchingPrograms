@@ -16,9 +16,9 @@ Matching run_dictator_like_algorithm(
     // agentをランダムに並べてqueueに格納
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
-    // std::random_device rd;
-    // std::mt19937 rng(rd());
-    // std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
     std::queue<int> agent_queue;
     for (int id : agent_ids) {
         agent_queue.push(id);
@@ -33,21 +33,13 @@ Matching run_dictator_like_algorithm(
     // queueが空になるまでqueueの先頭のエージェントが最も好む集合にマッチさせる
     while (!agent_queue.empty())
     {   
-        // std::cout << "[run_dictator_like_algorithm] Current queue: ";
         std::queue<int> tmp_q = agent_queue;
-        // while (!tmp_q.empty()) {
-        //     std::cout << tmp_q.front() << " ";
-        //     tmp_q.pop();
-        // }
-        // std::cout << "\n";
 
         int agent = agent_queue.front();
         agent_queue.pop();
 
         std::vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
         FirmMatching prefered_match = find_prefered_match(agent, agent_prefs[agent], agent_col_prefs[agent], all_firm_match, unofferable_list[agent]);
-        // std::cout << "[run_dictator_like_algorithm] Agent " << agent << " prefers Firm " << prefered_match.first << '\n';
-        // もう告白したい集合がない
         if (prefered_match.first == -1) {
             continue;
         }
@@ -67,28 +59,6 @@ Matching run_dictator_like_algorithm(
         } else {
             agent_queue.push(agent);
         }
-
-        // std::cout << "[run_dictator_like_algorithm] Current firm matches:\n";
-        // for (int f=0; f<n_firms; f++) {
-        //     std::cout << "  Firm " << f << ": ";
-        //     for (int a : firm_match[f]) {
-        //         std::cout << a << " ";  
-        //     }
-        //     std::cout << "\n";
-        // }
-
-        // std::cout << "[run_dictator_like_algorithm] Unofferable list:\n";
-        // for (int a=0; a<n_agents; a++) {
-        //     std::cout << "  Agent " << a << ": ";
-        //     for (auto [f, s] : unofferable_list[a]) {
-        //         std::cout << "(Firm " << f << ": ";
-        //         for (int _a : s) std::cout << _a << " ";
-        //         std::cout << ") ";
-        //     }
-        //     std::cout << "\n";
-        // }
-
-        // std::cout << "\n";
     }
     return Matching::from_firm_assignment(firm_match, n_agents);
 };

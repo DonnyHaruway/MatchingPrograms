@@ -13,7 +13,7 @@ Matching::Matching(
         int firm = agent_matchs[i];
         if (firm == -1)
         {
-            agent_col_matchs[i].insert(-1); // マッチしていない
+            agent_col_matchs[i].insert(-1);
             continue;
         }
 
@@ -99,54 +99,36 @@ bool Matching::is_stable(
 )
 {   
     this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    // 現在のマッチングに不満があるエージェント・企業がいるか確認
+    for (int agent=0; agent<n_agent; agent++) {
+        if (agent_scores[agent] < 0) return false;
+    }
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
-            // std::cout << "[is_stable] Checking Firm " << firm << " and Agent " << agent << "...\n";
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
             std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
-            for (auto [size, subset] : subset_map) {
-                if (size+1 > firm_capacities[firm]) continue;
-                for (auto set : subset) {
-                    // std::cout << "[is_stable]   Current set: ";
-                    // for (auto agent : set) {
-                    //     std::cout << agent << " ";
-                    // }
-                    // std::cout << "\n";
-                    if (set.count(agent)) continue;
-                    std::set<int> set_tmp = set;
+
+            for (auto [size, subsets] : subset_map) {
+                if (size+1 > firm_capacities[firm]) break;
+
+                for (auto subset : subsets) {
+                    if (subset.count(agent)) continue;
+                    std::set<int> set_tmp = subset;
                     set_tmp.insert(agent);
+
                     int firm_score_after = compute_firm_score(set_tmp, firm_prefs[firm]);
-                    // std::cout << "[is_stable]   Firm " << firm << ": before " << firm_scores[firm] << ", after " << firm_score_after << "\n";
                     if (firm_scores[firm] >= firm_score_after) continue;
-                    int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent], agent_col_prefs[agent]);
-                    if (agent_scores[agent] >= agent_score_after) continue;
+
                     bool col_blocking_flag = true;
                     for (int agent_matched : set_tmp) {
                         if (agent_matched == agent) continue;
                         int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
-                        // std::cout << "[is_stable]     Agent " << agent_matched << ": before " << agent_scores[agent_matched] << ", after " << agent_score_after << "\n";
                         if (agent_scores[agent_matched] > agent_score_after) {
                             col_blocking_flag=false;
                             break;
                         }
                     }
                     if (!col_blocking_flag) continue;
-
-                    std::cout << "[is_stable] : Blocking pair found! (Firm " << firm << ", Agent " << agent << ")" << std::endl;
-                    std::cout << "  Firm score before: " << firm_scores[firm] << ", after: " << firm_score_after << std::endl;
-                    std::cout << "  Agent score before: " << agent_scores[agent] << ", after: " << agent_score_after << std::endl;
-                    std::cout << "  Col Agent scores before: ";
-                    for (int agent_matched : set_tmp) {
-                        if (agent_matched == agent) continue;
-                        int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
-                        std::cout << agent_matched << " : " << agent_score_after << " ";
-                    }
-                    std::cout << ", after: ";
-                    for (int agent_matched : set_tmp) {
-                        int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
-                        std::cout << agent_score_after << " ";
-                    }
-                    std::cout << std::endl;
                     return false;
                 }
             }
