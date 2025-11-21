@@ -62,33 +62,40 @@ void Matching::compute_scores(
 )
 {
     if (scores_computed) return;
-    // agent側の計算
     agent_scores.resize(n_agent, 0);
     for (int agent = 0; agent < n_agent; agent++)
     {
-        int matched_firm = agent_matchs[agent];
-        // 未割り当ての場合
-        if (matched_firm == -1)
-            continue;
-        agent_scores[agent] += agent_prefs[agent][matched_firm];
-        for (int agent_col : firm_matchs[matched_firm])
-        {
-            if (agent == agent_col)
-                continue;
-            agent_scores[agent] += agent_col_prefs[agent][agent_col];
-        }
+        agent_scores[agent] = compute_agent_score(
+            agent_matchs[agent],
+            agent_col_matchs[agent],
+            agent_prefs[agent],
+            agent_col_prefs[agent]
+        );
     }
 
-    // firm側の計算
     firm_scores.resize(n_firm, 0);
     for (int firm = 0; firm < n_firm; firm++)
     {
-        for (int agent : firm_matchs[firm])
-        {
-            firm_scores[firm] += firm_prefs[firm][agent];
-        }
+        firm_scores[firm] = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
+        
     }
     scores_computed = true;
+}
+
+bool Matching::is_individually_rational(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    for (int agent=0; agent<n_agent; agent++) {
+        if (agent_scores[agent] < 0) return false;
+    }
+    for (int firm=0; firm<n_firm; firm++) {
+        if (firm_scores[firm] < 0) return false;
+    }
+    return true;
 }
 
 bool Matching::is_stable(
@@ -98,11 +105,8 @@ bool Matching::is_stable(
         const std::vector<int> &firm_capacities
 )
 {   
-    this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
-    // 現在のマッチングに不満があるエージェント・企業がいるか確認
-    for (int agent=0; agent<n_agent; agent++) {
-        if (agent_scores[agent] < 0) return false;
-    }
+    if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
+    
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
@@ -137,7 +141,6 @@ bool Matching::is_stable(
     return true;
 }
 
-// print関数
 void Matching::print() const
 {
     std::cout << "=== Matching Information ===\n";

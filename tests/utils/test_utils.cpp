@@ -216,35 +216,3 @@ TEST(UtilsTest, ComputeAgentScore) {
     int score = compute_agent_score(firm, firm_match, agent_pref, agent_col_pref);
     EXPECT_EQ(score, 12);
 }
-
-TEST(UtilsTest, AgentScoresMap) {
-    int firm = 2;
-    set<int> firm_matching = {1, 3, 2};
-    vector<vector<int>> agent_prefs = {
-        {3, 5, 2},
-        {1, 8, 3},
-        {4, 9, 7},
-        {6, 7, 1}
-    };
-    vector<vector<int>> agent_col_prefs = {
-        {0, 3, 4, 9},
-        {2, 0, -5, 8},
-        {3, 8, 0, -2},
-        {1, 5, 4, 0}
-    };
-
-    map<int,int> expected_mp = {
-        {1, 6},
-        {2, 13},
-        {3, 10}
-    };
-
-    map<int,int> agent_score_mp = agent_scores_mp(
-        firm,
-        firm_matching,
-        agent_prefs,
-        agent_col_prefs
-    );
-
-    EXPECT_EQ(expected_mp, agent_score_mp);
-}

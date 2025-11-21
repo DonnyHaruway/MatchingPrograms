@@ -3,12 +3,12 @@
 
 using namespace MatchingTypes;
 
-std::vector<FirmMatching> create_all_firm_match(
+std::vector<FirmMatching> create_current_firm_match_subsets(
     const std::vector<std::set<int>> &firm_matchs, 
     const std::vector<int> &firm_capacities
 )
 {
-    std::vector<FirmMatching> all_firm_match;
+    std::vector<FirmMatching> all_firm_match_subsets;
     int n_firms = firm_matchs.size();
 
     for (int firm=0; firm<n_firms; firm++) {
@@ -17,12 +17,12 @@ std::vector<FirmMatching> create_all_firm_match(
         for (auto [size, subset] : subset_map) {
             if (size + 1 > firm_capacities[firm]) continue;
             for (auto set : subset) {
-                all_firm_match.emplace_back(firm, set);
+                all_firm_match_subsets.emplace_back(firm, set);
             }
         }
     }
 
-    return all_firm_match;
+    return all_firm_match_subsets;
 }
 
 FirmMatching find_prefered_match(
@@ -55,7 +55,6 @@ bool firm_match_accept_propose(
     const std::vector<std::vector<int>> &agent_col_prefs
 )
 {
-    // std::cout << "[firm_match_accept_propose] : START" << std::endl;
     int firm = prefered_match.first;
     std::set<int> firm_match_after = prefered_match.second;
     firm_match_after.insert(agent);
@@ -81,86 +80,4 @@ std::set<int> find_agent_deleted(
     }
 
     return agent_deleted_set;
-}
-
-int exclude_one_agent(
-    int agent, int firm,
-    const std::vector<std::set<int>> &matching,
-    const std::vector<std::vector<int>> &agent_prefs,
-    const std::vector<std::vector<int>> &firm_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs,
-    const int &firm_capacitiy
-)
-{
-    int excluded_agent = -1;
-    int score_diff_max = 0;
-    if (matching[firm].size() == firm_capacitiy)
-    {
-        for (int agent_del : matching[firm])
-        {
-            std::set<int> matching_deleted = matching[firm];
-            matching_deleted.erase(agent_del);
-            matching_deleted.insert(agent);
-            if (!can_swap_agents(firm, agent, agent_prefs, agent_col_prefs, matching[firm], matching_deleted)) continue;
-            int score_diff_tmp = firm_prefs[firm][agent] - firm_prefs[firm][agent_del];
-            for (int agent_col : matching_deleted)
-            {
-                if (agent_col == agent)
-                    continue;
-                int score_before = compute_agent_score(firm, matching[firm], agent_prefs[agent_col], agent_col_prefs[agent_col]);
-                int score_after = compute_agent_score(firm, matching_deleted, agent_prefs[agent_col], agent_col_prefs[agent_col]);
-                score_diff_tmp += score_after - score_before;
-            }
-            if (score_diff_tmp > score_diff_max)
-            {
-                excluded_agent = agent_del;
-                score_diff_max = score_diff_tmp;
-            }
-        }
-    }
-    else
-    {
-        std::__throw_invalid_argument("matching[firm] must be full capacity.");
-    }
-    return excluded_agent;
-}
-
-bool can_swap_agents(
-    int firm, int agent, 
-    const std::vector<std::vector<int>> &agent_prefs, 
-    const std::vector<std::vector<int>> &agent_col_prefs, 
-    const std::set<int> &matching_before, 
-    const std::set<int> &matching_after
-)
-{   
-    bool can_swap = true;
-    for (int agent_col : matching_after)
-    {
-        if (agent_col == agent)
-            continue;
-        int score_before = compute_agent_score(firm, matching_before, agent_prefs[agent_col], agent_col_prefs[agent_col]);
-        int score_after = compute_agent_score(firm, matching_after, agent_prefs[agent_col], agent_col_prefs[agent_col]);
-        if (score_after < score_before)
-        {
-            can_swap = false;
-            break;
-        };
-    }
-    return can_swap;
-}
-
-bool all_rejected(
-    const std::vector<bool> &is_matched, 
-    const std::vector<std::vector<bool>> &confess_lists
-) {
-    std::vector<int> unmatched_agents;
-    int n_agents = is_matched.size();
-    for (int agent=0; agent<n_agents; agent++) {
-        if (!is_matched[agent]) unmatched_agents.push_back(agent);
-    }
-
-    for (int agent : unmatched_agents) {
-        if (std::any_of(confess_lists[agent].begin(), confess_lists[agent].end(), [] (bool b) { return !b; })) return false;
-    }
-    return true;
 }

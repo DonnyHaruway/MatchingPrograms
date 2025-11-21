@@ -26,14 +26,14 @@ void MatchingSystem::generate_random_prefs(
         agent_score_min,
         agent_score_max
     );
-    rng.seed(seed+1); // 異なるシードで初期化
+    rng.seed(seed+1);
     MatchingSystem::generate_random_firm_prefs(
         preference_type,
         seed,
         firm_score_min,
         firm_score_max
     );
-    rng.seed(seed+2); // 異なるシードで初期化
+    rng.seed(seed+2);
     MatchingSystem::generate_random_agent_col_prefs(
         preference_type,
         seed,
@@ -49,7 +49,6 @@ void MatchingSystem::generate_random_agent_prefs(
     int agent_score_min, int agent_score_max
 )
 {
-    // 先頭でクリア
     agent_prefs.clear();
     rng.seed(seed);
 
@@ -136,12 +135,48 @@ void MatchingSystem::generate_random_agent_col_prefs(
     }
 }
 
+void MatchingSystem::set_prefs(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs)
+{
+    if (agent_prefs.size() != n_agents) {
+        throw std::invalid_argument("Error: agent_prefs size mismatch (expected " + std::to_string(n_agents) + ")");
+    }
+    for (const auto &row : agent_prefs) {
+        if (row.size() != n_firms) {
+            throw std::invalid_argument("Error: agent_prefs row size mismatch (expected " + std::to_string(n_firms) + ")");
+        }
+    }
+
+    if (firm_prefs.size() != n_firms) {
+        throw std::invalid_argument("Error: firm_prefs size mismatch (expected " + std::to_string(n_firms) + ")");
+    }
+    for (const auto &row : firm_prefs) {
+        if (row.size() != n_agents) {
+            throw std::invalid_argument("Error: firm_prefs row size mismatch (expected " + std::to_string(n_agents) + ")");
+        }
+    }
+
+    if (agent_col_prefs.size() != n_agents) {
+        throw std::invalid_argument("Error: agent_col_prefs size mismatch (expected " + std::to_string(n_agents) + ")");
+    }
+    for (const auto &row : agent_col_prefs) {
+        if (row.size() != n_agents) { 
+            throw std::invalid_argument("Error: agent_col_prefs row size mismatch");
+        }
+    }
+
+    this->agent_prefs = agent_prefs;
+    this->firm_prefs = firm_prefs;
+    this->agent_col_prefs = agent_col_prefs;
+}
 
 void MatchingSystem::generate_random_capacities(unsigned int seed)
 {
     firm_capacities.clear();
     rng.seed(seed);
-    std::uniform_int_distribution<int> capacity_dist(1, n_agents); // キャパシティは1からn_agentsの範囲でランダムに設定
+    std::uniform_int_distribution<int> capacity_dist(1, n_agents); // キャパシティは[1,n_agents]の一様分布から生成
     for (int i = 0; i < n_firms; i++)
     {
         firm_capacities.push_back(capacity_dist(rng));
@@ -190,28 +225,6 @@ void MatchingSystem::set_agent_col_prefs(const std::vector<std::vector<int>> &pr
     agent_col_prefs = prefs;
 }
 
-void MatchingSystem::set_prefs(
-    const std::vector<std::vector<int>> &agent_prefs,
-    const std::vector<std::vector<int>> &firm_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs)
-{
-    assert(agent_prefs.size() == n_agents);
-    for (const auto &row : agent_prefs)
-        assert(row.size() == n_firms);
-
-    assert(firm_prefs.size() == n_firms);
-    for (const auto &row : firm_prefs)
-        assert(row.size() == n_agents);
-
-    assert(agent_col_prefs.size() == n_agents);
-    for (const auto &row : agent_col_prefs)
-        assert(row.size() == n_agents);
-
-    this->agent_prefs = agent_prefs;
-    this->firm_prefs = firm_prefs;
-    this->agent_col_prefs = agent_col_prefs;
-}
-
 void MatchingSystem::set_firm_capacities(const std::vector<int> &firm_capacities)
 {
     if (firm_capacities.size() != n_firms) {
@@ -231,7 +244,6 @@ std::vector<Matching> MatchingSystem::make_all_matchings() const
 
     auto candidate_map = prepare_all_candidates(agent_ids, firm_capacities);
 
-    // 全マッチングの列挙
     std::vector<Matching> result;
     std::vector<std::set<int>> current_matching;
     std::set<int> used_agents;
@@ -245,7 +257,6 @@ std::vector<Matching> MatchingSystem::make_all_matchings() const
         result
     );
 
-    // 計算する
     for (Matching &matching : result)
     {
         matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
@@ -272,7 +283,6 @@ Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
     }
 }
 
-// アクセッサ
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_prefs() const
 {
     return agent_prefs;

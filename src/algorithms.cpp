@@ -13,7 +13,6 @@ Matching run_dictator_like_algorithm(
     const std::vector<std::vector<int>> &agent_col_prefs
 )
 {
-    // agentをランダムに並べてqueueに格納
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
     std::random_device rd;
@@ -26,11 +25,8 @@ Matching run_dictator_like_algorithm(
 
     std::vector<std::set<int>> firm_match(n_firms);
 
-    // 告白リスト
-    // agent : (企業, 個人の集合)
     std::vector<std::set<FirmMatching>> unofferable_list(n_agents);
 
-    // queueが空になるまでqueueの先頭のエージェントが最も好む集合にマッチさせる
     while (!agent_queue.empty())
     {   
         std::queue<int> tmp_q = agent_queue;
@@ -38,15 +34,13 @@ Matching run_dictator_like_algorithm(
         int agent = agent_queue.front();
         agent_queue.pop();
 
-        std::vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
-        FirmMatching prefered_match = find_prefered_match(agent, agent_prefs[agent], agent_col_prefs[agent], all_firm_match, unofferable_list[agent]);
+        std::vector<FirmMatching> current_firm_match_subsets = create_current_firm_match_subsets(firm_match, firm_capacities);
+        FirmMatching prefered_match = find_prefered_match(agent, agent_prefs[agent], agent_col_prefs[agent], current_firm_match_subsets, unofferable_list[agent]);
         if (prefered_match.first == -1) {
             continue;
         }
         unofferable_list[agent].emplace(prefered_match);
-        // 告白先が受け入れ可能な場合
         if (firm_match_accept_propose(agent, prefered_match, firm_match[prefered_match.first], agent_prefs, firm_prefs, agent_col_prefs)) {
-            // 削除されたエージェントがいればqueueに追加する
             std::set<int> firm_match_before = firm_match[prefered_match.first];
             std::set<int> firm_match_after = prefered_match.second;
             prefered_match.second.insert(agent);

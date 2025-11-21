@@ -131,12 +131,9 @@ int compute_firm_score(
     const std::vector<int> &firm_pref
 )
 {
-    // std::cout << "[compute_firm_score] Step1" << std::endl;
     int score = 0;
-    // std::cout << "[compute_firm_score] Step2" << std::endl;
     for (int agent : firm_match)
     {
-        // std::cout << "[compute_firm_score] agent = " << agent << std::endl;
         if (agent < 0 || agent >= firm_pref.size())
         {
             throw std::out_of_range("Agent index out of range in firm preferences");
@@ -150,25 +147,11 @@ int compute_agent_score(
     const int &firm,
     const std::set<int> &agent_col_match,
     const std::vector<int> &agent_pref,
-    const std::vector<int> &agent_col_pref)
+    const std::vector<int> &agent_col_pref
+)
 {   
     int score = 0;
     for (int agent_col : agent_col_match) score += agent_col_pref[agent_col];
     score += agent_pref[firm];
     return score;
-}
-
-std::map<int,int> agent_scores_mp(
-    const int &firm,
-    const std::set<int> &firm_matching,
-    const std::vector<std::vector<int>> &agent_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs
-)
-{
-    std::map<int,int> score_mp;
-    for (int agent : firm_matching) {
-        int agent_score = compute_agent_score(firm, firm_matching, agent_prefs[agent], agent_col_prefs[agent]);
-        score_mp[agent] = agent_score;
-    }
-    return score_mp;
 }

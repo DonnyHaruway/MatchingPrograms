@@ -23,7 +23,7 @@ TEST(AlgorithmsUtils, CreateAllFirmMatching) {
 
     vector<int> firm_capacities = {3, 3, 4};
 
-    vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
+    vector<FirmMatching> all_firm_match = create_current_firm_match_subsets(firm_match, firm_capacities);
     printFirmMatchings(all_firm_match);
 }
 
@@ -34,7 +34,7 @@ TEST(AlgorithmsUtils, FindPreferedMatch) {
         {7, 8, 9}
     };
     vector<int> firm_capacities = {3, 3, 4};
-    vector<FirmMatching> all_firm_match = create_all_firm_match(firm_match, firm_capacities);
+    vector<FirmMatching> all_firm_match = create_current_firm_match_subsets(firm_match, firm_capacities);
     int agent = 0;
     vector<int> agent_pref = {0, 1, 2, 3, 4};
     vector<int> agent_col_pref = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};

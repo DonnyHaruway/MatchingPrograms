@@ -64,9 +64,9 @@ int compute_firm_score(
     const std::vector<int>& firm_pref
 );
 
-/// @brief agent_colの自分自身のスコアは0前提で計算
+/// @brief Calculates the score of an agent based on their matched firm and matched colleagues.
 /// @param firm 
-/// @param firm_match 
+/// @param agent_col_match 
 /// @param agent_pref 
 /// @param agent_col_pref 
 /// @return 
@@ -75,18 +75,4 @@ int compute_agent_score(
     const std::set<int> &agent_col_match,
     const std::vector<int> &agent_pref,
     const std::vector<int> &agent_col_pref
-);
-
-
-/// @brief 全ての個人の現状のマッチに対する計算をして、mapで返す
-/// @param firm 
-/// @param firm_matching 
-/// @param agent_prefs 
-/// @param agent_col_prefs 
-/// @return (agent, score)のmap
-std::map<int,int> agent_scores_mp(
-    const int &firm,
-    const std::set<int> &firm_matching,
-    const std::vector<std::vector<int>> &agent_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs
 );
