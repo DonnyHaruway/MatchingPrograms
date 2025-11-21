@@ -118,22 +118,28 @@ bool Matching::is_stable(
                     int firm_score_after = compute_firm_score(set_tmp, firm_prefs[firm]);
                     // std::cout << "[is_stable]   Firm " << firm << ": before " << firm_scores[firm] << ", after " << firm_score_after << "\n";
                     if (firm_scores[firm] >= firm_score_after) continue;
-                    bool blocking_flag = true;
+                    int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent], agent_col_prefs[agent]);
+                    if (agent_scores[agent] >= agent_score_after) continue;
+                    bool col_blocking_flag = true;
                     for (int agent_matched : set_tmp) {
+                        if (agent_matched == agent) continue;
                         int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
                         // std::cout << "[is_stable]     Agent " << agent_matched << ": before " << agent_scores[agent_matched] << ", after " << agent_score_after << "\n";
                         if (agent_scores[agent_matched] > agent_score_after) {
-                            blocking_flag=false;
+                            col_blocking_flag=false;
                             break;
                         }
                     }
-                    if (!blocking_flag) continue;
+                    if (!col_blocking_flag) continue;
 
                     std::cout << "[is_stable] : Blocking pair found! (Firm " << firm << ", Agent " << agent << ")" << std::endl;
                     std::cout << "  Firm score before: " << firm_scores[firm] << ", after: " << firm_score_after << std::endl;
-                    std::cout << "  Agent scores before: ";
+                    std::cout << "  Agent score before: " << agent_scores[agent] << ", after: " << agent_score_after << std::endl;
+                    std::cout << "  Col Agent scores before: ";
                     for (int agent_matched : set_tmp) {
-                        std::cout << agent_scores[agent_matched] << " ";
+                        if (agent_matched == agent) continue;
+                        int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
+                        std::cout << agent_matched << " : " << agent_score_after << " ";
                     }
                     std::cout << ", after: ";
                     for (int agent_matched : set_tmp) {

@@ -15,7 +15,6 @@ private:
     int n_firms;
     std::string preference_type;
     std::mt19937 rng;
-    bool pref_flag = false;
 
     std::vector<std::vector<int>> agent_prefs;     // agent_prefs[i][j]: agent i が firm j に対して持つスコア
     std::vector<std::vector<int>> firm_prefs;      // firm_prefs[j][i] : agent j が firm i に対して持つスコア
@@ -49,10 +48,28 @@ public:
         int agent_col_score_min = 0, int agent_col_score_max = 10
     );
 
+    void generate_random_agent_prefs(
+        std::string preference_type,
+        unsigned int seed,
+        int agent_score_min, int agent_score_max
+    );
+
+    void generate_random_firm_prefs(
+        std::string preference_type,
+        unsigned int seed,
+        int firm_score_min, int firm_score_max
+    );
+
+    void generate_random_agent_col_prefs(
+        std::string preference_type,
+        unsigned int seed,
+        bool colPref,
+        int agent_col_score_min, int agent_col_score_max
+    );
+
     void generate_random_capacities(unsigned int seed);
 
     // 選好の指定
-
     void set_agent_prefs(const std::vector<std::vector<int>> &agent_prefs);
     void set_firm_prefs(const std::vector<std::vector<int>> &firm_prefs);
 
@@ -70,7 +87,7 @@ public:
 
     /// この関数は全ての可能なマッチングに対する個人と企業の評価値を出力する。
     /// @return Matchingオブジェクトのvector(スコア計算済み)
-    std::vector<Matching> evaluate_all_matchings() const;
+    std::vector<Matching> make_all_matchings() const;
 
     /// @brief アルゴリズムに従って導出されたMatchingオブジェクトを生成する。
     /// @param algorithm_name アルゴリズムの名前を入れる

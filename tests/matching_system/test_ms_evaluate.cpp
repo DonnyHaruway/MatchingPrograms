@@ -27,11 +27,11 @@ TEST(EvaluateAllMatchingsTest, InitializesWithFirmCapacitiesInConstructor)
 
     ms.set_prefs(agent_pref, firm_pref, agent_col_pref);
     ms.set_firm_capacities(capacities);
-    std::cout << "before evaluate_all_matchings" << std::endl;
+    std::cout << "before make_all_matchings" << std::endl;
 
-    vector<Matching> result = ms.evaluate_all_matchings();
+    vector<Matching> result = ms.make_all_matchings();
 
-    std::cout << "after evaluate_all_matchings" << std::endl;
+    std::cout << "after make_all_matchings" << std::endl;
 
     // firm0のマッチ, idxのmap
     map<vector<int>, int> idx_map = {

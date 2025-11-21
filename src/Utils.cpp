@@ -1,12 +1,12 @@
 #include "Utils.hpp"
 
-std::vector<int> generate_random_ranked(int size, std::mt19937& rng, std::string type="opponent", int who=-1)
+std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, std::string type, int who)
 {
     std::vector<int> order(size);
 
     if (type == "opponent")
     {
-        std::iota(order.begin(), order.end(), 1);
+        std::iota(order.begin(), order.end(), min);
         std::shuffle(order.begin(), order.end(), rng);
     }
     else if (type == "col")
@@ -20,8 +20,9 @@ std::vector<int> generate_random_ranked(int size, std::mt19937& rng, std::string
         int idx = 0;
         for (int i = 0; i < size; ++i)
         {
-            if (i == who)
+            if (i == who) {
                 continue;
+            }
             order[i] = others[idx++];
         }
     }
@@ -33,7 +34,7 @@ std::vector<int> generate_random_ranked(int size, std::mt19937& rng, std::string
     return order;
 }
 
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng, std::string type="opponent", int who=-1)
+std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng, std::string type, int who)
 {
     if (min_val > max_val)
     {
@@ -105,12 +106,13 @@ std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
 
 std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     const std::vector<int> &agent_ids,
-    const std::vector<int> &firm_capacities)
+    const std::vector<int> &firm_capacities
+)
 {
     int max_capacity = *std::max_element(firm_capacities.begin(), firm_capacities.end());
     auto subset_map = generate_all_subsets_by_size(agent_ids, max_capacity);
 
-    std::vector<std::vector<std::set<int>>> all_candidates;
+    std::vector<std::vector<std::set<int>>> candidate_map;
     for (int cap : firm_capacities)
     {
         std::vector<std::set<int>> merged;
@@ -119,9 +121,9 @@ std::vector<std::vector<std::set<int>>> prepare_all_candidates(
             const auto &subsets = subset_map.at(k);
             merged.insert(merged.end(), subsets.begin(), subsets.end());
         }
-        all_candidates.push_back(merged);
+        candidate_map.push_back(merged);
     }
-    return all_candidates;
+    return candidate_map;
 };
 
 int compute_firm_score(

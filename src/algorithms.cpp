@@ -34,7 +34,7 @@ Matching run_dictator_like_algorithm(
     while (!agent_queue.empty())
     {   
         // std::cout << "[run_dictator_like_algorithm] Current queue: ";
-        // std::queue<int> tmp_q = agent_queue;
+        std::queue<int> tmp_q = agent_queue;
         // while (!tmp_q.empty()) {
         //     std::cout << tmp_q.front() << " ";
         //     tmp_q.pop();
@@ -51,6 +51,7 @@ Matching run_dictator_like_algorithm(
         if (prefered_match.first == -1) {
             continue;
         }
+        unofferable_list[agent].emplace(prefered_match);
         // 告白先が受け入れ可能な場合
         if (firm_match_accept_propose(agent, prefered_match, firm_match[prefered_match.first], agent_prefs, firm_prefs, agent_col_prefs)) {
             // 削除されたエージェントがいればqueueに追加する
@@ -62,10 +63,8 @@ Matching run_dictator_like_algorithm(
                     agent_queue.push(a);
                     unofferable_list[a].emplace(prefered_match.first, firm_match_after);
                 }
-            
             firm_match[prefered_match.first] = prefered_match.second;
         } else {
-            unofferable_list[agent].emplace(prefered_match);
             agent_queue.push(agent);
         }
 

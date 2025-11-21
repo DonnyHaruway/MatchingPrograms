@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <vector>
 #include <random>
@@ -9,9 +9,25 @@
 #include <stdexcept>
 #include <iostream>
 
-std::vector<int> generate_random_ranked(int size, std::mt19937 &rng, std::string type, int who);
 
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937 &rng, std::string type, int who);
+/// @brief 順位付けされたランダムな整数ベクトルを生成する
+/// @param size ベクトルのサイズ
+/// @param min ベクトルの要素の最小値
+/// @param rng 乱数生成器
+/// @param type 選好の種類 ("opponent"または"col")
+/// @param who 選好の所有者 (typeが"col"の場合に使用)
+/// @return ランダムに順位付けされた整数ベクトル
+std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, std::string type="opponent", int who=-1);
+
+/// @brief ランダムな整数ベクトルを生成する
+/// @param size ベクトルのサイズ
+/// @param min_val ベクトルの要素の最小値
+/// @param max_val ベクトルの要素の最大値
+/// @param rng 乱数生成器
+/// @param type 選好の種類 ("opponent"または"col")
+/// @param who 選好の所有者 (typeが"col"の場合に使用)
+/// @return [min_val, max_val]の範囲でランダムに生成された整数ベクトル
+std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937 &rng, std::string type="opponent", int who=-1);
 
 /// @brief 集合の指定サイズの組み合わせを生成する
 /// @param set 元の整数集合
@@ -35,11 +51,8 @@ std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
  * @param firm_capacities   各企業が受け入れ可能なエージェント数のリスト。i番目の企業の上限は firm_capacities[i]。
  *
  * @return 各企業ごとに割り当て可能なエージェントの部分集合（候補グループ）のリスト。
- *         外側の vector は企業ごと、中間の vector は各企業に対する候補グループのリスト、
- *         内側の vector はその候補グループに含まれるエージェントIDの集合を表す。
+ *         candidate_map[i]はi番目の企業に対する割り当て候補のエージェントの部分集合のリストを表す。  
  *
- *         例：return[i][j][k] は、i 番目の企業にとって j 番目の候補グループの中の
- *         k 番目のエージェントIDを表す。
  */
 std::vector<std::vector<std::set<int>>> prepare_all_candidates(
     const std::vector<int>& agent_ids,
