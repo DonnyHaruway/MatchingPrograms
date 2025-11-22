@@ -42,6 +42,13 @@ class Matching
             const std::vector<std::vector<int>> &agent_col_prefs
         );
 
+        std::vector<std::pair<int,int>> blocking_pairs(
+            const std::vector<std::vector<int>> &agent_prefs,
+            const std::vector<std::vector<int>> &firm_prefs,
+            const std::vector<std::vector<int>> &agent_col_prefs,
+            const std::vector<int> &firm_capacities
+        );
+
         bool is_stable(
             const std::vector<std::vector<int>> &agent_prefs,
             const std::vector<std::vector<int>> &firm_prefs,

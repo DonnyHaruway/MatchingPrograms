@@ -266,21 +266,28 @@ std::vector<Matching> MatchingSystem::make_all_matchings() const
 
 Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
 {
+    Matching res;
     if (agent_prefs.empty() || firm_prefs.empty() || agent_col_prefs.empty())
     {
         throw std::runtime_error("Prefrences have not been set yet");
     }
-    if (algorithm_name == "dictator")
+    if (algorithm_name == "doctor_dictator")
     {
-        return run_dictator_like_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+        res = doctor_dictator_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    }
+    else if (algorithm_name == "firm_dictator")
+    {
+        res = firm_dictator_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
     }
     else if (algorithm_name == "doctor_propose_DA") {
-        return run_doctor_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs);
+        res = doctor_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs);
     }
     else
     {
         throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);
     }
+    res.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    return res;
 }
 
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_prefs() const

@@ -98,7 +98,7 @@ std::map<int, std::vector<std::set<int>>> generate_all_subsets_by_size(
     if (set.size() < max_size) max_size = set.size();
     for (int k = 0; k <= max_size; ++k)
     {
-        all_combinations[k] = generate_combinations(set, k);
+        all_combinations[k] = generate_combinations( set, k);
     }
 
     return all_combinations;

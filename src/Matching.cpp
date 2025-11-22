@@ -98,23 +98,22 @@ bool Matching::is_individually_rational(
     return true;
 }
 
-bool Matching::is_stable(
-        const std::vector<std::vector<int>> &agent_prefs,
-        const std::vector<std::vector<int>> &firm_prefs,
-        const std::vector<std::vector<int>> &agent_col_prefs,
-        const std::vector<int> &firm_capacities
+std::vector<std::pair<int,int>> Matching::blocking_pairs(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
 )
-{   
-    if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
-    
+{
+    this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    std::vector<std::pair<int,int>> blocking_pairs_list;
     for (int firm=0; firm<n_firm; firm++) {
         for (int agent=0; agent<n_agent; agent++) {
+
             std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
             std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
-
             for (auto [size, subsets] : subset_map) {
                 if (size+1 > firm_capacities[firm]) break;
-
                 for (auto subset : subsets) {
                     if (subset.count(agent)) continue;
                     std::set<int> set_tmp = subset;
@@ -123,21 +122,37 @@ bool Matching::is_stable(
                     int firm_score_after = compute_firm_score(set_tmp, firm_prefs[firm]);
                     if (firm_scores[firm] >= firm_score_after) continue;
 
+                    int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent], agent_col_prefs[agent]);
+                    if (agent_scores[agent] >= agent_score_after) continue;
+
                     bool col_blocking_flag = true;
-                    for (int agent_matched : set_tmp) {
-                        if (agent_matched == agent) continue;
-                        int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_matched], agent_col_prefs[agent_matched]);
-                        if (agent_scores[agent_matched] > agent_score_after) {
+                    for (int agent_col : set_tmp) {
+                        if (agent_col == agent) continue;
+                        int col_score_after = compute_agent_score(firm, set_tmp, agent_prefs[agent_col], agent_col_prefs[agent_col]);
+                        if (agent_scores[agent_col] > col_score_after) {
                             col_blocking_flag=false;
                             break;
                         }
                     }
                     if (!col_blocking_flag) continue;
-                    return false;
+                    blocking_pairs_list.emplace_back(agent, firm);
                 }
             }
         }
     }
+    return blocking_pairs_list;
+}
+
+bool Matching::is_stable(
+        const std::vector<std::vector<int>> &agent_prefs,
+        const std::vector<std::vector<int>> &firm_prefs,
+        const std::vector<std::vector<int>> &agent_col_prefs,
+        const std::vector<int> &firm_capacities
+)
+{   
+    if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
+    auto blocking_pairs_list = blocking_pairs(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
+    if (!blocking_pairs_list.empty()) return false;
     return true;
 }
 
@@ -160,7 +175,7 @@ void Matching::print() const
     for (int i = 0; i < n_firm; ++i)
     {
         std::cout << "  Firm " << i << " ← ";
-        if (firm_matchs[i].size() == 1 && firm_matchs[i] == std::set<int>{-1})
+        if (firm_matchs[i].size() == 0)
         {
             std::cout << "unmatched";
         }

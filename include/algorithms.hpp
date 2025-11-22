@@ -10,10 +10,7 @@
 #include <set>
 #include <map>
 
-/// @brief return the matching result of serial dictator-like algorithm
-/// @return matching result
-
-Matching run_dictator_like_algorithm(
+Matching doctor_dictator_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,
@@ -22,7 +19,16 @@ Matching run_dictator_like_algorithm(
     const std::vector<std::vector<int>> &agent_col_prefs
 );
 
-Matching run_doctor_proposing_DA_algorithm(
+Matching firm_dictator_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+);
+
+Matching doctor_proposing_DA_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,

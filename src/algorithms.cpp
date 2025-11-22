@@ -4,7 +4,7 @@
 using namespace MatchingTypes;
 
 
-Matching run_dictator_like_algorithm(
+Matching doctor_dictator_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,
@@ -15,9 +15,9 @@ Matching run_dictator_like_algorithm(
 {
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
+    // std::random_device rd;
+    // std::mt19937 rng(rd());
+    // std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
     std::queue<int> agent_queue;
     for (int id : agent_ids) {
         agent_queue.push(id);
@@ -57,7 +57,60 @@ Matching run_dictator_like_algorithm(
     return Matching::from_firm_assignment(firm_match, n_agents);
 };
 
-Matching run_doctor_proposing_DA_algorithm(
+Matching firm_dictator_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    std::vector<int> firm_ids(n_firms);
+    std::iota(firm_ids.begin(), firm_ids.end(), 0);
+    // std::random_device rd;
+    // std::mt19937 rng(rd());
+    // std::shuffle(firm_ids.begin(), firm_ids.end(), rng);
+    std::queue<int> firm_queue;
+    for (int id : firm_ids) {
+        firm_queue.push(id);
+    }
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> single_agents(n_agents);
+    std::iota(single_agents.begin(), single_agents.end(), 0);
+    while (!firm_queue.empty())
+    {   
+        int firm = firm_queue.front();
+        firm_queue.pop();
+
+        std::set<int> match = {};
+        int current_score = 0;
+        auto candidates_map = generate_all_subsets_by_size(single_agents, firm_capacities[firm]);
+        for (int size = firm_capacities[firm]; size >= 0; size--) {
+            for (auto candidate_set : candidates_map[size]) {
+                // Check if all agents in candidate_set would accept the proposal
+                if (!agents_accept_match(candidate_set, firm, agent_prefs, firm_prefs, agent_col_prefs)) continue;
+                int firm_tmp_score = compute_firm_score(candidate_set, firm_prefs[firm]);
+                if (firm_tmp_score < current_score) continue;
+                match = candidate_set;
+                current_score = firm_tmp_score;
+            }
+        }
+        firm_match[firm] = match;
+        for (int agent : match) {
+            single_agents.erase(std::remove(single_agents.begin(), single_agents.end(), agent), single_agents.end());
+        }
+
+        std::cout << "Firm " << firm << " matched agents: ";
+        for (int agent : match) {
+            std::cout << agent << " ";
+        }
+        std::cout << std::endl;
+    }
+    return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching doctor_proposing_DA_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,

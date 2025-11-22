@@ -48,8 +48,8 @@ FirmMatching find_prefered_match(
 
 bool firm_match_accept_propose(
     const int &agent, 
-    const FirmMatching &prefered_match, 
-    const std::set<int> &firm_match_before, 
+    const FirmMatching &prefered_match,
+    const std::set<int> &firm_match_before,
     const std::vector<std::vector<int>> &agent_prefs, 
     const std::vector<std::vector<int>> &firm_prefs, 
     const std::vector<std::vector<int>> &agent_col_prefs
@@ -58,14 +58,15 @@ bool firm_match_accept_propose(
     int firm = prefered_match.first;
     std::set<int> firm_match_after = prefered_match.second;
     firm_match_after.insert(agent);
-    if (compute_firm_score(firm_match_after, firm_prefs[firm]) < compute_firm_score(firm_match_before, firm_prefs[firm])) return false;
+    int firm_score_before = compute_firm_score(firm_match_before, firm_prefs[firm]);
+    int firm_score_after = compute_firm_score(firm_match_after, firm_prefs[firm]);
+    if (firm_score_after < firm_score_before) return false;
     for (int _agent : firm_match_after) {
         if (_agent == agent) continue;
         int score_before = compute_agent_score(firm, firm_match_before, agent_prefs[_agent], agent_col_prefs[_agent]);
         int score_after = compute_agent_score(firm, firm_match_after, agent_prefs[_agent], agent_col_prefs[_agent]);
         if (score_after < score_before) return false;
     }
-
     return true;
 }
 
@@ -80,4 +81,19 @@ std::set<int> find_agent_deleted(
     }
 
     return agent_deleted_set;
+}
+
+bool agents_accept_match(
+    const std::set<int> &candidate_set,
+    const int &firm,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    for (int agent : candidate_set) {
+        int score = compute_agent_score(firm, candidate_set, agent_prefs[agent], agent_col_prefs[agent]);
+        if (score < 0) return false;
+    }
+    return true;
 }
