@@ -63,6 +63,10 @@ void MatchingSystem::generate_random_agent_prefs(
         {
             pref = generate_random_number(n_firms, agent_score_min, agent_score_max, rng, "opponent", -1);
         }
+        else if (preference_type == "super_increasing")
+        {
+            pref = generate_random_super_increasing(n_firms, rng);
+        }
         else
         {
             throw std::invalid_argument("Unknown preference_type: " + preference_type);
@@ -90,6 +94,10 @@ void MatchingSystem::generate_random_firm_prefs(
         else if (preference_type == "numeric")
         {
             pref = generate_random_number(n_agents, firm_score_min, firm_score_max, rng, "opponent", -1);
+        }
+        else if (preference_type == "super_increasing")
+        {
+            pref = generate_random_super_increasing(n_agents, rng);
         }
         else
         {
@@ -121,6 +129,10 @@ void MatchingSystem::generate_random_agent_col_prefs(
             else if (preference_type == "numeric")
             {
                 pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng, "col", i);
+            }
+            else if (preference_type == "binary")
+            {
+                pref = generate_random_binary(n_agents, rng, "col", i);
             }
             else
             {

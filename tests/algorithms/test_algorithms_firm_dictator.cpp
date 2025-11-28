@@ -39,3 +39,41 @@ TEST(Algorithms, FirmDictatorAlgorithm1)
         cout << endl << endl;
     }
 }
+
+TEST(Algorithms, FirmDictatorAlgorithm_RankedTest)
+{
+    const int n_agents = 5;
+    const int n_firms = 2;
+    const vector<int> capacities = {4, 4};
+    random_device rd;
+    int cnt = 0;
+    int iter = 1e4;
+    for (int i = 0; i < iter; i++)
+    {
+        MatchingSystem ms(n_agents, n_firms);
+        ms.set_firm_capacities(capacities);
+        // マッチ相手に対する選好はranked
+        ms.generate_random_prefs("ranked", rd() ^ (time(NULL)+i), true, 1, 10, 1, 10, -10, 0);
+        // 同僚に対する選考はnumeric, negative values
+        ms.generate_random_agent_col_prefs("numeric", rd() ^ (time(NULL)+i), true, -10, 0);
+
+        Matching m = ms.run_algorithm("firm_dictator");
+
+        if (m.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) {
+            cnt++;
+        } else {
+            cout << "Trial " << i << ":\n";
+            cout << "The matching is not stable." << endl;
+            ms.print_prefs();
+            m.print();
+            auto blocking_pairs_list = m.blocking_pairs(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities);
+            cout << "Blocking pairs:\n";
+            for (auto [a, f] : blocking_pairs_list) {
+                cout << "  Agent " << a << " and Firm " << f << "\n";
+            }
+            cout << endl << endl;
+        }
+    }
+
+    cout << "stable matchings: " << cnt << " / " << iter << endl;
+}

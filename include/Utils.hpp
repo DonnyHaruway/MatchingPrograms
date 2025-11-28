@@ -29,6 +29,20 @@ std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, st
 /// @return [min_val, max_val]の範囲でランダムに生成された整数ベクトル
 std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937 &rng, std::string type="opponent", int who=-1);
 
+/// @brief ランダムな超増加列を生成する
+/// @param size ベクトルのサイズ
+/// @param rng 乱数生成器
+/// @return ランダムに生成された超増加列
+std::vector<int> generate_random_super_increasing(int size, std::mt19937 &rng);
+
+/// @brief ランダムな二値ベクトルを生成する
+/// @param size ベクトルのサイズ
+/// @param rng 乱数生成器
+/// @param type 選好の種類 ("opponent"または"col")
+/// @param who 選好の所有者 (typeが"col"の場合に使用)
+/// @return ランダムに生成された二値ベクトル (0または-1e9)
+std::vector<int> generate_random_binary(int size, std::mt19937 &rng, std::string type="opponent", int who=-1);
+
 /// @brief 集合の指定サイズの組み合わせを生成する
 /// @param set 元の整数集合
 /// @param k 組み合わせのサイズ

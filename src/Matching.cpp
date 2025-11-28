@@ -7,28 +7,16 @@ Matching::Matching(
     : agent_matchs(agent_matchs), firm_matchs(firm_matchs), n_agent(agent_matchs.size()), n_firm(firm_matchs.size())
 {
     agent_col_matchs.resize(n_agent);
-
     for (int i = 0; i < n_agent; ++i)
     {
         int firm = agent_matchs[i];
-        if (firm == -1)
-        {
-            agent_col_matchs[i].insert(-1);
-            continue;
-        }
-
+        if (firm == -1) continue;
         for (int other_agent : firm_matchs[firm])
         {
             if (other_agent != i && other_agent != -1)
             {
                 agent_col_matchs[i].insert(other_agent);
             }
-        }
-
-        // 同僚がいなかった場合
-        if (agent_col_matchs[i].empty())
-        {
-            agent_col_matchs[i].insert(-1);
         }
     }
 }
@@ -191,7 +179,7 @@ void Matching::print() const
     for (int i = 0; i < n_agent; ++i)
     {
         std::cout << "  Agent " << i << " has colleagues: ";
-        if (agent_col_matchs[i].size() == 1 && agent_col_matchs[i] == std::set<int>{-1})
+        if (agent_col_matchs[i].size() == 0)
         {
             std::cout << "none";
         }

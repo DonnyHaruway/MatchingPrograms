@@ -68,6 +68,55 @@ std::vector<int> generate_random_number(int size, int min_val, int max_val, std:
     return v;
 }
 
+std::vector<int> generate_random_super_increasing(int size, std::mt19937& rng)
+{
+    if (size > 30) {
+        throw std::overflow_error("Size is too large for int super-increasing sequence (max approx 30 elements for base 2).");
+    }
+
+    std::vector<int> order(size); 
+
+    long long current_val = 1; 
+
+    for (int i = 0; i < size; ++i) {
+        order[i] = static_cast<int>(current_val);
+        current_val *= 2; 
+    }
+
+    std::shuffle(order.begin(), order.end(), rng);
+
+    return order;
+}
+
+std::vector<int> generate_random_binary(int size, std::mt19937& rng, std::string type, int who)
+{
+    std::vector<int> v(size);
+
+    if (type == "opponent")
+    {
+        std::uniform_int_distribution<> dist(0, 1); // 0か1を生成
+        for (int &x : v)
+            x = dist(rng) == 1 ? -1e9 : 0;
+    }
+    else if (type == "col")
+    {
+        v[who] = 0;
+        std::uniform_int_distribution<> dist(0, 1); // 0か1を生成
+        for (int i = 0; i < size; ++i)
+        {
+            if (i != who)
+            {
+                v[i] = dist(rng) == 1 ? -1e9 : 0;
+            }
+        }
+    }
+    else
+    {
+        throw std::invalid_argument("Unknown type: " + type);
+    }
+    return v;
+}
+
 std::vector<std::set<int>> generate_combinations(const std::vector<int> &set, int k)
 {
     std::vector<std::set<int>> result;
@@ -151,7 +200,13 @@ int compute_agent_score(
 )
 {   
     int score = 0;
-    for (int agent_col : agent_col_match) score += agent_col_pref[agent_col];
-    score += agent_pref[firm];
+    for (int agent_col : agent_col_match) {
+        if (agent_col != -1) {
+            score += agent_col_pref[agent_col];
+        }
+    }
+    if (firm != -1) {
+        score += agent_pref[firm];
+    }
     return score;
 }
