@@ -294,6 +294,9 @@ Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
     else if (algorithm_name == "doctor_propose_DA") {
         res = doctor_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs);
     }
+    else if (algorithm_name == "simple_match") {
+        res = simple_match_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    }
     else
     {
         throw std::invalid_argument("Unknown algorithm name: " + algorithm_name);

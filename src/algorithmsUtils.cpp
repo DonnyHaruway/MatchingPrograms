@@ -46,7 +46,7 @@ FirmMatching find_prefered_match(
     return prefered_match;
 }
 
-bool firm_match_accept_propose(
+bool is_firm_match_accept_propose(
     const int &agent, 
     const FirmMatching &prefered_match,
     const std::set<int> &firm_match_before,
@@ -96,4 +96,41 @@ bool agents_accept_match(
         if (score < 0) return false;
     }
     return true;
+}
+
+std::vector<int> find_best_type1_blocking_pair_list(
+    const std::vector<std::set<int>> &firm_match,
+    const std::vector<int> &agent_match,
+    const std::vector<std::vector<int>> &agent_prefs, 
+    const std::vector<std::vector<int>> &firm_prefs, 
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
+)
+{
+    int n_firms = firm_match.size();
+    int n_agents = agent_match.size();
+    std::vector<int> best_type1_blocking_pair_list(n_firms, -1);
+    std::vector<int> best_score_agents(n_agents, 0);
+    std::vector<int> best_score_firms(n_firms, 0);
+    
+    for (int agent=0; agent<n_agents; agent++) best_score_agents[agent] = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
+    for (int firm=0; firm<n_firms; firm++) best_score_firms[firm] = compute_firm_score(firm_match[firm], firm_prefs[firm]);
+
+    for (int firm=0; firm<n_firms; firm++) {
+        if (firm_match[firm].size() == firm_capacities[firm]) continue;
+        for (int agent=0; agent<n_agents; agent++) {
+            if (firm_match[firm].count(agent)) continue;
+            int agent_score_after = compute_agent_score(firm, firm_match[firm], agent_prefs[agent], agent_col_prefs[agent]);
+            if (best_score_agents[agent] >= agent_score_after) continue;
+            FirmMatching match = {firm, firm_match[firm]};
+            match.second.insert(agent);
+            if (is_firm_match_accept_propose(agent, match, firm_match[firm], agent_prefs, firm_prefs, agent_col_prefs)) {
+                int firm_score_after = compute_firm_score(match.second, firm_prefs[firm]);
+                if (best_score_firms[firm] >= firm_score_after) continue;
+                best_type1_blocking_pair_list[firm] = agent;
+            }
+        }
+    }
+
+    return best_type1_blocking_pair_list;
 }

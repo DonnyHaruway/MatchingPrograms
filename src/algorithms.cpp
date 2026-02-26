@@ -24,7 +24,6 @@ Matching doctor_dictator_algorithm(
     }
 
     std::vector<std::set<int>> firm_match(n_firms);
-
     std::vector<std::set<FirmMatching>> unofferable_list(n_agents);
 
     while (!agent_queue.empty())
@@ -40,7 +39,7 @@ Matching doctor_dictator_algorithm(
             continue;
         }
         unofferable_list[agent].emplace(prefered_match);
-        if (firm_match_accept_propose(agent, prefered_match, firm_match[prefered_match.first], agent_prefs, firm_prefs, agent_col_prefs)) {
+        if (is_firm_match_accept_propose(agent, prefered_match, firm_match[prefered_match.first], agent_prefs, firm_prefs, agent_col_prefs)) {
             std::set<int> firm_match_before = firm_match[prefered_match.first];
             std::set<int> firm_match_after = prefered_match.second;
             prefered_match.second.insert(agent);
@@ -68,9 +67,6 @@ Matching firm_dictator_algorithm(
 {
     std::vector<int> firm_ids(n_firms);
     std::iota(firm_ids.begin(), firm_ids.end(), 0);
-    // std::random_device rd;
-    // std::mt19937 rng(rd());
-    // std::shuffle(firm_ids.begin(), firm_ids.end(), rng);
     std::queue<int> firm_queue;
     for (int id : firm_ids) {
         firm_queue.push(id);
@@ -107,6 +103,38 @@ Matching firm_dictator_algorithm(
         }
         std::cout << std::endl;
     }
+    return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching simple_match_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> agent_match(n_agents);
+    while (true) {
+        std::vector<int> type1_blocking_pair_list = find_best_type1_blocking_pair_list(firm_match, agent_match, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
+
+        bool finish = true;
+        for (int firm=0; firm<n_firms; firm++) {
+            if (type1_blocking_pair_list[firm]!=-1) {
+                finish=false;
+                break;
+            }
+        }
+        if (finish) break;
+
+        for (int firm=0; firm<n_firms; firm++) {
+            firm_match[firm].insert(type1_blocking_pair_list[firm]);
+            agent_match[type1_blocking_pair_list[firm]] = firm;
+        }
+    }
+
     return Matching::from_firm_assignment(firm_match, n_agents);
 }
 
