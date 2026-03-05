@@ -146,9 +146,15 @@ Matching doctor_proposing_DA_algorithm(
     const std::vector<std::vector<int>> &firm_prefs
 )
 {
-    std::vector<std::set<int>> firm_match(n_firms);
+    // Min-heap: (preference_score, agent_id) → 先頭が最もスコアの低い（最悪の）エージェント
+    using MinHeap = std::priority_queue<
+        std::pair<int,int>,
+        std::vector<std::pair<int,int>>,
+        std::greater<std::pair<int,int>>
+    >;
+    std::vector<MinHeap> firm_heaps(n_firms);
+
     std::vector<std::vector<int>> agent_order(n_agents);
-    agent_order.assign(n_agents, {});
     for (int a = 0; a < n_agents; ++a) {
         std::vector<int> firms(n_firms);
         std::iota(firms.begin(), firms.end(), 0);
@@ -160,15 +166,6 @@ Matching doctor_proposing_DA_algorithm(
     std::vector<int> next_idx(n_agents, 0);
     std::queue<int> free_agents;
     for (int a = 0; a < n_agents; ++a) free_agents.push(a);
-    auto worst_in = [&](int firm) -> int {
-        int worst = *firm_match[firm].begin();
-        int worst_score = firm_prefs[firm][worst];
-        for (int a : firm_match[firm]) {
-            int sc = firm_prefs[firm][a];
-            if (sc < worst_score) { worst_score = sc; worst = a; }
-        }
-        return worst;
-    };
 
     while (!free_agents.empty()) {
         int agent = free_agents.front();
@@ -182,17 +179,28 @@ Matching doctor_proposing_DA_algorithm(
             continue;
         }
 
-        if (firm_match[firm].size() < firm_capacities[firm]) {
-            firm_match[firm].insert(agent);
+        if ((int)firm_heaps[firm].size() < firm_capacities[firm]) {
+            // firmに空きがあれば受け入れ
+            firm_heaps[firm].push({firm_prefs[firm][agent], agent});
         } else {
-            int worst_agent = worst_in(firm);
-            if (firm_prefs[firm][agent] > firm_prefs[firm][worst_agent]) {
-                firm_match[firm].erase(worst_agent);
-                firm_match[firm].insert(agent);
+            // min-heapの先頭 = 最もスコアの低いエージェント → O(1)
+            auto [worst_score, worst_agent] = firm_heaps[firm].top();
+            if (firm_prefs[firm][agent] > worst_score) {
+                firm_heaps[firm].pop();  // worst_agentを除去 → O(log C)
+                firm_heaps[firm].push({firm_prefs[firm][agent], agent});  // O(log C)
                 free_agents.push(worst_agent);
             } else {
                 free_agents.push(agent);
             }
+        }
+    }
+
+    // heapをsetに変換してマッチングを構築
+    std::vector<std::set<int>> firm_match(n_firms);
+    for (int f = 0; f < n_firms; ++f) {
+        while (!firm_heaps[f].empty()) {
+            firm_match[f].insert(firm_heaps[f].top().second);
+            firm_heaps[f].pop();
         }
     }
     return Matching::from_firm_assignment(firm_match, n_agents);

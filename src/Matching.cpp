@@ -96,13 +96,14 @@ std::vector<std::pair<int,int>> Matching::blocking_pairs(
     this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
     std::vector<std::pair<int,int>> blocking_pairs_list;
     for (int firm=0; firm<n_firm; firm++) {
-        for (int agent=0; agent<n_agent; agent++) {
+        // サブセットをfirmごとに1回だけ生成（agentループの外に移動）
+        std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
+        std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
 
-            std::vector<int> set_firm_match(firm_matchs[firm].begin(), firm_matchs[firm].end());
-            std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
-            for (auto [size, subsets] : subset_map) {
+        for (int agent=0; agent<n_agent; agent++) {
+            for (auto& [size, subsets] : subset_map) {
                 if (size+1 > firm_capacities[firm]) break;
-                for (auto subset : subsets) {
+                for (const auto& subset : subsets) {
                     if (subset.count(agent)) continue;
                     std::set<int> set_tmp = subset;
                     set_tmp.insert(agent);

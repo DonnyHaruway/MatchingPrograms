@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>
 #include <queue>
+#include <functional>
 #include <algorithm>
 #include <random>
 #include <set>

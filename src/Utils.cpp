@@ -117,24 +117,31 @@ std::vector<int> generate_random_binary(int size, std::mt19937& rng, std::string
     return v;
 }
 
+static void combinations_helper(
+    const std::vector<int> &set, int k, int start,
+    std::vector<int> &current,
+    std::vector<std::set<int>> &result
+)
+{
+    if (k == 0)
+    {
+        result.emplace_back(current.begin(), current.end());
+        return;
+    }
+    for (int i = start; i <= static_cast<int>(set.size()) - k; ++i)
+    {
+        current.push_back(set[i]);
+        combinations_helper(set, k - 1, i + 1, current, result);
+        current.pop_back();
+    }
+}
+
 std::vector<std::set<int>> generate_combinations(const std::vector<int> &set, int k)
 {
     std::vector<std::set<int>> result;
-
-    std::vector<bool> bitmask(set.size(), false);
-    std::fill(bitmask.end() - k, bitmask.end(), true); // k個だけtrue（選ばれる）
-
-    do
-    {
-        std::set<int> comb;
-        for (size_t i = 0; i < set.size(); ++i)
-        {
-            if (bitmask[i])
-                comb.insert(set[i]);
-        }
-        result.push_back(comb);
-    } while (std::next_permutation(bitmask.begin(), bitmask.end()));
-
+    std::vector<int> current;
+    current.reserve(k);
+    combinations_helper(set, k, 0, current, result);
     return result;
 }
 
