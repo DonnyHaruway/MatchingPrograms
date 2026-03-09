@@ -101,6 +101,8 @@ std::vector<std::pair<int,int>> Matching::blocking_pairs(
         std::map<int, std::vector<std::set<int>>> subset_map = generate_all_subsets_by_size(set_firm_match, firm_capacities[firm]);
 
         for (int agent=0; agent<n_agent; agent++) {
+            // Only unmatched (agent, firm) pairs can be blocking pairs.
+            if (agent_matchs[agent] == firm) continue;
             for (auto& [size, subsets] : subset_map) {
                 if (size+1 > firm_capacities[firm]) break;
                 for (const auto& subset : subsets) {

@@ -116,7 +116,7 @@ Matching simple_match_algorithm(
 )
 {
     std::vector<std::set<int>> firm_match(n_firms);
-    std::vector<int> agent_match(n_agents);
+    std::vector<int> agent_match(n_agents, -1);
     while (true) {
         std::vector<int> type1_blocking_pair_list = find_best_type1_blocking_pair_list(firm_match, agent_match, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
 
@@ -130,6 +130,7 @@ Matching simple_match_algorithm(
         if (finish) break;
 
         for (int firm=0; firm<n_firms; firm++) {
+            if (type1_blocking_pair_list[firm] == -1) continue;
             firm_match[firm].insert(type1_blocking_pair_list[firm]);
             agent_match[type1_blocking_pair_list[firm]] = firm;
         }

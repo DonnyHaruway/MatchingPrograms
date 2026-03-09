@@ -113,7 +113,13 @@ std::vector<int> find_best_type1_blocking_pair_list(
     std::vector<int> best_score_agents(n_agents, 0);
     std::vector<int> best_score_firms(n_firms, 0);
     
-    for (int agent=0; agent<n_agents; agent++) best_score_agents[agent] = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
+    for (int agent=0; agent<n_agents; agent++) {
+        if (agent_match[agent] == -1) {
+            best_score_agents[agent] = 0;
+        } else {
+            best_score_agents[agent] = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
+        }
+    }
     for (int firm=0; firm<n_firms; firm++) best_score_firms[firm] = compute_firm_score(firm_match[firm], firm_prefs[firm]);
 
     for (int firm=0; firm<n_firms; firm++) {
