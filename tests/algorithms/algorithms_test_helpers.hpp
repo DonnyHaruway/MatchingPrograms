@@ -29,11 +29,22 @@ static std::vector<std::vector<int>> make_binary_agent_col_prefs(int n, unsigned
 
 
 // stable matchingが存在するかを全列挙で判定するヘルパー
-static bool stable_matching_exists(const MatchingSystem &ms, const vector<int> &capacities)
+static bool stable_matching_exists(const MatchingSystem &ms, const std::vector<int> &capacities)
 {
     auto all_matchings = ms.make_all_matchings();
     for (auto &match : all_matchings) {
         if (match.is_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+static bool weakly_stable_matching_exists(const MatchingSystem &ms, const std::vector<int> &capacities)
+{
+    auto all_matchings = ms.make_all_matchings();
+    for (auto &match : all_matchings) {
+        if (match.is_weakly_stable(ms.get_agent_prefs(), ms.get_firm_prefs(), ms.get_agent_col_prefs(), capacities)) {
             return true;
         }
     }

@@ -56,6 +56,20 @@ class Matching
             const std::vector<int> &firm_capacities
         );
 
+        std::vector<std::pair<int,int>> weakly_blocking_pairs(
+            const std::vector<std::vector<int>> &agent_prefs,
+            const std::vector<std::vector<int>> &firm_prefs,
+            const std::vector<std::vector<int>> &agent_col_prefs,
+            const std::vector<int> &firm_capacities
+        );
+
+        bool is_weakly_stable(
+            const std::vector<std::vector<int>> &agent_prefs,
+            const std::vector<std::vector<int>> &firm_prefs,
+            const std::vector<std::vector<int>> &agent_col_prefs,
+            const std::vector<int> &firm_capacities
+        );
+
         void print() const;
 
         bool operator==(const Matching &other) const;

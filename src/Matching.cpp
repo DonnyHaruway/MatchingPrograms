@@ -1,4 +1,5 @@
 #include "Matching.hpp"
+#include <climits>
 
 Matching::Matching(
     const std::vector<int> &agent_matchs,
@@ -144,6 +145,83 @@ bool Matching::is_stable(
     if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
     auto blocking_pairs_list = blocking_pairs(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
     if (!blocking_pairs_list.empty()) return false;
+    return true;
+}
+
+std::vector<std::pair<int,int>> Matching::weakly_blocking_pairs(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
+)
+{
+    this->compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    std::vector<std::pair<int,int>> result;
+
+    for (int firm = 0; firm < n_firm; firm++) {
+        int current_size = (int)firm_matchs[firm].size();
+        int cap = firm_capacities[firm];
+
+        for (int candidate = 0; candidate < n_agent; candidate++) {
+            if (agent_matchs[candidate] == firm) continue;
+
+            std::set<int> set_tmp;
+
+            if (current_size == cap) {
+                // Case 1: 満杯 → 最下位（タイは最小インデックス優先）を候補と入れ替え
+                int worst = -1;
+                int worst_score = INT_MAX;
+                for (int a : firm_matchs[firm]) {
+                    if (firm_prefs[firm][a] < worst_score) {
+                        worst_score = firm_prefs[firm][a];
+                        worst = a;
+                    }
+                }
+                if (worst == -1 || firm_prefs[firm][candidate] <= worst_score) continue;
+                for (int a : firm_matchs[firm])
+                    if (a != worst) set_tmp.insert(a);
+                set_tmp.insert(candidate);
+
+            } else {
+                // Case 2: 空き有り → そのまま追加
+                set_tmp = std::set<int>(firm_matchs[firm].begin(), firm_matchs[firm].end());
+                set_tmp.insert(candidate);
+                int firm_score_after = compute_firm_score(set_tmp, firm_prefs[firm]);
+                if (firm_score_after <= firm_scores[firm]) continue;
+            }
+
+            // エージェント側条件
+            int agent_score_after = compute_agent_score(firm, set_tmp, agent_prefs[candidate], agent_col_prefs[candidate]);
+            if (agent_score_after <= agent_scores[candidate]) continue;
+
+            // 同僚条件（set_tmp内のcandidate以外）
+            bool col_ok = true;
+            for (int a : set_tmp) {
+                if (a == candidate) continue;
+                int col_score_after = compute_agent_score(firm, set_tmp, agent_prefs[a], agent_col_prefs[a]);
+                if (col_score_after < agent_scores[a]) {
+                    col_ok = false;
+                    break;
+                }
+            }
+            if (!col_ok) continue;
+
+            result.emplace_back(candidate, firm);
+        }
+    }
+    return result;
+}
+
+bool Matching::is_weakly_stable(
+        const std::vector<std::vector<int>> &agent_prefs,
+        const std::vector<std::vector<int>> &firm_prefs,
+        const std::vector<std::vector<int>> &agent_col_prefs,
+        const std::vector<int> &firm_capacities
+)
+{
+    if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
+    auto wp = weakly_blocking_pairs(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
+    if (!wp.empty()) return false;
     return true;
 }
 
