@@ -3,7 +3,7 @@
 #include <vector>
 #include <random>
 
-static const int BINARY_PREF_NEG_INF = -2000000000;
+static const int BINARY_PREF_NEG_INF = -200000;
 
 /// @brief agent_col_prefs を 0 or -INF の二値で生成する
 /// @param n agentの数

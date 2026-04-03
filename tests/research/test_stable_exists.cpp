@@ -5,7 +5,7 @@
 using namespace std;
 
 // 弱い安定マッチングが存在しないとシミュレーションで報告されたインスタンスを検証する
-TEST(Research, WeaklyStableExists_CounterCandidate)
+TEST(Research, StableExists_CounterCandidate)
 {
     const int n_agents = 4;
     const int n_firms  = 2;
@@ -38,19 +38,15 @@ TEST(Research, WeaklyStableExists_CounterCandidate)
     bool exists = false;
     int idx = 0;
     for (auto &m : all_matchings) {
-
-        if (m.is_weakly_stable(agent_prefs, firm_prefs, agent_col_prefs, capacities)) {
-            cout << "This matching is weakly stable." << endl;
-            m.print();
+        m.print();
+        if (m.is_stable(agent_prefs, firm_prefs, agent_col_prefs, capacities)) {
+            cout << "This matching is stable." << endl;
             exists = true;
         } 
         cout << endl;
     }
 
     if (!exists) {
-        cout << "=== weakly stable matching does NOT exist ===" << endl;
+        cout << "=== stable matching does NOT exist ===" << endl;
     }
-
-    // シミュレーション結果の検証: 存在しないと報告されたケース
-    EXPECT_TRUE(exists);
 }

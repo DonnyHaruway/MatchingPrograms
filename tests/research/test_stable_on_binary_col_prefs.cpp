@@ -136,7 +136,7 @@ static void run_exhaustive_check(int n_agents, int n_firms, const vector<int> &c
 TEST(Research, WeaklyStable)
 {
     auto start = chrono::steady_clock::now();
-    run_exhaustive_check(3, 2, {2, 1});
+    run_exhaustive_check(4, 2, {3, 1});
     auto end = chrono::steady_clock::now();
     double elapsed = chrono::duration<double>(end - start).count();
     cout << "elapsed: " << elapsed << " s" << endl;
