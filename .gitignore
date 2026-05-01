@@ -20,6 +20,7 @@ test_results*
 
 # 実験用ディレクトリ
 experiments/
+results/
 
 # VSCodeなどエディタ設定
 .vscode/

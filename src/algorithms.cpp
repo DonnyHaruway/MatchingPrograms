@@ -156,6 +156,7 @@ Matching doctor_proposing_DA_algorithm(
     std::vector<MinHeap> firm_heaps(n_firms);
 
     std::vector<std::vector<int>> agent_order(n_agents);
+    #pragma omp parallel for
     for (int a = 0; a < n_agents; ++a) {
         std::vector<int> firms(n_firms);
         std::iota(firms.begin(), firms.end(), 0);
@@ -198,6 +199,7 @@ Matching doctor_proposing_DA_algorithm(
 
     // heapをsetに変換してマッチングを構築
     std::vector<std::set<int>> firm_match(n_firms);
+    #pragma omp parallel for
     for (int f = 0; f < n_firms; ++f) {
         while (!firm_heaps[f].empty()) {
             firm_match[f].insert(firm_heaps[f].top().second);

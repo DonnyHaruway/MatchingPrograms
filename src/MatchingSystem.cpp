@@ -269,9 +269,10 @@ std::vector<Matching> MatchingSystem::make_all_matchings() const
         result
     );
 
-    for (Matching &matching : result)
+    #pragma omp parallel for
+    for (int i = 0; i < static_cast<int>(result.size()); ++i)
     {
-        matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+        result[i].compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
     }
     return result;
 }

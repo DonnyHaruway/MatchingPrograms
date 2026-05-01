@@ -52,6 +52,7 @@ void Matching::compute_scores(
 {
     if (scores_computed) return;
     agent_scores.resize(n_agent, 0);
+    #pragma omp parallel for
     for (int agent = 0; agent < n_agent; agent++)
     {
         agent_scores[agent] = compute_agent_score(
@@ -63,6 +64,7 @@ void Matching::compute_scores(
     }
 
     firm_scores.resize(n_firm, 0);
+    #pragma omp parallel for
     for (int firm = 0; firm < n_firm; firm++)
     {
         firm_scores[firm] = compute_firm_score(firm_matchs[firm], firm_prefs[firm]);
