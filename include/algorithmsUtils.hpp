@@ -9,18 +9,23 @@
 
 using MatchingTypes::FirmMatching;
 
+
+/// @brief 現状の各企業のマッチングの、1人以上容量に余裕がある部分集合の配列を返す
+/// @param firm_match 
+/// @param firm_capacities 
+/// @return (企業, 個人集合)のpairの配列
 std::vector<FirmMatching> create_current_firm_match_subsets(
     const std::vector<std::set<int>> &firm_match, 
     const std::vector<int> &firm_capacities
 );
 
-/// @brief agent自身は評価対象のマッチングに含まれていない
+/// @brief 現在のマッチングでagentのみが自由に動ける時に最もそのagentにとって望ましいmatchingを求める。
 /// @param agent 
 /// @param agent_prefs 
 /// @param agent_col_prefs 
 /// @param all_firm_match 
 /// @param unofferable 
-/// @return 
+/// @return FirmMatching
 FirmMatching find_prefered_match (
     const int &agent, 
     const std::vector<int> &agent_pref, 
@@ -51,6 +56,14 @@ bool agents_accept_match(
     const std::vector<std::vector<int>> &agent_col_prefs
 );
 
+/// @brief type1 blocking pair(for each firms, if not found match -1)
+/// @param firm_match 
+/// @param agent_match 
+/// @param agent_prefs 
+/// @param firm_prefs 
+/// @param agent_col_prefs 
+/// @param firm_capacities 
+/// @return 
 std::vector<int> find_best_type1_blocking_pair_list(
     const std::vector<std::set<int>> &firm_match,
     const std::vector<int> &agent_match,

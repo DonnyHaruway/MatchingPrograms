@@ -1,56 +1,57 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <iostream>
 #include "algorithmsUtils.hpp"
 
 using namespace std;
 
-void printFirmMatchings(const vector<FirmMatching>& matchings) {
-    for (const auto& [firm_id, agents] : matchings) {
-        cout << "Firm " << firm_id << " matched with agents: ";
-        for (int agent_id : agents) {
-            cout << agent_id << " ";
-        }
-        cout << endl;
-    }
-}
-
-TEST(AlgorithmsUtils, CreateAllFirmMatching) {
+TEST(AlgorithmsUtils, CreateAllFirmMatchingSubsets) {
     vector<set<int>> firm_match = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
+        {0, 1, 2},
+        {3, 4},
+        {5}
     };
 
-    vector<int> firm_capacities = {3, 3, 4};
+    vector<int> firm_capacities = {3, 2, 1};
 
-    vector<FirmMatching> all_firm_match = create_current_firm_match_subsets(firm_match, firm_capacities);
-    printFirmMatchings(all_firm_match);
+    vector<FirmMatching> result = create_current_firm_match_subsets(firm_match, firm_capacities);
+    vector<FirmMatching> expected = {
+        {0, {}}, {0, {0}}, {0, {1}}, {0, {2}}, {0, {0, 1}}, {0, {1, 2}}, {0, {0, 2}},
+        {1, {}}, {1, {3}}, {1, {4}}, 
+        {2, {}},
+    };
+
+    EXPECT_THAT(result, ::testing::UnorderedElementsAreArray(expected));
 }
 
 TEST(AlgorithmsUtils, FindPreferedMatch) {
     vector<set<int>> firm_match = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
+        {1, 2},
+        {3, 4},
     };
-    vector<int> firm_capacities = {3, 3, 4};
+    vector<int> firm_capacities = {2, 3};
     vector<FirmMatching> all_firm_match = create_current_firm_match_subsets(firm_match, firm_capacities);
     int agent = 0;
-    vector<int> agent_pref = {0, 1, 2, 3, 4};
-    vector<int> agent_col_pref = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    vector<int> agent_pref = {2, 3};
+    vector<int> agent_col_pref = {0, 3, 5, 1, 2};
     set<FirmMatching> unofferable = {
-        {2, {7, 8, 9}}
+        {0, {2}}
     };
     FirmMatching prefered_match = find_prefered_match(agent, agent_pref, agent_col_pref, all_firm_match, unofferable);
     FirmMatching expected = {
-        1, {4, 5, 6}
+        1, {3, 4}
+    };
+    FirmMatching notExpected = {
+        0, {2}
     };
 
     EXPECT_EQ(prefered_match, expected);
+    EXPECT_NE(prefered_match, notExpected);
 }
 
-TEST(AlgorithmsUtils, FirmMatchAcceptPropose) {
-    
+TEST(AlgorithmsUtils, IsFirmMatchAcceptPropose) {
+    set<int> firm_match_before = {1, 2};
+    int firm_capacity = 3;
 }
 
 // TEST(AlgorithmsUtils, ExcludeOneAgent) {

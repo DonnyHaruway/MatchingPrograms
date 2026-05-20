@@ -49,6 +49,12 @@ class Matching
             const std::vector<int> &firm_capacities
         );
 
+        /// @brief return matching is stable (satify there is no type1 blocking pair and type2' blocking pair) or not
+        /// @param agent_prefs 
+        /// @param firm_prefs 
+        /// @param agent_col_prefs 
+        /// @param firm_capacities 
+        /// @return boolean
         bool is_stable(
             const std::vector<std::vector<int>> &agent_prefs,
             const std::vector<std::vector<int>> &firm_prefs,
@@ -56,6 +62,12 @@ class Matching
             const std::vector<int> &firm_capacities
         );
 
+        /// @brief return matching is weakstable (satify there is no type1 blocking pair and type2' blocking pair) or not
+        /// @param agent_prefs 
+        /// @param firm_prefs 
+        /// @param agent_col_prefs 
+        /// @param firm_capacities 
+        /// @return boolean
         std::vector<std::pair<int,int>> weakly_blocking_pairs(
             const std::vector<std::vector<int>> &agent_prefs,
             const std::vector<std::vector<int>> &firm_prefs,

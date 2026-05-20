@@ -12,8 +12,6 @@ include(GoogleTest)
 
 enable_testing()
 
-find_package(OpenMP)
-
 # includeディレクトリを設定
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -34,9 +32,6 @@ foreach(TEST_SRC ${TEST_SOURCES})
         ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
     )
 
-    target_link_libraries(${TEST_NAME} gtest_main)
-    if(OpenMP_CXX_FOUND)
-        target_link_libraries(${TEST_NAME} OpenMP::OpenMP_CXX)
-    endif()
-    gtest_discover_tests(${TEST_NAME})
+    target_link_libraries(${TEST_NAME} gtest_main gmock)
+    gtest_discover_tests(${TEST_NAME} DISCOVERY_TIMEOUT 60)
 endforeach()

@@ -57,10 +57,13 @@ bool is_firm_match_accept_propose(
 {
     int firm = prefered_match.first;
     std::set<int> firm_match_after = prefered_match.second;
+    // firmが受け入れるかどうか
     firm_match_after.insert(agent);
     int firm_score_before = compute_firm_score(firm_match_before, firm_prefs[firm]);
     int firm_score_after = compute_firm_score(firm_match_after, firm_prefs[firm]);
     if (firm_score_after < firm_score_before) return false;
+
+    // 全colleaguesが受け入れるかどうか
     for (int _agent : firm_match_after) {
         if (_agent == agent) continue;
         int score_before = compute_agent_score(firm, firm_match_before, agent_prefs[_agent], agent_col_prefs[_agent]);
@@ -98,6 +101,8 @@ bool agents_accept_match(
     return true;
 }
 
+
+// type1ブロッキングペアは企業側にキャパシティに余裕があり、すでにマッチしている個人が全員新規を受け入れる
 std::vector<int> find_best_type1_blocking_pair_list(
     const std::vector<std::set<int>> &firm_match,
     const std::vector<int> &agent_match,
@@ -114,25 +119,23 @@ std::vector<int> find_best_type1_blocking_pair_list(
     std::vector<int> best_score_firms(n_firms, 0);
     
     for (int agent=0; agent<n_agents; agent++) {
-        if (agent_match[agent] == -1) {
-            best_score_agents[agent] = 0;
-        } else {
-            best_score_agents[agent] = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
-        }
+        best_score_agents[agent] = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
     }
     for (int firm=0; firm<n_firms; firm++) best_score_firms[firm] = compute_firm_score(firm_match[firm], firm_prefs[firm]);
 
     for (int firm=0; firm<n_firms; firm++) {
         if (firm_match[firm].size() == firm_capacities[firm]) continue;
         for (int agent=0; agent<n_agents; agent++) {
-            if (firm_match[firm].count(agent)) continue;
+            if (firm_match[firm].count(agent)) continue;    // すでにマッチしていたらcontinue
             int agent_score_after = compute_agent_score(firm, firm_match[firm], agent_prefs[agent], agent_col_prefs[agent]);
-            if (best_score_agents[agent] >= agent_score_after) continue;
+            if (best_score_agents[agent] >= agent_score_after) continue;    // agent側が移動したくなければcontinue
             FirmMatching match = {firm, firm_match[firm]};
             match.second.insert(agent);
             if (is_firm_match_accept_propose(agent, match, firm_match[firm], agent_prefs, firm_prefs, agent_col_prefs)) {
                 int firm_score_after = compute_firm_score(match.second, firm_prefs[firm]);
                 if (best_score_firms[firm] >= firm_score_after) continue;
+                // マッチを確定
+                best_score_firms[firm] = firm_score_after;
                 best_type1_blocking_pair_list[firm] = agent;
             }
         }

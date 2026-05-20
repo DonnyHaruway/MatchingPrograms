@@ -206,6 +206,7 @@ int compute_agent_score(
     const std::vector<int> &agent_col_pref
 )
 {   
+    if (firm == -1) return 0;
     int score = 0;
     for (int agent_col : agent_col_match) {
         if (agent_col != -1) {
