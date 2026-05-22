@@ -56,6 +56,25 @@ bool agents_accept_match(
     const std::vector<std::vector<int>> &agent_col_prefs
 );
 
+/// @brief 指定したfirmについてbest type1 blocking pairのagentを返す。存在しなければ-1
+/// @param firm 対象のfirm
+/// @param firm_match 現在の各firmのマッチング
+/// @param agent_match 現在の各agentのマッチング
+/// @param agent_prefs
+/// @param firm_prefs
+/// @param agent_col_prefs
+/// @param firm_capacities
+/// @return best type1 blocking pairのagent番号、存在しなければ-1
+int find_best_type1_blocking_pair(
+    const int &firm,
+    const std::vector<std::set<int>> &firm_match,
+    const std::vector<int> &agent_match,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
+);
+
 /// @brief type1 blocking pair(for each firms, if not found match -1)
 /// @param firm_match 
 /// @param agent_match 

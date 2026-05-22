@@ -1,5 +1,6 @@
 #include "algorithms.hpp"
 #include "CommonTypes.hpp"
+#include <iostream>
 
 using namespace MatchingTypes;
 
@@ -117,35 +118,22 @@ Matching simple_match_algorithm(
 {
     std::vector<std::set<int>> firm_match(n_firms);
     std::vector<int> agent_match(n_agents, UNMATCHED);
-    while (true) {
-        std::vector<int> type1_blocking_pair_list = find_best_type1_blocking_pair_list(firm_match, agent_match, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
-        bool finish = true;
-        for (int firm=0; firm<n_firms; firm++) {
-            if (type1_blocking_pair_list[firm]!=-1) {
-                finish=false;
-                break;
-            }
-        }
-        if (finish) break;
+    std::queue<int> q;
+    for (int firm = 0; firm<n_firms; firm++) q.push(firm);
+    while (q.size()) {
+        int firm = q.front(); q.pop();
+        // type1 blocking pairの導出
+        
+        int agent = find_best_type1_blocking_pair(firm, firm_match, agent_match, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
+        if (agent == -1) continue;
 
-        // 同一agentが複数firmから選ばれた場合、そのagentが最も行きたいfirmにのみ移動する
-        std::map<int, int> agent_best_firm; // agent -> 移動先firm
-        std::map<int, int> agent_best_score; // agent -> そのfirmでのスコア
-        for (int firm=0; firm<n_firms; firm++) {
-            int agent = type1_blocking_pair_list[firm];
-            if (agent == -1) continue;
-            int score = compute_agent_score(firm, firm_match[firm], agent_prefs[agent], agent_col_prefs[agent]);
-            if (agent_best_firm.find(agent) == agent_best_firm.end() || score > agent_best_score[agent]) {
-                agent_best_firm[agent] = firm;
-                agent_best_score[agent] = score;
-            }
-        }
-        for (auto [agent, firm] : agent_best_firm) {
-            int old_firm = agent_match[agent];
-            if (old_firm != UNMATCHED) firm_match[old_firm].erase(agent);
-            firm_match[firm].insert(agent);
-            agent_match[agent] = firm;
-        }
+        // マッチングを確定
+        int old_firm = agent_match[agent];
+        if (old_firm != UNMATCHED) firm_match[old_firm].erase(agent);
+        firm_match[firm].insert(agent);
+        agent_match[agent] = firm;
+
+        q.push(firm);
     }
 
     return Matching::from_firm_assignment(firm_match, n_agents);
