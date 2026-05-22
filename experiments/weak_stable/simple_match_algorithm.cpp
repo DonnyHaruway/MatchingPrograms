@@ -41,7 +41,7 @@ int main()
             std::cout << "--- preferences ---\n";
             ms.print_prefs();
 
-            std::cout << "--- matching ---\n";
+            std::cout << "--- matching (simple_match result) ---\n";
             m.print();
 
             auto wbp = m.weakly_blocking_pairs(
@@ -53,6 +53,25 @@ int main()
             std::cout << "weakly blocking pairs (" << wbp.size() << "):\n";
             for (auto [agent, firm] : wbp) {
                 std::cout << "  agent=" << agent << " firm=" << firm << "\n";
+            }
+
+            // 全探索でweakly stableなマッチングを列挙
+            auto all_matchings = ms.make_all_matchings();
+            std::vector<Matching> ws_matchings;
+            for (auto& cand : all_matchings) {
+                if (cand.is_weakly_stable(
+                        ms.get_agent_prefs(),
+                        ms.get_firm_prefs(),
+                        ms.get_agent_col_prefs(),
+                        ms.get_firm_capacities())) {
+                    ws_matchings.push_back(cand);
+                }
+            }
+            std::cout << "--- weakly stable matchings (exhaustive, "
+                      << ws_matchings.size() << " found) ---\n";
+            for (int k = 0; k < static_cast<int>(ws_matchings.size()); ++k) {
+                std::cout << "[" << k << "] ";
+                ws_matchings[k].print();
             }
             std::cout << "\n";
         }
