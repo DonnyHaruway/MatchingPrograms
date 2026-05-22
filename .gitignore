@@ -18,8 +18,8 @@ _deps/
 run_test*
 test_results*
 
-# 実験用ディレクトリ
-experiments/
+# 実験出力ディレクトリ
+outputs/
 results/
 
 # VSCodeなどエディタ設定
