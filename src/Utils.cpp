@@ -1,4 +1,7 @@
 #include "Utils.hpp"
+#include "CommonTypes.hpp"
+
+using namespace MatchingTypes;
 
 std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, std::string type, int who)
 {
@@ -206,15 +209,11 @@ int compute_agent_score(
     const std::vector<int> &agent_col_pref
 )
 {   
-    if (firm == -1) return 0;
+    if (firm == UNMATCHED) return 0;
     int score = 0;
     for (int agent_col : agent_col_match) {
-        if (agent_col != -1) {
-            score += agent_col_pref[agent_col];
-        }
+        score += agent_col_pref[agent_col];
     }
-    if (firm != -1) {
-        score += agent_pref[firm];
-    }
+    score += agent_pref[firm];
     return score;
 }

@@ -1,5 +1,8 @@
 #include "Matching.hpp"
+#include "CommonTypes.hpp"
 #include <climits>
+
+using namespace MatchingTypes;
 
 Matching::Matching(
     const std::vector<int> &agent_matchs,
@@ -11,10 +14,10 @@ Matching::Matching(
     for (int i = 0; i < n_agent; ++i)
     {
         int firm = agent_matchs[i];
-        if (firm == -1) continue;
+        if (firm == UNMATCHED) continue;
         for (int other_agent : firm_matchs[firm])
         {
-            if (other_agent != i && other_agent != -1)
+            if (other_agent != i)
             {
                 agent_col_matchs[i].insert(other_agent);
             }
@@ -27,7 +30,7 @@ Matching Matching::from_firm_assignment(
     const int &n_agents
 )
 {
-    std::vector<int> agent_matchs(n_agents, -1);
+    std::vector<int> agent_matchs(n_agents, UNMATCHED);
     std::vector<std::set<int>> firm_match;
 
     for (int firm_id = 0; firm_id < input_firm_match.size(); ++firm_id)
@@ -183,7 +186,6 @@ std::vector<std::pair<int,int>> Matching::weakly_blocking_pairs(
                 for (int a : firm_matchs[firm])
                     if (a != worst) set_tmp.insert(a);
                 set_tmp.insert(candidate);
-
             } else {
                 // Case 2: 空き有り → そのまま追加
                 set_tmp = std::set<int>(firm_matchs[firm].begin(), firm_matchs[firm].end());
@@ -235,7 +237,7 @@ void Matching::print() const
     for (int i = 0; i < n_agent; ++i)
     {
         std::cout << "  Agent " << i << " → Firm ";
-        if (agent_matchs[i] == -1)
+        if (agent_matchs[i] == UNMATCHED)
             std::cout << "unmatched";
         else
             std::cout << agent_matchs[i];

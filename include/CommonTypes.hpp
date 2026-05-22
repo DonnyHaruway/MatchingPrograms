@@ -6,4 +6,6 @@
 namespace MatchingTypes {
     // (企業, set<個人>)のpair
     using FirmMatching = std::pair<int, std::set<int>>;
+
+    constexpr int UNMATCHED = -1;
 }
