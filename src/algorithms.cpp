@@ -139,6 +139,37 @@ Matching simple_match_algorithm(
     return Matching::from_firm_assignment(firm_match, n_agents);
 }
 
+Matching match_algorithm_1(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+) 
+{
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> agent_match(n_agents, UNMATCHED);
+    std::queue<int> q;
+    for (int firm = 0; firm<n_firms; firm++) q.push(firm);
+
+    auto calc_offer_candidate = [&] (int firm) -> std::set<int> {
+        std::set<int> res;
+        for (int agent=0; agent<n_agents; agent++) {
+            std::vector<int> agent_pref = agent_prefs[agent];
+            int am = agent_match[agent];
+            if (am != UNMATCHED && agent_pref[am] >= agent_pref[firm]) continue;
+            res.insert(agent);
+        }
+        return res;
+    };
+
+    while (q.size()) {
+        int firm = q.front(); q.pop();
+        
+    }
+}
+
 Matching doctor_proposing_DA_algorithm(
     const int &n_agents,
     const int &n_firms,
