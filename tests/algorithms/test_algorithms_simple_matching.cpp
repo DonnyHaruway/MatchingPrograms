@@ -4,6 +4,7 @@
 #include <ctime>
 
 using namespace std;
+using namespace MatchingTypes;
 
 TEST(Algorithms, SimpleMatchingAlgorithm)
 {
@@ -60,8 +61,8 @@ TEST(Algorithms, SimpleMatchingAlgorithm_RankedRandomTest1)
     {
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL) + i), true, 1, 10, 1, 10, -10, 0);
-        ms.generate_random_agent_col_prefs("numeric", rd() ^ (time(NULL) + i), true, -1000, 0);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL) + i), nullopt, nullopt, 1, 10, 1, 10, -10, 0);
+        ms.generate_random_agent_col_prefs(PrefKind::numeric, rd() ^ (time(NULL) + i), -1000, 0);
 
         bool exists = stable_matching_exists(ms, capacities);
         if (exists) cnt_stable_exists++;
@@ -90,7 +91,7 @@ TEST(Algorithms, SimpleMatchingAlgorithm_BinaryColPrefRandomTest)
     {
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL) + i), false, 1, 10, 1, 10);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL) + i), nullopt, PrefKind::none, 1, 10, 1, 10);
         auto col_prefs = make_binary_agent_col_prefs(n_agents, rd() ^ (time(NULL) + i));
         ms.set_agent_col_prefs(col_prefs);
 
@@ -125,7 +126,7 @@ TEST(Algorithms, SimpleMatchingAlgorithm_BinaryColPrefRandomTest_WeaklyStable)
     {
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL) + i), false, 1, 10, 1, 10);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL) + i), nullopt, PrefKind::none, 1, 10, 1, 10);
         auto col_prefs = make_binary_agent_col_prefs(n_agents, rd() ^ (time(NULL) + i));
         ms.set_agent_col_prefs(col_prefs);
 

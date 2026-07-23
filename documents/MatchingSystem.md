@@ -24,23 +24,51 @@ MatchingSystem(int n_agents, int n_firms)
 
 ---
 
+## `generate_random_*` 系の共通仕様
+
+必須引数は選好の生成方式（`PrefKind`）のみで、残りは `std::optional` による省略可能引数。
+
+| 引数 | 省略時の挙動 |
+|------|--------------|
+| `seed` | `std::random_device` から取得（再現性が必要なら明示すること） |
+| `min` / `max` | `DEFAULT_SCORE_MIN = 1` / `DEFAULT_SCORE_MAX = 10`(仮) |
+| `firm_kind` | `agent_kind` と同じ |
+| `col_kind` | `agent_kind` と同じ（同僚選好なしにしたい場合は `PrefKind::none` を明示） |
+
+`min` / `max` が使われるのは生成方式によって異なる。
+
+| `PrefKind` | min/max の扱い | 対応する向き |
+|-----------|----------------|--------------|
+| `ranked` | `min` のみ使用（`max` は無視） | opp / col |
+| `numeric` | 両方使用 | opp / col |
+| `binary` | 無視（拒否スコアは `-INF` 固定） | col のみ |
+| `super_increasing` | 無視 | opp / col |
+| `none` | 無視（すべて 0） | col のみ |
+
+向きに対応しない `PrefKind` を渡すと `std::invalid_argument` を投げる。
+
+---
+
 ## `MatchingSystem::generate_random_prefs`
 
 ```cpp
 void generate_random_prefs(
-    std::string preference_type, unsigned int seed, bool colPref,
-    int agent_score_min, int agent_score_max,
-    int firm_score_min,  int firm_score_max,
-    int agent_col_score_min, int agent_col_score_max)
+    PrefKind agent_kind,
+    std::optional<unsigned int> seed = std::nullopt,
+    std::optional<PrefKind> firm_kind = std::nullopt,
+    std::optional<PrefKind> col_kind = std::nullopt,
+    std::optional<int> agent_score_min = std::nullopt, std::optional<int> agent_score_max = std::nullopt,
+    std::optional<int> firm_score_min = std::nullopt,  std::optional<int> firm_score_max = std::nullopt,
+    std::optional<int> agent_col_score_min = std::nullopt, std::optional<int> agent_col_score_max = std::nullopt)
 ```
 
 ### 処理内容
 エージェント選好・企業選好・同僚選好を一括生成する。
-内部で以下の 3 関数を順に呼び出す（それぞれ異なるシードを使用）。
+内部で以下の 3 関数を順に呼び出す（3種類が同じ乱数列にならないようシードをずらす）。
 
-1. `generate_random_agent_prefs(seed)`
-2. `generate_random_firm_prefs(seed+1)`
-3. `generate_random_agent_col_prefs(seed+2)`
+1. `generate_random_agent_prefs(agent_kind, seed)`
+2. `generate_random_firm_prefs(firm_kind, seed+1)`
+3. `generate_random_agent_col_prefs(col_kind, seed+2)`
 
 ### 計算量
 | ステップ | 計算量 |
@@ -56,23 +84,26 @@ void generate_random_prefs(
 
 ```cpp
 void generate_random_agent_prefs(
-    std::string preference_type, unsigned int seed,
-    int agent_score_min, int agent_score_max)
+    PrefKind kind,
+    std::optional<unsigned int> seed = std::nullopt,
+    std::optional<int> agent_score_min = std::nullopt,
+    std::optional<int> agent_score_max = std::nullopt)
 ```
 
 ### 処理内容
-n 人のエージェントそれぞれについて f 企業への選好ベクトルを生成する。
+n 人のエージェントそれぞれについて f 企業への選好ベクトルを生成する（`Side::opp`）。
 
-- `"ranked"`: `generate_random_ranked(n_firms, ...)` — 順位付きランキング
-- `"numeric"`: `generate_random_number(n_firms, ...)` — 数値スコア
-- `"super_increasing"`: `generate_random_super_increasing(n_firms, ...)` — 超増加列
+- `PrefKind::ranked`: `generate_random_ranked(Side::opp, n_firms, ...)` — 順位付きランキング
+- `PrefKind::numeric`: `generate_random_numeric(Side::opp, n_firms, ...)` — 数値スコア
+- `PrefKind::super_increasing`: `generate_random_super_increasing(Side::opp, n_firms, ...)` — 超増加列
+- `PrefKind::binary` / `PrefKind::none`: 例外
 
 ### 計算量
-| type | 計算量 |
+| kind | 計算量 |
 |------|--------|
-| `"ranked"` | O(n · f log f)（shuffle） |
-| `"numeric"` | O(n · f) |
-| `"super_increasing"` | O(n · f) |
+| `ranked` | O(n · f log f)（shuffle） |
+| `numeric` | O(n · f) |
+| `super_increasing` | O(n · f) |
 
 ---
 
@@ -80,19 +111,21 @@ n 人のエージェントそれぞれについて f 企業への選好ベクト
 
 ```cpp
 void generate_random_firm_prefs(
-    std::string preference_type, unsigned int seed,
-    int firm_score_min, int firm_score_max)
+    PrefKind kind,
+    std::optional<unsigned int> seed = std::nullopt,
+    std::optional<int> firm_score_min = std::nullopt,
+    std::optional<int> firm_score_max = std::nullopt)
 ```
 
 ### 処理内容
-f 社の企業それぞれについて n 人のエージェントへの選好ベクトルを生成する。
+f 社の企業それぞれについて n 人のエージェントへの選好ベクトルを生成する（`Side::opp`）。
 
 ### 計算量
-| type | 計算量 |
+| kind | 計算量 |
 |------|--------|
-| `"ranked"` | O(f · n log n) |
-| `"numeric"` | O(f · n) |
-| `"super_increasing"` | O(f · n) |
+| `ranked` | O(f · n log n) |
+| `numeric` | O(f · n) |
+| `super_increasing` | O(f · n) |
 
 ---
 
@@ -100,24 +133,25 @@ f 社の企業それぞれについて n 人のエージェントへの選好ベ
 
 ```cpp
 void generate_random_agent_col_prefs(
-    std::string preference_type, unsigned int seed,
-    bool colPref,
-    int agent_col_score_min, int agent_col_score_max)
+    PrefKind kind,
+    std::optional<unsigned int> seed = std::nullopt,
+    std::optional<int> agent_col_score_min = std::nullopt,
+    std::optional<int> agent_col_score_max = std::nullopt)
 ```
 
 ### 処理内容
-n 人のエージェントそれぞれについて他の n 人への同僚選好ベクトルを生成する。
-`colPref == false` の場合は全て 0 のベクトルを使用（同僚効果なし）。
-
-対応する `preference_type`: `"ranked"`, `"numeric"`, `"binary"`
+n 人のエージェントそれぞれについて他の n 人への同僚選好ベクトルを生成する（`Side::col`）。
+自分自身へのスコアは常に 0 になる。
+`PrefKind::none` の場合は全て 0 のベクトルを使用（同僚効果なし）。
 
 ### 計算量
-| type | 計算量 |
+| kind | 計算量 |
 |------|--------|
-| `"ranked"` | O(n² log n) |
-| `"numeric"` | O(n²) |
-| `"binary"` | O(n²) |
-| `colPref == false` | O(n²)（ゼロ初期化） |
+| `ranked` | O(n² log n) |
+| `numeric` | O(n²) |
+| `binary` | O(n²) |
+| `super_increasing` | O(n² log n) |
+| `none` | O(n²)（ゼロ初期化） |
 
 ---
 
@@ -146,7 +180,7 @@ void set_prefs(
 ## `MatchingSystem::generate_random_capacities`
 
 ```cpp
-void generate_random_capacities(unsigned int seed)
+void generate_random_capacities(std::optional<unsigned int> seed = std::nullopt)
 ```
 
 ### 処理内容

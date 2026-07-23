@@ -2,6 +2,7 @@
 #include "MatchingSystem.hpp"
 
 using namespace std;
+using namespace MatchingTypes;
 
 
 // TEST(Algorithms, DictatorLikeAlgorithm1)
@@ -90,9 +91,9 @@ TEST(Algorithms, DictatorLikeAlgorithm_RankedRandomTest1)
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
         // マッチ相手に対する選好はranked
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL)+i), true, 1, 10, 1, 10, -10, 0);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL)+i), nullopt, nullopt, 1, 10, 1, 10, -10, 0);
         // 同僚に対する選考はnumeric, negative values
-        ms.generate_random_agent_col_prefs("numeric", rd() ^ (time(NULL)+i), true, -1000, 0);
+        ms.generate_random_agent_col_prefs(PrefKind::numeric, rd() ^ (time(NULL)+i), -1000, 0);
 
         Matching m = ms.run_algorithm("doctor_dictator");
 
@@ -128,9 +129,9 @@ TEST(Algorithms, DictatorLikeAlgorithm_RankedRandomTest2)
         MatchingSystem ms(n_agents, n_firms);
         ms.set_firm_capacities(capacities);
         // マッチ相手に対する選好はranked
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL)+i), true, 1, 10, 1, 10, -10, 0);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL)+i), nullopt, nullopt, 1, 10, 1, 10, -10, 0);
         // 同僚に対する選考はnumeric, negative values
-        ms.generate_random_agent_col_prefs("numeric", rd() ^ (time(NULL)+i), true, -1000, 0);
+        ms.generate_random_agent_col_prefs(PrefKind::numeric, rd() ^ (time(NULL)+i), -1000, 0);
 
         Matching m = ms.run_algorithm("doctor_dictator");
 

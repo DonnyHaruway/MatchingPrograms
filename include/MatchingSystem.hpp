@@ -4,6 +4,7 @@
 #include "MatchingUtils.hpp"
 #include "algorithms.hpp"
 #include "Matching.hpp"
+#include <optional>
 #include <vector>
 #include <string>
 #include <utility>
@@ -13,7 +14,6 @@ class MatchingSystem
 private:
     int n_agents;
     int n_firms;
-    std::string preference_type;
     std::mt19937 rng;
 
     std::vector<std::vector<int>> agent_prefs;     // agent_prefs[i][j]: agent i が firm j に対して持つスコア
@@ -29,45 +29,64 @@ public:
         int n_firms
     );
 
-    /// @brief ランダムに選好を作成
-    /// @param preference_type 選好のタイプを指定する -> "ranked" : 同順位なし, "numeric" : 同順位あり
-    /// @param seed 乱数シード
+    /*
+     * generate_random_* 系の共通仕様
+     *
+     * 必須引数は選好の生成方式 (PrefKind) のみで、残りはすべて省略可能。
+     *   seed 省略時       : std::random_device から取得する (再現性が必要なら明示すること)
+     *   min/max 省略時    : DEFAULT_SCORE_MIN / DEFAULT_SCORE_MAX
+     *
+     * min/maxが使われるのは PrefKind::numeric のときのみ。
+     *   ranked           : min のみ使用 (max は無視)
+     *   binary           : min/max とも無視し、拒否スコアは -INF 固定
+     *   super_increasing : min/max とも無視
+     */
+
+    /// @brief ランダムに選好を作成する
+    /// @param agent_kind agent->firmの選好の生成方式
+    /// @param seed 乱数シード (省略時はランダム)
+    /// @param firm_kind firm->agentの選好の生成方式 (省略時は agent_kind と同じ)
+    /// @param col_kind agent->agentの選好の生成方式 (省略時は agent_kind と同じ。PrefKind::noneで同僚選好なし)
     /// @param agent_score_min agent->firmのスコアの最小値
     /// @param agent_score_max agent->firmのスコアの最大値
     /// @param firm_score_min firm->agentのスコアの最小値
     /// @param firm_score_max firm->agentのスコアの最大値
-    /// @param colPref 同僚の選好を生成するかどうか
     /// @param agent_col_score_min agent->agentのスコアの最小値
     /// @param agent_col_score_max agent->agentのスコアの最大値
+    /// @note 3種類の選好は seed, seed+1, seed+2 から独立に生成される
     void generate_random_prefs(
-        std::string preference_type,
-        unsigned int seed,
-        bool colPref = false,
-        int agent_score_min = 0, int agent_score_max = 10,
-        int firm_score_min = 0, int firm_score_max = 10,
-        int agent_col_score_min = 0, int agent_col_score_max = 10
+        MatchingTypes::PrefKind agent_kind,
+        std::optional<unsigned int> seed = std::nullopt,
+        std::optional<MatchingTypes::PrefKind> firm_kind = std::nullopt,
+        std::optional<MatchingTypes::PrefKind> col_kind = std::nullopt,
+        std::optional<int> agent_score_min = std::nullopt, std::optional<int> agent_score_max = std::nullopt,
+        std::optional<int> firm_score_min = std::nullopt, std::optional<int> firm_score_max = std::nullopt,
+        std::optional<int> agent_col_score_min = std::nullopt, std::optional<int> agent_col_score_max = std::nullopt
     );
 
     void generate_random_agent_prefs(
-        std::string preference_type,
-        unsigned int seed,
-        int agent_score_min, int agent_score_max
+        MatchingTypes::PrefKind kind,
+        std::optional<unsigned int> seed = std::nullopt,
+        std::optional<int> agent_score_min = std::nullopt,
+        std::optional<int> agent_score_max = std::nullopt
     );
 
     void generate_random_firm_prefs(
-        std::string preference_type,
-        unsigned int seed,
-        int firm_score_min, int firm_score_max
+        MatchingTypes::PrefKind kind,
+        std::optional<unsigned int> seed = std::nullopt,
+        std::optional<int> firm_score_min = std::nullopt,
+        std::optional<int> firm_score_max = std::nullopt
     );
 
+    /// @brief 同僚への選好を作成する。PrefKind::none を渡すとすべて0になる。
     void generate_random_agent_col_prefs(
-        std::string preference_type,
-        unsigned int seed,
-        bool colPref,
-        int agent_col_score_min, int agent_col_score_max
+        MatchingTypes::PrefKind kind,
+        std::optional<unsigned int> seed = std::nullopt,
+        std::optional<int> agent_col_score_min = std::nullopt,
+        std::optional<int> agent_col_score_max = std::nullopt
     );
 
-    void generate_random_capacities(unsigned int seed);
+    void generate_random_capacities(std::optional<unsigned int> seed = std::nullopt);
 
     // 選好の指定
     void set_agent_prefs(const std::vector<std::vector<int>> &agent_prefs);

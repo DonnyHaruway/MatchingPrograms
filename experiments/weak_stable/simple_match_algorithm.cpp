@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+using namespace MatchingTypes;
+
 int main()
 {
     const int N_ITER   = 10000;
@@ -17,11 +19,11 @@ int main()
         MatchingSystem ms(N_AGENTS, N_FIRMS);
 
         unsigned int seed = static_cast<unsigned int>(iter);
-        // agent->firm, firm->agent は非負のnumericスコア
-        ms.generate_random_agent_prefs("ranked", seed,       1, 10);
-        ms.generate_random_firm_prefs ("ranked", seed + 1,   1, 10);
-        // 同僚選好はbinary (0 or BINARY_PREF_NEG_INF)
-        ms.generate_random_agent_col_prefs("binary", seed + 2, /*colPref=*/true, 0, 0);
+        // agent->firm, firm->agent は 1..10 のranked
+        ms.generate_random_agent_prefs(PrefKind::ranked, seed,     1, 10);
+        ms.generate_random_firm_prefs (PrefKind::ranked, seed + 1, 1, 10);
+        // 同僚選好はbinary (0 or -INF)
+        ms.generate_random_agent_col_prefs(PrefKind::binary, seed + 2);
         ms.set_firm_capacities(CAPACITIES);
 
         Matching m = ms.run_algorithm("simple_match");

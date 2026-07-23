@@ -2,6 +2,7 @@
 #include "MatchingSystem.hpp"
 
 using namespace std;
+using namespace MatchingTypes;
 
 TEST(Algorithms, DictatorVSdoctorProposeDA)
 {
@@ -13,7 +14,7 @@ TEST(Algorithms, DictatorVSdoctorProposeDA)
     {
         MatchingSystem ms(n_agents, n_firms);
         random_device rd;
-        ms.generate_random_prefs("ranked", rd(), false, 1, 10, 1, 10);
+        ms.generate_random_prefs(PrefKind::ranked, rd(), nullopt, PrefKind::none, 1, 10, 1, 10);
         ms.set_firm_capacities(capacities);
         auto firm_prefs = ms.get_firm_prefs();
         Matching m1 = ms.run_algorithm("doctor_dictator");

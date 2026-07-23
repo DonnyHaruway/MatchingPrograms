@@ -2,6 +2,7 @@
 #include "MatchingSystem.hpp"
 
 using namespace std;
+using namespace MatchingTypes;
 
 TEST(Algorithms, DoctorProposeDA1) 
 {
@@ -42,7 +43,7 @@ TEST(Algorithms, DoctorProposeDAStabilityCheck)
     {
         // cout << "\nTrial " << i << endl;
         MatchingSystem ms(n_agents, n_firms);
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL)+i), false);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL)+i), nullopt, PrefKind::none);
         ms.generate_random_capacities(rd() ^ (time(NULL)+i));
         // ms.print_prefs();
         Matching m = ms.run_algorithm("doctor_propose_DA");

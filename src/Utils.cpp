@@ -3,119 +3,169 @@
 
 using namespace MatchingTypes;
 
-std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, std::string type, int who)
+namespace
 {
+    /// @brief type と who の組み合わせを検証する
+    /// @return Side::col なら所有者のindex、Side::opp なら UNMATCHED (使わない)
+    int resolve_who(Side type, int size, std::optional<int> who)
+    {
+        if (size <= 0)
+        {
+            throw std::invalid_argument("size must be positive");
+        }
+
+        if (type == Side::opp)
+        {
+            if (who.has_value())
+            {
+                throw std::invalid_argument("who must not be specified when type is opp");
+            }
+            return UNMATCHED;
+        }
+
+        if (!who.has_value())
+        {
+            throw std::invalid_argument("who is required when type is col");
+        }
+        if (*who < 0 || *who >= size)
+        {
+            throw std::out_of_range("who is out of range: " + std::to_string(*who));
+        }
+        return *who;
+    }
+}
+
+std::vector<int> generate_random_ranked(
+    Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who,
+    std::optional<int> min
+)
+{
+    const int owner = resolve_who(type, size, who);
+    const int min_val = min.value_or(DEFAULT_SCORE_MIN);
+
     std::vector<int> order(size);
 
-    if (type == "opponent")
+    if (type == Side::opp)
     {
-        std::iota(order.begin(), order.end(), min);
+        std::iota(order.begin(), order.end(), min_val);
         std::shuffle(order.begin(), order.end(), rng);
+        return order;
     }
-    else if (type == "col")
+
+    // 自分自身は0固定なので、他人にはmin以上の整数から0を除いてsize-1個を割り当てる
+    std::vector<int> others;
+    others.reserve(size - 1);
+    for (int v = min_val; static_cast<int>(others.size()) < size - 1; ++v)
     {
-        order[who] = 0;
-
-        std::vector<int> others(size - 1);
-        std::iota(others.begin(), others.end(), 1);
-        std::shuffle(others.begin(), others.end(), rng);
-
-        int idx = 0;
-        for (int i = 0; i < size; ++i)
-        {
-            if (i == who) {
-                continue;
-            }
-            order[i] = others[idx++];
-        }
+        if (v == 0) continue;
+        others.push_back(v);
     }
-    else
+    std::shuffle(others.begin(), others.end(), rng);
+
+    order[owner] = 0;
+    int idx = 0;
+    for (int i = 0; i < size; ++i)
     {
-        throw std::invalid_argument("Unknown type: " + type);
+        if (i == owner) continue;
+        order[i] = others[idx++];
     }
 
     return order;
 }
 
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937& rng, std::string type, int who)
+std::vector<int> generate_random_numeric(
+    Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who,
+    std::optional<int> min_val,
+    std::optional<int> max_val
+)
 {
-    if (min_val > max_val)
+    const int owner = resolve_who(type, size, who);
+
+    if (min_val.has_value() != max_val.has_value())
+    {
+        throw std::invalid_argument("min_val and max_val must be specified together");
+    }
+    const int lo = min_val.value_or(DEFAULT_SCORE_MIN);
+    const int hi = max_val.value_or(DEFAULT_SCORE_MAX);
+    if (lo > hi)
     {
         throw std::invalid_argument("min_val must not be greater than max_val");
     }
 
-    std::uniform_int_distribution<> dist(min_val, max_val); // 閉区間[min_val, max_val]から乱数を生成
+    std::uniform_int_distribution<> dist(lo, hi); // 閉区間[lo, hi]から乱数を生成
     std::vector<int> v(size);
 
-    if (type == "opponent")
-    {
-        for (int &x : v)
-            x = dist(rng);
-    }
-    else if (type == "col")
+    for (int i = 0; i < size; ++i)
     {
         // 自分自身は0になる
-        v[who] = 0;
-        for (int i = 0; i < size; ++i)
-        {
-            if (i != who)
-            {
-                v[i] = dist(rng);
-            }
-        }
-    }
-    else
-    {
-        throw std::invalid_argument("Unknown type: " + type);
+        v[i] = (i == owner) ? 0 : dist(rng);
     }
     return v;
 }
 
-std::vector<int> generate_random_super_increasing(int size, std::mt19937& rng)
+std::vector<int> generate_random_super_increasing(
+    Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who
+)
 {
-    if (size > 30) {
+    const int owner = resolve_who(type, size, who);
+
+    // 自分自身の0を除いた要素数ぶんだけ超増加列を作る
+    const int n_values = (type == Side::col) ? size - 1 : size;
+    if (n_values > 30) {
         throw std::overflow_error("Size is too large for int super-increasing sequence (max approx 30 elements for base 2).");
     }
 
-    std::vector<int> order(size); 
-
-    long long current_val = 1; 
-
-    for (int i = 0; i < size; ++i) {
-        order[i] = static_cast<int>(current_val);
-        current_val *= 2; 
+    std::vector<int> values(n_values);
+    long long current_val = 1;
+    for (int i = 0; i < n_values; ++i) {
+        values[i] = static_cast<int>(current_val);
+        current_val *= 2;
     }
+    std::shuffle(values.begin(), values.end(), rng);
 
-    std::shuffle(order.begin(), order.end(), rng);
+    if (type == Side::opp) return values;
 
+    std::vector<int> order(size);
+    order[owner] = 0;
+    int idx = 0;
+    for (int i = 0; i < size; ++i)
+    {
+        if (i == owner) continue;
+        order[i] = values[idx++];
+    }
     return order;
 }
 
-std::vector<int> generate_random_binary(int size, std::mt19937& rng, std::string type, int who)
+std::vector<int> generate_random_binary(
+    Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who,
+    std::optional<int> penalty
+)
 {
-    std::vector<int> v(size);
+    if (type != Side::col)
+    {
+        throw std::invalid_argument("binary preferences are only defined for type col");
+    }
+    const int owner = resolve_who(type, size, who);
+    const int reject_score = penalty.value_or(-INF);
 
-    if (type == "opponent")
+    std::vector<int> v(size);
+    std::uniform_int_distribution<> dist(0, 1); // 0か1を生成
+    for (int i = 0; i < size; ++i)
     {
-        std::uniform_int_distribution<> dist(0, 1); // 0か1を生成
-        for (int &x : v)
-            x = dist(rng) == 1 ? -1e9 : 0;
-    }
-    else if (type == "col")
-    {
-        v[who] = 0;
-        std::uniform_int_distribution<> dist(0, 1); // 0か1を生成
-        for (int i = 0; i < size; ++i)
-        {
-            if (i != who)
-            {
-                v[i] = dist(rng) == 1 ? -1e9 : 0;
-            }
-        }
-    }
-    else
-    {
-        throw std::invalid_argument("Unknown type: " + type);
+        // 自分自身は0になる
+        v[i] = (i == owner) ? 0 : (dist(rng) == 1 ? reject_score : 0);
     }
     return v;
 }

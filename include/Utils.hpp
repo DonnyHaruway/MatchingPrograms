@@ -1,47 +1,90 @@
 #pragma once
 
+#include "CommonTypes.hpp"
+
 #include <vector>
 #include <random>
 #include <map>
+#include <optional>
 #include <set>
 #include <algorithm>
 #include <numeric>
 #include <stdexcept>
 #include <iostream>
 
+/*
+ * generate_random_* 系の共通仕様
+ *
+ * 必須引数は (type, size, rng) の3つのみで、残りはすべて省略可能。
+ *
+ *   type == Side::opp : 相手方への選好。whoを渡すと例外。
+ *   type == Side::col : 同僚への選好。whoは必須で、who番目の要素は常に0になる。
+ *
+ * whoが範囲外(0 <= who < size を満たさない)の場合も例外を投げる。
+ */
 
 /// @brief 順位付けされたランダムな整数ベクトルを生成する
+/// @param type 選好の向き (Side::opp または Side::col)
 /// @param size ベクトルのサイズ
-/// @param min ベクトルの要素の最小値
 /// @param rng 乱数生成器
-/// @param type 選好の種類 ("opponent"または"col")
-/// @param who 選好の所有者 (typeが"col"の場合に使用)
+/// @param who 選好の所有者 (Side::colのとき必須)
+/// @param min 要素の最小値 (省略時 DEFAULT_SCORE_MIN)
+///            Side::colのときは自分自身の0と衝突しないよう、min以上の整数から0を除いて割り当てる
 /// @return ランダムに順位付けされた整数ベクトル
-std::vector<int> generate_random_ranked(int size, int min, std::mt19937& rng, std::string type="opponent", int who=-1);
+std::vector<int> generate_random_ranked(
+    MatchingTypes::Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who = std::nullopt,
+    std::optional<int> min = std::nullopt
+);
 
-/// @brief ランダムな整数ベクトルを生成する
+/// @brief 指定範囲の一様乱数からなる整数ベクトルを生成する
+/// @param type 選好の向き (Side::opp または Side::col)
 /// @param size ベクトルのサイズ
-/// @param min_val ベクトルの要素の最小値
-/// @param max_val ベクトルの要素の最大値
 /// @param rng 乱数生成器
-/// @param type 選好の種類 ("opponent"または"col")
-/// @param who 選好の所有者 (typeが"col"の場合に使用)
+/// @param who 選好の所有者 (Side::colのとき必須)
+/// @param min_val 要素の最小値 (省略時 DEFAULT_SCORE_MIN)
+/// @param max_val 要素の最大値 (省略時 DEFAULT_SCORE_MAX)
+/// @note min_val と max_val は「両方指定」か「両方省略」のみ許可する
 /// @return [min_val, max_val]の範囲でランダムに生成された整数ベクトル
-std::vector<int> generate_random_number(int size, int min_val, int max_val, std::mt19937 &rng, std::string type="opponent", int who=-1);
+std::vector<int> generate_random_numeric(
+    MatchingTypes::Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who = std::nullopt,
+    std::optional<int> min_val = std::nullopt,
+    std::optional<int> max_val = std::nullopt
+);
 
 /// @brief ランダムな超増加列を生成する
+/// @param type 選好の向き (Side::opp または Side::col)
 /// @param size ベクトルのサイズ
 /// @param rng 乱数生成器
+/// @param who 選好の所有者 (Side::colのとき必須)
+/// @note Side::colのときは自分自身が0になり、残りのsize-1個に 1,2,4,...,2^(size-2) を割り当てる
 /// @return ランダムに生成された超増加列
-std::vector<int> generate_random_super_increasing(int size, std::mt19937 &rng);
+std::vector<int> generate_random_super_increasing(
+    MatchingTypes::Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who = std::nullopt
+);
 
-/// @brief ランダムな二値ベクトルを生成する
+/// @brief ランダムな二値ベクトルを生成する (同僚への選好専用)
+/// @param type 選好の向き。Side::col のみ対応 (Side::oppは例外)
 /// @param size ベクトルのサイズ
 /// @param rng 乱数生成器
-/// @param type 選好の種類 ("opponent"または"col")
-/// @param who 選好の所有者 (typeが"col"の場合に使用)
-/// @return ランダムに生成された二値ベクトル (0または-1e9)
-std::vector<int> generate_random_binary(int size, std::mt19937 &rng, std::string type="opponent", int who=-1);
+/// @param who 選好の所有者 (必須)
+/// @param penalty 拒否する同僚に与えるスコア (省略時 -INF)
+/// @return ランダムに生成された二値ベクトル (0 または penalty)
+std::vector<int> generate_random_binary(
+    MatchingTypes::Side type,
+    int size,
+    std::mt19937 &rng,
+    std::optional<int> who = std::nullopt,
+    std::optional<int> penalty = std::nullopt
+);
 
 /// @brief 集合の指定サイズの組み合わせを生成する
 /// @param set 元の整数集合

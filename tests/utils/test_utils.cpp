@@ -2,6 +2,118 @@
 #include "Utils.hpp"
 
 using namespace std;
+using namespace MatchingTypes;
+
+TEST(GenerateRandomTest, RankedOppIsPermutationFromMin) {
+    mt19937 rng(42);
+    const int size = 5;
+
+    auto v = generate_random_ranked(Side::opp, size, rng); // min省略 -> DEFAULT_SCORE_MIN
+    vector<int> sorted = v;
+    sort(sorted.begin(), sorted.end());
+    EXPECT_EQ(sorted, (vector<int>{1, 2, 3, 4, 5}));
+
+    auto v2 = generate_random_ranked(Side::opp, size, rng, nullopt, 0);
+    vector<int> sorted2 = v2;
+    sort(sorted2.begin(), sorted2.end());
+    EXPECT_EQ(sorted2, (vector<int>{0, 1, 2, 3, 4}));
+}
+
+TEST(GenerateRandomTest, RankedColHasZeroForSelf) {
+    mt19937 rng(42);
+    const int size = 4;
+    const int who = 2;
+
+    auto v = generate_random_ranked(Side::col, size, rng, who);
+    EXPECT_EQ(v[who], 0);
+
+    vector<int> sorted = v;
+    sort(sorted.begin(), sorted.end());
+    EXPECT_EQ(sorted, (vector<int>{0, 1, 2, 3}));
+}
+
+TEST(GenerateRandomTest, RankedColSkipsZeroForNegativeMin) {
+    mt19937 rng(42);
+    const int size = 4;
+    const int who = 1;
+
+    // 自分自身の0と衝突しないよう、-2,-1,1 が他人に割り当てられる (0はスキップ)
+    auto v = generate_random_ranked(Side::col, size, rng, who, -2);
+    EXPECT_EQ(v[who], 0);
+
+    vector<int> sorted = v;
+    sort(sorted.begin(), sorted.end());
+    EXPECT_EQ(sorted, (vector<int>{-2, -1, 0, 1}));
+}
+
+TEST(GenerateRandomTest, NumericRespectsRange) {
+    mt19937 rng(7);
+    const int size = 6;
+    const int who = 0;
+
+    auto v = generate_random_numeric(Side::col, size, rng, who, -10, -5);
+    EXPECT_EQ(v[who], 0);
+    for (int i = 0; i < size; ++i) {
+        if (i == who) continue;
+        EXPECT_GE(v[i], -10);
+        EXPECT_LE(v[i], -5);
+    }
+}
+
+TEST(GenerateRandomTest, SuperIncreasingColLeavesSelfZero) {
+    mt19937 rng(7);
+    const int size = 5;
+    const int who = 3;
+
+    auto v = generate_random_super_increasing(Side::col, size, rng, who);
+    EXPECT_EQ(v[who], 0);
+
+    vector<int> sorted = v;
+    sort(sorted.begin(), sorted.end());
+    EXPECT_EQ(sorted, (vector<int>{0, 1, 2, 4, 8}));
+}
+
+TEST(GenerateRandomTest, BinaryUsesZeroOrPenalty) {
+    mt19937 rng(7);
+    const int size = 5;
+    const int who = 4;
+
+    auto v = generate_random_binary(Side::col, size, rng, who);
+    EXPECT_EQ(v[who], 0);
+    for (int x : v) {
+        EXPECT_TRUE(x == 0 || x == -INF);
+    }
+
+    auto v2 = generate_random_binary(Side::col, size, rng, who, -1);
+    for (int x : v2) {
+        EXPECT_TRUE(x == 0 || x == -1);
+    }
+}
+
+TEST(GenerateRandomTest, InvalidSideAndWhoCombinationsThrow) {
+    mt19937 rng(1);
+    const int size = 4;
+
+    // opp なのに who を渡した
+    EXPECT_THROW(generate_random_ranked(Side::opp, size, rng, 0), invalid_argument);
+    // col なのに who がない
+    EXPECT_THROW(generate_random_ranked(Side::col, size, rng), invalid_argument);
+    // who が範囲外
+    EXPECT_THROW(generate_random_ranked(Side::col, size, rng, size), out_of_range);
+    // binary は col 専用
+    EXPECT_THROW(generate_random_binary(Side::opp, size, rng), invalid_argument);
+    // min_val/max_val は片方だけ指定できない
+    EXPECT_THROW(generate_random_numeric(Side::opp, size, rng, nullopt, 0), invalid_argument);
+    EXPECT_THROW(generate_random_numeric(Side::opp, size, rng, nullopt, 5, 1), invalid_argument);
+}
+
+TEST(GenerateRandomTest, SameSeedGivesSameResult) {
+    mt19937 rng1(123), rng2(123);
+    EXPECT_EQ(
+        generate_random_numeric(Side::opp, 8, rng1),
+        generate_random_numeric(Side::opp, 8, rng2)
+    );
+}
 
 TEST(UtilsTest, GenerateCombinations_Test) {
     const vector<int> elems = {0, 1, 2, 3};

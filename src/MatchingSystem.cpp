@@ -3,147 +3,154 @@
 #include <stdexcept>
 #include <cassert>
 
+using namespace MatchingTypes;
+
+namespace
+{
+    /// @brief seedが省略されていたらランダムな値を返す
+    unsigned int resolve_seed(std::optional<unsigned int> seed)
+    {
+        if (seed.has_value()) return *seed;
+        std::random_device rd;
+        return rd();
+    }
+
+    /// @brief 相手方(opp)への選好を1人分生成する
+    std::vector<int> generate_opp_pref(
+        PrefKind kind,
+        int size,
+        std::mt19937 &rng,
+        std::optional<int> score_min,
+        std::optional<int> score_max
+    )
+    {
+        switch (kind)
+        {
+            case PrefKind::ranked:
+                return generate_random_ranked(Side::opp, size, rng, std::nullopt, score_min);
+            case PrefKind::numeric:
+                return generate_random_numeric(Side::opp, size, rng, std::nullopt, score_min, score_max);
+            case PrefKind::super_increasing:
+                return generate_random_super_increasing(Side::opp, size, rng);
+            case PrefKind::binary:
+                throw std::invalid_argument("PrefKind::binary is only defined for colleague preferences");
+            case PrefKind::none:
+                throw std::invalid_argument("PrefKind::none is not allowed for opponent preferences");
+        }
+        throw std::invalid_argument("Unknown PrefKind");
+    }
+
+    /// @brief 同僚(col)への選好を1人分生成する
+    std::vector<int> generate_col_pref(
+        PrefKind kind,
+        int size,
+        int who,
+        std::mt19937 &rng,
+        std::optional<int> score_min,
+        std::optional<int> score_max
+    )
+    {
+        switch (kind)
+        {
+            case PrefKind::ranked:
+                return generate_random_ranked(Side::col, size, rng, who, score_min);
+            case PrefKind::numeric:
+                return generate_random_numeric(Side::col, size, rng, who, score_min, score_max);
+            case PrefKind::super_increasing:
+                return generate_random_super_increasing(Side::col, size, rng, who);
+            case PrefKind::binary:
+                return generate_random_binary(Side::col, size, rng, who);
+            case PrefKind::none:
+                return std::vector<int>(size, 0);
+        }
+        throw std::invalid_argument("Unknown PrefKind");
+    }
+}
+
 MatchingSystem::MatchingSystem(int n_agents, int n_firms)
     : n_agents(n_agents), n_firms(n_firms) {}
 
 void MatchingSystem::generate_random_prefs(
-    std::string preference_type,
-    unsigned int seed,
-    bool colPref,
-    int agent_score_min, int agent_score_max,
-    int firm_score_min, int firm_score_max,
-    int agent_col_score_min, int agent_col_score_max
+    PrefKind agent_kind,
+    std::optional<unsigned int> seed,
+    std::optional<PrefKind> firm_kind,
+    std::optional<PrefKind> col_kind,
+    std::optional<int> agent_score_min, std::optional<int> agent_score_max,
+    std::optional<int> firm_score_min, std::optional<int> firm_score_max,
+    std::optional<int> agent_col_score_min, std::optional<int> agent_col_score_max
 )
 {
-    agent_prefs.clear();
-    firm_prefs.clear();
-    agent_col_prefs.clear();
+    const unsigned int base_seed = resolve_seed(seed);
 
-    rng.seed(seed);
-    MatchingSystem::generate_random_agent_prefs(
-        preference_type,
-        seed,
+    // 3種類の選好が同じ乱数列にならないよう、シードをずらして渡す
+    generate_random_agent_prefs(
+        agent_kind,
+        base_seed,
         agent_score_min,
         agent_score_max
     );
-    rng.seed(seed+1);
-    MatchingSystem::generate_random_firm_prefs(
-        preference_type,
-        seed,
+    generate_random_firm_prefs(
+        firm_kind.value_or(agent_kind),
+        base_seed + 1,
         firm_score_min,
         firm_score_max
     );
-    rng.seed(seed+2);
-    MatchingSystem::generate_random_agent_col_prefs(
-        preference_type,
-        seed,
-        colPref,
+    generate_random_agent_col_prefs(
+        col_kind.value_or(agent_kind),
+        base_seed + 2,
         agent_col_score_min,
         agent_col_score_max
     );
 }
 
 void MatchingSystem::generate_random_agent_prefs(
-    std::string preference_type,
-    unsigned int seed,
-    int agent_score_min, int agent_score_max
+    PrefKind kind,
+    std::optional<unsigned int> seed,
+    std::optional<int> agent_score_min, std::optional<int> agent_score_max
 )
 {
     agent_prefs.clear();
-    rng.seed(seed);
+    rng.seed(resolve_seed(seed));
 
     for (int i = 0; i < n_agents; ++i)
     {
-        std::vector<int> pref;
-        if (preference_type == "ranked")
-        {
-            pref = generate_random_ranked(n_firms, agent_score_min ,rng, "opponent", -1);
-        }
-        else if (preference_type == "numeric")
-        {
-            pref = generate_random_number(n_firms, agent_score_min, agent_score_max, rng, "opponent", -1);
-        }
-        else if (preference_type == "super_increasing")
-        {
-            pref = generate_random_super_increasing(n_firms, rng);
-        }
-        else
-        {
-            throw std::invalid_argument("Unknown preference_type: " + preference_type);
-        }
-        agent_prefs.push_back(pref);
+        agent_prefs.push_back(
+            generate_opp_pref(kind, n_firms, rng, agent_score_min, agent_score_max)
+        );
     }
 }
 
 void MatchingSystem::generate_random_firm_prefs(
-    std::string preference_type,
-    unsigned int seed,
-    int firm_score_min, int firm_score_max
+    PrefKind kind,
+    std::optional<unsigned int> seed,
+    std::optional<int> firm_score_min, std::optional<int> firm_score_max
 )
 {
     firm_prefs.clear();
-    rng.seed(seed);
+    rng.seed(resolve_seed(seed));
 
     for (int i = 0; i < n_firms; ++i)
     {
-        std::vector<int> pref;
-        if (preference_type == "ranked")
-        {
-            pref = generate_random_ranked(n_agents, firm_score_min, rng, "opponent", -1);
-        }
-        else if (preference_type == "numeric")
-        {
-            pref = generate_random_number(n_agents, firm_score_min, firm_score_max, rng, "opponent", -1);
-        }
-        else if (preference_type == "super_increasing")
-        {
-            pref = generate_random_super_increasing(n_agents, rng);
-        }
-        else
-        {
-            throw std::invalid_argument("Unknown preference_type: " + preference_type);
-        }
-        firm_prefs.push_back(pref);
+        firm_prefs.push_back(
+            generate_opp_pref(kind, n_agents, rng, firm_score_min, firm_score_max)
+        );
     }
 }
 
 void MatchingSystem::generate_random_agent_col_prefs(
-    std::string preference_type,
-    unsigned int seed,
-    bool colPref,
-    int agent_col_score_min, int agent_col_score_max
+    PrefKind kind,
+    std::optional<unsigned int> seed,
+    std::optional<int> agent_col_score_min, std::optional<int> agent_col_score_max
 )
 {
     agent_col_prefs.clear();
-    rng.seed(seed);
+    rng.seed(resolve_seed(seed));
 
     for (int i = 0; i < n_agents; ++i)
     {
-        std::vector<int> pref;
-        if (colPref)
-        {
-            if (preference_type == "ranked")
-            {
-                pref = generate_random_ranked(n_agents, agent_col_score_min, rng, "col", i);
-            }
-            else if (preference_type == "numeric")
-            {
-                pref = generate_random_number(n_agents, agent_col_score_min, agent_col_score_max, rng, "col", i);
-            }
-            else if (preference_type == "binary")
-            {
-                pref = generate_random_binary(n_agents, rng, "col", i);
-            }
-            else
-            {
-                throw std::invalid_argument("Unknown preference_type: " + preference_type);
-            }
-        }
-        else
-        {
-            pref = std::vector<int>(n_agents, 0);
-        }
-        agent_col_prefs.push_back(pref);
+        agent_col_prefs.push_back(
+            generate_col_pref(kind, n_agents, i, rng, agent_col_score_min, agent_col_score_max)
+        );
     }
 }
 
@@ -184,10 +191,10 @@ void MatchingSystem::set_prefs(
     this->agent_col_prefs = agent_col_prefs;
 }
 
-void MatchingSystem::generate_random_capacities(unsigned int seed)
+void MatchingSystem::generate_random_capacities(std::optional<unsigned int> seed)
 {
     firm_capacities.clear();
-    rng.seed(seed);
+    rng.seed(resolve_seed(seed));
     std::uniform_int_distribution<int> capacity_dist(1, n_agents); // キャパシティは[1,n_agents]の一様分布から生成
     for (int i = 0; i < n_firms; i++)
     {

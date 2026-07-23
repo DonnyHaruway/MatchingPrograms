@@ -5,6 +5,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace MatchingTypes;
 
 TEST(Research, NotStableAndWeaklyStable)
 {
@@ -19,7 +20,7 @@ TEST(Research, NotStableAndWeaklyStable)
     for (int i = 0; i < n_trials; i++) {
         MatchingSystem ms(n_agents, n_firms);
 
-        ms.generate_random_prefs("ranked", rd() ^ (time(NULL) + i), false, 1, 10, 1, 10);
+        ms.generate_random_prefs(PrefKind::ranked, rd() ^ (time(NULL) + i), nullopt, PrefKind::none, 1, 10, 1, 10);
         auto col_prefs = make_binary_agent_col_prefs(n_agents, rd() ^ (time(NULL) + i));
         ms.set_agent_col_prefs(col_prefs);
         ms.set_firm_capacities(capacities);
