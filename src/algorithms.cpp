@@ -16,9 +16,9 @@ Matching doctor_dictator_algorithm(
 {
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
-    // std::random_device rd;
-    // std::mt19937 rng(rd());
-    // std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
     std::queue<int> agent_queue;
     for (int id : agent_ids) {
         agent_queue.push(id);
@@ -123,7 +123,6 @@ Matching simple_match_algorithm(
     while (q.size()) {
         int firm = q.front(); q.pop();
         // type1 blocking pairの導出
-        
         int agent = find_best_type1_blocking_pair(firm, firm_match, agent_match, agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
         if (agent == -1) continue;
 
