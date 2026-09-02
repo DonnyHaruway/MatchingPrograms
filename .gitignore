@@ -24,3 +24,11 @@ results/
 
 # VSCodeなどエディタ設定
 .vscode/
+
+.DS_Store
+
+# Local build binaries
+/experiments/weak_stable/check_counter_example
+/experiments/weak_stable/check_weak_blocking_pairs
+/experiments/weak_stable/simple_match_algorithm
+/experiments/weak_stable/tmp_test
