@@ -9,4 +9,4 @@ include_directories(include)
 # テストフォルダもビルドに含める
 enable_testing()
 add_subdirectory(tests)
-add_subdirectory(exhaustive)
+add_subdirectory(experiments/exhaustive)

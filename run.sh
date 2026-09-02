@@ -4,8 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT_DIR"
 
-BIN="./build/exhaustive/exhaustive_weakly_stable_binary_col_prefs"
-RESULT_DIR="./exhaustive/results"
+BIN="./build/experiments/exhaustive/exhaustive_weakly_stable_binary_col_prefs"
+RESULT_DIR="./experiments/exhaustive/results"
 PID_FILE="$RESULT_DIR/weakly_stable_symmetry.pid"
 LATEST_FILE="$RESULT_DIR/weakly_stable_symmetry.latest"
 
