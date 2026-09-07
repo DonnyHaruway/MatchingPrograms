@@ -54,6 +54,28 @@ TEST(AlgorithmsUtils, IsFirmMatchAcceptPropose) {
     int firm_capacity = 3;
 }
 
+TEST(AlgorithmsUtils, FindBestType1BlockingPairTreatsUnmatchedScoreAsZero) {
+    const vector<set<int>> firm_match = {{}};
+    const vector<int> agent_match = {MatchingTypes::UNMATCHED};
+    const vector<vector<int>> agent_prefs = {{1}};
+    const vector<vector<int>> firm_prefs = {{1}};
+    const vector<vector<int>> agent_col_prefs = {{0}};
+    const vector<int> firm_capacities = {1};
+
+    EXPECT_EQ(
+        find_best_type1_blocking_pair(
+            0,
+            firm_match,
+            agent_match,
+            agent_prefs,
+            firm_prefs,
+            agent_col_prefs,
+            firm_capacities
+        ),
+        0
+    );
+}
+
 // TEST(AlgorithmsUtils, ExcludeOneAgent) {
 //     /*
 //     ・輪講で扱った例

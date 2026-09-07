@@ -120,7 +120,15 @@ int find_best_type1_blocking_pair(
     for (int agent = 0; agent < n_agents; agent++) {
         if (firm_match[firm].count(agent)) continue;    // すでにマッチ済みならスキップ
 
-        int agent_score_before = compute_agent_score(agent_match[agent], firm_match[agent_match[agent]], agent_prefs[agent], agent_col_prefs[agent]);
+        const int current_firm = agent_match[agent];
+        const int agent_score_before = current_firm == UNMATCHED
+            ? 0
+            : compute_agent_score(
+                current_firm,
+                firm_match[current_firm],
+                agent_prefs[agent],
+                agent_col_prefs[agent]
+            );
         int agent_score_after  = compute_agent_score(firm, firm_match[firm], agent_prefs[agent], agent_col_prefs[agent]);
         if (agent_score_before >= agent_score_after) continue;    // agent側が移動したくなければスキップ
 
