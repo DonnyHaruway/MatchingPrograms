@@ -284,7 +284,10 @@ std::vector<Matching> MatchingSystem::make_all_matchings() const
     return result;
 }
 
-Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
+Matching MatchingSystem::run_algorithm(
+    const std::string &algorithm_name,
+    std::optional<unsigned int> algorithm_seed
+) const
 {
     Matching res;
     if (agent_prefs.empty() || firm_prefs.empty() || agent_col_prefs.empty())
@@ -293,7 +296,7 @@ Matching MatchingSystem::run_algorithm(const std::string &algorithm_name) const
     }
     if (algorithm_name == "doctor_dictator")
     {
-        res = doctor_dictator_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+        res = doctor_dictator_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs, algorithm_seed);
     }
     else if (algorithm_name == "firm_dictator")
     {

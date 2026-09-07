@@ -4,20 +4,20 @@
 
 using namespace MatchingTypes;
 
-
 Matching doctor_dictator_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs,
-    const std::vector<std::vector<int>> &agent_col_prefs
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed
 )
 {
+    std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
+
     std::vector<int> agent_ids(n_agents);
     std::iota(agent_ids.begin(), agent_ids.end(), 0);
-    std::random_device rd;
-    std::mt19937 rng(rd());
     std::shuffle(agent_ids.begin(), agent_ids.end(), rng);
     std::queue<int> agent_queue;
     for (int id : agent_ids) {
@@ -55,7 +55,7 @@ Matching doctor_dictator_algorithm(
         }
     }
     return Matching::from_firm_assignment(firm_match, n_agents);
-};
+}
 
 Matching firm_dictator_algorithm(
     const int &n_agents,

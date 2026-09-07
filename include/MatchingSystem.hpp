@@ -110,8 +110,13 @@ public:
 
     /// @brief アルゴリズムに従って導出されたMatchingオブジェクトを生成する。
     /// @param algorithm_name アルゴリズムの名前を入れる
+    /// @param algorithm_seed 乱択アルゴリズムに渡す seed。省略時は std::random_device から取得する。
+    ///        現状 seed が影響するのは doctor_dictator のみで、他は決定的なため無視される。
     /// @return Matching
-    Matching run_algorithm(const std::string &algorithm_name) const;
+    Matching run_algorithm(
+        const std::string &algorithm_name,
+        std::optional<unsigned int> algorithm_seed = std::nullopt
+    ) const;
 
     const std::vector<std::vector<int>> &get_agent_prefs() const;
     const std::vector<std::vector<int>> &get_firm_prefs() const;
