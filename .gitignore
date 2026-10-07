@@ -8,6 +8,9 @@ Makefile
 # GoogleTest (via FetchContent)
 _deps/
 
+# Python helper caches
+__pycache__/
+
 # Executables
 *.out
 *.exe
