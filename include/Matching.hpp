@@ -88,6 +88,27 @@ class Matching
             const std::vector<int> &firm_capacities
         );
 
+        /// @brief Return (agent, firm) universal-replacement blocking pairs.
+        /// The firm must be full, the agent must strictly prefer its firm score
+        /// to the current firm's (unmatched = 0), and the firm must strictly
+        /// prefer the agent to at least one incumbent. Replacing EVERY incumbent
+        /// must leave no colleague rejection (-INF) in either direction.
+        /// Intended for binary colleague preferences; no vacancy blocking is added.
+        std::vector<std::pair<int,int>> universal_replacement_blocking_pairs(
+            const std::vector<std::vector<int>> &agent_prefs,
+            const std::vector<std::vector<int>> &firm_prefs,
+            const std::vector<std::vector<int>> &agent_col_prefs,
+            const std::vector<int> &firm_capacities
+        );
+
+        /// @brief Feasible, individually rational, and without universal-replacement blocking pairs.
+        bool is_universal_replacement_stable(
+            const std::vector<std::vector<int>> &agent_prefs,
+            const std::vector<std::vector<int>> &firm_prefs,
+            const std::vector<std::vector<int>> &agent_col_prefs,
+            const std::vector<int> &firm_capacities
+        );
+
         void print() const;
 
         bool operator==(const Matching &other) const;

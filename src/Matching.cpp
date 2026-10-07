@@ -1,8 +1,25 @@
 #include "Matching.hpp"
 #include "CommonTypes.hpp"
 #include <climits>
+#include <iterator>
 
 using namespace MatchingTypes;
+
+namespace {
+bool has_no_colleague_rejections(
+    const std::set<int> &agents,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    for (auto left = agents.begin(); left != agents.end(); ++left) {
+        for (auto right = std::next(left); right != agents.end(); ++right) {
+            if (agent_col_prefs[*left][*right] == -INF
+                || agent_col_prefs[*right][*left] == -INF) return false;
+        }
+    }
+    return true;
+}
+}
 
 Matching::Matching(
     const std::vector<int> &agent_matchs,
@@ -227,6 +244,66 @@ bool Matching::is_weakly_stable(
     auto wp = weakly_blocking_pairs(agent_prefs, firm_prefs, agent_col_prefs, firm_capacities);
     if (!wp.empty()) return false;
     return true;
+}
+
+std::vector<std::pair<int,int>> Matching::universal_replacement_blocking_pairs(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
+)
+{
+    std::vector<std::pair<int,int>> result;
+    for (int firm = 0; firm < n_firm; ++firm) {
+        const auto &incumbents = firm_matchs[firm];
+        if (static_cast<int>(incumbents.size()) != firm_capacities[firm]) continue;
+
+        for (int candidate = 0; candidate < n_agent; ++candidate) {
+            if (agent_matchs[candidate] == firm) continue;
+            const int current_firm = agent_matchs[candidate];
+            const int current_score = current_firm == UNMATCHED
+                ? 0 : agent_prefs[candidate][current_firm];
+            if (agent_prefs[candidate][firm] <= current_score) continue;
+
+            bool has_less_preferred_incumbent = false;
+            for (int incumbent : incumbents) {
+                if (firm_prefs[firm][candidate] > firm_prefs[firm][incumbent]) {
+                    has_less_preferred_incumbent = true;
+                    break;
+                }
+            }
+            if (!has_less_preferred_incumbent) continue;
+
+            bool every_replacement_feasible = true;
+            for (int incumbent : incumbents) {
+                auto after = incumbents;
+                after.erase(incumbent);
+                after.insert(candidate);
+                if (!has_no_colleague_rejections(after, agent_col_prefs)) {
+                    every_replacement_feasible = false;
+                    break;
+                }
+            }
+            if (every_replacement_feasible) result.emplace_back(candidate, firm);
+        }
+    }
+    return result;
+}
+
+bool Matching::is_universal_replacement_stable(
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    const std::vector<int> &firm_capacities
+)
+{
+    for (int firm = 0; firm < n_firm; ++firm) {
+        if (static_cast<int>(firm_matchs[firm].size()) > firm_capacities[firm]
+            || !has_no_colleague_rejections(firm_matchs[firm], agent_col_prefs)) return false;
+    }
+    if (!is_individually_rational(agent_prefs, firm_prefs, agent_col_prefs)) return false;
+    return universal_replacement_blocking_pairs(
+        agent_prefs, firm_prefs, agent_col_prefs, firm_capacities).empty();
 }
 
 void Matching::print() const

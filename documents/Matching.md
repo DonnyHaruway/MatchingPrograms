@@ -168,6 +168,62 @@ bool is_stable(
 
 ---
 
+## `Matching::universal_replacement_blocking_pairs`
+
+```cpp
+std::vector<std::pair<int,int>> universal_replacement_blocking_pairs(
+    const std::vector<std::vector<int>>& agent_prefs,
+    const std::vector<std::vector<int>>& firm_prefs,
+    const std::vector<std::vector<int>>& agent_col_prefs,
+    const std::vector<int>& firm_capacities)
+```
+
+二値の同僚選好（受容 `0`、拒否 `-INF`）を対象に、以下の4条件をすべて満たす
+universal-replacement blocking pair を `(agent, firm)` の順で返す。
+ここで `mu(f)` は企業の現在の所属者、`mu(w)` は個人の現在の所属先。
+
+1. 個人 `w` が現在の所属先より企業 `f` を厳密に好む。
+   `agent_prefs[w][f] > agent_prefs[w][mu(w)]`（未マッチの比較値は `0`）。
+2. 企業 `f` が満員である：`|mu(f)| == firm_capacities[f]`。
+3. `D_f(w, mu) = {w' in mu(f) : firm_prefs[f][w] > firm_prefs[f][w']}` が空でない。
+   つまり、企業が候補者より低く評価する所属者が少なくとも1人いる。
+4. **すべての** `w' in mu(f)` について、`(mu(f) - {w'}) + {w}` が feasible。
+   feasible は集合内の異なる2人について、どちらの方向にも拒否 `-INF` がないこと。
+
+条件4の対象は `D_f(w, mu)` に限定しない。候補者より高く評価される所属者との交換も
+feasible でなければならない。一方、企業の選好条件3は存在条件であり、
+候補者が全所属者より好まれる必要はない。
+
+個人の比較は企業への選好のみを使い、既存の `blocking_pairs` のような企業＋同僚の
+合計スコアの改善や、残る同僚のスコアが下がらないことは追加しない。
+既に組になっているペアは除外する。企業に空きがある場合の追加ブロッキングは
+この定義には含めない。各ペアは1回だけ返す。
+
+計算量は、企業の最大定員を `C` とすると `O(n · f · C³)`。
+
+---
+
+## `Matching::is_universal_replacement_stable`
+
+```cpp
+bool is_universal_replacement_stable(
+    const std::vector<std::vector<int>>& agent_prefs,
+    const std::vector<std::vector<int>>& firm_prefs,
+    const std::vector<std::vector<int>>& agent_col_prefs,
+    const std::vector<int>& firm_capacities)
+```
+
+以下をすべて満たすとき `true` を返す。
+
+1. 現在の各企業の所属者集合が定員以内で、同僚間に拒否 `-INF` がない。
+2. 既存の `is_individually_rational` を満たす（全個人・全企業のスコアが `0` 以上）。
+3. `universal_replacement_blocking_pairs` が空。
+
+空きのある企業への追加が可能でも、この定義ではそれだけで不安定とはしない。
+既存の `is_stable` と `is_weakly_stable` は変更しない。
+
+---
+
 ## `Matching::print`
 
 ```cpp
