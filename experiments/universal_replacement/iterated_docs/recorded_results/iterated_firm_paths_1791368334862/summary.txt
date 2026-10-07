@@ -1,0 +1,26 @@
+Fixed 5-firm/8-worker profile in problem_5x8.hpp
+Complete firm DA per A; select ONE conflict and ONE endpoint per B.
+Deletions accumulate in firm preferences; each DA restarts from empty matching.
+Stability is evaluated against ORIGINAL preferences. Vacancy blocking is not included.
+
+iterated firm proposing
+Complete choice-path enumeration: YES (all random decisions)
+Paths: 3
+Stable paths: 3
+Unstable paths: 0
+Distinct final matchings: 3
+Distinct stable matchings: 3
+Distinct full stable matchings: 1
+Replay calls: 5
+Maximum random decisions per path: 2
+Maximum simultaneous conflicts: 1
+Seconds (enumeration, classification and output): 0.000559
+Final assignment vectors are in worker order w1..w8; 0=unmatched, 1..5=firm labels.
+Outcome 1: [2,3,2,3,0,1,1,5] stable=YES paths=1 blockers=[]
+Outcome 3: [3,1,2,3,0,2,1,5] stable=YES paths=3 blockers=[]
+Outcome 2: [3,1,2,4,3,2,1,5] stable=YES paths=2 blockers=[]
+
+Has NO stable path: NO
+Has AT LEAST ONE stable path: YES
+Stable on EVERY path: YES
+Counts of paths are not probability estimates.

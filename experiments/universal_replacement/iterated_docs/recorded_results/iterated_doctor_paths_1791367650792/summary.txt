@@ -1,0 +1,26 @@
+Fixed 5-firm/8-worker profile in problem_5x8.hpp
+Complete doctor DA per A; select ONE conflict and ONE endpoint per B.
+Deletions accumulate in firm preferences; each DA restarts from empty matching.
+Stability is evaluated against ORIGINAL preferences. Vacancy blocking is not included.
+
+iterated doctor proposing
+Complete choice-path enumeration: YES (pair orders and endpoints)
+Paths: 4
+Stable paths: 0
+Unstable paths: 4
+Distinct final matchings: 4
+Distinct stable matchings: 0
+Distinct full stable matchings: 0
+Replay calls: 7
+Maximum random decisions per path: 3
+Maximum simultaneous conflicts: 1
+Seconds (enumeration, classification and output): 0.000823
+Final assignment vectors are in worker order w1..w8; 0=unmatched, 1..5=firm labels.
+Outcome 3: [1,1,3,2,0,3,2,5] stable=NO paths=3 blockers=[{"firm":2,"worker":2}]
+Outcome 4: [1,2,3,3,1,4,2,5] stable=NO paths=4 blockers=[{"firm":1,"worker":6}]
+Outcome 2: [1,2,3,4,1,3,2,5] stable=NO paths=2 blockers=[{"firm":3,"worker":4}]
+Outcome 1: [1,3,2,3,0,2,1,5] stable=NO paths=1 blockers=[{"firm":1,"worker":2}]
+
+Hypothesis: iterated doctor has NO stable path.
+Hypothesis holds for this profile and implementation: YES
+Counts of paths are not probability estimates.

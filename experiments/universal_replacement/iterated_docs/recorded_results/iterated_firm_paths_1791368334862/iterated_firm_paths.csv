@@ -1,0 +1,4 @@
+path_id,outcome_id,stable,matched_workers,deletions,w1,w2,w3,w4,w5,w6,w7,w8,blocking_pairs
+1,1,true,7,r1:f1:w2,f2,f3,f2,f3,unmatched,f1,f1,f5,
+2,2,true,8,r1:f1:w6;r2:f3:w4,f3,f1,f2,f4,f3,f2,f1,f5,
+3,3,true,7,r1:f1:w6;r2:f3:w5,f3,f1,f2,f3,unmatched,f2,f1,f5,

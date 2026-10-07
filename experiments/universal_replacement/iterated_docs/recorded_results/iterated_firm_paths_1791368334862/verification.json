@@ -1,0 +1,14 @@
+{
+  "algorithm": "iterated_firm",
+  "paths": 3,
+  "stable_paths": 3,
+  "distinct_matchings": 3,
+  "max_simultaneous_conflicts": 1,
+  "all_paths_independently_enumerated": true,
+  "cpp_decisions_and_assignments_match": true,
+  "original_preference_blockers_match": true,
+  "csv_jsonl_match": true,
+  "has_stable_path": true,
+  "all_paths_stable": true,
+  "fully_matched_stable_paths": 1
+}

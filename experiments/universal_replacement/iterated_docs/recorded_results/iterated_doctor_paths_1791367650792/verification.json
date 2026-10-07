@@ -1,0 +1,12 @@
+{
+  "algorithm": "iterated_doctor",
+  "paths": 4,
+  "stable_paths": 0,
+  "distinct_matchings": 4,
+  "max_simultaneous_conflicts": 1,
+  "all_paths_independently_enumerated": true,
+  "cpp_decisions_and_assignments_match": true,
+  "original_preference_blockers_match": true,
+  "csv_jsonl_match": true,
+  "hypothesis_holds_for_this_profile": true
+}
