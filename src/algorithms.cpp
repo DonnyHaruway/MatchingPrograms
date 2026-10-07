@@ -1,8 +1,66 @@
 #include "algorithms.hpp"
 #include "CommonTypes.hpp"
 #include <iostream>
+#include <iterator>
+#include <tuple>
+#include <stdexcept>
 
 using namespace MatchingTypes;
+
+namespace {
+void resolve_colleague_conflicts(
+    std::vector<std::set<int>> &firm_match,
+    std::vector<int> &agent_match,
+    std::vector<std::vector<bool>> &deleted,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::mt19937 &rng,
+    int round,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    // Randomly permute all current rejection pairs across all firms.
+    // Removing workers cannot introduce a new pair, so one pass is enough.
+    std::vector<DAConflict> conflicts;
+    for (int firm = 0; firm < static_cast<int>(firm_match.size()); ++firm) {
+        const auto &agents = firm_match[firm];
+        for (auto left = agents.begin(); left != agents.end(); ++left) {
+            for (auto right = std::next(left); right != agents.end(); ++right) {
+                if (agent_col_prefs[*left][*right] == -INF
+                    || agent_col_prefs[*right][*left] == -INF) {
+                    conflicts.push_back({firm, *left, *right});
+                }
+            }
+        }
+    }
+    if (choice_selector) {
+        std::vector<DAConflict> ordered;
+        while (conflicts.size() > 1) {
+            const auto index = choice_selector({DAChoiceKind::pair_order, round,
+                                               conflicts.size(), conflicts, agent_match});
+            if (index >= conflicts.size()) throw std::out_of_range("DA pair-order choice out of range");
+            ordered.push_back(conflicts[index]);
+            conflicts.erase(conflicts.begin() + index);
+        }
+        ordered.insert(ordered.end(), conflicts.begin(), conflicts.end());
+        conflicts = std::move(ordered);
+    } else {
+        std::shuffle(conflicts.begin(), conflicts.end(), rng);
+    }
+    std::uniform_int_distribution<int> choose_endpoint(0, 1);
+    for (const auto &[firm, left, right] : conflicts) {
+        if (agent_match[left] != firm || agent_match[right] != firm) continue;
+        const auto endpoint = choice_selector
+            ? choice_selector({DAChoiceKind::removal_endpoint, round, 2,
+                               {{firm, left, right}}, agent_match})
+            : static_cast<std::size_t>(choose_endpoint(rng));
+        if (endpoint >= 2) throw std::out_of_range("DA removal choice out of range");
+        const int removed = endpoint == 0 ? left : right;
+        deleted[firm][removed] = true;
+        firm_match[firm].erase(removed);
+        agent_match[removed] = UNMATCHED;
+    }
+}
+}
 
 Matching doctor_dictator_algorithm(
     const int &n_agents,
@@ -264,6 +322,158 @@ Matching firm_proposing_DA_algorithm(
             firm_match[firm].insert(agent);
             agent_match[agent] = firm;
         }
+    }
+
+    return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching modified_firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
+    std::vector<std::vector<int>> firm_order(n_firms);
+    for (int firm = 0; firm < n_firms; ++firm) {
+        auto &order = firm_order[firm];
+        order.resize(n_agents);
+        std::iota(order.begin(), order.end(), 0);
+        std::sort(order.begin(), order.end(), [&](int left, int right) {
+            if (firm_prefs[firm][left] == firm_prefs[firm][right]) return left < right;
+            return firm_prefs[firm][left] > firm_prefs[firm][right];
+        });
+    }
+
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> agent_match(n_agents, UNMATCHED);
+    std::vector<int> next_idx(n_firms, 0);
+    std::vector<std::vector<bool>> deleted(n_firms, std::vector<bool>(n_agents, false));
+    int round = 0;
+
+    while (true) {
+        // A: Decide all offers from the matching at the START of the round.
+        // Resolve offers without altering vacancies until every firm has acted.
+        auto next_agent_match = agent_match;
+        bool made_proposal = false;
+        for (int firm = 0; firm < n_firms; ++firm) {
+            if (static_cast<int>(firm_match[firm].size()) >= firm_capacities[firm]) continue;
+            while (next_idx[firm] < n_agents
+                   && deleted[firm][firm_order[firm][next_idx[firm]]]) ++next_idx[firm];
+            if (next_idx[firm] == n_agents) continue;
+
+            const int candidate = firm_order[firm][next_idx[firm]++];
+            if (firm_prefs[firm][candidate] < 0) {
+                // The remaining candidates are also unacceptable to this firm.
+                next_idx[firm] = n_agents;
+                continue;
+            }
+            made_proposal = true;
+            if (agent_prefs[candidate][firm] < 0) continue;
+
+            const int current_offer = next_agent_match[candidate];
+            if (current_offer == UNMATCHED
+                || agent_prefs[candidate][firm] > agent_prefs[candidate][current_offer]) {
+                next_agent_match[candidate] = firm;
+            }
+        }
+        if (!made_proposal) break;
+
+        agent_match = std::move(next_agent_match);
+        for (auto &agents : firm_match) agents.clear();
+        for (int agent = 0; agent < n_agents; ++agent) {
+            if (agent_match[agent] != UNMATCHED) firm_match[agent_match[agent]].insert(agent);
+        }
+
+        // B: Resolve every rejection pair, retaining the proposal history.
+        resolve_colleague_conflicts(firm_match, agent_match, deleted, agent_col_prefs, rng, ++round, choice_selector);
+    }
+
+    return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching modified_worker_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
+    std::vector<std::vector<int>> worker_order(n_agents);
+    for (int worker = 0; worker < n_agents; ++worker) {
+        auto &order = worker_order[worker];
+        order.resize(n_firms);
+        std::iota(order.begin(), order.end(), 0);
+        std::sort(order.begin(), order.end(), [&](int left, int right) {
+            if (agent_prefs[worker][left] == agent_prefs[worker][right]) return left < right;
+            return agent_prefs[worker][left] > agent_prefs[worker][right];
+        });
+    }
+
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> agent_match(n_agents, UNMATCHED);
+    std::vector<int> next_idx(n_agents, 0);
+    std::vector<std::vector<bool>> deleted(n_firms, std::vector<bool>(n_agents, false));
+    int round = 0;
+
+    while (true) {
+        // A: Only workers unmatched at the START of the round may propose.
+        // Firms decide after collecting all offers and their current incumbents.
+        std::vector<std::vector<int>> candidates(n_firms);
+        for (int firm = 0; firm < n_firms; ++firm) {
+            candidates[firm].assign(firm_match[firm].begin(), firm_match[firm].end());
+        }
+        bool made_proposal = false;
+        for (int worker = 0; worker < n_agents; ++worker) {
+            if (agent_match[worker] != UNMATCHED) continue;
+            while (next_idx[worker] < n_firms
+                   && deleted[worker_order[worker][next_idx[worker]]][worker]) ++next_idx[worker];
+            if (next_idx[worker] == n_firms) continue;
+
+            const int firm = worker_order[worker][next_idx[worker]++];
+            if (agent_prefs[worker][firm] < 0) {
+                next_idx[worker] = n_firms;
+                continue;
+            }
+            made_proposal = true;
+            if (firm_prefs[firm][worker] < 0) continue;
+            candidates[firm].push_back(worker);
+        }
+        if (!made_proposal) break;
+
+        std::vector<int> next_agent_match(n_agents, UNMATCHED);
+        for (int firm = 0; firm < n_firms; ++firm) {
+            auto &workers = candidates[firm];
+            std::sort(workers.begin(), workers.end(), [&](int left, int right) {
+                if (firm_prefs[firm][left] != firm_prefs[firm][right]) {
+                    return firm_prefs[firm][left] > firm_prefs[firm][right];
+                }
+                const bool left_incumbent = agent_match[left] == firm;
+                const bool right_incumbent = agent_match[right] == firm;
+                if (left_incumbent != right_incumbent) return left_incumbent;
+                return left < right;
+            });
+            firm_match[firm].clear();
+            for (int worker : workers) {
+                if (static_cast<int>(firm_match[firm].size()) >= firm_capacities[firm]) break;
+                firm_match[firm].insert(worker);
+                next_agent_match[worker] = firm;
+            }
+        }
+        agent_match = std::move(next_agent_match);
+
+        // B: Permanently exclude the chosen worker only from this firm.
+        resolve_colleague_conflicts(firm_match, agent_match, deleted, agent_col_prefs, rng, ++round, choice_selector);
     }
 
     return Matching::from_firm_assignment(firm_match, n_agents);

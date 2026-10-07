@@ -308,6 +308,12 @@ Matching MatchingSystem::run_algorithm(
     else if (algorithm_name == "firm_propose_DA") {
         res = firm_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs);
     }
+    else if (algorithm_name == "modified_firm_propose_DA") {
+        res = modified_firm_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs, algorithm_seed);
+    }
+    else if (algorithm_name == "modified_worker_propose_DA") {
+        res = modified_worker_proposing_DA_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs, algorithm_seed);
+    }
     else if (algorithm_name == "simple_match") {
         res = simple_match_algorithm(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
     }

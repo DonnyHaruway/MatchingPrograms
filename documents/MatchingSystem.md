@@ -253,7 +253,9 @@ std::vector<Matching> make_all_matchings() const
 ## `MatchingSystem::run_algorithm`
 
 ```cpp
-Matching run_algorithm(const std::string& algorithm_name) const
+Matching run_algorithm(
+    const std::string& algorithm_name,
+    std::optional<unsigned int> algorithm_seed = std::nullopt) const
 ```
 
 ### 処理内容
@@ -265,8 +267,19 @@ Matching run_algorithm(const std::string& algorithm_name) const
 | `"firm_dictator"` | `firm_dictator_algorithm(...)` |
 | `"doctor_propose_DA"` | `doctor_proposing_DA_algorithm(...)` |
 | `"firm_propose_DA"` | `firm_proposing_DA_algorithm(...)` |
+| `"modified_firm_propose_DA"` | `modified_firm_proposing_DA_algorithm(..., algorithm_seed)` |
+| `"modified_worker_propose_DA"` | `modified_worker_proposing_DA_algorithm(..., algorithm_seed)` |
 
 `firm_propose_DA` は企業が選好スコアの高い個人から提案する DA。定員まで仮受諾を保持し、個人がより好む企業へ移った場合は提案を再開する。同僚選好は考慮しない。双方の負のスコアは受け入れ不可とし、0 は受け入れ可能。企業側の同順位は個人 ID 順、個人側の同順位は現在の企業を維持する。
+
+`modified_firm_propose_DA` は全企業の提案ラウンドごとに、同僚の拒否ペアをランダムな順で
+逐次解消する改良版。`algorithm_seed` はこのアルゴリズム、`modified_worker_propose_DA`、
+`doctor_dictator` に渡される。
+詳細と使用例は [modified_firm_proposing_DA.md](modified_firm_proposing_DA.md) を参照。
+
+`modified_worker_propose_DA` は未マッチの個人が1社ずつ提案する全個人のラウンドごとに、
+同じ拒否ペアの削除処理を行う個人提案版。
+詳細と使用例は [modified_worker_proposing_DA.md](modified_worker_proposing_DA.md) を参照。
 
 各アルゴリズムの計算量は [algorithms.md](algorithms.md) を参照（今後作成予定）。
 
