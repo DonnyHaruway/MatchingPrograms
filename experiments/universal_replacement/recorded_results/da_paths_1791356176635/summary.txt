@@ -1,0 +1,47 @@
+Fixed 5-firm/8-worker profile in problem_5x8.hpp
+Deletion permanent; proposal history retained; one simultaneous proposal round per A.
+Stability is evaluated against ORIGINAL preferences, including individual rationality and feasibility.
+Vacancy blocking is not included. Path IDs are per algorithm, starting from 1.
+
+firm proposing
+Complete choice-path enumeration: YES (pair orders and endpoints)
+Paths: 3
+Stable paths: 3
+Unstable paths: 0
+Distinct final matchings: 3
+Distinct stable matchings: 3
+Distinct full stable matchings: 0
+Replay calls: 5
+Maximum random decisions per path: 2
+Maximum simultaneous conflicts: 1
+Seconds (enumeration, classification and output): 0.000562
+Final assignment vectors are in worker order w1..w8; 0=unmatched, 1..5=firm labels.
+Outcome 1: [2,3,2,3,0,1,1,5] stable=YES paths=1 blockers=[]
+Outcome 2: [3,1,2,0,3,2,1,5] stable=YES paths=2 blockers=[]
+Outcome 3: [3,1,2,3,0,2,1,5] stable=YES paths=3 blockers=[]
+
+doctor (worker) proposing
+Complete choice-path enumeration: YES (pair orders and endpoints)
+Paths: 10
+Stable paths: 8
+Unstable paths: 2
+Distinct final matchings: 5
+Distinct stable matchings: 4
+Distinct full stable matchings: 0
+Replay calls: 19
+Maximum random decisions per path: 4
+Maximum simultaneous conflicts: 1
+Seconds (enumeration, classification and output): 0.001440
+Final assignment vectors are in worker order w1..w8; 0=unmatched, 1..5=firm labels.
+Outcome 4: [2,0,2,3,0,1,3,5] stable=YES paths=4,9 blockers=[]
+Outcome 3: [2,1,2,0,3,4,4,5] stable=YES paths=3,8 blockers=[]
+Outcome 5: [2,1,2,3,0,4,3,5] stable=YES paths=5,10 blockers=[]
+Outcome 2: [2,1,2,4,0,4,3,5] stable=YES paths=2,7 blockers=[]
+Outcome 1: [2,3,2,4,0,1,3,5] stable=NO paths=1,6 blockers=[{"firm":3,"worker":4}]
+
+Hypothesis: worker has NO stable path and firm has AT LEAST ONE stable path.
+Hypothesis holds for this profile and implementation: NO
+Worker has no stable path: NO
+Firm has at least one stable path: YES
+Firm is stable on every path: YES
+Counts of paths are not probability estimates.

@@ -1,0 +1,11 @@
+path_id,outcome_id,stable,matched_workers,deletions,w1,w2,w3,w4,w5,w6,w7,w8,blocking_pairs
+1,1,false,7,r3:f2:w2;r5:f3:w4;r7:f1:w2,f2,f3,f2,f4,unmatched,f1,f3,f5,f3:w4
+2,2,true,7,r3:f2:w2;r5:f3:w4;r7:f1:w6;r8:f3:w5,f2,f1,f2,f4,unmatched,f4,f3,f5,
+3,3,true,7,r3:f2:w2;r5:f3:w4;r7:f1:w6;r8:f3:w7,f2,f1,f2,unmatched,f3,f4,f4,f5,
+4,4,true,6,r3:f2:w2;r5:f3:w5;r7:f1:w2,f2,unmatched,f2,f3,unmatched,f1,f3,f5,
+5,5,true,7,r3:f2:w2;r5:f3:w5;r7:f1:w6,f2,f1,f2,f3,unmatched,f4,f3,f5,
+6,1,false,7,r3:f2:w6;r5:f3:w4;r7:f1:w2,f2,f3,f2,f4,unmatched,f1,f3,f5,f3:w4
+7,2,true,7,r3:f2:w6;r5:f3:w4;r7:f1:w6;r8:f3:w5,f2,f1,f2,f4,unmatched,f4,f3,f5,
+8,3,true,7,r3:f2:w6;r5:f3:w4;r7:f1:w6;r8:f3:w7,f2,f1,f2,unmatched,f3,f4,f4,f5,
+9,4,true,6,r3:f2:w6;r5:f3:w5;r7:f1:w2,f2,unmatched,f2,f3,unmatched,f1,f3,f5,
+10,5,true,7,r3:f2:w6;r5:f3:w5;r7:f1:w6,f2,f1,f2,f3,unmatched,f4,f3,f5,

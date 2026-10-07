@@ -1,0 +1,39 @@
+{
+  "firm": {
+    "paths": 3,
+    "stable_paths": 3,
+    "unstable_paths": 0,
+    "distinct_matchings": 3,
+    "all_decision_branches_verified": true,
+    "independent_round_model_paths": 3,
+    "all_decision_snapshots_match_cpp": true,
+    "round_counts": [
+      4,
+      7,
+      7
+    ],
+    "max_simultaneous_conflicts": 1
+  },
+  "worker": {
+    "paths": 10,
+    "stable_paths": 8,
+    "unstable_paths": 2,
+    "distinct_matchings": 5,
+    "all_decision_branches_verified": true,
+    "independent_round_model_paths": 10,
+    "all_decision_snapshots_match_cpp": true,
+    "round_counts": [
+      8,
+      8,
+      10,
+      8,
+      8,
+      8,
+      8,
+      10,
+      8,
+      8
+    ],
+    "max_simultaneous_conflicts": 1
+  }
+}
