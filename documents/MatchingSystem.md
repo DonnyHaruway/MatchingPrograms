@@ -267,6 +267,8 @@ Matching run_algorithm(
 | `"firm_dictator"` | `firm_dictator_algorithm(...)` |
 | `"doctor_propose_DA"` | `doctor_proposing_DA_algorithm(...)` |
 | `"firm_propose_DA"` | `firm_proposing_DA_algorithm(...)` |
+| `"iterated_doctor_propose_DA"` | `iterated_doctor_proposing_DA_algorithm(..., algorithm_seed)` |
+| `"iterated_firm_propose_DA"` | `iterated_firm_proposing_DA_algorithm(..., algorithm_seed)` |
 | `"modified_firm_propose_DA"` | `modified_firm_proposing_DA_algorithm(..., algorithm_seed)` |
 | `"modified_worker_propose_DA"` | `modified_worker_proposing_DA_algorithm(..., algorithm_seed)` |
 
@@ -280,6 +282,12 @@ Matching run_algorithm(
 `modified_worker_propose_DA` は未マッチの個人が1社ずつ提案する全個人のラウンドごとに、
 同じ拒否ペアの削除処理を行う個人提案版。
 詳細と使用例は [modified_worker_proposing_DA.md](modified_worker_proposing_DA.md) を参照。
+
+`iterated_doctor_propose_DA` と `iterated_firm_propose_DA` は通常のDAを最後まで実行してから、
+拒否ペアを1組だけランダムに選び、その片方を該当企業の選好から削除する。
+削除を累積保持し、全マッチ・提案履歴を初期化してDAを繰り返す。拒否ペアがなくなれば停止する。
+両方とも `algorithm_seed` を使用する。
+詳細と使用例は [iterated_DA.md](iterated_DA.md) を参照。
 
 各アルゴリズムの計算量は [algorithms.md](algorithms.md) を参照（今後作成予定）。
 

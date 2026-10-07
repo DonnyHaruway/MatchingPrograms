@@ -8,18 +8,11 @@
 using namespace MatchingTypes;
 
 namespace {
-void resolve_colleague_conflicts(
-    std::vector<std::set<int>> &firm_match,
-    std::vector<int> &agent_match,
-    std::vector<std::vector<bool>> &deleted,
-    const std::vector<std::vector<int>> &agent_col_prefs,
-    std::mt19937 &rng,
-    int round,
-    const DARandomChoiceSelector &choice_selector
+std::vector<DAConflict> find_colleague_conflicts(
+    const std::vector<std::set<int>> &firm_match,
+    const std::vector<std::vector<int>> &agent_col_prefs
 )
 {
-    // Randomly permute all current rejection pairs across all firms.
-    // Removing workers cannot introduce a new pair, so one pass is enough.
     std::vector<DAConflict> conflicts;
     for (int firm = 0; firm < static_cast<int>(firm_match.size()); ++firm) {
         const auto &agents = firm_match[firm];
@@ -32,6 +25,70 @@ void resolve_colleague_conflicts(
             }
         }
     }
+    return conflicts;
+}
+
+Matching iterated_DA(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector,
+    decltype(&doctor_proposing_DA_algorithm) run_DA
+)
+{
+    std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
+    auto current_firm_prefs = firm_prefs;
+    std::uniform_int_distribution<int> choose_endpoint(0, 1);
+    int iteration = 0;
+
+    while (true) {
+        // A: Run a complete fresh DA, ignoring colleague preferences.
+        auto matching = run_DA(n_agents, n_firms, firm_capacities, agent_prefs, current_firm_prefs);
+        const auto conflicts = find_colleague_conflicts(matching.get_firm_matchs(), agent_col_prefs);
+        if (conflicts.empty()) return matching;
+        ++iteration;
+
+        // B: Uniformly choose ONE rejection pair, then one of its endpoints.
+        std::size_t index = 0;
+        if (conflicts.size() > 1) {
+            index = choice_selector
+                ? choice_selector({DAChoiceKind::pair_order, iteration,
+                                   conflicts.size(), conflicts, matching.get_agent_matchs()})
+                : std::uniform_int_distribution<std::size_t>(0, conflicts.size() - 1)(rng);
+            if (index >= conflicts.size()) throw std::out_of_range("DA pair choice out of range");
+        }
+        const auto &conflict = conflicts[index];
+        const auto endpoint = choice_selector
+            ? choice_selector({DAChoiceKind::removal_endpoint, iteration, 2,
+                               {conflict}, matching.get_agent_matchs()})
+            : static_cast<std::size_t>(choose_endpoint(rng));
+        if (endpoint >= 2) throw std::out_of_range("DA removal choice out of range");
+        const int removed = endpoint == 0 ? conflict.left : conflict.right;
+
+        // C: Retain every deletion in this firm's preferences for the next DA.
+        // Other preferences stay unchanged. Each pass deletes a distinct edge,
+        // so at most n_agents * n_firms deletions can occur.
+        current_firm_prefs[conflict.firm][removed] = -INF;
+    }
+}
+
+void resolve_colleague_conflicts(
+    std::vector<std::set<int>> &firm_match,
+    std::vector<int> &agent_match,
+    std::vector<std::vector<bool>> &deleted,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::mt19937 &rng,
+    int round,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    // Randomly permute all current rejection pairs across all firms.
+    // Removing workers cannot introduce a new pair, so one pass is enough.
+    auto conflicts = find_colleague_conflicts(firm_match, agent_col_prefs);
     if (choice_selector) {
         std::vector<DAConflict> ordered;
         while (conflicts.size() > 1) {
@@ -327,6 +384,36 @@ Matching firm_proposing_DA_algorithm(
     }
 
     return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching iterated_doctor_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, doctor_proposing_DA_algorithm);
+}
+
+Matching iterated_firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, firm_proposing_DA_algorithm);
 }
 
 Matching modified_firm_proposing_DA_algorithm(

@@ -12,7 +12,7 @@
 #include <map>
 #include <optional>
 
-// Optional decision control for exhaustive exploration of the modified DAs.
+// Optional decision control for exhaustive exploration of the modified/iterated DAs.
 enum class DAChoiceKind { pair_order, removal_endpoint };
 
 struct DAConflict {
@@ -23,9 +23,9 @@ struct DAConflict {
 
 struct DARandomChoice {
     DAChoiceKind kind;
-    int round; // One-based proposal round.
+    int round; // One-based proposal round (modified DA) or complete DA run (iterated DA).
     std::size_t option_count;
-    // pair_order: remaining pairs; removal_endpoint: the current pair.
+    // pair_order: remaining pairs (iterated DA chooses just one); removal_endpoint: the current pair.
     std::vector<DAConflict> conflicts;
     std::vector<int> agent_match; // Snapshot before this decision, zero-based IDs.
 };
@@ -81,6 +81,36 @@ Matching firm_proposing_DA_algorithm(
     const std::vector<int> &firm_capacities,
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs
+);
+
+/// @brief DAを最後まで実行し、同じ企業の拒否ペアがなくなるまで最初から再実行する。
+///        拒否ペア (どちらかの方向が -INF) を全企業から1組だけ一様ランダムに選び、
+///        片方を等確率でその企業の選好から削除 (-INF) する。削除をメモリ上で累積保持する。
+///        再実行時に全マッチ・提案履歴を初期化する。入力の選好は変更しない。
+///        doctor/firm proposing の各通常DAの受容・同順位の規則に従う。
+/// @param seed 省略時は std::random_device。指定時は同じ入力・実行環境で再現可能。
+/// @param choice_selector 全探索用。複数ペアからの1組の選択と削除対象を制御する。
+Matching iterated_doctor_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+/// @brief iterated_doctor_proposing_DA_algorithm の企業提案版。同じ削除・再実行規則を使う。
+Matching iterated_firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
 );
 
 /// @brief 全企業の提案ラウンド後に、同僚の拒否ペアをランダムな順で解消する企業提案 DA。
