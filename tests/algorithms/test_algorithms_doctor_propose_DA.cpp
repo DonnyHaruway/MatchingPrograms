@@ -4,6 +4,20 @@
 using namespace std;
 using namespace MatchingTypes;
 
+TEST(Algorithms, DoctorProposeDARejectsNegativePreferences)
+{
+    auto matching = doctor_proposing_DA_algorithm(
+        3, 2, {2, 1}, {{-1, -2}, {2, 1}, {0, -1}}, {{3, -1, 1}, {3, 2, 1}});
+    EXPECT_EQ(matching.get_agent_matchs(), (vector<int>{UNMATCHED, 1, 0}));
+}
+
+TEST(Algorithms, DoctorProposeDAZeroCapacity)
+{
+    auto matching = doctor_proposing_DA_algorithm(
+        2, 2, {0, 2}, {{2, 1}, {2, 1}}, {{2, 1}, {2, 1}});
+    EXPECT_EQ(matching.get_agent_matchs(), (vector<int>{1, 1}));
+}
+
 TEST(Algorithms, DoctorProposeDA1) 
 {
     const int n_agents = 3;

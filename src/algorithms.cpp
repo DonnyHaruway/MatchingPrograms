@@ -232,7 +232,9 @@ Matching doctor_proposing_DA_algorithm(
         int firm = agent_order[agent][next_idx[agent]];
         next_idx[agent]++;
 
-        if (firm_prefs[firm][agent] < 0) {
+        // Sorted preferences: no remaining firm is acceptable to this agent.
+        if (agent_prefs[agent][firm] < 0) continue;
+        if (firm_capacities[firm] <= 0 || firm_prefs[firm][agent] < 0) {
             free_agents.push(agent);
             continue;
         }
