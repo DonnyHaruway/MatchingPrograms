@@ -13,7 +13,7 @@
 
 既に検証用プログラムで全削除分岐の数を測定しており、単なる乱数seedのサンプリングからの予測ではない。
 この見積もりの調査時点では本番用の実験CLIは未追加だった。
-その後追加・実行済みの [exhaustive_da_paths.cpp](exhaustive_da_paths.cpp) と
+その後追加・実行済みの [exhaustive_da_paths.cpp](../exhaustive_da_paths.cpp) と
 [全経路の詳細](da_paths_index.md) でも3経路・10経路という結果が一致した。
 
 ## 何を全探索するか

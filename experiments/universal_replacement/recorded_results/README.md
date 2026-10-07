@@ -9,7 +9,7 @@
 
 各ディレクトリに元の問題、集計、CSVを保存した。
 DAの結果には全選択履歴と独立再計算による全ラウンドのJSONも含む。
-Markdownの[全体分岐図と各経路への一覧](../da_paths_index.md)は実験ディレクトリ直下にある。
+Markdownの[全体分岐図と各経路への一覧](../modified_docs/da_paths_index.md)は`modified_docs` 内にある。
 
 保存結果の検算（`programs` から）：
 

@@ -9,7 +9,7 @@
 
 ## 画像から転記した問題
 
-定員は `(2,2,2,2,1)`。コードの元データは [problem_5x8.hpp](problem_5x8.hpp) にあり、
+定員は `(2,2,2,2,1)`。コードの元データは [problem_5x8.hpp](../problem_5x8.hpp) にあり、
 転記部分は画像と同じ1始まりの番号を使う。以下の順序は左から好ましい順。
 
 | 企業 | 労働者への選好 |
@@ -116,8 +116,8 @@ cmake --build build --target exhaustive_universal_replacement_5x8 -j4
 
 | 参照ログ | 実測全体時間 | 候補1件あたりの全体時間換算 |
 |---|---:|---:|
-| [線形スコア](../stability_simulation/outputs/run_20260907_223836_seed20260902/3x5/summary.txt) | 1,126.241498秒 | 約134マイクロ秒 |
-| [超増加スコア](../stability_simulation/outputs/run_20260930_161902_seed20260902_firmsuperincreasing/3x5/summary.txt) | 784.587957秒 | 約93.3マイクロ秒 |
+| [線形スコア](../../stability_simulation/outputs/run_20260907_223836_seed20260902/3x5/summary.txt) | 1,126.241498秒 | 約134マイクロ秒 |
+| [超増加スコア](../../stability_simulation/outputs/run_20260930_161902_seed20260902_firmsuperincreasing/3x5/summary.txt) | 784.587957秒 | 約93.3マイクロ秒 |
 
 この単価を候補数の上限112,500にそのまま掛けると **約10.5〜15.1秒**。
 これは以前の全体時間（旧安定性2種類の判定・アルゴリズム実行・生成・出力を含む）を
@@ -134,7 +134,7 @@ cmake --build build --target exhaustive_universal_replacement_5x8 -j4
 
 2つの改良DAの各ランダム操作（拒否ペアの処理順・削除する個人）を直接分岐させ、
 各経路の最終マッチングを**元の選好**で判定する正式な調査コードは
-[exhaustive_da_paths.cpp](exhaustive_da_paths.cpp)。通常のDA本体を呼び出し、
+[exhaustive_da_paths.cpp](../exhaustive_da_paths.cpp)。通常のDA本体を呼び出し、
 任意指定できる `DARandomChoiceSelector` でランダム選択を制御する。
 selectorを省略した既存の呼び出しでは、従来の乱択の挙動を維持する。
 
@@ -170,12 +170,12 @@ firm proposingには少なくとも一つ存在する」。この固定問題・
 全選択経路を実行し、firm側3/3経路、doctor/worker側8/10経路が安定だった。
 仮説の「doctor側には安定になる経路が存在しない」は成立しない。
 全ケース・反例・不安定な2経路のblocking pairは
-[結果レポート](recorded_results/da_paths_1791356176635/report_ja.md) に記録した。
+[結果レポート](../recorded_results/da_paths_1791356176635/report_ja.md) に記録した。
 
 独立したPython実装で元の選好から全ケースの安定性、分岐網羅性、CSV/JSONLの一致を検算できる。
 
 ```sh
-python3 experiments/universal_replacement/verify_da_paths.py experiments/universal_replacement/recorded_results/da_paths_1791356176635
+python3 experiments/universal_replacement/modified_docs/verify_da_paths.py experiments/universal_replacement/recorded_results/da_paths_1791356176635
 ```
 
 ### 全経路のMermaid図とラウンド詳細
@@ -188,9 +188,9 @@ firmの3経路、doctorの10経路それぞれの独立したMarkdownに移動�
 全選択履歴・選択時点のマッチング・最終割当が保存済みC++結果と完全一致した場合にのみ出力する。
 
 ```sh
-python3 experiments/universal_replacement/render_da_paths.py experiments/universal_replacement/recorded_results/da_paths_1791356176635
+python3 experiments/universal_replacement/modified_docs/render_da_paths.py experiments/universal_replacement/recorded_results/da_paths_1791356176635
 ```
 
-Markdownはこの実験ディレクトリ直下の `da_paths_index.md`、`firm_path_01.md`〜`03.md`、
+Markdownは `modified_docs` 内の `da_paths_index.md`、`firm_path_01.md`〜`03.md`、
 `worker_path_01.md`〜`10.md` に保存する。
 JSONは実行結果ディレクトリ内の `path_details/verification.json` と `*_round_traces.json` に保存する。

@@ -26,24 +26,24 @@ Bでの削除はその企業について永久。**提案履歴と他の暫定�
 
 定員：f1=2, f2=2, f3=2, f4=2, f5=1。
 
-| 企業 | 選好（左ほど好む） |
-|---|---|
-| f1 | w2 > w6 > w7 > w1 > w5 > w8 > w3 |
-| f2 | w3 > w1 > w6 > w2 > w7 > w4 |
-| f3 | w7 > w4 > w2 > w5 > w1 > w3 > w6 |
-| f4 | w6 > w7 > w4 |
-| f5 | w8 > w1 > w4 > w3 |
+| 企業 | 選好（左ほど好む）               |
+| ---- | -------------------------------- |
+| f1   | w2 > w6 > w7 > w1 > w5 > w8 > w3 |
+| f2   | w3 > w1 > w6 > w2 > w7 > w4      |
+| f3   | w7 > w4 > w2 > w5 > w1 > w3 > w6 |
+| f4   | w6 > w7 > w4                     |
+| f5   | w8 > w1 > w4 > w3                |
 
 | 労働者 | 選好（左ほど好む） |
-|---|---|
-| w1 | f1 > f3 > f2 > f5 |
-| w2 | f2 > f1 > f3 |
-| w3 | f3 > f2 > f5 > f1 |
-| w4 | f2 > f3 > f4 > f5 |
-| w5 | f1 > f3 |
-| w6 | f3 > f2 > f1 > f4 |
-| w7 | f2 > f1 > f3 > f4 |
-| w8 | f1 > f5 |
+| ------ | ------------------ |
+| w1     | f1 > f3 > f2 > f5  |
+| w2     | f2 > f1 > f3       |
+| w3     | f3 > f2 > f5 > f1  |
+| w4     | f2 > f3 > f4 > f5  |
+| w5     | f1 > f3            |
+| w6     | f3 > f2 > f1 > f4  |
+| w7     | f2 > f1 > f3 > f4  |
+| w8     | f1 > f5            |
 
 禁止同僚ペア：{w2,w3}、{w2,w6}、{w2,w8}、{w3,w5}、{w4,w5}、{w5,w7}、{w5,w8}、{w6,w8}、{w7,w8}。
 
@@ -72,11 +72,11 @@ flowchart TD
   classDef unstable fill:#fadddd,stroke:#b32626,color:#222;
 ```
 
-| 経路 | 安定性 | マッチ人数 | 全ラウンドの詳細 |
-|---|---|---:|---|
-| 01 | 安定 | 7 | [経路01](firm_path_01.md) |
-| 02 | 安定 | 7 | [経路02](firm_path_02.md) |
-| 03 | 安定 | 7 | [経路03](firm_path_03.md) |
+| 経路 | 安定性 | マッチ人数 | 全ラウンドの詳細         |
+| ---- | ------ | ---------: | ------------------------ |
+| 01   | 安定   |          7 | [経路01](firm_path_01.md) |
+| 02   | 安定   |          7 | [経路02](firm_path_02.md) |
+| 03   | 安定   |          7 | [経路03](firm_path_03.md) |
 
 ## doctor / worker proposingの全分岐
 
@@ -145,22 +145,22 @@ flowchart TD
   classDef unstable fill:#fadddd,stroke:#b32626,color:#222;
 ```
 
-| 経路 | 安定性 | マッチ人数 | 全ラウンドの詳細 |
-|---|---|---:|---|
-| 01 | 不安定 (f3,w4) | 7 | [経路01](worker_path_01.md) |
-| 02 | 安定 | 7 | [経路02](worker_path_02.md) |
-| 03 | 安定 | 7 | [経路03](worker_path_03.md) |
-| 04 | 安定 | 6 | [経路04](worker_path_04.md) |
-| 05 | 安定 | 7 | [経路05](worker_path_05.md) |
-| 06 | 不安定 (f3,w4) | 7 | [経路06](worker_path_06.md) |
-| 07 | 安定 | 7 | [経路07](worker_path_07.md) |
-| 08 | 安定 | 7 | [経路08](worker_path_08.md) |
-| 09 | 安定 | 6 | [経路09](worker_path_09.md) |
-| 10 | 安定 | 7 | [経路10](worker_path_10.md) |
+| 経路 | 安定性         | マッチ人数 | 全ラウンドの詳細           |
+| ---- | -------------- | ---------: | -------------------------- |
+| 01   | 不安定 (f3,w4) |          7 | [経路01](worker_path_01.md) |
+| 02   | 安定           |          7 | [経路02](worker_path_02.md) |
+| 03   | 安定           |          7 | [経路03](worker_path_03.md) |
+| 04   | 安定           |          6 | [経路04](worker_path_04.md) |
+| 05   | 安定           |          7 | [経路05](worker_path_05.md) |
+| 06   | 不安定 (f3,w4) |          7 | [経路06](worker_path_06.md) |
+| 07   | 安定           |          7 | [経路07](worker_path_07.md) |
+| 08   | 安定           |          7 | [経路08](worker_path_08.md) |
+| 09   | 安定           |          6 | [経路09](worker_path_09.md) |
+| 10   | 安定           |          7 | [経路10](worker_path_10.md) |
 
 ## 検算の記録
 
-[独立再計算の集計](recorded_results/da_paths_1791356176635/path_details/verification.json)、[firm全ラウンドJSON](recorded_results/da_paths_1791356176635/path_details/firm_round_traces.json)、[doctor全ラウンドJSON](recorded_results/da_paths_1791356176635/path_details/worker_round_traces.json)。
+[独立再計算の集計](../recorded_results/da_paths_1791356176635/path_details/verification.json)、[firm全ラウンドJSON](../recorded_results/da_paths_1791356176635/path_details/firm_round_traces.json)、[doctor全ラウンドJSON](../recorded_results/da_paths_1791356176635/path_details/worker_round_traces.json)。
 
 Pythonで別実装したラウンド遷移から全分岐を生成し、全13経路がC++出力と完全一致することを確認した。保存された経路を読むだけの可視化ではない。
 
