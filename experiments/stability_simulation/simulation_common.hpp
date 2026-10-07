@@ -24,9 +24,20 @@ struct CaseSpec {
     std::vector<int> capacities;
     std::uint64_t problem_count;
     std::size_t expected_matching_count;
+    std::string firm_scores = "linear";
 };
 
-CaseSpec case_spec(const std::string &case_name, std::uint64_t random_trials);
+CaseSpec case_spec(
+    const std::string &case_name,
+    std::uint64_t random_trials,
+    const std::string &firm_scores = "linear"
+);
+
+bool is_valid_firm_score_mode(const std::string &firm_scores);
+
+// Converts rank scores 1..n (worst..best) in firm_prefs to 2^(rank-1),
+// preserving the ordinal ranking. "linear" leaves the profile unchanged.
+void apply_firm_score_mode(Instance &instance, const std::string &firm_scores);
 
 std::vector<std::vector<int>> enumerate_assignment_vectors(
     int n_workers,
@@ -45,7 +56,8 @@ std::string instance_fingerprint(const Instance &instance);
 
 std::filesystem::path create_run_directory(
     const std::filesystem::path &output_root,
-    std::uint64_t seed
+    std::uint64_t seed,
+    const std::string &firm_scores = "linear"
 );
 
 void run_case(

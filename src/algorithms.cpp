@@ -29,7 +29,6 @@ Matching doctor_dictator_algorithm(
 
     while (!agent_queue.empty())
     {   
-        std::queue<int> tmp_q = agent_queue;
 
         int agent = agent_queue.front();
         agent_queue.pop();
@@ -205,5 +204,67 @@ Matching doctor_proposing_DA_algorithm(
             firm_heaps[f].pop();
         }
     }
+    return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+Matching firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs
+)
+{
+    std::vector<std::vector<int>> firm_order(n_firms);
+    #pragma omp parallel for
+    for (int f = 0; f < n_firms; ++f) {
+        std::vector<int> agents(n_agents);
+        std::iota(agents.begin(), agents.end(), 0);
+        std::sort(agents.begin(), agents.end(), [&](int a1, int a2){
+            if (firm_prefs[f][a1] == firm_prefs[f][a2]) return a1 < a2;
+            return firm_prefs[f][a1] > firm_prefs[f][a2];
+        });
+        firm_order[f] = agents;
+    }
+
+    std::vector<std::set<int>> firm_match(n_firms);
+    std::vector<int> agent_match(n_agents, UNMATCHED);
+    std::vector<int> next_idx(n_firms, 0);
+    std::queue<int> free_firms;
+    for (int f = 0; f < n_firms; ++f) {
+        if (firm_capacities[f] > 0) free_firms.push(f);
+    }
+
+    while (!free_firms.empty()) {
+        int firm = free_firms.front();
+        free_firms.pop();
+
+        // 空きがある限り、まだ提案していないエージェントに選好順で提案
+        while ((int)firm_match[firm].size() < firm_capacities[firm]
+               && next_idx[firm] < n_agents) {
+            int agent = firm_order[firm][next_idx[firm]];
+            next_idx[firm]++;
+
+            // これ以降も負のスコアなので、この企業の提案を終了
+            if (firm_prefs[firm][agent] < 0) break;
+            if (agent_prefs[agent][firm] < 0) continue;
+
+            int old_firm = agent_match[agent];
+            if (old_firm != UNMATCHED) {
+                // 同順位の場合は現在の企業を維持
+                if (agent_prefs[agent][firm] <= agent_prefs[agent][old_firm]) continue;
+
+                // 満員だった企業に空きができた場合のみ再度キューに追加
+                if ((int)firm_match[old_firm].size() == firm_capacities[old_firm]) {
+                    free_firms.push(old_firm);
+                }
+                firm_match[old_firm].erase(agent);
+            }
+
+            firm_match[firm].insert(agent);
+            agent_match[agent] = firm;
+        }
+    }
+
     return Matching::from_firm_assignment(firm_match, n_agents);
 }

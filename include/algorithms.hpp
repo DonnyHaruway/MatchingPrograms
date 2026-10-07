@@ -49,3 +49,14 @@ Matching doctor_proposing_DA_algorithm(
     const std::vector<std::vector<int>> &agent_prefs,
     const std::vector<std::vector<int>> &firm_prefs
 );
+
+/// @brief 企業が提案する DA アルゴリズム。同僚選好は考慮しない。
+///        スコアは大きいほど好ましく、負のスコアは受け入れ不可。
+///        企業の同順位は agent ID 順、個人の同順位は現在の企業を維持する。
+Matching firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs
+);

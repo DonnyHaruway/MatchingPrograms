@@ -358,6 +358,8 @@ void write_instance_json(
     out << ",\"n_workers\":" << spec.n_workers;
     out << ",\"capacities\":";
     json_vector(out, spec.capacities);
+    out << ",\"firm_scores\":";
+    json_string(out, spec.firm_scores);
     out << ",\"worker_preferences\":";
     json_matrix(out, instance.worker_prefs);
     out << ",\"firm_preferences\":";
@@ -604,6 +606,7 @@ void write_summary_txt(
         << "seed: " << seed << '\n'
         << "n_firms: " << spec.n_firms << '\n'
         << "n_workers: " << spec.n_workers << '\n'
+        << "firm_scores: " << spec.firm_scores << '\n'
         << "capacities: ";
     for (std::size_t i = 0; i < spec.capacities.size(); ++i) {
         if (i) out << ',';
@@ -738,7 +741,7 @@ void write_summary_csv(
         << "weak_simple_only,weak_doctor_only,weak_both_missed,weak_no_solution,"
         << "warning_instances,stable_not_weakly_candidate_count,"
         << "simple_stable_not_weakly,doctor_stable_not_weakly,stable_count_distribution,"
-        << "weak_count_distribution,k_stats,elapsed_seconds\n";
+        << "weak_count_distribution,k_stats,elapsed_seconds,firm_scores\n";
     out << spec.name << ',' << spec.mode << ',' << seed << ',' << spec.n_firms << ','
         << spec.n_workers << ',';
     std::ostringstream capacities;
@@ -786,21 +789,50 @@ void write_summary_csv(
     csv_quote(out, distribution_string(summary.weak_count_distribution));
     out << ',';
     csv_quote(out, k_stats_string(summary));
-    out << ',' << std::fixed << std::setprecision(6) << summary.elapsed_seconds << '\n';
+    out << ',' << std::fixed << std::setprecision(6) << summary.elapsed_seconds << ','
+        << spec.firm_scores << '\n';
 }
 
 } // namespace
 
-CaseSpec case_spec(const std::string &case_name, std::uint64_t random_trials)
+CaseSpec case_spec(
+    const std::string &case_name,
+    std::uint64_t random_trials,
+    const std::string &firm_scores
+)
 {
+    if (!is_valid_firm_score_mode(firm_scores)) {
+        throw std::invalid_argument("unknown firm score mode: " + firm_scores);
+    }
     if (case_name == "2x3") {
-        return {"2x3", "exhaustive", 2, 3, {2, 1}, 18432, 19};
+        return {"2x3", "exhaustive", 2, 3, {2, 1}, 18432, 19, firm_scores};
     }
     if (case_name == "3x5") {
         if (random_trials == 0) throw std::invalid_argument("trials must be positive");
-        return {"3x5", "random", 3, 5, {2, 2, 1}, random_trials, 456};
+        return {"3x5", "random", 3, 5, {2, 2, 1}, random_trials, 456, firm_scores};
     }
     throw std::invalid_argument("unknown case: " + case_name);
+}
+
+bool is_valid_firm_score_mode(const std::string &firm_scores)
+{
+    return firm_scores == "linear" || firm_scores == "superincreasing";
+}
+
+void apply_firm_score_mode(Instance &instance, const std::string &firm_scores)
+{
+    if (firm_scores == "linear") return;
+    if (firm_scores != "superincreasing") {
+        throw std::invalid_argument("unknown firm score mode: " + firm_scores);
+    }
+    for (auto &row : instance.firm_prefs) {
+        for (int &score : row) {
+            if (score < 1 || score > 30) {
+                throw std::logic_error("firm rank score out of range for superincreasing");
+            }
+            score = 1 << (score - 1);
+        }
+    }
 }
 
 std::vector<std::vector<int>> enumerate_assignment_vectors(
@@ -907,7 +939,8 @@ std::string instance_fingerprint(const Instance &instance)
 
 std::filesystem::path create_run_directory(
     const std::filesystem::path &output_root,
-    std::uint64_t seed
+    std::uint64_t seed,
+    const std::string &firm_scores
 )
 {
     std::error_code error;
@@ -927,6 +960,7 @@ std::filesystem::path create_run_directory(
 #endif
     std::ostringstream base;
     base << "run_" << std::put_time(&local, "%Y%m%d_%H%M%S") << "_seed" << seed;
+    if (firm_scores != "linear") base << "_firm" << firm_scores;
     for (int suffix = 0; ; ++suffix) {
         std::filesystem::path candidate = output_root / (
             base.str() + (suffix == 0 ? "" : "_" + std::to_string(suffix)));
@@ -963,9 +997,12 @@ void run_case(
     Summary summary;
     const auto started = std::chrono::steady_clock::now();
     for (std::uint64_t index = 0; index < spec.problem_count; ++index) {
-        const Instance instance = spec.mode == "exhaustive"
+        Instance instance = spec.mode == "exhaustive"
             ? make_exhaustive_2x3_instance(index)
             : make_random_3x5_instance(seed, index);
+        // Applied after generation so each index keeps the same ordinal profile
+        // as the linear run, allowing paired comparison across score modes.
+        apply_firm_score_mode(instance, spec.firm_scores);
 
         MatchingSystem system(spec.n_workers, spec.n_firms);
         system.set_prefs(

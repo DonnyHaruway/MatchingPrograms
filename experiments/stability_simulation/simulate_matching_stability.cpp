@@ -15,6 +15,7 @@ struct Options {
     std::uint64_t trials = stability_simulation::DEFAULT_RANDOM_TRIALS;
     std::uint64_t seed = stability_simulation::DEFAULT_SEED;
     std::filesystem::path output = "experiments/stability_simulation/outputs";
+    std::string firm_scores = "linear";
 };
 
 std::uint64_t parse_u64(const std::string &option, const std::string &value)
@@ -40,6 +41,8 @@ void print_help()
         << "  --seed N             Base seed (default: 20260902)\n"
         << "  --output DIR         Output root (default: "
            "experiments/stability_simulation/outputs)\n"
+        << "  --firm-scores linear|superincreasing\n"
+        << "                       Firm score scale (default: linear)\n"
         << "  --help, -h           Show this help\n";
 }
 
@@ -53,7 +56,7 @@ Options parse_options(int argc, char **argv)
             std::exit(0);
         }
         if (arg != "--case" && arg != "--trials" && arg != "--seed"
-            && arg != "--output") {
+            && arg != "--output" && arg != "--firm-scores") {
             throw std::invalid_argument("unknown option: " + arg);
         }
         if (i + 1 >= argc) throw std::invalid_argument("missing value after " + arg);
@@ -61,11 +64,15 @@ Options parse_options(int argc, char **argv)
         if (arg == "--case") options.case_name = value;
         else if (arg == "--trials") options.trials = parse_u64(arg, value);
         else if (arg == "--seed") options.seed = parse_u64(arg, value);
+        else if (arg == "--firm-scores") options.firm_scores = value;
         else options.output = value;
     }
     if (options.case_name != "2x3" && options.case_name != "3x5"
         && options.case_name != "all") {
         throw std::invalid_argument("--case must be 2x3, 3x5, or all");
+    }
+    if (!stability_simulation::is_valid_firm_score_mode(options.firm_scores)) {
+        throw std::invalid_argument("--firm-scores must be linear or superincreasing");
     }
     if (options.trials == 0) throw std::invalid_argument("--trials must be positive");
     return options;
@@ -78,7 +85,7 @@ int main(int argc, char **argv)
     try {
         const Options options = parse_options(argc, argv);
         const auto run_directory = stability_simulation::create_run_directory(
-            options.output, options.seed);
+            options.output, options.seed, options.firm_scores);
         std::cout << "Output directory: " << run_directory << '\n';
 
         std::vector<std::string> cases;
@@ -86,7 +93,8 @@ int main(int argc, char **argv)
         else cases = {options.case_name};
 
         for (const auto &case_name : cases) {
-            const auto spec = stability_simulation::case_spec(case_name, options.trials);
+            const auto spec = stability_simulation::case_spec(
+                case_name, options.trials, options.firm_scores);
             stability_simulation::run_case(
                 spec, options.seed, run_directory / case_name);
         }

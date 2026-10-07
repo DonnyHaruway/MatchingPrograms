@@ -264,6 +264,9 @@ Matching run_algorithm(const std::string& algorithm_name) const
 | `"doctor_dictator"` | `doctor_dictator_algorithm(...)` |
 | `"firm_dictator"` | `firm_dictator_algorithm(...)` |
 | `"doctor_propose_DA"` | `doctor_proposing_DA_algorithm(...)` |
+| `"firm_propose_DA"` | `firm_proposing_DA_algorithm(...)` |
+
+`firm_propose_DA` は企業が選好スコアの高い個人から提案する DA。定員まで仮受諾を保持し、個人がより好む企業へ移った場合は提案を再開する。同僚選好は考慮しない。双方の負のスコアは受け入れ不可とし、0 は受け入れ可能。企業側の同順位は個人 ID 順、個人側の同順位は現在の企業を維持する。
 
 各アルゴリズムの計算量は [algorithms.md](algorithms.md) を参照（今後作成予定）。
 

@@ -2,6 +2,7 @@
 
 #include "MatchingSystem.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <set>
 #include <stdexcept>
@@ -50,6 +51,30 @@ int main()
     const auto first = system.run_algorithm("doctor_dictator", algorithm_seed);
     const auto second = system.run_algorithm("doctor_dictator", algorithm_seed);
     require(first == second, "seeded doctor_dictator output must be reproducible");
+
+    auto superincreasing = random_a;
+    apply_firm_score_mode(superincreasing, "superincreasing");
+    for (std::size_t firm = 0; firm < random_a.firm_prefs.size(); ++firm) {
+        auto sorted = superincreasing.firm_prefs[firm];
+        std::sort(sorted.begin(), sorted.end());
+        int lower_sum = 0;
+        for (int score : sorted) {
+            require(score > lower_sum, "firm scores must be superincreasing");
+            lower_sum += score;
+        }
+        for (std::size_t a = 0; a < random_a.firm_prefs[firm].size(); ++a) {
+            for (std::size_t b = 0; b < random_a.firm_prefs[firm].size(); ++b) {
+                require(
+                    (random_a.firm_prefs[firm][a] < random_a.firm_prefs[firm][b])
+                        == (superincreasing.firm_prefs[firm][a]
+                            < superincreasing.firm_prefs[firm][b]),
+                    "superincreasing transform must preserve firm rankings");
+            }
+        }
+    }
+    require(
+        instance_fingerprint(superincreasing) != instance_fingerprint(random_a),
+        "superincreasing transform must change 3x5 firm scores");
 
     std::cout << "simulation_common checks passed\n";
     return 0;

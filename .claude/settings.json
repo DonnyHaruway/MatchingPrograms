@@ -4,7 +4,10 @@
       "Bash(cmake --build . --target test_ms_generate -j 8)",
       "Bash(ctest -R \"PreferenceGeneration\" --output-on-failure)",
       "Bash(cmake --build . -j 8)",
-      "Bash(ctest --output-on-failure)"
+      "Bash(ctest --output-on-failure)",
+      "Bash(./build/experiments/stability_simulation/simulate_matching_stability --case 3x5 --trials 18432 --seed 20260902 --output /Users/shimizutaichi/research/programs/experiments/stability_simulation/outputs)",
+      "Bash(time ./build/experiments/stability_simulation/test_stability_simulation_common)",
+      "Bash(git add *)"
     ]
   }
 }

@@ -24,6 +24,8 @@ Options:
   case is always fully exhaustive
 - `--seed N` (default `20260902`)
 - `--output DIR` (default `experiments/stability_simulation/outputs`)
+- `--firm-scores linear|superincreasing` (default `linear`): firm score
+  scale; see "Firm score modes" below
 - `--help`
 
 Each invocation creates a new `run_YYYYMMDD_HHMMSS_seedN[_suffix]` directory,
@@ -41,6 +43,19 @@ and a firm in the 5-worker case uses 5, 4, 3, 2, 1.
 Colleague preferences are directed binary scores. Diagonal entries are 0 and
 each off-diagonal entry is independently either 0 (acceptable) or `-INF`
 (rejected). Consequently asymmetric rejection is included.
+
+### Firm score modes
+
+With `--firm-scores linear` (the default), firm scores are the rank scores
+described above. With `--firm-scores superincreasing`, each firm rank score
+`r` is replaced by `2^(r-1)` after the profile is generated; in the 5-worker
+case the scores are 16, 8, 4, 2, 1, so each score exceeds the sum of all lower
+ones. Worker scores and colleague preferences are unchanged. Because the
+transform is applied after generation, a given `(seed, trial)` has the same
+ordinal profile in both modes, so runs can be compared instance by instance.
+Non-linear runs get a `_firm<mode>` run-directory suffix, and the mode is
+recorded as `firm_scores` in `summary.txt`, as the last `summary.csv` column,
+and in each JSONL record.
 
 ### Exhaustive 2x3 case
 
