@@ -30,12 +30,12 @@ struct Result {
     double seconds = 0;
 };
 
-fs::path create_run_directory(const fs::path &root)
+fs::path create_run_directory(const fs::path &root, const std::string &prefix = "da_paths_")
 {
     fs::create_directories(root);
     const auto stamp = std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::system_clock::now().time_since_epoch()).count();
-    const std::string name = "da_paths_" + std::to_string(stamp);
+    const std::string name = prefix + std::to_string(stamp);
     for (std::uint64_t suffix = 0; ; ++suffix) {
         const auto path = root / (name + (suffix ? "_" + std::to_string(suffix) : ""));
         if (fs::create_directory(path)) return path;
@@ -113,6 +113,16 @@ Result investigate(const std::string &algorithm, const Problem &problem, const f
     Result result;
     const auto started = std::chrono::steady_clock::now();
     const auto runner = [&](const DARandomChoiceSelector &selector) {
+        if (algorithm == "iterated_doctor") {
+            return iterated_doctor_proposing_DA_algorithm(
+                8, 5, problem.capacities, problem.agent_prefs,
+                problem.firm_prefs, problem.colleague_prefs, 0, selector);
+        }
+        if (algorithm == "iterated_firm") {
+            return iterated_firm_proposing_DA_algorithm(
+                8, 5, problem.capacities, problem.agent_prefs,
+                problem.firm_prefs, problem.colleague_prefs, 0, selector);
+        }
         return algorithm == "firm"
             ? modified_firm_proposing_DA_algorithm(8, 5, problem.capacities, problem.agent_prefs,
                                                   problem.firm_prefs, problem.colleague_prefs, 0, selector)
@@ -197,7 +207,7 @@ Result investigate(const std::string &algorithm, const Problem &problem, const f
 void write_result(std::ostream &out, const std::string &algorithm, const Result &result)
 {
     out << "\n" << algorithm << " proposing\n"
-        << "Complete choice-path enumeration: YES (pair orders and endpoints)\n"
+        << "Complete choice-path enumeration: YES (all random decisions)\n"
         << "Paths: " << result.stats.completed_paths << '\n'
         << "Stable paths: " << result.stable_paths << '\n'
         << "Unstable paths: " << result.stats.completed_paths - result.stable_paths << '\n'
@@ -229,15 +239,44 @@ int main(int argc, char **argv)
 {
     try {
         fs::path output_root = "experiments/universal_replacement/outputs";
+        std::string iterated_side;
         if (argc == 2 && std::string(argv[1]) == "--help") {
-            std::cout << "Usage: exhaustive_da_paths_5x8 [--output DIR]\n";
+            std::cout << "Usage: exhaustive_da_paths_5x8 [--iterated-doctor | --iterated-firm] [--output DIR]\n";
             return 0;
         }
-        if (argc == 3 && std::string(argv[1]) == "--output") output_root = argv[2];
-        else if (argc != 1) throw std::invalid_argument("expected --output DIR or --help");
+        for (int index = 1; index < argc; ++index) {
+            const std::string argument = argv[index];
+            if (argument == "--iterated-doctor" || argument == "--iterated-firm") {
+                if (!iterated_side.empty()) throw std::invalid_argument("select only one iterated proposing side");
+                iterated_side = argument == "--iterated-doctor" ? "doctor" : "firm";
+            }
+            else if (argument == "--output" && index + 1 < argc) output_root = argv[++index];
+            else throw std::invalid_argument("expected --iterated-doctor, --iterated-firm, --output DIR or --help");
+        }
         const auto problem = screenshot_problem_5x8();
-        const auto directory = create_run_directory(output_root);
+        const auto directory = create_run_directory(output_root,
+            !iterated_side.empty() ? "iterated_" + iterated_side + "_paths_" : "da_paths_");
         write_problem(directory / "problem.json", problem);
+        if (!iterated_side.empty()) {
+            const auto result = investigate("iterated_" + iterated_side, problem, directory);
+            std::ostringstream summary;
+            summary << "Fixed 5-firm/8-worker profile in problem_5x8.hpp\n"
+                    << "Complete " << iterated_side << " DA per A; select ONE conflict and ONE endpoint per B.\n"
+                    << "Deletions accumulate in firm preferences; each DA restarts from empty matching.\n"
+                    << "Stability is evaluated against ORIGINAL preferences. Vacancy blocking is not included.\n";
+            write_result(summary, "iterated " + iterated_side, result);
+            summary << "\nHas NO stable path: " << (result.stable_paths == 0 ? "YES" : "NO") << '\n'
+                    << "Has AT LEAST ONE stable path: " << (result.stable_paths > 0 ? "YES" : "NO") << '\n'
+                    << "Stable on EVERY path: "
+                    << (result.stable_paths == result.stats.completed_paths ? "YES" : "NO") << '\n'
+                    << "Counts of paths are not probability estimates.\n";
+            std::ofstream out(directory / "summary.txt");
+            out.exceptions(std::ios::failbit | std::ios::badbit);
+            out << summary.str();
+            out.close();
+            std::cout << summary.str() << "Outputs: " << fs::absolute(directory) << '\n';
+            return 0;
+        }
         const auto firm = investigate("firm", problem, directory);
         const auto worker = investigate("worker", problem, directory);
         const bool hypothesis = worker.stable_paths == 0 && firm.stable_paths > 0;

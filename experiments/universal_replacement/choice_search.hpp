@@ -21,7 +21,8 @@ struct ChoiceSearchStats {
 
 // Run the actual algorithm from the start with each decision prefix. At the
 // next unspecified decision, recurse into ALL alternatives. Never sample seeds.
-// Pair-order choices are also enumerated, including orders with skipped pairs.
+// For modified DAs, enumerate pair orders including orders with skipped pairs.
+// For iterated DAs, enumerate the single selected pair before each restart.
 template<class Runner, class Visitor>
 ChoiceSearchStats enumerate_choice_paths(Runner runner, Visitor visitor)
 {
