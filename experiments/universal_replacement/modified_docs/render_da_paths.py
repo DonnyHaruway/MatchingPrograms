@@ -240,11 +240,22 @@ def render_path(model, path, replay):
     if path["stable"]:
         lines += ["universal-replacement blocking pairは **存在しない**。"]
     else:
-        lines += ["blocking pairは **(f3,w4)**。", "",
-                  "- w4は現在のf4よりf3を好む。", "- f3は{w2,w7}で満員。",
-                  "- f3はw2よりw4を好む。", "- w2を外すと{w4,w7}、w7を外すと{w2,w4}になり、両方ともfeasible。", "",
-                  "w4はR5でf3から永久削除されているが、安定性は元の選好で判定するため、この組をブロッキングとして数える。"]
-    lines += ["", "空席への追加によるblockingは今回の定義に含まない。", ""]
+        for pair in path["blocking_pairs"]:
+            f, w = pair["firm"] - 1, pair["worker"] - 1
+            members = [other for other, label in enumerate(path["assignment"]) if label == f + 1]
+            current = path["assignment"][w]
+            current_score = 0 if current == 0 else model.wp[w][current - 1]
+            lines += [f"**(f{f+1}, w{w+1})** がblocking pair。", "",
+                      f"- 個人は移動先を現在より好む（{model.wp[w][f]} > {current_score}）。"]
+            if len(members) < model.cap[f]:
+                require(model.fp[f][w] > 0 and all(not model.conflict(w, other) for other in members), "vacancy witness")
+                lines += [f"- f{f+1}には空席があり、追加スコアは{model.fp[f][w]} > 0。",
+                          "- 追加後に禁止同僚ペアがない。", ""]
+            else:
+                lines += [f"- f{f+1}は満員で、候補者を少なくとも1人の在籍者より好む。",
+                          "- どの在籍者を候補者と置換しても禁止同僚ペアがない。", ""]
+        lines += ["安定性は削除前の元の選好で判定するため、DA中に永久削除された組もブロッキングになりうる。"]
+    lines += ["", "空席への追加によるblockingも安定性の定義に含める。", ""]
     return "\n".join(lines)
 
 
@@ -327,7 +338,9 @@ def main(directory):
         index += ["", "| 経路 | 安定性 | マッチ人数 | 全ラウンドの詳細 |", "|---|---|---:|---|"]
         for path in paths:
             filename = f'{algorithm}_path_{path["path_id"]:02d}.md'
-            index.append(f'| {path["path_id"]:02d} | {"安定" if path["stable"] else "不安定 (f3,w4)"} | {path["matched_workers"]} | [経路{path["path_id"]:02d}]({filename}) |')
+            status = "安定" if path["stable"] else "不安定 " + "、".join(
+                f'(f{pair["firm"]},w{pair["worker"]})' for pair in path["blocking_pairs"])
+            index.append(f'| {path["path_id"]:02d} | {status} | {path["matched_workers"]} | [経路{path["path_id"]:02d}]({filename}) |')
         index += [""]
         summary[algorithm] = dict(verification[algorithm], independent_round_model_paths=len(replays),
             all_decision_snapshots_match_cpp=True, round_counts=[len(p["trace"]) for p in replays],
@@ -335,7 +348,7 @@ def main(directory):
         (data_output / f"{algorithm}_round_traces.json").write_text(json.dumps(replays,ensure_ascii=False,indent=2))
     index += ["## 検算の記録", "", f"[独立再計算の集計]({data_link}/verification.json)、[firm全ラウンドJSON]({data_link}/firm_round_traces.json)、[doctor全ラウンドJSON]({data_link}/worker_round_traces.json)。", "",
               "Pythonで別実装したラウンド遷移から全分岐を生成し、全13経路がC++出力と完全一致することを確認した。保存された経路を読むだけの可視化ではない。", "",
-              "安定性は削除前の元の選好で検算。空席への追加blockingは含まない。経路数の比を成功確率とは解釈しない。", ""]
+              "安定性は削除前の元の選好で検算。空席への追加blockingも含める。経路数の比を成功確率とは解釈しない。", ""]
     (output / "da_paths_index.md").write_text("\n".join(index))
     (data_output / "verification.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n")
     print(json.dumps(summary,ensure_ascii=False,indent=2))

@@ -8,6 +8,8 @@
 using namespace MatchingTypes;
 
 namespace {
+enum class DARemovalPolicy { random, history_priority, firm_preference };
+
 std::vector<DAConflict> find_colleague_conflicts(
     const std::vector<std::set<int>> &firm_match,
     const std::vector<std::vector<int>> &agent_col_prefs
@@ -37,11 +39,17 @@ Matching iterated_DA(
     const std::vector<std::vector<int>> &agent_col_prefs,
     std::optional<unsigned int> seed,
     const DARandomChoiceSelector &choice_selector,
-    decltype(&doctor_proposing_DA_algorithm) run_DA
+    decltype(&doctor_proposing_DA_algorithm) run_DA,
+    DARemovalPolicy removal_policy = DARemovalPolicy::random
 )
 {
     std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
     auto current_firm_prefs = firm_prefs;
+    // Zero means this worker has never been retained when resolving a pair at this firm.
+    std::vector<std::vector<int>> first_retained_iteration;
+    if (removal_policy == DARemovalPolicy::history_priority) {
+        first_retained_iteration.assign(n_firms, std::vector<int>(n_agents, 0));
+    }
     std::uniform_int_distribution<int> choose_endpoint(0, 1);
     int iteration = 0;
 
@@ -52,7 +60,7 @@ Matching iterated_DA(
         if (conflicts.empty()) return matching;
         ++iteration;
 
-        // B: Uniformly choose ONE rejection pair, then one of its endpoints.
+        // B: Uniformly choose ONE rejection pair, then apply the removal policy.
         std::size_t index = 0;
         if (conflicts.size() > 1) {
             index = choice_selector
@@ -62,12 +70,41 @@ Matching iterated_DA(
             if (index >= conflicts.size()) throw std::out_of_range("DA pair choice out of range");
         }
         const auto &conflict = conflicts[index];
-        const auto endpoint = choice_selector
-            ? choice_selector({DAChoiceKind::removal_endpoint, iteration, 2,
-                               {conflict}, matching.get_agent_matchs()})
-            : static_cast<std::size_t>(choose_endpoint(rng));
+        std::size_t endpoint = 0;
+        bool random_endpoint = true;
+        if (removal_policy == DARemovalPolicy::history_priority) {
+            const int left_round = first_retained_iteration[conflict.firm][conflict.left];
+            const int right_round = first_retained_iteration[conflict.firm][conflict.right];
+            if (left_round != 0 || right_round != 0) {
+                // Retain a previously retained worker; if both have history, retain the older one.
+                // Distinct workers cannot first be retained in the same iteration.
+                endpoint = left_round == 0 ? 0
+                    : right_round == 0 ? 1
+                    : left_round > right_round ? 0 : 1;
+                random_endpoint = false;
+            }
+        } else if (removal_policy == DARemovalPolicy::firm_preference) {
+            const int left_score = firm_prefs[conflict.firm][conflict.left];
+            const int right_score = firm_prefs[conflict.firm][conflict.right];
+            // Higher scores are preferred. Equal scores retain the smaller worker ID.
+            endpoint = left_score < right_score ? 0
+                : right_score < left_score ? 1
+                : conflict.left > conflict.right ? 0 : 1;
+            random_endpoint = false;
+        }
+        if (random_endpoint) {
+            endpoint = choice_selector
+                ? choice_selector({DAChoiceKind::removal_endpoint, iteration, 2,
+                                   {conflict}, matching.get_agent_matchs()})
+                : static_cast<std::size_t>(choose_endpoint(rng));
+        }
         if (endpoint >= 2) throw std::out_of_range("DA removal choice out of range");
         const int removed = endpoint == 0 ? conflict.left : conflict.right;
+        if (removal_policy == DARemovalPolicy::history_priority) {
+            const int retained = endpoint == 0 ? conflict.right : conflict.left;
+            auto &first_round = first_retained_iteration[conflict.firm][retained];
+            if (first_round == 0) first_round = iteration;
+        }
 
         // C: Retain every deletion in this firm's preferences for the next DA.
         // Other preferences stay unchanged. Each pass deletes a distinct edge,
@@ -414,6 +451,70 @@ Matching iterated_firm_proposing_DA_algorithm(
 {
     return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
                        agent_col_prefs, seed, choice_selector, firm_proposing_DA_algorithm);
+}
+
+Matching iterated_doctor_proposing_DA_history_priority_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, doctor_proposing_DA_algorithm,
+                       DARemovalPolicy::history_priority);
+}
+
+Matching iterated_firm_proposing_DA_history_priority_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, firm_proposing_DA_algorithm,
+                       DARemovalPolicy::history_priority);
+}
+
+Matching iterated_doctor_proposing_DA_firm_preference_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, doctor_proposing_DA_algorithm,
+                       DARemovalPolicy::firm_preference);
+}
+
+Matching iterated_firm_proposing_DA_firm_preference_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    return iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                       agent_col_prefs, seed, choice_selector, firm_proposing_DA_algorithm,
+                       DARemovalPolicy::firm_preference);
 }
 
 Matching modified_firm_proposing_DA_algorithm(

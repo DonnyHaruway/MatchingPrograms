@@ -76,8 +76,8 @@ public:
     {
         const auto checked = std::accumulate(feasible_by_size_.begin(), feasible_by_size_.end(), std::uint64_t{0});
         const auto stable = std::accumulate(stable_by_size_.begin(), stable_by_size_.end(), std::uint64_t{0});
-        if (checked == 0 || stable_by_size_[0] != 1) {
-            throw std::logic_error("enumeration failed to include the unique stable empty matching");
+        if (checked == 0 || feasible_by_size_[0] != 1) {
+            throw std::logic_error("enumeration failed to include the unique empty matching");
         }
         out << "Exhaustive universal-replacement stability search\n"
             << "Complete enumeration: YES (no early stop)\n"
@@ -104,7 +104,7 @@ public:
             }
             out << '\n';
         }
-        out << "\nVacancy addition blocking is not part of this stability definition.\n"
+        out << "\nVacancy addition blocking is included in this stability definition.\n"
             << "Elapsed seconds (enumeration and CSV export): " << std::fixed << std::setprecision(6) << elapsed << '\n';
     }
 

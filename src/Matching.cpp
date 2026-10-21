@@ -256,7 +256,7 @@ std::vector<std::pair<int,int>> Matching::universal_replacement_blocking_pairs(
     std::vector<std::pair<int,int>> result;
     for (int firm = 0; firm < n_firm; ++firm) {
         const auto &incumbents = firm_matchs[firm];
-        if (static_cast<int>(incumbents.size()) != firm_capacities[firm]) continue;
+        if (static_cast<int>(incumbents.size()) > firm_capacities[firm]) continue;
 
         for (int candidate = 0; candidate < n_agent; ++candidate) {
             if (agent_matchs[candidate] == firm) continue;
@@ -264,6 +264,18 @@ std::vector<std::pair<int,int>> Matching::universal_replacement_blocking_pairs(
             const int current_score = current_firm == UNMATCHED
                 ? 0 : agent_prefs[candidate][current_firm];
             if (agent_prefs[candidate][firm] <= current_score) continue;
+
+            if (static_cast<int>(incumbents.size()) < firm_capacities[firm]) {
+                // A vacancy addition must improve the firm's additive score and
+                // preserve acceptance in both colleague directions.
+                if (firm_prefs[firm][candidate] <= 0) continue;
+                auto after = incumbents;
+                after.insert(candidate);
+                if (has_no_colleague_rejections(after, agent_col_prefs)) {
+                    result.emplace_back(candidate, firm);
+                }
+                continue;
+            }
 
             bool has_less_preferred_incumbent = false;
             for (int incumbent : incumbents) {

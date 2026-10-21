@@ -31,7 +31,7 @@ struct DARandomChoice {
 };
 
 // Return an index in [0, option_count). Endpoints use 0=left, 1=right.
-// Empty selector retains the original shuffle and random endpoint selection.
+// Controls only random decisions; deterministic removal policies do not call it for endpoints.
 using DARandomChoiceSelector = std::function<std::size_t(const DARandomChoice &)>;
 
 /// @brief agent をランダムな優先順で処理する dictator アルゴリズム。
@@ -103,6 +103,61 @@ Matching iterated_doctor_proposing_DA_algorithm(
 
 /// @brief iterated_doctor_proposing_DA_algorithm の企業提案版。同じ削除・再実行規則を使う。
 Matching iterated_firm_proposing_DA_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+/// @brief iterated DA の履歴優先版。企業・個人ごとに、拒否ペアで初めて残した反復を記録する。
+///        片方に履歴があればその個人を残し、両方にあれば初めて残した反復が早い方を残す。
+///        両方に履歴がなければ等確率で片方を削除する。履歴の初回反復は上書きしない。
+///        ペア選択・削除の累積・DAの再実行は通常の iterated DA と同じ。
+/// @param choice_selector ペア選択と、両方に履歴がない場合の乱択のみを制御する。
+Matching iterated_doctor_proposing_DA_history_priority_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+/// @brief iterated_doctor_proposing_DA_history_priority_algorithm の企業提案版。
+Matching iterated_firm_proposing_DA_history_priority_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+/// @brief iterated DA の企業選好優先版。拒否ペアのうち企業の選好スコアが低い方を削除する。
+///        同点なら個人 ID が大きい方を削除する。ペア選択は一様ランダム。
+///        削除の累積・DAの再実行は通常の iterated DA と同じ。
+/// @param choice_selector 複数ペアからの1組の乱択のみを制御する。
+Matching iterated_doctor_proposing_DA_firm_preference_algorithm(
+    const int &n_agents,
+    const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+/// @brief iterated_doctor_proposing_DA_firm_preference_algorithm の企業提案版。
+Matching iterated_firm_proposing_DA_firm_preference_algorithm(
     const int &n_agents,
     const int &n_firms,
     const std::vector<int> &firm_capacities,

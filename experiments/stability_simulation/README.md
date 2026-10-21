@@ -1,5 +1,9 @@
 # Matching stability simulation
 
+For the 5-firm / 8-worker comparison of all six iterated DA variants, with
+configurable exact colleague rejection-pair counts and weak/universal-replacement
+stability rates, see [iterated_da_comparison.md](iterated_da_comparison.md).
+
 This experiment evaluates `simple_match` (firm-proposing) and
 `doctor_dictator` (worker-proposing) on the same preference profile. Every
 capacity-feasible matching is also evaluated with both `Matching::is_stable`

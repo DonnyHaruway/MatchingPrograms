@@ -37,7 +37,11 @@ def verify(directory):
         for f, team in enumerate(members):
             for w in range(workers):
                 current = 0 if assignment[w] == 0 else wp[w][assignment[w] - 1]
-                if wp[w][f] <= current or len(team) != capacities[f]:
+                if wp[w][f] <= current:
+                    continue
+                if len(team) < capacities[f]:
+                    if fp[f][w] > 0 and feasible(team + [w]):
+                        blockers.append({"firm": f + 1, "worker": w + 1})
                     continue
                 if not any(fp[f][w] > fp[f][incumbent] for incumbent in team):
                     continue

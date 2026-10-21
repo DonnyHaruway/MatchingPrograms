@@ -119,13 +119,15 @@ class Model:
         result = []
         for firm in range(1, self.f + 1):
             members = team(assignment, firm)
-            if len(members) != self.cap[firm - 1]:
-                continue
             for worker, current in enumerate(assignment, 1):
                 if current == firm:
                     continue
                 current_score = self.wp[worker - 1][current - 1] if current else 0
                 if self.wp[worker - 1][firm - 1] <= current_score:
+                    continue
+                if len(members) < self.cap[firm - 1]:
+                    if self.fp[firm - 1][worker - 1] > 0 and self.compatible(members + [worker]):
+                        result.append({"firm": firm, "worker": worker})
                     continue
                 if not any(self.fp[firm - 1][worker - 1] > self.fp[firm - 1][incumbent - 1]
                            for incumbent in members):
@@ -191,6 +193,13 @@ def blocker_witness(model, assignment, blocker):
     current = assignment[worker - 1]
     current_label = f"f{current}" if current else "未マッチ"
     current_score = model.wp[worker - 1][current - 1] if current else 0
+    if len(members) < model.cap[firm - 1]:
+        after = sorted(members + [worker])
+        require(model.fp[firm - 1][worker - 1] > 0 and model.compatible(after), "vacancy witness infeasible")
+        return [f"### (f{firm}, w{worker}) の空席への追加blocking", "",
+                f"f{firm}には空席があり、w{worker}は現在の{current_label}よりf{firm}を好む"
+                f"（{model.wp[worker - 1][firm - 1]} > {current_score}）。",
+                f"企業の追加スコアは{model.fp[firm - 1][worker - 1]} > 0。追加後の{workers_text(after)}に禁止同僚ペアはない。"]
     inferior = [incumbent for incumbent in members
                 if model.fp[firm - 1][worker - 1] > model.fp[firm - 1][incumbent - 1]]
     lines = [f"### (f{firm}, w{worker}) がblocking pairであること", "",
@@ -298,7 +307,7 @@ def render_index(model, paths, relative_run, verification):
         f'| 最大同時禁止ペア | {verification["max_simultaneous_conflicts"]} |',
         "| 経路ごとの削除回数 | 1〜3 |", "| 経路ごとの完全DA実行回数 | 2〜4 |", "",
         "本資料でのUR安定は、定員・個人合理性・同僚制約を満たし、元の選好に対する"
-        "universal-replacement blocking pairがないこと。空席への追加blockingは含めない。", "",
+        "universal-replacement blocking pairと空席への追加blockingがないこと。", "",
         "## 全経路の分岐図", "",
         "各分岐の前には、同僚選好を無視したDAを**最後まで**実行する。各矢印の後に削除を累積し、"
         "全員未マッチ・提案履歴なしから再実行する。", "", "```mermaid", "flowchart TD"]

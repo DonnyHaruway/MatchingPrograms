@@ -41,7 +41,7 @@ TEST(DAChoiceEnumeration, RejectsInvalidSelectorChoices)
         [](const DARandomChoice &choice) { return choice.option_count; }), out_of_range);
 }
 
-TEST(DAChoiceEnumeration, ScreenshotHypothesisIsFalseOnExhaustivePaths)
+TEST(DAChoiceEnumeration, ScreenshotWithVacancyBlockingHasOnlyFirmStablePaths)
 {
     const auto problem = screenshot_problem_5x8();
     for (bool firm : {true, false}) {
@@ -64,12 +64,12 @@ TEST(DAChoiceEnumeration, ScreenshotHypothesisIsFalseOnExhaustivePaths)
                     stable_outcomes.insert(matching.get_agent_matchs());
                 }
             });
-        // Independent prototype using a temporary copy of the original C++
-        // algorithm previously established these complete path counts.
+        // Independent Python verifier checks vacancy additions and universal
+        // replacements against every final C++ assignment on all paths.
         EXPECT_EQ(stats.completed_paths, firm ? 3u : 10u);
-        EXPECT_EQ(stable_paths, firm ? 3u : 8u);
+        EXPECT_EQ(stable_paths, firm ? 2u : 0u);
         EXPECT_EQ(outcomes.size(), firm ? 3u : 5u);
-        EXPECT_EQ(stable_outcomes.size(), firm ? 3u : 4u);
+        EXPECT_EQ(stable_outcomes.size(), firm ? 2u : 0u);
         EXPECT_EQ(stats.max_simultaneous_conflicts, 1u);
     }
 }

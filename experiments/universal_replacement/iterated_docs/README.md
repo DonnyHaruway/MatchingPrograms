@@ -23,7 +23,8 @@ firm版の詳細は [01](firm_path_01.md)、[02](firm_path_02.md)、[03](firm_pa
 firm版では手順1の通常DAをfirm proposingに置き換える。他の削除・初期化・判定規則は同じ。
 
 判定は削除前の**元の選好**に対するuniversal-replacement安定性。
-企業が満員の場合の置換blockingを対象とし、空席への追加blockingは含まない。
+2026-10-14以降の実装は、企業が満員の場合の置換blockingに加えて空席への追加blockingも含む。
+このフォルダの修正前に保存・生成した報告は空席blockingを除外した旧判定の記録であり、現在の判定で再実行・再検算する必要がある。
 従来のラウンドごとの改良DAの資料は [modified_docs](../modified_docs/da_paths_index.md) にある。
 
 ## 再実行

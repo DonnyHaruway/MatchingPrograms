@@ -263,7 +263,7 @@ int main(int argc, char **argv)
             summary << "Fixed 5-firm/8-worker profile in problem_5x8.hpp\n"
                     << "Complete " << iterated_side << " DA per A; select ONE conflict and ONE endpoint per B.\n"
                     << "Deletions accumulate in firm preferences; each DA restarts from empty matching.\n"
-                    << "Stability is evaluated against ORIGINAL preferences. Vacancy blocking is not included.\n";
+                    << "Stability is evaluated against ORIGINAL preferences. Vacancy blocking is included.\n";
             write_result(summary, "iterated " + iterated_side, result);
             summary << "\nHas NO stable path: " << (result.stable_paths == 0 ? "YES" : "NO") << '\n'
                     << "Has AT LEAST ONE stable path: " << (result.stable_paths > 0 ? "YES" : "NO") << '\n'
@@ -284,7 +284,7 @@ int main(int argc, char **argv)
         summary << "Fixed 5-firm/8-worker profile in problem_5x8.hpp\n"
                 << "Deletion permanent; proposal history retained; one simultaneous proposal round per A.\n"
                 << "Stability is evaluated against ORIGINAL preferences, including individual rationality and feasibility.\n"
-                << "Vacancy blocking is not included. Path IDs are per algorithm, starting from 1.\n";
+                << "Vacancy blocking is included. Path IDs are per algorithm, starting from 1.\n";
         write_result(summary, "firm", firm);
         write_result(summary, "doctor (worker)", worker);
         summary << "\nHypothesis: worker has NO stable path and firm has AT LEAST ONE stable path.\n"

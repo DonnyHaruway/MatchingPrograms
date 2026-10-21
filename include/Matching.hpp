@@ -89,11 +89,12 @@ class Matching
         );
 
         /// @brief Return (agent, firm) universal-replacement blocking pairs.
-        /// The firm must be full, the agent must strictly prefer its firm score
-        /// to the current firm's (unmatched = 0), and the firm must strictly
-        /// prefer the agent to at least one incumbent. Replacing EVERY incumbent
-        /// must leave no colleague rejection (-INF) in either direction.
-        /// Intended for binary colleague preferences; no vacancy blocking is added.
+        /// The agent must strictly prefer its firm score to the current firm's (unmatched = 0).
+        /// With a vacancy, adding the agent must strictly improve the firm's score
+        /// (agent score > 0 in the firm's preferences) and leave no colleague rejection.
+        /// At a full firm, the firm must prefer the agent to at least one incumbent,
+        /// and replacing EVERY incumbent must leave no colleague rejection in either direction.
+        /// Intended for binary colleague preferences; includes vacancy-addition blocking.
         std::vector<std::pair<int,int>> universal_replacement_blocking_pairs(
             const std::vector<std::vector<int>> &agent_prefs,
             const std::vector<std::vector<int>> &firm_prefs,

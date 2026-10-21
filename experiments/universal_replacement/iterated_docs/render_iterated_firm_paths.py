@@ -97,7 +97,7 @@ def render_index(model, paths, relative_run, verification):
         "**この固定問題では全3経路がUR安定だった。うち経路02は8人全員がマッチする。**", "",
         "対象は `iterated_firm_proposing_DA_algorithm`。同僚選好を無視してfirm proposing DAを終了まで実行し、"
         "禁止ペアを1組選び、その片方を該当企業の選好から削除する。削除を累積保持してDAを最初から再実行する。", "",
-        "判定は削除前の元の選好に対するuniversal-replacement安定性。空席への追加blockingは含めない。", "",
+        "判定は削除前の元の選好に対するuniversal-replacement安定性。空席への追加blockingも含める。", "",
         "## 集計とdoctor版との比較", "", "| 項目 | firm proposing | doctor proposing |", "|---|---:|---:|",
         f'| 全経路 | {len(paths)} | 4 |',
         f'| UR安定な経路 | {verification["stable_paths"]} | 0 |',
