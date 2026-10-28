@@ -44,3 +44,16 @@ add_executable(
 )
 target_include_directories(run_rda_batch PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_compile_features(run_rda_batch PRIVATE cxx_std_17)
+
+add_executable(
+    run_rda_exhaustive
+    run_rda_exhaustive.cpp
+    ${CMAKE_SOURCE_DIR}/src/Matching.cpp
+    ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+    ${CMAKE_SOURCE_DIR}/src/MatchingUtils.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
+)
+target_include_directories(run_rda_exhaustive PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_compile_features(run_rda_exhaustive PRIVATE cxx_std_17)
+# Distribute disjoint input-ID ranges across processes; avoid tiny per-DA OpenMP regions.
