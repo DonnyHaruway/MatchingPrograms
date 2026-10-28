@@ -30,6 +30,66 @@ std::vector<DAConflict> find_colleague_conflicts(
     return conflicts;
 }
 
+std::size_t record_search_node(
+    DASearchTree &tree, Matching matching, const std::vector<DAConflict> &conflicts,
+    const std::vector<DADeletion> &deletions,
+    const std::vector<int> &capacities,
+    const std::vector<std::vector<int>> &agents,
+    const std::vector<std::vector<int>> &original_firms,
+    const std::vector<std::vector<int>> &current_firms,
+    const std::vector<std::vector<int>> &colleagues
+)
+{
+    const auto id = tree.nodes.size();
+    const bool original_stable = matching.is_universal_replacement_stable(
+        agents, original_firms, colleagues, capacities);
+    const bool reduced_stable = matching.is_universal_replacement_stable(
+        agents, current_firms, colleagues, capacities);
+    auto blockers = matching.universal_replacement_blocking_pairs(
+        agents, original_firms, colleagues, capacities);
+    tree.nodes.push_back({std::move(matching), conflicts, deletions,
+                          original_stable, reduced_stable, std::move(blockers)});
+    if (conflicts.empty()) tree.leaves.push_back(id);
+    return id;
+}
+
+DASearchTree recursive_DA(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &capacities,
+    const std::vector<std::vector<int>> &agents,
+    const std::vector<std::vector<int>> &firms,
+    const std::vector<std::vector<int>> &colleagues,
+    decltype(&doctor_proposing_DA_algorithm) run_DA
+)
+{
+    DASearchTree tree;
+    auto current_firms = firms;
+    std::vector<DADeletion> deletions;
+    std::function<std::size_t()> visit = [&]() {
+        auto matching = run_DA(n_agents, n_firms, capacities, agents, current_firms);
+        const auto conflicts = find_colleague_conflicts(matching.get_firm_matchs(), colleagues);
+        const auto node = record_search_node(tree, std::move(matching), conflicts, deletions,
+                                             capacities, agents, firms, current_firms, colleagues);
+        for (std::size_t pair = 0; pair < conflicts.size(); ++pair) {
+            const auto conflict = conflicts[pair];
+            for (int removed : {conflict.left, conflict.right}) {
+                const auto branch = tree.branches.size();
+                tree.branches.push_back({node, std::nullopt, pair, removed});
+                const int previous = current_firms[conflict.firm][removed];
+                current_firms[conflict.firm][removed] = -INF;
+                deletions.push_back({conflict.firm, removed});
+                const auto child = visit();
+                tree.branches[branch].to = child;
+                deletions.pop_back();
+                current_firms[conflict.firm][removed] = previous;
+            }
+        }
+        return node;
+    };
+    visit();
+    return tree;
+}
+
 Matching iterated_DA(
     const int &n_agents,
     const int &n_firms,
@@ -40,7 +100,8 @@ Matching iterated_DA(
     std::optional<unsigned int> seed,
     const DARandomChoiceSelector &choice_selector,
     decltype(&doctor_proposing_DA_algorithm) run_DA,
-    DARemovalPolicy removal_policy = DARemovalPolicy::random
+    DARemovalPolicy removal_policy = DARemovalPolicy::random,
+    DASearchTree *trace = nullptr
 )
 {
     std::mt19937 rng(seed.has_value() ? *seed : std::random_device{}());
@@ -52,11 +113,19 @@ Matching iterated_DA(
     }
     std::uniform_int_distribution<int> choose_endpoint(0, 1);
     int iteration = 0;
+    std::vector<DADeletion> deletions;
+    std::optional<std::size_t> pending_branch;
 
     while (true) {
         // A: Run a complete fresh DA, ignoring colleague preferences.
         auto matching = run_DA(n_agents, n_firms, firm_capacities, agent_prefs, current_firm_prefs);
         const auto conflicts = find_colleague_conflicts(matching.get_firm_matchs(), agent_col_prefs);
+        std::size_t node = 0;
+        if (trace) {
+            node = record_search_node(*trace, matching, conflicts, deletions, firm_capacities,
+                                     agent_prefs, firm_prefs, current_firm_prefs, agent_col_prefs);
+            if (pending_branch) trace->branches[*pending_branch].to = node;
+        }
         if (conflicts.empty()) return matching;
         ++iteration;
 
@@ -100,6 +169,15 @@ Matching iterated_DA(
         }
         if (endpoint >= 2) throw std::out_of_range("DA removal choice out of range");
         const int removed = endpoint == 0 ? conflict.left : conflict.right;
+        if (trace) {
+            for (std::size_t pair = 0; pair < conflicts.size(); ++pair) {
+                for (int candidate : {conflicts[pair].left, conflicts[pair].right}) {
+                    if (pair == index && candidate == removed) pending_branch = trace->branches.size();
+                    trace->branches.push_back({node, std::nullopt, pair, candidate});
+                }
+            }
+            deletions.push_back({conflict.firm, removed});
+        }
         if (removal_policy == DARemovalPolicy::history_priority) {
             const int retained = endpoint == 0 ? conflict.right : conflict.left;
             auto &first_round = first_retained_iteration[conflict.firm][retained];
@@ -421,6 +499,64 @@ Matching firm_proposing_DA_algorithm(
     }
 
     return Matching::from_firm_assignment(firm_match, n_agents);
+}
+
+DASearchTree recursive_doctor_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    return recursive_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                        agent_col_prefs, doctor_proposing_DA_algorithm);
+}
+
+DASearchTree recursive_firm_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+)
+{
+    return recursive_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                        agent_col_prefs, firm_proposing_DA_algorithm);
+}
+
+DASearchTree trace_iterated_doctor_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    DASearchTree tree;
+    iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                agent_col_prefs, seed, choice_selector, doctor_proposing_DA_algorithm,
+                DARemovalPolicy::random, &tree);
+    return tree;
+}
+
+DASearchTree trace_iterated_firm_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed,
+    const DARandomChoiceSelector &choice_selector
+)
+{
+    DASearchTree tree;
+    iterated_DA(n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs,
+                agent_col_prefs, seed, choice_selector, firm_proposing_DA_algorithm,
+                DARemovalPolicy::random, &tree);
+    return tree;
 }
 
 Matching iterated_doctor_proposing_DA_algorithm(

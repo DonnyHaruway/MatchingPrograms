@@ -1,0 +1,5 @@
+domain,proposing_side,profiles,all_stable,mixed,none_stable,initial_conflicts_positive,with_initial_conflicts_all_stable,with_initial_conflicts_mixed,with_initial_conflicts_none_stable,total_nodes,total_leaves,max_nodes,max_deletions
+complete,doctor,1000,511,489,0,711,222,489,0,334682,191743,39075,20
+complete,firm,1000,504,496,0,705,209,496,0,556340,322383,107757,23
+incomplete,doctor,1000,697,303,0,663,360,303,0,19062,11254,1029,9
+incomplete,firm,1000,691,309,0,663,354,309,0,18962,11205,1029,9

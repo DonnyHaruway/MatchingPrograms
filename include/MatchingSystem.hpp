@@ -119,6 +119,11 @@ public:
         std::optional<unsigned int> algorithm_seed = std::nullopt
     ) const;
 
+    /// @brief Return every conflict-free leaf and its deletion tree (no early stopping).
+    /// @param algorithm_name recursive_doctor_propose_DA or recursive_firm_propose_DA
+    /// Scores and UR classifications use the original input preferences.
+    DASearchTree run_recursive_algorithm(const std::string &algorithm_name) const;
+
     const std::vector<std::vector<int>> &get_agent_prefs() const;
     const std::vector<std::vector<int>> &get_firm_prefs() const;
     const std::vector<std::vector<int>> &get_agent_col_prefs() const;

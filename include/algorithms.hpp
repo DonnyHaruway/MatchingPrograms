@@ -34,6 +34,79 @@ struct DARandomChoice {
 // Controls only random decisions; deterministic removal policies do not call it for endpoints.
 using DARandomChoiceSelector = std::function<std::size_t(const DARandomChoice &)>;
 
+// All IDs below are zero-based. Deletions apply only to the named firm.
+struct DADeletion {
+    int firm;
+    int worker;
+};
+
+struct DASearchNode {
+    Matching matching;
+    std::vector<DAConflict> conflicts;
+    std::vector<DADeletion> deletions; // In deletion order along this path.
+    bool original_ur_stable;
+    bool reduced_ur_stable;
+    // Same (worker, firm) convention as Matching::universal_replacement_blocking_pairs.
+    std::vector<std::pair<int, int>> original_blocking_pairs;
+};
+
+struct DASearchBranch {
+    std::size_t from;
+    std::optional<std::size_t> to; // nullopt = available but not executed (iterated trace).
+    std::size_t conflict_index;    // Index into nodes[from].conflicts; preserves pair choice.
+    int removed_worker;
+};
+
+struct DASearchTree {
+    std::vector<DASearchNode> nodes; // Root is 0; recursive traversal is depth-first.
+    std::vector<DASearchBranch> branches;
+    std::vector<std::size_t> leaves; // Executed nodes without colleague conflicts, stable or not.
+};
+
+/// @brief Exhaustively restart DA after each possible single deletion.
+/// Each nonterminal node has 2 * conflicts.size() executed branches, including duplicates.
+/// Order: firm ID, left worker ID, right worker ID, then delete left / delete right.
+/// No pruning, memoization, or early exit on a stable leaf. Inputs are unchanged.
+DASearchTree recursive_doctor_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+);
+
+/// @brief Firm-proposing version of the same exhaustive recursion.
+DASearchTree recursive_firm_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs
+);
+
+/// @brief Trace one ordinary iterated-DA execution, retaining every available deletion branch.
+/// Only the chosen branch is executed; alternatives have to == nullopt.
+/// With the same seed/selector, the result is identical to the untraced algorithm.
+DASearchTree trace_iterated_doctor_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
+DASearchTree trace_iterated_firm_proposing_DA_algorithm(
+    const int &n_agents, const int &n_firms,
+    const std::vector<int> &firm_capacities,
+    const std::vector<std::vector<int>> &agent_prefs,
+    const std::vector<std::vector<int>> &firm_prefs,
+    const std::vector<std::vector<int>> &agent_col_prefs,
+    std::optional<unsigned int> seed = std::nullopt,
+    const DARandomChoiceSelector &choice_selector = {}
+);
+
 /// @brief agent をランダムな優先順で処理する dictator アルゴリズム。
 /// @param seed 省略時は std::random_device から取得する (再現性が必要なら明示すること)
 Matching doctor_dictator_algorithm(

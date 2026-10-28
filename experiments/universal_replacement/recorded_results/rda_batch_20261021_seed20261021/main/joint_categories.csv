@@ -1,0 +1,9 @@
+domain,firm_category,doctor_category,profiles
+complete,all_stable,all_stable,455
+complete,all_stable,mixed,49
+complete,mixed,all_stable,56
+complete,mixed,mixed,440
+incomplete,all_stable,all_stable,680
+incomplete,all_stable,mixed,11
+incomplete,mixed,all_stable,17
+incomplete,mixed,mixed,292

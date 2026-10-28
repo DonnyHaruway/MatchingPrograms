@@ -1,0 +1,6 @@
+{
+  "source": "../3x7_without_f4_f5_w8/problem.json",
+  "removed_worker_original_label": 6,
+  "exact_preference_restriction_match": true,
+  "original_worker_labels_and_rendered_edges_match": true
+}

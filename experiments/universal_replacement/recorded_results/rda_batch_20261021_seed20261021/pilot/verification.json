@@ -1,0 +1,13 @@
+{
+  "profiles": 200,
+  "algorithms": 400,
+  "witnesses": 574,
+  "all_inputs_valid": true,
+  "all_search_counts_independently_verified": true,
+  "all_witnesses_independently_verified": true,
+  "paired_domains_verified": true,
+  "pilot_prefix_profiles_verified": null,
+  "cached_independent_states": 20252,
+  "cpp_nodes_including_duplicate_histories": 182840,
+  "figures_generated": false
+}

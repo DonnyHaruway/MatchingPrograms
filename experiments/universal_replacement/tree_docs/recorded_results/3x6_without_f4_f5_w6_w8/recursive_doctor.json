@@ -1,0 +1,1 @@
+{"schema_version":1,"algorithm":"recursive_doctor","mode":"recursive","proposing_side":"doctor","seed":null,"nodes":[{"id":0,"da_run":1,"assignment":[1,2,3,3,1,2],"conflicts":[],"deletions":[],"original_ur_stable":true,"reduced_ur_stable":true,"original_blocking_pairs":[]}],"branches":[],"leaves":[0]}

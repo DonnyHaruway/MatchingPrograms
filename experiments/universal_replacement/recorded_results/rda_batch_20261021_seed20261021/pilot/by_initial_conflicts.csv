@@ -1,0 +1,17 @@
+domain,proposing_side,initial_conflicts,profiles,all_stable,mixed,none_stable
+complete,doctor,0,25,25,0,0
+complete,doctor,1,41,21,20,0
+complete,doctor,2,28,0,28,0
+complete,doctor,3,6,0,6,0
+complete,firm,0,26,26,0,0
+complete,firm,1,42,19,23,0
+complete,firm,2,27,0,27,0
+complete,firm,3,5,0,5,0
+incomplete,doctor,0,34,34,0,0
+incomplete,doctor,1,44,26,18,0
+incomplete,doctor,2,18,7,11,0
+incomplete,doctor,3,4,0,4,0
+incomplete,firm,0,32,32,0,0
+incomplete,firm,1,45,29,16,0
+incomplete,firm,2,19,7,12,0
+incomplete,firm,3,4,0,4,0

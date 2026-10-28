@@ -1,0 +1,38 @@
+[
+  {
+    "algorithm": "iterated_firm",
+    "nodes": 2,
+    "branches": 2,
+    "leaves": 1,
+    "original_ur_stable_leaves": 1,
+    "independent_da_and_blockers_match": true,
+    "independent_deletion_paths_match": true
+  },
+  {
+    "algorithm": "iterated_doctor",
+    "nodes": 2,
+    "branches": 2,
+    "leaves": 1,
+    "original_ur_stable_leaves": 0,
+    "independent_da_and_blockers_match": true,
+    "independent_deletion_paths_match": true
+  },
+  {
+    "algorithm": "recursive_firm",
+    "nodes": 3,
+    "branches": 2,
+    "leaves": 2,
+    "original_ur_stable_leaves": 2,
+    "independent_da_and_blockers_match": true,
+    "independent_deletion_paths_match": true
+  },
+  {
+    "algorithm": "recursive_doctor",
+    "nodes": 3,
+    "branches": 2,
+    "leaves": 2,
+    "original_ur_stable_leaves": 1,
+    "independent_da_and_blockers_match": true,
+    "independent_deletion_paths_match": true
+  }
+]

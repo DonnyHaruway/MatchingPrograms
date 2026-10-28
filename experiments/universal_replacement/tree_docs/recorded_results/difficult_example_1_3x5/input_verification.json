@@ -1,0 +1,26 @@
+{
+  "source_image": "難しい例1.png",
+  "input_matches_image_transcription": true,
+  "verified_fields": [
+    "n_firms",
+    "n_workers",
+    "capacities",
+    "worker_rankings_one_based",
+    "firm_rankings_one_based",
+    "agent_prefs",
+    "firm_prefs",
+    "colleague_prefs"
+  ],
+  "forbidden_pairs_one_based": [
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      5
+    ]
+  ],
+  "forbidden_pairs_symmetric": true,
+  "other_colleague_scores_zero": true
+}

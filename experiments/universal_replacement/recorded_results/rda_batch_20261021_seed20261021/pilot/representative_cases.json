@@ -1,0 +1,4020 @@
+{
+  "complete/firm/all_stable": {
+    "domain": "complete",
+    "trial": 0,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          3,
+          4,
+          1,
+          5,
+          2
+        ],
+        [
+          3,
+          5,
+          1,
+          2,
+          4
+        ],
+        [
+          5,
+          4,
+          2,
+          1,
+          3
+        ],
+        [
+          4,
+          5,
+          2,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          4
+        ]
+      ],
+      "firm_prefs": [
+        [
+          6,
+          3,
+          1,
+          7,
+          8,
+          4,
+          5,
+          2
+        ],
+        [
+          7,
+          1,
+          8,
+          4,
+          5,
+          3,
+          6,
+          2
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          7,
+          6,
+          4,
+          8
+        ],
+        [
+          4,
+          8,
+          3,
+          7,
+          5,
+          6,
+          1,
+          2
+        ],
+        [
+          3,
+          6,
+          5,
+          7,
+          1,
+          4,
+          8,
+          2
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          4,
+          2,
+          1,
+          5,
+          3
+        ],
+        [
+          2,
+          5,
+          1,
+          4,
+          3
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          4
+        ],
+        [
+          2,
+          1,
+          5,
+          3,
+          4
+        ],
+        [
+          5,
+          4,
+          1,
+          2,
+          3
+        ],
+        [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        [
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          4
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          5,
+          4,
+          1,
+          7,
+          6,
+          2,
+          8,
+          3
+        ],
+        [
+          3,
+          1,
+          7,
+          5,
+          4,
+          6,
+          8,
+          2
+        ],
+        [
+          8,
+          5,
+          6,
+          2,
+          7,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          6,
+          5,
+          1,
+          3,
+          8,
+          7
+        ],
+        [
+          7,
+          4,
+          2,
+          3,
+          6,
+          1,
+          8,
+          5
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 8.7833e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            4,
+            1,
+            1,
+            2,
+            4,
+            3,
+            5,
+            2
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 1.4583e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            4,
+            1,
+            1,
+            2,
+            4,
+            3,
+            5,
+            2
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "complete/doctor/all_stable": {
+    "domain": "complete",
+    "trial": 0,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          3,
+          4,
+          1,
+          5,
+          2
+        ],
+        [
+          3,
+          5,
+          1,
+          2,
+          4
+        ],
+        [
+          5,
+          4,
+          2,
+          1,
+          3
+        ],
+        [
+          4,
+          5,
+          2,
+          1,
+          3
+        ],
+        [
+          3,
+          2,
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4,
+          3,
+          5
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          4
+        ]
+      ],
+      "firm_prefs": [
+        [
+          6,
+          3,
+          1,
+          7,
+          8,
+          4,
+          5,
+          2
+        ],
+        [
+          7,
+          1,
+          8,
+          4,
+          5,
+          3,
+          6,
+          2
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          7,
+          6,
+          4,
+          8
+        ],
+        [
+          4,
+          8,
+          3,
+          7,
+          5,
+          6,
+          1,
+          2
+        ],
+        [
+          3,
+          6,
+          5,
+          7,
+          1,
+          4,
+          8,
+          2
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          4,
+          2,
+          1,
+          5,
+          3
+        ],
+        [
+          2,
+          5,
+          1,
+          4,
+          3
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          4
+        ],
+        [
+          2,
+          1,
+          5,
+          3,
+          4
+        ],
+        [
+          5,
+          4,
+          1,
+          2,
+          3
+        ],
+        [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        [
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          5,
+          3,
+          1,
+          4
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          5,
+          4,
+          1,
+          7,
+          6,
+          2,
+          8,
+          3
+        ],
+        [
+          3,
+          1,
+          7,
+          5,
+          4,
+          6,
+          8,
+          2
+        ],
+        [
+          8,
+          5,
+          6,
+          2,
+          7,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          6,
+          5,
+          1,
+          3,
+          8,
+          7
+        ],
+        [
+          7,
+          4,
+          2,
+          3,
+          6,
+          1,
+          8,
+          5
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 8.7833e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            4,
+            1,
+            1,
+            2,
+            4,
+            3,
+            5,
+            2
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 1.4583e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            4,
+            1,
+            1,
+            2,
+            4,
+            3,
+            5,
+            2
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "incomplete/firm/all_stable": {
+    "domain": "incomplete",
+    "trial": 0,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          2,
+          3,
+          -100000,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          -100000,
+          -100000,
+          2
+        ],
+        [
+          4,
+          3,
+          1,
+          -100000,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          -100000,
+          2
+        ],
+        [
+          -100000,
+          -100000,
+          -100000,
+          1,
+          2
+        ],
+        [
+          -100000,
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          -100000,
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          -100000,
+          2,
+          -100000,
+          -100000,
+          1
+        ]
+      ],
+      "firm_prefs": [
+        [
+          5,
+          2,
+          -100000,
+          6,
+          7,
+          3,
+          4,
+          1
+        ],
+        [
+          5,
+          -100000,
+          6,
+          2,
+          3,
+          1,
+          4,
+          -100000
+        ],
+        [
+          1,
+          4,
+          2,
+          -100000,
+          6,
+          5,
+          3,
+          7
+        ],
+        [
+          -100000,
+          3,
+          -100000,
+          2,
+          -100000,
+          1,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          2,
+          1,
+          3,
+          -100000,
+          -100000,
+          4,
+          -100000
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          4,
+          2,
+          1,
+          5
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          1,
+          2,
+          5,
+          3
+        ],
+        [
+          2,
+          1,
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          5,
+          4,
+          2
+        ],
+        [
+          5,
+          3,
+          4,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          5,
+          4,
+          1,
+          7,
+          6,
+          2,
+          8
+        ],
+        [
+          3,
+          1,
+          7,
+          5,
+          4,
+          6
+        ],
+        [
+          8,
+          5,
+          6,
+          2,
+          7,
+          3,
+          1
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          7,
+          4,
+          2,
+          3
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 6,
+        "max_matched_workers": 6,
+        "algorithm_seconds": 1.9333e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            2,
+            1,
+            2,
+            1,
+            0,
+            3,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 6,
+        "max_matched_workers": 6,
+        "algorithm_seconds": 8.5e-06,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            2,
+            1,
+            2,
+            1,
+            0,
+            3,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "incomplete/doctor/all_stable": {
+    "domain": "incomplete",
+    "trial": 0,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          2,
+          3,
+          -100000,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          -100000,
+          -100000,
+          2
+        ],
+        [
+          4,
+          3,
+          1,
+          -100000,
+          2
+        ],
+        [
+          3,
+          4,
+          1,
+          -100000,
+          2
+        ],
+        [
+          -100000,
+          -100000,
+          -100000,
+          1,
+          2
+        ],
+        [
+          -100000,
+          1,
+          4,
+          2,
+          3
+        ],
+        [
+          -100000,
+          1,
+          3,
+          2,
+          4
+        ],
+        [
+          -100000,
+          2,
+          -100000,
+          -100000,
+          1
+        ]
+      ],
+      "firm_prefs": [
+        [
+          5,
+          2,
+          -100000,
+          6,
+          7,
+          3,
+          4,
+          1
+        ],
+        [
+          5,
+          -100000,
+          6,
+          2,
+          3,
+          1,
+          4,
+          -100000
+        ],
+        [
+          1,
+          4,
+          2,
+          -100000,
+          6,
+          5,
+          3,
+          7
+        ],
+        [
+          -100000,
+          3,
+          -100000,
+          2,
+          -100000,
+          1,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          2,
+          1,
+          3,
+          -100000,
+          -100000,
+          4,
+          -100000
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          4,
+          2,
+          1,
+          5
+        ],
+        [
+          2,
+          5,
+          1
+        ],
+        [
+          1,
+          2,
+          5,
+          3
+        ],
+        [
+          2,
+          1,
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          3,
+          5,
+          4,
+          2
+        ],
+        [
+          5,
+          3,
+          4,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          5,
+          4,
+          1,
+          7,
+          6,
+          2,
+          8
+        ],
+        [
+          3,
+          1,
+          7,
+          5,
+          4,
+          6
+        ],
+        [
+          8,
+          5,
+          6,
+          2,
+          7,
+          3,
+          1
+        ],
+        [
+          2,
+          4,
+          6
+        ],
+        [
+          7,
+          4,
+          2,
+          3
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 6,
+        "max_matched_workers": 6,
+        "algorithm_seconds": 1.9333e-05,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            2,
+            1,
+            2,
+            1,
+            0,
+            3,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 6,
+        "max_matched_workers": 6,
+        "algorithm_seconds": 8.5e-06,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            2,
+            1,
+            2,
+            1,
+            0,
+            3,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "complete/firm/mixed": {
+    "domain": "complete",
+    "trial": 69,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          5,
+          3,
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          3,
+          2,
+          5,
+          1
+        ],
+        [
+          3,
+          1,
+          4,
+          5,
+          2
+        ],
+        [
+          3,
+          1,
+          2,
+          4,
+          5
+        ],
+        [
+          3,
+          2,
+          5,
+          1,
+          4
+        ],
+        [
+          1,
+          5,
+          2,
+          3,
+          4
+        ],
+        [
+          1,
+          4,
+          5,
+          2,
+          3
+        ],
+        [
+          2,
+          4,
+          3,
+          1,
+          5
+        ]
+      ],
+      "firm_prefs": [
+        [
+          1,
+          3,
+          2,
+          4,
+          7,
+          5,
+          6,
+          8
+        ],
+        [
+          4,
+          7,
+          1,
+          6,
+          5,
+          3,
+          8,
+          2
+        ],
+        [
+          8,
+          1,
+          6,
+          3,
+          4,
+          7,
+          5,
+          2
+        ],
+        [
+          8,
+          4,
+          7,
+          2,
+          3,
+          6,
+          1,
+          5
+        ],
+        [
+          3,
+          4,
+          2,
+          1,
+          5,
+          8,
+          7,
+          6
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          0
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          1,
+          3,
+          2,
+          4,
+          5
+        ],
+        [
+          4,
+          1,
+          2,
+          3,
+          5
+        ],
+        [
+          4,
+          3,
+          1,
+          5,
+          2
+        ],
+        [
+          5,
+          4,
+          1,
+          3,
+          2
+        ],
+        [
+          3,
+          5,
+          1,
+          2,
+          4
+        ],
+        [
+          2,
+          5,
+          4,
+          3,
+          1
+        ],
+        [
+          3,
+          2,
+          5,
+          4,
+          1
+        ],
+        [
+          5,
+          2,
+          3,
+          1,
+          4
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          8,
+          5,
+          7,
+          6,
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          7,
+          2,
+          4,
+          5,
+          1,
+          6,
+          8,
+          3
+        ],
+        [
+          1,
+          6,
+          3,
+          7,
+          5,
+          4,
+          8,
+          2
+        ],
+        [
+          1,
+          3,
+          6,
+          8,
+          2,
+          5,
+          4,
+          7
+        ],
+        [
+          6,
+          7,
+          8,
+          5,
+          2,
+          1,
+          3,
+          4
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "mixed",
+        "nodes": 3,
+        "branches": 2,
+        "leaves": 2,
+        "stable_leaves": 1,
+        "unstable_leaves": 1,
+        "distinct_matchings": 2,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 1,
+        "max_conflicts": 1,
+        "max_deletions": 1,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 7.75e-06,
+        "stable_witness": {
+          "leaf_id": 2,
+          "assignment": [
+            1,
+            4,
+            4,
+            1,
+            3,
+            2,
+            3,
+            5
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 4,
+              "right": 5,
+              "removed_worker": 5,
+              "retained_worker": 4,
+              "assignment_before": [
+                3,
+                4,
+                4,
+                1,
+                1,
+                2,
+                3,
+                5
+              ],
+              "assignment_after": [
+                1,
+                4,
+                4,
+                1,
+                3,
+                2,
+                3,
+                5
+              ],
+              "retained_after": 1,
+              "retained_final": 1
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 1,
+          "assignment": [
+            1,
+            4,
+            4,
+            2,
+            3,
+            2,
+            3,
+            5
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 1,
+              "worker": 4
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 4,
+              "right": 5,
+              "removed_worker": 4,
+              "retained_worker": 5,
+              "assignment_before": [
+                3,
+                4,
+                4,
+                1,
+                1,
+                2,
+                3,
+                5
+              ],
+              "assignment_after": [
+                1,
+                4,
+                4,
+                2,
+                3,
+                2,
+                3,
+                5
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        }
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 2.375e-06,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            1,
+            4,
+            4,
+            1,
+            3,
+            2,
+            3,
+            5
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "complete/doctor/mixed": {
+    "domain": "complete",
+    "trial": 39,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          5,
+          3,
+          1,
+          4,
+          2
+        ],
+        [
+          2,
+          3,
+          4,
+          5,
+          1
+        ],
+        [
+          4,
+          1,
+          5,
+          3,
+          2
+        ],
+        [
+          5,
+          4,
+          3,
+          1,
+          2
+        ],
+        [
+          1,
+          5,
+          2,
+          4,
+          3
+        ],
+        [
+          1,
+          2,
+          5,
+          3,
+          4
+        ],
+        [
+          2,
+          1,
+          3,
+          5,
+          4
+        ],
+        [
+          1,
+          3,
+          2,
+          4,
+          5
+        ]
+      ],
+      "firm_prefs": [
+        [
+          6,
+          2,
+          5,
+          1,
+          7,
+          8,
+          3,
+          4
+        ],
+        [
+          7,
+          8,
+          2,
+          1,
+          4,
+          3,
+          6,
+          5
+        ],
+        [
+          8,
+          1,
+          4,
+          2,
+          5,
+          3,
+          7,
+          6
+        ],
+        [
+          2,
+          4,
+          3,
+          7,
+          8,
+          6,
+          1,
+          5
+        ],
+        [
+          4,
+          1,
+          5,
+          3,
+          6,
+          7,
+          2,
+          8
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          1,
+          4,
+          2,
+          5,
+          3
+        ],
+        [
+          4,
+          3,
+          2,
+          1,
+          5
+        ],
+        [
+          3,
+          1,
+          4,
+          5,
+          2
+        ],
+        [
+          1,
+          2,
+          3,
+          5,
+          4
+        ],
+        [
+          2,
+          4,
+          5,
+          3,
+          1
+        ],
+        [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        [
+          4,
+          5,
+          3,
+          1,
+          2
+        ],
+        [
+          5,
+          4,
+          2,
+          3,
+          1
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          6,
+          5,
+          1,
+          3,
+          8,
+          7,
+          2,
+          4
+        ],
+        [
+          2,
+          1,
+          7,
+          8,
+          5,
+          6,
+          3,
+          4
+        ],
+        [
+          1,
+          7,
+          8,
+          5,
+          3,
+          6,
+          4,
+          2
+        ],
+        [
+          5,
+          4,
+          6,
+          8,
+          2,
+          3,
+          1,
+          7
+        ],
+        [
+          8,
+          6,
+          5,
+          3,
+          1,
+          4,
+          7,
+          2
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "mixed",
+        "nodes": 19,
+        "branches": 18,
+        "leaves": 11,
+        "stable_leaves": 7,
+        "unstable_leaves": 4,
+        "distinct_matchings": 7,
+        "distinct_stable_matchings": 5,
+        "initial_conflicts": 2,
+        "max_conflicts": 2,
+        "max_deletions": 5,
+        "min_matched_workers": 7,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 4.3833e-05,
+        "stable_witness": {
+          "leaf_id": 1,
+          "assignment": [
+            2,
+            2,
+            3,
+            1,
+            4,
+            4,
+            3,
+            5
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 1,
+              "right": 4,
+              "removed_worker": 1,
+              "retained_worker": 4,
+              "assignment_before": [
+                1,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                2,
+                2,
+                3,
+                1,
+                4,
+                4,
+                3,
+                5
+              ],
+              "retained_after": 1,
+              "retained_final": 1
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 4,
+          "assignment": [
+            1,
+            2,
+            3,
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 4,
+              "worker": 2
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 1,
+              "right": 4,
+              "removed_worker": 4,
+              "retained_worker": 1,
+              "assignment_before": [
+                1,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                1,
+                2,
+                3,
+                4,
+                2,
+                4,
+                3,
+                5
+              ],
+              "retained_after": 1,
+              "retained_final": 1
+            },
+            {
+              "parent_node": 2,
+              "child_node": 3,
+              "conflict_index": 0,
+              "firm": 4,
+              "left": 4,
+              "right": 6,
+              "removed_worker": 4,
+              "retained_worker": 6,
+              "assignment_before": [
+                1,
+                2,
+                3,
+                4,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                1,
+                4,
+                3,
+                2,
+                2,
+                4,
+                3,
+                5
+              ],
+              "retained_after": 4,
+              "retained_final": 3
+            },
+            {
+              "parent_node": 3,
+              "child_node": 4,
+              "conflict_index": 0,
+              "firm": 4,
+              "left": 2,
+              "right": 6,
+              "removed_worker": 2,
+              "retained_worker": 6,
+              "assignment_before": [
+                1,
+                4,
+                3,
+                2,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                1,
+                2,
+                3,
+                0,
+                2,
+                3,
+                4,
+                5
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        }
+      },
+      "doctor": {
+        "category": "mixed",
+        "nodes": 5,
+        "branches": 4,
+        "leaves": 3,
+        "stable_leaves": 2,
+        "unstable_leaves": 1,
+        "distinct_matchings": 3,
+        "distinct_stable_matchings": 2,
+        "initial_conflicts": 1,
+        "max_conflicts": 1,
+        "max_deletions": 2,
+        "min_matched_workers": 8,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 1.1916e-05,
+        "stable_witness": {
+          "leaf_id": 3,
+          "assignment": [
+            4,
+            4,
+            3,
+            1,
+            2,
+            2,
+            3,
+            5
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 1,
+              "right": 4,
+              "removed_worker": 1,
+              "retained_worker": 4,
+              "assignment_before": [
+                1,
+                4,
+                3,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "assignment_after": [
+                2,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "retained_after": 1,
+              "retained_final": 1
+            },
+            {
+              "parent_node": 1,
+              "child_node": 3,
+              "conflict_index": 0,
+              "firm": 4,
+              "left": 2,
+              "right": 6,
+              "removed_worker": 6,
+              "retained_worker": 2,
+              "assignment_before": [
+                2,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                4,
+                4,
+                3,
+                1,
+                2,
+                2,
+                3,
+                5
+              ],
+              "retained_after": 4,
+              "retained_final": 4
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 2,
+          "assignment": [
+            4,
+            2,
+            3,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 4,
+              "worker": 2
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 1,
+              "left": 1,
+              "right": 4,
+              "removed_worker": 1,
+              "retained_worker": 4,
+              "assignment_before": [
+                1,
+                4,
+                3,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "assignment_after": [
+                2,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "retained_after": 1,
+              "retained_final": 1
+            },
+            {
+              "parent_node": 1,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 4,
+              "left": 2,
+              "right": 6,
+              "removed_worker": 2,
+              "retained_worker": 6,
+              "assignment_before": [
+                2,
+                4,
+                3,
+                1,
+                2,
+                4,
+                3,
+                5
+              ],
+              "assignment_after": [
+                4,
+                2,
+                3,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        }
+      }
+    }
+  },
+  "incomplete/firm/mixed": {
+    "domain": "incomplete",
+    "trial": 96,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          1,
+          4,
+          -100000,
+          3,
+          2
+        ],
+        [
+          2,
+          -100000,
+          -100000,
+          1,
+          3
+        ],
+        [
+          1,
+          3,
+          2,
+          -100000,
+          4
+        ],
+        [
+          -100000,
+          2,
+          3,
+          1,
+          4
+        ],
+        [
+          2,
+          1,
+          -100000,
+          -100000,
+          -100000
+        ],
+        [
+          -100000,
+          4,
+          2,
+          3,
+          1
+        ],
+        [
+          2,
+          3,
+          -100000,
+          1,
+          4
+        ],
+        [
+          -100000,
+          -100000,
+          -100000,
+          2,
+          1
+        ]
+      ],
+      "firm_prefs": [
+        [
+          3,
+          4,
+          -100000,
+          1,
+          6,
+          2,
+          7,
+          5
+        ],
+        [
+          5,
+          4,
+          -100000,
+          1,
+          -100000,
+          3,
+          6,
+          2
+        ],
+        [
+          3,
+          2,
+          7,
+          1,
+          5,
+          -100000,
+          4,
+          6
+        ],
+        [
+          2,
+          1,
+          -100000,
+          3,
+          -100000,
+          -100000,
+          -100000,
+          -100000
+        ],
+        [
+          4,
+          -100000,
+          -100000,
+          -100000,
+          -100000,
+          3,
+          2,
+          1
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0
+        ],
+        [
+          -100000,
+          0,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          -100000,
+          0
+        ],
+        [
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          -100000
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          5,
+          1,
+          4
+        ],
+        [
+          5,
+          2,
+          3,
+          1
+        ],
+        [
+          5,
+          3,
+          2,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          4,
+          3,
+          5
+        ],
+        [
+          5,
+          2,
+          1,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          7,
+          5,
+          8,
+          2,
+          1,
+          6,
+          4
+        ],
+        [
+          7,
+          1,
+          2,
+          6,
+          8,
+          4
+        ],
+        [
+          3,
+          8,
+          5,
+          7,
+          1,
+          2,
+          4
+        ],
+        [
+          4,
+          1,
+          2
+        ],
+        [
+          1,
+          6,
+          7,
+          8
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "mixed",
+        "nodes": 3,
+        "branches": 2,
+        "leaves": 2,
+        "stable_leaves": 1,
+        "unstable_leaves": 1,
+        "distinct_matchings": 2,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 1,
+        "max_conflicts": 1,
+        "max_deletions": 1,
+        "min_matched_workers": 7,
+        "max_matched_workers": 7,
+        "algorithm_seconds": 7.542e-06,
+        "stable_witness": {
+          "leaf_id": 2,
+          "assignment": [
+            2,
+            1,
+            3,
+            3,
+            1,
+            2,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 2,
+              "left": 1,
+              "right": 7,
+              "removed_worker": 7,
+              "retained_worker": 1,
+              "assignment_before": [
+                2,
+                1,
+                3,
+                3,
+                1,
+                5,
+                2,
+                0
+              ],
+              "assignment_after": [
+                2,
+                1,
+                3,
+                3,
+                1,
+                2,
+                5,
+                0
+              ],
+              "retained_after": 2,
+              "retained_final": 2
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 1,
+          "assignment": [
+            4,
+            1,
+            3,
+            3,
+            1,
+            2,
+            5,
+            0
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 2,
+              "worker": 1
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 2,
+              "left": 1,
+              "right": 7,
+              "removed_worker": 1,
+              "retained_worker": 7,
+              "assignment_before": [
+                2,
+                1,
+                3,
+                3,
+                1,
+                5,
+                2,
+                0
+              ],
+              "assignment_after": [
+                4,
+                1,
+                3,
+                3,
+                1,
+                2,
+                5,
+                0
+              ],
+              "retained_after": 5,
+              "retained_final": 5
+            }
+          ]
+        }
+      },
+      "doctor": {
+        "category": "all_stable",
+        "nodes": 1,
+        "branches": 0,
+        "leaves": 1,
+        "stable_leaves": 1,
+        "unstable_leaves": 0,
+        "distinct_matchings": 1,
+        "distinct_stable_matchings": 1,
+        "initial_conflicts": 0,
+        "max_conflicts": 0,
+        "max_deletions": 0,
+        "min_matched_workers": 7,
+        "max_matched_workers": 7,
+        "algorithm_seconds": 2.541e-06,
+        "stable_witness": {
+          "leaf_id": 0,
+          "assignment": [
+            2,
+            1,
+            3,
+            3,
+            1,
+            2,
+            5,
+            0
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": []
+        },
+        "unstable_witness": null
+      }
+    }
+  },
+  "incomplete/doctor/mixed": {
+    "domain": "incomplete",
+    "trial": 5,
+    "seed": 20261021,
+    "problem": {
+      "n_firms": 5,
+      "n_workers": 8,
+      "capacities": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "agent_prefs": [
+        [
+          4,
+          3,
+          -100000,
+          1,
+          2
+        ],
+        [
+          2,
+          -100000,
+          -100000,
+          1,
+          3
+        ],
+        [
+          3,
+          -100000,
+          4,
+          2,
+          1
+        ],
+        [
+          1,
+          -100000,
+          4,
+          2,
+          3
+        ],
+        [
+          -100000,
+          1,
+          -100000,
+          -100000,
+          2
+        ],
+        [
+          1,
+          -100000,
+          3,
+          4,
+          2
+        ],
+        [
+          3,
+          1,
+          -100000,
+          4,
+          2
+        ],
+        [
+          2,
+          -100000,
+          -100000,
+          -100000,
+          1
+        ]
+      ],
+      "firm_prefs": [
+        [
+          6,
+          -100000,
+          1,
+          4,
+          3,
+          2,
+          5,
+          7
+        ],
+        [
+          -100000,
+          4,
+          6,
+          1,
+          2,
+          5,
+          3,
+          -100000
+        ],
+        [
+          2,
+          4,
+          5,
+          1,
+          3,
+          6,
+          7,
+          -100000
+        ],
+        [
+          -100000,
+          -100000,
+          1,
+          3,
+          -100000,
+          -100000,
+          2,
+          -100000
+        ],
+        [
+          -100000,
+          4,
+          3,
+          -100000,
+          -100000,
+          2,
+          1,
+          -100000
+        ]
+      ],
+      "colleague_prefs": [
+        [
+          0,
+          -100000,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -100000,
+          0,
+          -100000,
+          -100000,
+          -100000,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000,
+          0
+        ],
+        [
+          -100000,
+          0,
+          -100000,
+          0,
+          0,
+          0,
+          -100000,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -100000,
+          -100000,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "worker_rankings_one_based": [
+        [
+          1,
+          2,
+          5,
+          4
+        ],
+        [
+          5,
+          1,
+          4
+        ],
+        [
+          3,
+          1,
+          4,
+          5
+        ],
+        [
+          3,
+          5,
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          3,
+          5,
+          1
+        ],
+        [
+          4,
+          1,
+          5,
+          2
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "firm_rankings_one_based": [
+        [
+          8,
+          1,
+          7,
+          4,
+          5,
+          6,
+          3
+        ],
+        [
+          3,
+          6,
+          2,
+          7,
+          5,
+          4
+        ],
+        [
+          7,
+          6,
+          3,
+          2,
+          5,
+          1,
+          4
+        ],
+        [
+          4,
+          7,
+          3
+        ],
+        [
+          2,
+          3,
+          6,
+          7
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          7
+        ]
+      ]
+    },
+    "algorithms": {
+      "firm": {
+        "category": "mixed",
+        "nodes": 5,
+        "branches": 4,
+        "leaves": 3,
+        "stable_leaves": 2,
+        "unstable_leaves": 1,
+        "distinct_matchings": 3,
+        "distinct_stable_matchings": 2,
+        "initial_conflicts": 1,
+        "max_conflicts": 1,
+        "max_deletions": 2,
+        "min_matched_workers": 7,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 2.9792e-05,
+        "stable_witness": {
+          "leaf_id": 1,
+          "assignment": [
+            1,
+            5,
+            4,
+            3,
+            2,
+            3,
+            4,
+            1
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 6,
+              "removed_worker": 3,
+              "retained_worker": 6,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                4,
+                2,
+                3,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                4,
+                3,
+                2,
+                3,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 3,
+          "assignment": [
+            1,
+            5,
+            4,
+            3,
+            2,
+            0,
+            4,
+            1
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 3,
+              "worker": 6
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 6,
+              "removed_worker": 6,
+              "retained_worker": 3,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                4,
+                2,
+                3,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                3,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 4
+            },
+            {
+              "parent_node": 2,
+              "child_node": 3,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 4,
+              "removed_worker": 3,
+              "retained_worker": 4,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                4,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        }
+      },
+      "doctor": {
+        "category": "mixed",
+        "nodes": 5,
+        "branches": 4,
+        "leaves": 3,
+        "stable_leaves": 2,
+        "unstable_leaves": 1,
+        "distinct_matchings": 3,
+        "distinct_stable_matchings": 2,
+        "initial_conflicts": 1,
+        "max_conflicts": 1,
+        "max_deletions": 2,
+        "min_matched_workers": 7,
+        "max_matched_workers": 8,
+        "algorithm_seconds": 2.8417e-05,
+        "stable_witness": {
+          "leaf_id": 1,
+          "assignment": [
+            1,
+            5,
+            4,
+            3,
+            2,
+            3,
+            4,
+            1
+          ],
+          "original_ur_stable": true,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 1,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 6,
+              "removed_worker": 3,
+              "retained_worker": 6,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                4,
+                2,
+                3,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                4,
+                3,
+                2,
+                3,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        },
+        "unstable_witness": {
+          "leaf_id": 3,
+          "assignment": [
+            1,
+            5,
+            4,
+            3,
+            2,
+            0,
+            4,
+            1
+          ],
+          "original_ur_stable": false,
+          "reduced_ur_stable": true,
+          "original_blocking_pairs": [
+            {
+              "firm": 3,
+              "worker": 6
+            }
+          ],
+          "steps": [
+            {
+              "parent_node": 0,
+              "child_node": 2,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 6,
+              "removed_worker": 6,
+              "retained_worker": 3,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                4,
+                2,
+                3,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                3,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 4
+            },
+            {
+              "parent_node": 2,
+              "child_node": 3,
+              "conflict_index": 0,
+              "firm": 3,
+              "left": 3,
+              "right": 4,
+              "removed_worker": 3,
+              "retained_worker": 4,
+              "assignment_before": [
+                1,
+                5,
+                3,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "assignment_after": [
+                1,
+                5,
+                4,
+                3,
+                2,
+                0,
+                4,
+                1
+              ],
+              "retained_after": 3,
+              "retained_final": 3
+            }
+          ]
+        }
+      }
+    }
+  }
+}

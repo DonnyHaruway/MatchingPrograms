@@ -20,3 +20,27 @@ add_executable(
 )
 target_include_directories(exhaustive_da_paths_5x8 PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_compile_features(exhaustive_da_paths_5x8 PRIVATE cxx_std_17)
+
+add_executable(
+    da_search_trees
+    da_search_trees.cpp
+    ${CMAKE_SOURCE_DIR}/src/Matching.cpp
+    ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+    ${CMAKE_SOURCE_DIR}/src/MatchingUtils.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
+)
+target_include_directories(da_search_trees PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_compile_features(da_search_trees PRIVATE cxx_std_17)
+
+add_executable(
+    run_rda_batch
+    run_rda_batch.cpp
+    ${CMAKE_SOURCE_DIR}/src/Matching.cpp
+    ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+    ${CMAKE_SOURCE_DIR}/src/MatchingUtils.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
+)
+target_include_directories(run_rda_batch PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_compile_features(run_rda_batch PRIVATE cxx_std_17)

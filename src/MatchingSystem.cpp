@@ -343,6 +343,27 @@ Matching MatchingSystem::run_algorithm(
     return res;
 }
 
+DASearchTree MatchingSystem::run_recursive_algorithm(const std::string &algorithm_name) const
+{
+    if (agent_prefs.empty() || firm_prefs.empty() || agent_col_prefs.empty()) {
+        throw std::runtime_error("Preferences have not been set yet");
+    }
+    DASearchTree tree;
+    if (algorithm_name == "recursive_doctor_propose_DA") {
+        tree = recursive_doctor_proposing_DA_algorithm(
+            n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    } else if (algorithm_name == "recursive_firm_propose_DA") {
+        tree = recursive_firm_proposing_DA_algorithm(
+            n_agents, n_firms, firm_capacities, agent_prefs, firm_prefs, agent_col_prefs);
+    } else {
+        throw std::invalid_argument("Unknown recursive algorithm name: " + algorithm_name);
+    }
+    for (auto &node : tree.nodes) {
+        node.matching.compute_scores(agent_prefs, firm_prefs, agent_col_prefs);
+    }
+    return tree;
+}
+
 const std::vector<std::vector<int>> &MatchingSystem::get_agent_prefs() const
 {
     return agent_prefs;

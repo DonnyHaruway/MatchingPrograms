@@ -1,5 +1,8 @@
 # DA完了後に同僚の拒否ペアを削除して再実行するアルゴリズム
 
+実行経路と未選択の削除候補を描く履歴API、およびRecursive DAの全探索は
+[削除分岐木の仕様・例・実行方法](../experiments/universal_replacement/tree_docs/README.md) を参照。
+
 個人提案版は `iterated_doctor_proposing_DA_algorithm`、企業提案版は
 `iterated_firm_proposing_DA_algorithm`。次のA・B・Cを繰り返す。
 
