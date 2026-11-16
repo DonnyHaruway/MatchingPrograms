@@ -1,0 +1,33 @@
+{
+  "date_jst": "2026-11-04",
+  "scope": {
+    "firms": 2,
+    "workers": 6,
+    "capacities": [
+      2,
+      2
+    ],
+    "strict_preferences": true,
+    "common_binary_colleague_rejections": true
+  },
+  "conclusion": "Every normalized preference/forbidden-graph input has a recursive-DA path to an original-market UR-stable leaf.",
+  "complete_input_count": 1509949440,
+  "incomplete_input_count": 368640000000,
+  "all_branches_fail_inputs": 0,
+  "independent_full_verification_passed": true,
+  "sha256": {
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/verify_certificates.cpp": "a9ac522e5cefa0dae59d8b06201a344d8da1680acf3cf40161445ab71402911a",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/search.cpp": "d603c49fcaf9bf688a19ffdc00f5aea9968583ff1320468460336f3881d7f25c",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/package_certificates.py": "b86165db9388ed3fe72592d011642cb683e3024b47f59c481f5b02dd7bbf8b2f",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/check_repository_samples.py": "2bf0c45de42a85369b717abb7fbd41a4f50b24d7fdc8aa8b640b11850fe69b2f",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/README.md": "92f73c9c4836772d5fe58bffd60c136c3384c48b814ba1c4cce62926431e7bc7",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/repository_sample_verification.json": "83d5cdf55bffab1f8d9895bf9dee32392143ce26ed1422cfb85e4452600f10ee",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/incomplete_independent_verification.json": "ab493058139f5de7ab944ccd40b25700f906dbffb1d8f05000a65a1c9dc877f8",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/incomplete_summary.json": "8e61c9fab3ed0a98d981a76f5df9bff35dff38ca40543f41f774f4bcb05bbc7e",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/complete_summary.json": "3a18f338efa4db10d492befd0abd68e5cc8a3d72f7d4aa665e33610b9c50de30",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/complete_independent_verification.json": "df56ea7242ce403d961e8a7bb03c6cb7c6676fa4aa4d14f48227f396c8c6f837",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/certificate_files.json": "db0fd555f438d6213809a21056b489944d175ca37aaaae2dc5ebebe623fd0d92",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/complete_graph_cover.bin.xz": "574d57002fab4039a6c891539e4acfc8638d506e251a5ffa2dca222ed85ce7e0",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x6/results/incomplete_graph_cover.bin.xz": "14e66699e8bff00505473317f433338149628eca80029ea4b70f8e2b7dd1c01a"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mode": "complete",
+  "preference_profiles_verified": 3840,
+  "all_profile_graph_inputs_verified": 3932160,
+  "stable_deletion_paths_verified": 82530,
+  "all_1024_graphs_covered_for_every_preference_profile": true,
+  "every_input_has_an_independently_verified_original_ur_stable_branch": true,
+  "all_branches_fail_inputs": 0,
+  "no_two_step_interference_filter_used": true,
+  "cpp_counts_match": true,
+  "elapsed_seconds": 0.8450218751095235
+}

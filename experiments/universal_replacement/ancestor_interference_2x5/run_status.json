@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "stopping_reason": "Finite normalized 2x5 search exhausted; examples independently verified and documented.",
+  "last_observed_five_hour_remaining_percent": 78,
+  "last_observed_weekly_remaining_percent": 22,
+  "requested_five_hour_remaining_stop_percent": 25,
+  "stopped_before_quota_threshold_because_search_complete": true
+}

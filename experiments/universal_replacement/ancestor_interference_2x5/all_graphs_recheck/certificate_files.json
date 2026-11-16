@@ -1,0 +1,32 @@
+{
+  "complete": {
+    "records": 462816,
+    "uncompressed_bytes": 5553796,
+    "uncompressed_sha256": "8792cba13124981b696a8183b1697260ddd569460a109aaf8901aa2c0505008c",
+    "compressed_bytes": 193556,
+    "compressed_sha256": "2bd39e748cce06a080e2de6999b1781bdbcc2fcd8ee425c531088aeea92c14fa",
+    "file": "complete_stable_paths.bin.xz"
+  },
+  "incomplete": {
+    "records": 38582496,
+    "uncompressed_bytes": 462989956,
+    "uncompressed_sha256": "a64d1d1ccd3230694e599f9ae38ce52d3a6b44c01254b832253c48cfa7bc0b10",
+    "compressed_bytes": 14552056,
+    "compressed_sha256": "ec1fe27dc93243135a06a2c70d2e1c8b8793a2ecc618443790669297de3f277f",
+    "file": "incomplete_stable_paths.bin.xz"
+  },
+  "global_complete": {
+    "file": "global_complete_graph_cover.bin.xz",
+    "uncompressed_bytes": 525904,
+    "compressed_bytes": 36416,
+    "uncompressed_sha256": "0212956f43056e30eec227932f39b7feeb6c65bafc016cf50320695e1ec4283b",
+    "compressed_sha256": "43b514804a892be5a424f3912127d1b72f0298b899a20a6f089ab27bf51ec3db"
+  },
+  "global_incomplete": {
+    "file": "global_incomplete_graph_cover.bin.xz",
+    "uncompressed_bytes": 17811772,
+    "compressed_bytes": 1024600,
+    "uncompressed_sha256": "601195fe08e26f3f7d27e2c33786b5ad2d1a49334164d488e6b92f94dcdcc43e",
+    "compressed_sha256": "89a794a8a3c8e048c4b058d5f915f6ab8d10dd0820fc13d83b7affb97a4ad8f6"
+  }
+}

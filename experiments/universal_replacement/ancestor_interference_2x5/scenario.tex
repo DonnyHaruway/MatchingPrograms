@@ -1,0 +1,149 @@
+\documentclass[a4paper,10pt]{ltjsarticle}
+\usepackage[margin=18mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,xcolor,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue,pdftitle={子問題の削除による祖先への干渉：2企業・5人}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\pagestyle{plain}
+\definecolor{bad}{HTML}{B32626}
+\definecolor{good}{HTML}{267D3D}
+\newcommand{\um}{\varnothing}
+\newcommand{\del}{\mathcal D}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\hd}[1]{\vspace{5pt}{\large\bfseries #1}\par}
+\tikzset{box/.style={draw,rounded corners=3pt,align=center,inner sep=7pt,font=\small},arr/.style={-{Latex[length=2.5mm]},thick}}
+\begin{document}
+{\LARGE\bfseries 子問題の削除が、祖先の削除を不要にする例}\par
+{\large 企業2・個人5・削除2段階}\hfill 2026年11月4日
+
+\hd{結論}
+親で $(f_1,w_1)$ を削除し、子で $(f_2,w_3)$ を削除すると、終点では\textbf{最初の削除組だけ}が元問題のUR逸脱になる。子の削除だけを残して最初の削除を戻すと、元問題でもUR安定な割当が得られる。
+
+\hd{市場：全員相互に受入可能、定員は各企業2}
+\begin{align*}
+ f_1 &: w_4 \succ w_2 \succ w_1 \succ w_5 \succ w_3,\\
+ f_2 &: w_4 \succ w_5 \succ w_3 \succ w_2 \succ w_1.\\[2pt]
+ w_1,w_2,w_3,w_4 &: f_2\succ f_1\succ\um,\qquad
+ w_5 : f_1\succ f_2\succ\um.
+\end{align*}
+企業によらない共通禁止ペアは
+\[
+ \mathcal B=\bigl\{\set{w_1,w_2},\set{w_3,w_4}\bigr\}.
+\]
+
+\hd{対象経路：元問題から削除を2回、DAは計3回}
+\begin{center}
+\begin{tikzpicture}[node distance=9mm]
+ \node[box,draw=orange!70!black,fill=orange!7,minimum width=14cm] (p0)
+ {$P_0$：削除なし\quad $f_1=\set{w_1,w_2}$\quad $f_2=\set{w_4,w_5}$\quad 未マッチ $w_3$\\違反：$f_1$ の $\set{w_1,w_2}$};
+ \node[box,draw=orange!70!black,fill=orange!7,minimum width=14cm,below=of p0] (p1)
+ {$P_1$：$\del=\set{(f_1,w_1)}$\quad $f_1=\set{w_2,w_5}$\quad $f_2=\set{w_3,w_4}$\quad 未マッチ $w_1$\\違反：$f_2$ の $\set{w_3,w_4}$};
+ \node[box,draw=bad,fill=red!5,minimum width=14cm,below=of p1] (p2)
+ {$P_2$：$\del=\set{(f_1,w_1),(f_2,w_3)}$\quad $f_1=\set{w_3,w_5}$\quad $f_2=\set{w_2,w_4}$\\未マッチ $w_1$。禁止ペアなし。\textbf{元問題では $(f_1,w_1)$ がUR逸脱}};
+ \draw[arr] (p0)--node[right,font=\small]{$f_1$から$w_1$を削除}(p1);
+ \draw[arr] (p1)--node[right,font=\small]{$f_2$から$w_3$を削除}(p2);
+\end{tikzpicture}
+\end{center}
+
+\hd{比較：最初の削除だけを戻す}
+子の削除 $(f_2,w_3)$ のみを残してDAを再実行すると、
+\[
+ P_3:\quad f_1=\set{w_1,w_5},\qquad f_2=\set{w_2,w_4},\qquad w_3\text{ は未マッチ}.
+\]
+これは\textcolor{good}{\textbf{元問題でもUR安定}}である。$w_1$が$f_1$に戻っても、$w_2$は$f_2$に残るため、最初の禁止ペアは再発しない。
+
+\small $P_3$は削除の影響を調べる比較用のDAであり、Recursive DAの対象経路に含まれるノードではない。各DAは全員未マッチ・提案履歴なしから実行する。
+
+\newpage
+{\LARGE\bfseries 子の削除が、どの玉突きを遮断するか}
+
+\hd{元問題では、最終的に不採用のw3の仮受諾が効く}
+\begin{enumerate}
+ \item $w_1,w_2,w_3,w_4$は全員、まず$f_2$に提案する。$w_3$と$w_4$が受諾されると、$w_1,w_2$は$f_2$から拒否される。
+ \item $w_1,w_2$は$f_1$へ提案する。先に$f_1$へ来ていた$w_5$は押し出され、$f_1=\set{w_1,w_2}$となる。
+ \item $w_5$が$f_2$へ移り、$w_3$を押し出す。最終的には$f_2=\set{w_4,w_5}$、$w_3$は未マッチとなる。
+\end{enumerate}
+つまり、$w_3$は最終割当には残らないが、\textbf{途中で$f_2$に入ることにより、$w_2$を$f_1$へ向かわせる}。
+
+\hd{子でw3をf2から削除すると、その経路が消える}
+$(f_2,w_3)$が削除済みなら、$w_3$は$f_2$で仮受諾されない。$f_2$は$w_2$と$w_4$を保持し、$w_2$は$f_1$へ提案しない。
+\begin{center}
+\begin{tikzpicture}[node distance=5mm]
+ \node[box,minimum width=12cm] (a) {子の削除：$w_3$を$f_2$で受け入れない};
+ \node[box,minimum width=12cm,below=of a] (b) {$w_2$が$f_2$から押し出されない};
+ \node[box,minimum width=12cm,below=of b] (c) {$w_2$は$f_1$に来ない。親の禁止ペア$\set{w_1,w_2}$は成立しない};
+ \node[box,minimum width=12cm,below=of c,draw=bad,fill=red!5] (d) {祖先で削除した$(f_1,w_1)$を残すことが、元問題のUR逸脱を生む};
+ \draw[arr](a)--(b);\draw[arr](b)--(c);\draw[arr](c)--(d);
+\end{tikzpicture}
+\end{center}
+
+\hd{P2のUR逸脱を直接検査する}
+$P_2$では、$f_1=\set{w_3,w_5}$、$w_1$は未マッチである。
+\begin{itemize}
+ \item $w_1$は未マッチより$f_1$を好む。
+ \item 元の企業選好では$f_1$は$w_1$を$w_3,w_5$の両方より好む。
+ \item $w_3$を置き換えた$\set{w_1,w_5}$も、$w_5$を置き換えた$\set{w_1,w_3}$も、禁止ペアを含まない。
+\end{itemize}
+したがって $(f_1,w_1)$ はuniversal replacementの逸脱である。\textbf{空席への追加逸脱ではない}。
+
+一方、最後に削除した $(f_2,w_3)$ はUR逸脱ではない。$f_2=\set{w_2,w_4}$で$w_2$を置き換えると、禁止ペア$\set{w_3,w_4}$が生じるためである。すべての候補組を調べると、$P_2$の元問題でのUR逸脱は $(f_1,w_1)$ の1組だけだった。
+
+\hd{元のN6との対応}
+共通する機構は「後の削除が、祖先の禁止ペアへ至る玉突きを遮断する」こと。この主例の削除対象は$w_1$と$w_3$という\textbf{異なる個人}である。同じ個人を両企業から順に削除する形は、下記の有限範囲では見つからなかった。
+
+\newpage
+{\LARGE\bfseries 全分岐・最小性・検算}
+
+\hd{主例の全分岐は、最大深さ2}
+\small
+\begin{center}
+\begin{tikzpicture}
+ \node[box,fill=orange!7,text width=65mm] (n0) at (0,0) {$N_0$：$f_1=\set{w_1,w_2}$\\$f_2=\set{w_4,w_5}$／未マッチ$w_3$};
+ \node[box,fill=orange!7,text width=60mm] (n1) at (-3.5,-1.7) {$N_1$：$f_1=\set{w_2,w_5}$\\$f_2=\set{w_3,w_4}$／未マッチ$w_1$};
+ \node[box,fill=orange!7,text width=60mm] (n4) at (3.5,-1.7) {$N_4$：$f_1=\set{w_1,w_5}$\\$f_2=\set{w_3,w_4}$／未マッチ$w_2$};
+ \node[box,draw=bad,fill=red!5,text width=29mm,font=\scriptsize,inner sep=4pt] (n2) at (-5.25,-3.5) {$N_2$：$f_1=\set{w_3,w_5}$\\$f_2=\set{w_2,w_4}$\\UR逸脱$(f_1,w_1)$};
+ \node[box,draw=bad,fill=red!5,text width=29mm,font=\scriptsize,inner sep=4pt] (n3) at (-1.75,-3.5) {$N_3$：$f_1=\set{w_4,w_5}$\\$f_2=\set{w_2,w_3}$\\UR逸脱$(f_1,w_1)$};
+ \node[box,draw=good,fill=green!5,text width=29mm,font=\scriptsize,inner sep=4pt] (n5) at (1.75,-3.5) {$N_5$：$f_1=\set{w_1,w_5}$\\$f_2=\set{w_2,w_4}$\\元問題でもUR安定};
+ \node[box,draw=good,fill=green!5,text width=29mm,font=\scriptsize,inner sep=4pt] (n6) at (5.25,-3.5) {$N_6$：$f_1=\set{w_1,w_4}$\\$f_2=\set{w_3,w_5}$\\元問題でもUR安定};
+ \draw[arr] (n0.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{$f_1$から$w_1$を削除}(n1.north);
+ \draw[arr] (n0.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{$f_1$から$w_2$を削除}(n4.north);
+ \draw[arr] (n1.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{削除$w_3$}(n2.north);
+ \draw[arr] (n1.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{削除$w_4$}(n3.north);
+ \draw[arr] (n4.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{削除$w_3$}(n5.north);
+ \draw[arr] (n4.south)--node[font=\scriptsize,fill=white,inner sep=1pt,above,sloped]{削除$w_4$}(n6.north);
+\end{tikzpicture}
+\end{center}
+\normalsize
+7ノード・4終点。2終点は元問題でUR安定、2終点はUR不安定。UR安定解が存在しない市場や、全分岐が失敗する市場の例ではない。
+
+\hd{順位の本質：20通りの企業選好で同じ現象が起こる}
+個人選好と禁止ペアを固定すると、上の$P_0,P_1,P_2,P_3$を生むための企業順位の必要十分条件は、
+\begin{align*}
+ f_1 &: \set{w_1,w_2}\succ w_5\succ w_3\quad (w_4\text{の位置は任意}),\\
+ f_2 &: \set{w_4,w_5}\succ w_3\succ w_2\succ w_1.
+\end{align*}
+ここで波括弧は無差別を表さず、括弧内の相互順位をどちらにしてもよいことを表す。$f_1$は10通り、$f_2$は2通り。全14,400通りを調べて20通りであることと、すべてで木の最大深さが2であることを確認した。
+
+\hd{全探索の範囲}
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+範囲 & 正規化した選好数 & 削除2段階の経路数 & 比較まで満たす満員終点\\
+\midrule
+2企業・5人、全員受入可能 & 3,840 & 61,440 & 10,304\\
+2企業・5人、受入不可も許す & 375,000 & 3,054,720 & 124,144\\
+2企業・4人、受入不可も許す & 15,000 & 66,432 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+定員は各2、厳密選好、企業によらないbinary同僚拒否に限定。個人名を$f_1$の順位で正規化し、$f_2$の120通りの順位と各個人の5通りの受入リストを列挙した。経路数は市場の同型類数ではない。
+
+この範囲では、終点を両企業満員とする本現象に\textbf{5人が最小}。同じ個人を2回削除する形、同じ禁止ペアを両企業で処理する形は0だった。定員・人数・無差別を変えた一般的不可能性は主張しない。
+
+\hd{独立検算と再現データ}
+探索専用C++の逐次DAと、独立Pythonのラウンドごとの同時提案DAで全探索の集計が一致。主例は既存リポジトリのC++本体と既存Python検算器でも、全ノード・分岐・UR判定を照合した。未マッチを含む全243割当も検査済み。
+
+\small 詳細・全提案履歴・JSON・再実行方法：同ディレクトリのREADME.md、results/main\_two\_forbidden\_pairs/ 以下。禁止ペア3組で5ノード・3終点になる別例も results/compact\_three\_leaves/ に保存した。
+\end{document}

@@ -1,0 +1,308 @@
+{
+  "samples": 12,
+  "all_existing_cpp_and_python_full_trees_match": true,
+  "verified_nodes": 20250,
+  "verified_leaves": 11294,
+  "cases": [
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "firm2_order_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "forbidden_mask": 0,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "firm2_order_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "forbidden_mask": 514,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 8777,
+      "branches": 8776,
+      "leaves": 4864,
+      "original_ur_stable_leaves": 4824,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "firm2_order_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "forbidden_mask": 1023,
+      "maximum_deletion_depth": 8
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "forbidden_mask": 0,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 7,
+      "branches": 6,
+      "leaves": 4,
+      "original_ur_stable_leaves": 4,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "forbidden_mask": 514,
+      "maximum_deletion_depth": 2
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 11347,
+      "branches": 11346,
+      "leaves": 6356,
+      "original_ur_stable_leaves": 6288,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "forbidden_mask": 1023,
+      "maximum_deletion_depth": 8
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "firm2_order_zero_based": [
+        2,
+        4,
+        1,
+        0,
+        3
+      ],
+      "forbidden_mask": 0,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "firm2_order_zero_based": [
+        2,
+        4,
+        1,
+        0,
+        3
+      ],
+      "forbidden_mask": 514,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 53,
+      "branches": 52,
+      "leaves": 30,
+      "original_ur_stable_leaves": 30,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "firm2_order_zero_based": [
+        2,
+        4,
+        1,
+        0,
+        3
+      ],
+      "forbidden_mask": 1023,
+      "maximum_deletion_depth": 4
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        1,
+        3,
+        0,
+        4,
+        2
+      ],
+      "forbidden_mask": 0,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 1,
+      "branches": 0,
+      "leaves": 1,
+      "original_ur_stable_leaves": 1,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        1,
+        3,
+        0,
+        4,
+        2
+      ],
+      "forbidden_mask": 514,
+      "maximum_deletion_depth": 0
+    },
+    {
+      "algorithm": "recursive_doctor",
+      "nodes": 59,
+      "branches": 58,
+      "leaves": 33,
+      "original_ur_stable_leaves": 31,
+      "independent_da_and_blockers_match": true,
+      "independent_deletion_paths_match": true,
+      "worker_types": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "firm2_order_zero_based": [
+        1,
+        3,
+        0,
+        4,
+        2
+      ],
+      "forbidden_mask": 1023,
+      "maximum_deletion_depth": 4
+    }
+  ]
+}

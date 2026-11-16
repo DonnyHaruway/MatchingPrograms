@@ -1,0 +1,25 @@
+{
+  "n_workers": 4,
+  "mode": "incomplete",
+  "counts": {
+    "profiles": 15000,
+    "first_paths": 34944,
+    "second_paths": 66432,
+    "ordinary_ancestor_blocker_paths": 59040,
+    "ancestor_ur_paths": 12928,
+    "clean_ancestor_ur_paths": 12928,
+    "clean_same_pair_paths": 0,
+    "new_ancestor_ur_paths": 12928,
+    "new_full_paths": 0,
+    "new_full_cross_firm_paths": 0,
+    "new_introduced_conflict_paths": 10624,
+    "new_repeated_worker_paths": 0,
+    "exact_restoration_paths": 12928,
+    "exact_full_paths": 0,
+    "exact_cross_firm_paths": 2304,
+    "exact_repeated_worker_paths": 0,
+    "unmatched_contract_deletions": 27072,
+    "unmatched_contract_changes": 0
+  },
+  "elapsed_seconds": 0.45942729199305177
+}

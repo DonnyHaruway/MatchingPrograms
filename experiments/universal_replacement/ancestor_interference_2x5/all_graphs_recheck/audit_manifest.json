@@ -1,0 +1,29 @@
+{
+  "date_jst": "2026-11-04",
+  "conclusion": "No all-branches failure input in the specified 2-firm, 5-worker, capacity-(2,2), strict-preference, common-binary-colleague model.",
+  "full_input_count": 384000000,
+  "independent_graph_coverage_verified": true,
+  "sha256": {
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/recheck_all_graphs.cpp": "cb7f6931d9a29b84e85a2dfbc68b3ae63bc795065a3e6cc0f90319b507a68b44",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/recheck_entire_input_space.cpp": "a86ff63eec2b940383b088290193b323d78091ef96f4a15f93052b8d4f470f5b",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/fast_da_model.hpp": "3c66f78b2ffed4ee68a5d287d4d4320f4a037b24c4a2bd9413fd949a380d46fb",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/verify_all_graph_certificates.py": "ccf5b50037173d82bca91b6f696b340032ba0ba3d58bea259e5992a6c1f2e045",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/verify_entire_input_space.py": "1e7eaa37435f6117aabcbb1e10a59180caa66dd95b0b524ae0a33bf5ac290a81",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/check_recheck_repository_samples.py": "90ba8bdd421dc7436b0c285c773155ea3ab3f2198a3f2f7171de3978322968e4",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/certificate_files.json": "625382cfd97640a6f5f0a2ce308a0e01e91dc09091ebbf455d0c7d5d3d536310",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/complete_independent_verification.json": "18590c6574129dee864be15c5ea67fdf8efc813682dde750e6ec1b83df1e5e4c",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/complete_summary.json": "e7df3a23ad12a68c3ee8882634da520d16ee009771512d1082720398bacbbe7b",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_complete_independent_verification.json": "4749b77fdefe2fc96aad15f7bb738847ba9d819a19844635a6cef18e2b10db91",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_complete_summary.json": "8caf312d6c1ad8813a44277ca0dce2457cd388d19be57ca2a69f4d8e0c84c057",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_incomplete_independent_verification.json": "bb6e4b854b55a19a8e3c322adf3606826e7f9549bbc2c5238dc411224b653de3",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_incomplete_summary.json": "ae65e208b583923c7640e898169884c717e87abfb795f15173b06b9f17d86c4c",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/incomplete_independent_verification.json": "00849fa0ca31b83f8aafcac206c682b24696e21128bc20ddb04e59433c5542c3",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/incomplete_summary.json": "4037cf880f3c99d6281aabfd4d99bb354df1a5d6fb2c4f238b24466700d2015a",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/repository_sample_verification.json": "6fea41a4030aac3d41f6f2807cd4e1b0cb24b1c65b13225aac1e3d44b07634bb",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/complete_stable_paths.bin.xz": "2bd39e748cce06a080e2de6999b1781bdbcc2fcd8ee425c531088aeea92c14fa",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_complete_graph_cover.bin.xz": "43b514804a892be5a424f3912127d1b72f0298b899a20a6f089ab27bf51ec3db",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/global_incomplete_graph_cover.bin.xz": "89a794a8a3c8e048c4b058d5f915f6ab8d10dd0820fc13d83b7affb97a4ad8f6",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/incomplete_stable_paths.bin.xz": "ec1fe27dc93243135a06a2c70d2e1c8b8793a2ecc618443790669297de3f277f",
+    "/Users/shimizutaichi/research/MatchingPrograms/experiments/universal_replacement/ancestor_interference_2x5/all_graphs_recheck/README.md": "ede428d91f2098b9ccb0d2ddea4f9dad6009e57ab6e4a26b4baadc26d26211ff"
+  }
+}

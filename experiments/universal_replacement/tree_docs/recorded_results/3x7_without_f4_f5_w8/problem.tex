@@ -1,0 +1,40 @@
+% problem.json の入力（3企業×7労働者, f4・f5・w8 なし）を数式で書いたもの
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=25mm]{geometry}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\section*{市場}
+
+定員は
+\[
+  (q_{f_1}, q_{f_2}, q_{f_3}) = (2, 2, 2).
+\]
+
+企業の選好は
+\begin{align*}
+  f_1 &: w_2 \succ w_6 \succ w_7 \succ w_1 \succ w_5 \succ w_3, \\
+  f_2 &: w_3 \succ w_1 \succ w_6 \succ w_2 \succ w_7 \succ w_4, \\
+  f_3 &: w_7 \succ w_4 \succ w_2 \succ w_5 \succ w_1 \succ w_3 \succ w_6.
+\end{align*}
+
+労働者の選好は
+\begin{align*}
+  w_1 &: f_1 \succ f_3 \succ f_2, \\
+  w_2 &: f_2 \succ f_1 \succ f_3, \\
+  w_3 &: f_3 \succ f_2 \succ f_1, \\
+  w_4 &: f_2 \succ f_3, \\
+  w_5 &: f_1 \succ f_3, \\
+  w_6 &: f_3 \succ f_2 \succ f_1, \\
+  w_7 &: f_2 \succ f_1 \succ f_3.
+\end{align*}
+
+共通禁止ペア集合は
+\[
+  \mathcal{B} = \bigl\{ \{w_2, w_3\}, \{w_2, w_6\}, \{w_3, w_5\}, \{w_4, w_5\}, \{w_5, w_7\} \bigr\}.
+\]
+
+\end{document}

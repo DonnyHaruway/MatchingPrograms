@@ -1,0 +1,1868 @@
+{
+  "complete": {
+    "checked": 496,
+    "histogram": [
+      {
+        "leaves": 3,
+        "stable_leaves": 2,
+        "min_depth": 1,
+        "max_depth": 2,
+        "count": 240
+      },
+      {
+        "leaves": 4,
+        "stable_leaves": 2,
+        "min_depth": 2,
+        "max_depth": 2,
+        "count": 160
+      },
+      {
+        "leaves": 6,
+        "stable_leaves": 3,
+        "min_depth": 2,
+        "max_depth": 3,
+        "count": 64
+      },
+      {
+        "leaves": 9,
+        "stable_leaves": 3,
+        "min_depth": 2,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 10,
+        "stable_leaves": 2,
+        "min_depth": 2,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 13,
+        "stable_leaves": 6,
+        "min_depth": 1,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 15,
+        "stable_leaves": 4,
+        "min_depth": 1,
+        "max_depth": 5,
+        "count": 8
+      }
+    ],
+    "best": [
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              5,
+              4,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 69,
+          "first": [
+            1,
+            2,
+            1
+          ],
+          "second": [
+            2,
+            4,
+            1
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              5,
+              4,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 162,
+          "first": [
+            2,
+            4,
+            3
+          ],
+          "second": [
+            1,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              5,
+              4,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 41,
+          "first": [
+            1,
+            1,
+            2
+          ],
+          "second": [
+            2,
+            4,
+            2
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              5,
+              4,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 148,
+          "first": [
+            2,
+            4,
+            3
+          ],
+          "second": [
+            1,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              5,
+              3,
+              4
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 322,
+          "first": [
+            2,
+            5,
+            3
+          ],
+          "second": [
+            1,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              0,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              2,
+              0
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              5,
+              3,
+              4
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 280,
+          "first": [
+            2,
+            5,
+            3
+          ],
+          "second": [
+            1,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              0
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              4,
+              5,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 69,
+          "first": [
+            1,
+            2,
+            1
+          ],
+          "second": [
+            2,
+            4,
+            1
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              1,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              2,
+              1,
+              4,
+              5,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 162,
+          "first": [
+            2,
+            4,
+            3
+          ],
+          "second": [
+            1,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 41,
+          "first": [
+            1,
+            1,
+            2
+          ],
+          "second": [
+            2,
+            4,
+            2
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 148,
+          "first": [
+            2,
+            4,
+            3
+          ],
+          "second": [
+            1,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              1,
+              2,
+              2,
+              0
+            ],
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "incomplete": {
+    "checked": 3216,
+    "histogram": [
+      {
+        "leaves": 3,
+        "stable_leaves": 2,
+        "min_depth": 1,
+        "max_depth": 2,
+        "count": 1480
+      },
+      {
+        "leaves": 4,
+        "stable_leaves": 2,
+        "min_depth": 2,
+        "max_depth": 2,
+        "count": 1400
+      },
+      {
+        "leaves": 6,
+        "stable_leaves": 3,
+        "min_depth": 2,
+        "max_depth": 3,
+        "count": 224
+      },
+      {
+        "leaves": 7,
+        "stable_leaves": 3,
+        "min_depth": 2,
+        "max_depth": 4,
+        "count": 40
+      },
+      {
+        "leaves": 9,
+        "stable_leaves": 3,
+        "min_depth": 2,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 10,
+        "stable_leaves": 2,
+        "min_depth": 2,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 11,
+        "stable_leaves": 6,
+        "min_depth": 1,
+        "max_depth": 4,
+        "count": 40
+      },
+      {
+        "leaves": 13,
+        "stable_leaves": 6,
+        "min_depth": 1,
+        "max_depth": 5,
+        "count": 8
+      },
+      {
+        "leaves": 15,
+        "stable_leaves": 4,
+        "min_depth": 1,
+        "max_depth": 5,
+        "count": 8
+      }
+    ],
+    "best": [
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              3,
+              2
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 26,
+          "first": [
+            1,
+            1,
+            3
+          ],
+          "second": [
+            2,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              3,
+              2
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 82,
+          "first": [
+            1,
+            2,
+            3
+          ],
+          "second": [
+            2,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              -1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              3,
+              2
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 38,
+          "first": [
+            2,
+            1,
+            4
+          ],
+          "second": [
+            1,
+            2,
+            4
+          ],
+          "assignments": [
+            [
+              2,
+              1,
+              1,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              2,
+              1,
+              2
+            ],
+            [
+              0,
+              2,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              3,
+              2
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 52,
+          "first": [
+            2,
+            2,
+            4
+          ],
+          "second": [
+            1,
+            1,
+            4
+          ],
+          "assignments": [
+            [
+              1,
+              2,
+              1,
+              2,
+              0
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ],
+            [
+              2,
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              -1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              2,
+              1,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 76,
+          "first": [
+            2,
+            1,
+            5
+          ],
+          "second": [
+            1,
+            2,
+            5
+          ],
+          "assignments": [
+            [
+              2,
+              1,
+              0,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              2,
+              2,
+              1
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              1
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              2,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              2,
+              1,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 104,
+          "first": [
+            2,
+            2,
+            5
+          ],
+          "second": [
+            1,
+            1,
+            5
+          ],
+          "assignments": [
+            [
+              1,
+              2,
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              0,
+              2,
+              2,
+              1
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              1
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              2,
+              1,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 26,
+          "first": [
+            1,
+            1,
+            3
+          ],
+          "second": [
+            2,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              2,
+              1,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 82,
+          "first": [
+            1,
+            2,
+            3
+          ],
+          "second": [
+            2,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              2,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 26,
+          "first": [
+            1,
+            1,
+            3
+          ],
+          "second": [
+            2,
+            2,
+            3
+          ],
+          "assignments": [
+            [
+              1,
+              2,
+              1,
+              0,
+              2
+            ],
+            [
+              0,
+              2,
+              2,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      },
+      {
+        "witness": {
+          "worker_scores": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "firm_scores": [
+            [
+              5,
+              4,
+              3,
+              2,
+              1
+            ],
+            [
+              5,
+              4,
+              1,
+              2,
+              3
+            ]
+          ],
+          "capacities": [
+            2,
+            2
+          ],
+          "forbidden_mask": 82,
+          "first": [
+            1,
+            2,
+            3
+          ],
+          "second": [
+            2,
+            1,
+            3
+          ],
+          "assignments": [
+            [
+              2,
+              1,
+              1,
+              0,
+              2
+            ],
+            [
+              2,
+              0,
+              2,
+              1,
+              1
+            ],
+            [
+              1,
+              0,
+              2,
+              1,
+              2
+            ]
+          ],
+          "last_not_ur_blocker": true
+        },
+        "shape": [
+          3,
+          2,
+          1,
+          2
+        ]
+      }
+    ]
+  }
+}

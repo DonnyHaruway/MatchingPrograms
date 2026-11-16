@@ -1,0 +1,120 @@
+{
+  "scope": "Saved witnesses only; no new input or forbidden graph generation.",
+  "unique_saved_2x5_inputs": 4850,
+  "all_branches_fail_inputs": 0,
+  "by_file": {
+    "complete_exact_witnesses.jsonl": {
+      "saved_paths": 1000,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "complete_focused_witnesses.jsonl": {
+      "saved_paths": 496,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "complete_improving_witnesses.jsonl": {
+      "saved_paths": 5,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "complete_obstruction_witnesses.jsonl": {
+      "saved_paths": 500,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "complete_witnesses.jsonl": {
+      "saved_paths": 200,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "incomplete_exact_witnesses.jsonl": {
+      "saved_paths": 1000,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "incomplete_focused_witnesses.jsonl": {
+      "saved_paths": 3216,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "incomplete_improving_witnesses.jsonl": {
+      "saved_paths": 5,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "incomplete_obstruction_witnesses.jsonl": {
+      "saved_paths": 500,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    },
+    "incomplete_witnesses.jsonl": {
+      "saved_paths": 200,
+      "all_branches_fail": 0,
+      "depth_at_most_two_all_fail": 0
+    }
+  },
+  "recorded_recursive_doctor": [
+    {
+      "profile": "3x6_without_f4_f5_w4_w8",
+      "leaves": 1,
+      "stable_leaves": 1,
+      "max_depth": 0
+    },
+    {
+      "profile": "3x6_without_f4_f5_w5_w8",
+      "leaves": 2,
+      "stable_leaves": 1,
+      "max_depth": 1
+    },
+    {
+      "profile": "3x6_without_f4_f5_w6_w8",
+      "leaves": 1,
+      "stable_leaves": 1,
+      "max_depth": 0
+    },
+    {
+      "profile": "3x7_without_f4_f5_w8",
+      "leaves": 4,
+      "stable_leaves": 0,
+      "max_depth": 3
+    },
+    {
+      "profile": "4x7_without_f5_w8",
+      "leaves": 4,
+      "stable_leaves": 0,
+      "max_depth": 3
+    },
+    {
+      "profile": "5x8",
+      "leaves": 4,
+      "stable_leaves": 0,
+      "max_depth": 3
+    },
+    {
+      "profile": "difficult_example_1_3x5",
+      "leaves": 3,
+      "stable_leaves": 2,
+      "max_depth": 2
+    },
+    {
+      "profile": "example",
+      "leaves": 2,
+      "stable_leaves": 1,
+      "max_depth": 1
+    }
+  ],
+  "source_sha256": {
+    "complete_exact_witnesses.jsonl": "c2f098015c681bd9ea6f34afbf8783b6bac105a8fa73449edd4d143f4f489148",
+    "complete_focused_witnesses.jsonl": "231d6f022a67eb3f574404afcc0a2b8a9e6a071d0273db7137a53ef333e51f36",
+    "complete_improving_witnesses.jsonl": "76a4c2517b47f908eafedb5a03617d5d6ee5803e45a3a4a86013ee51a0b7c137",
+    "complete_obstruction_witnesses.jsonl": "8dc5eb03876e31de94af87545340b5305bef1d75f8f82e2f8d6cabd62beb329f",
+    "complete_witnesses.jsonl": "eb9ec4da4676b8bf14ed6e0da3f9354e71eeb19eaaca9d0f0a3342c18a1ac4be",
+    "incomplete_exact_witnesses.jsonl": "9fdfaf530bbc87a9cbbb154e2e07bbfc80ee06ce3ea07190fc0275d1a2a5348e",
+    "incomplete_focused_witnesses.jsonl": "5155c0d6a2845e62ad2dfdeebd51be70bc9bb70c6696d4918012787eff44d988",
+    "incomplete_improving_witnesses.jsonl": "2346ff286067510db1337a5c8ad0ba9f342e1368bf101924d82ec4d9ef9edba9",
+    "incomplete_obstruction_witnesses.jsonl": "0ce8153696e1197aa1481c31c92b1214bd2dcbad89dd5b28e71acd6ead5df016",
+    "incomplete_witnesses.jsonl": "7a784e35e4853736b88e551c2ef02de7afb9b73c01d354e6afaba14f76c99e9b"
+  },
+  "limitation": "Previous search saves a representative forbidden graph per path, rather than every qualifying graph. Zero saved examples is not an impossibility proof for the new all-branches condition."
+}

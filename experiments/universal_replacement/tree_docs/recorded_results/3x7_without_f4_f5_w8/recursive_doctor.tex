@@ -1,0 +1,195 @@
+% recursive_doctor.md（個人告白型 Recursive DA, 3x7）の内容を PDF 用にまとめたもの
+\documentclass[a4paper,10pt]{ltjsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=20mm]{geometry}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,fit,backgrounds,positioning}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\definecolor{violfill}{HTML}{FFF7E6}
+\definecolor{violdraw}{HTML}{A66B12}
+\definecolor{endfill}{HTML}{FFEBEE}
+\definecolor{enddraw}{HTML}{B32626}
+
+\tikzset{
+  firm/.style={draw, fill=white, minimum width=13mm, minimum height=5mm, inner sep=1pt, font=\footnotesize},
+  worker/.style={draw, circle, fill=white, minimum size=6mm, inner sep=0pt, font=\footnotesize},
+  unmatched/.style={worker, draw=gray, fill=gray!12, dashed},
+  viol/.style={fill=violfill, draw=violdraw},
+  term/.style={fill=endfill, draw=enddraw},
+  branch/.style={-{Latex[length=3mm]}, line width=1.3pt},
+  lbl/.style={fill=white, font=\footnotesize, inner sep=2pt},
+}
+
+% \DAnode{名前}{中心}{見出し}{viol か term}{所属 企業/労働者,...}{未マッチの労働者番号}
+\newcommand{\DAnode}[6]{%
+  \begin{scope}[shift={#2}]
+    \node[font=\footnotesize, align=center, anchor=south] (#1t) at (0,1.2) {#3};
+    \foreach \j/\x in {1/-2.1, 2/0, 3/2.1}
+      \node[firm] (#1f\j) at (\x,0.75) {$f_{\j}$ (2/2)};
+    \foreach \i in {1,...,7}{
+      \ifnum\i=#6
+        \node[unmatched] (#1w\i) at ({-2.7+0.9*(\i-1)},-0.6) {$w_{\i}$};
+      \else
+        \node[worker] (#1w\i) at ({-2.7+0.9*(\i-1)},-0.6) {$w_{\i}$};
+      \fi
+    }
+    \foreach \f/\w in {#5}
+      \draw (#1f\f.south) -- (#1w\w.north);
+  \end{scope}
+  \begin{scope}[on background layer]
+    \node[fit=(#1t)(#1f1)(#1f3)(#1w1)(#1w7), inner sep=5pt, rounded corners=3pt,
+          line width=1pt, #4] (#1) {};
+  \end{scope}
+}
+
+\newcommand{\um}{\varnothing}
+
+\begin{document}
+
+{\Large\bfseries 個人告白型 Recursive DA（全探索）}\par
+{\small 3企業×7労働者（最初の5×8問題から $f_4, f_5, w_8$ を除いた問題）}
+
+\section*{まとめ}
+
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \item DA を 7 回実行し（ノード $N_0$〜$N_6$），削除の枝は 6 本，終点は 4 つ（$N_1, N_3, N_5, N_6$）．
+  \item どの終点も，削除後の選好では UR 安定だが，\textbf{元の問題では UR 不安定}．元の問題で UR 安定な終点は 0．
+  \item 各終点の元の問題での UR 逸脱ペアは 1 組だけで，どれもその終点に至るまでに削除した組の 1 つ．
+  \item 参考：同じ問題で企業告白型 Recursive DA は終点 3 つで，3 つとも元の問題で UR 安定．
+\end{itemize}
+
+UR 安定性は削除前の元の選好に対して判定し，空席への追加逸脱も含む．
+Recursive DA はすべての違反ペアとその両方の削除対象を探索する．
+禁止ペアがなくなった枝はそこで終了する．
+
+\section*{市場}
+
+定員は $(q_{f_1}, q_{f_2}, q_{f_3}) = (2, 2, 2)$．
+
+\begin{minipage}[t]{0.55\linewidth}
+企業の選好は
+\begin{align*}
+  f_1 &: w_2 \succ w_6 \succ w_7 \succ w_1 \succ w_5 \succ w_3, \\
+  f_2 &: w_3 \succ w_1 \succ w_6 \succ w_2 \succ w_7 \succ w_4, \\
+  f_3 &: w_7 \succ w_4 \succ w_2 \succ w_5 \succ w_1 \succ w_3 \succ w_6.
+\end{align*}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.4\linewidth}
+労働者の選好は
+\begin{align*}
+  w_1 &: f_1 \succ f_3 \succ f_2, &
+  w_2 &: f_2 \succ f_1 \succ f_3, \\
+  w_3 &: f_3 \succ f_2 \succ f_1, &
+  w_4 &: f_2 \succ f_3, \\
+  w_5 &: f_1 \succ f_3, &
+  w_6 &: f_3 \succ f_2 \succ f_1, \\
+  w_7 &: f_2 \succ f_1 \succ f_3.
+\end{align*}
+\end{minipage}
+
+共通禁止ペア集合は
+\[
+  \mathcal{B} = \bigl\{ \{w_2, w_3\}, \{w_2, w_6\}, \{w_3, w_5\}, \{w_4, w_5\}, \{w_5, w_7\} \bigr\}.
+\]
+
+\newpage
+\section*{分岐木}
+
+各枠は 1 回の DA の終了結果．四角が企業，丸が労働者，枠内の線が所属を表す．
+点線の丸は未マッチの労働者．太い矢印は実行した削除．
+\textcolor{violdraw}{橙}の枠は禁止ペアの違反が残るノード，\textcolor{enddraw}{赤}の枠は元の問題で UR 不安定な終点．
+P 番号は親ノードの違反ペア一覧での順番．
+
+\begin{center}
+\begin{tikzpicture}
+  \DAnode{n0}{(0,0)}{$N_0$ / DA1\\違反: $f_1$: $(w_2,w_6)$}{viol}{1/2,1/6,2/1,2/3,3/4,3/7}{5}
+  \DAnode{n1}{(-3.7,-4.3)}{$N_1$ / DA2\\終点 / 元の問題で UR 不安定}{term}{1/1,1/7,2/3,2/6,3/2,3/4}{5}
+  \DAnode{n2}{(3.7,-4.3)}{$N_2$ / DA2\\違反: $f_3$: $(w_4,w_5)$}{viol}{1/2,1/7,2/1,2/3,3/4,3/5}{6}
+  \DAnode{n3}{(-3.7,-8.6)}{$N_3$ / DA3\\終点 / 元の問題で UR 不安定}{term}{1/1,1/5,2/2,2/7,3/3,3/6}{4}
+  \DAnode{n4}{(3.7,-8.6)}{$N_4$ / DA3\\違反: $f_2$: $(w_2,w_6)$}{viol}{1/1,1/7,2/2,2/6,3/3,3/4}{5}
+  \DAnode{n5}{(-3.7,-12.9)}{$N_5$ / DA4\\終点 / 元の問題で UR 不安定}{term}{1/1,1/2,2/4,2/7,3/3,3/6}{5}
+  \DAnode{n6}{(3.7,-12.9)}{$N_6$ / DA4\\終点 / 元の問題で UR 不安定}{term}{1/1,1/5,2/2,2/7,3/3,3/4}{6}
+
+  \draw[branch] (n0) -- node[lbl]{P1: $f_1$ から $w_2$ を削除} (n1);
+  \draw[branch] (n0) -- node[lbl]{P1: $f_1$ から $w_6$ を削除} (n2);
+  \draw[branch] (n2) -- node[lbl]{P1: $f_3$ から $w_4$ を削除} (n3);
+  \draw[branch] (n2) -- node[lbl]{P1: $f_3$ から $w_5$ を削除} (n4);
+  \draw[branch] (n4) -- node[lbl]{P1: $f_2$ から $w_2$ を削除} (n5);
+  \draw[branch] (n4) -- node[lbl]{P1: $f_2$ から $w_6$ を削除} (n6);
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\section*{DA ごとの状態}
+
+累積削除は削除した順に並べた．終点（$N_1, N_3, N_5, N_6$）はすべて削除後の選好で UR 安定．
+
+\begin{center}
+\footnotesize\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}llcccccc@{}}
+  \toprule
+  ノード & 累積削除 & $f_1$ & $f_2$ & $f_3$ & 未マッチ & 違反ペア & 元の問題での UR 逸脱 \\
+  \midrule
+  $N_0$ / DA1 & なし & $\{w_2,w_6\}$ & $\{w_1,w_3\}$ & $\{w_4,w_7\}$ & $w_5$ & $f_1$: $(w_2,w_6)$ & --- \\
+  $N_1$ / DA2 & $(f_1,w_2)$ & $\{w_1,w_7\}$ & $\{w_3,w_6\}$ & $\{w_2,w_4\}$ & $w_5$ & なし & $(f_1,w_2)$ \\
+  $N_2$ / DA2 & $(f_1,w_6)$ & $\{w_2,w_7\}$ & $\{w_1,w_3\}$ & $\{w_4,w_5\}$ & $w_6$ & $f_3$: $(w_4,w_5)$ & --- \\
+  $N_3$ / DA3 & $(f_1,w_6) \to (f_3,w_4)$ & $\{w_1,w_5\}$ & $\{w_2,w_7\}$ & $\{w_3,w_6\}$ & $w_4$ & なし & $(f_3,w_4)$ \\
+  $N_4$ / DA3 & $(f_1,w_6) \to (f_3,w_5)$ & $\{w_1,w_7\}$ & $\{w_2,w_6\}$ & $\{w_3,w_4\}$ & $w_5$ & $f_2$: $(w_2,w_6)$ & --- \\
+  $N_5$ / DA4 & $(f_1,w_6) \to (f_3,w_5) \to (f_2,w_2)$ & $\{w_1,w_2\}$ & $\{w_4,w_7\}$ & $\{w_3,w_6\}$ & $w_5$ & なし & $(f_2,w_2)$ \\
+  $N_6$ / DA4 & $(f_1,w_6) \to (f_3,w_5) \to (f_2,w_6)$ & $\{w_1,w_5\}$ & $\{w_2,w_7\}$ & $\{w_3,w_4\}$ & $w_6$ & なし & $(f_1,w_6)$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\section*{各終点までの削除と移動}
+
+「残した相方」は削除対象に選ばなかった労働者で，以降の DA で所属が維持されるとは限らない．
+所属の移動は「親ノード $\to$ 削除直後の DA $\to$ 終点」の順に書き，$\um$ は未マッチを表す．
+移動だけでは不安定と判定せず，削除した組が終点で UR 逸脱ペアになるかを元の選好で別に調べている．
+
+\newcommand{\pathtable}[1]{%
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}ccccccc@{}}
+  \toprule
+  順番 & 選んだ違反 & 削除 & 残した相方 & 削除側の所属 & 相方の所属 & 終点で UR 逸脱 \\
+  \midrule
+  #1
+  \bottomrule
+\end{tabular}
+\end{center}}
+
+\subsection*{終点 $N_1$}
+\pathtable{
+  1 & $f_1$: $(w_2,w_6)$ & $(f_1,w_2)$ & $w_6$ & $f_1 \to f_3 \to f_3$ & $f_1 \to f_2 \to f_2$ & \textbf{はい} \\
+}
+
+\subsection*{終点 $N_3$}
+\pathtable{
+  1 & $f_1$: $(w_2,w_6)$ & $(f_1,w_6)$ & $w_2$ & $f_1 \to \um \to f_3$ & $f_1 \to f_1 \to f_2$ & いいえ \\
+  2 & $f_3$: $(w_4,w_5)$ & $(f_3,w_4)$ & $w_5$ & $f_3 \to \um \to \um$ & $f_3 \to f_1 \to f_1$ & \textbf{はい} \\
+}
+
+\subsection*{終点 $N_5$}
+\pathtable{
+  1 & $f_1$: $(w_2,w_6)$ & $(f_1,w_6)$ & $w_2$ & $f_1 \to \um \to f_3$ & $f_1 \to f_1 \to f_1$ & いいえ \\
+  2 & $f_3$: $(w_4,w_5)$ & $(f_3,w_5)$ & $w_4$ & $f_3 \to \um \to \um$ & $f_3 \to f_3 \to f_2$ & いいえ \\
+  3 & $f_2$: $(w_2,w_6)$ & $(f_2,w_2)$ & $w_6$ & $f_2 \to f_1 \to f_1$ & $f_2 \to f_3 \to f_3$ & \textbf{はい} \\
+}
+
+\subsection*{終点 $N_6$}
+\pathtable{
+  1 & $f_1$: $(w_2,w_6)$ & $(f_1,w_6)$ & $w_2$ & $f_1 \to \um \to \um$ & $f_1 \to f_1 \to f_2$ & \textbf{はい} \\
+  2 & $f_3$: $(w_4,w_5)$ & $(f_3,w_5)$ & $w_4$ & $f_3 \to \um \to f_1$ & $f_3 \to f_3 \to f_3$ & いいえ \\
+  3 & $f_2$: $(w_2,w_6)$ & $(f_2,w_6)$ & $w_2$ & $f_2 \to \um \to \um$ & $f_2 \to f_2 \to f_2$ & いいえ \\
+}
+
+\end{document}
