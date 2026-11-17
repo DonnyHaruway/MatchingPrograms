@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <tuple>
+#include <unistd.h>
 
 namespace fs = std::filesystem;
 using namespace rda_exhaustive;
@@ -124,6 +125,8 @@ void help()
 {
     std::cout <<
         "Usage: run_rda_exhaustive --workers 3|4 --output NEW_DIRECTORY [options]\n"
+        "New three-stability mode: --firms N --workers M --capacities C,C,... --forbidden-pairs K\n"
+        "  (add --help with those market arguments for the full new-mode options)\n"
         "  --workers 3          Two firms, three workers, capacities [2,1]\n"
         "  --workers 4          Two firms, four workers, capacities [2,2]\n"
         "  --start-id N         First input ID, inclusive (default: 0)\n"
@@ -139,6 +142,25 @@ void help()
 int main(int argc, char **argv)
 {
     try {
+        // Preserve the original two-firm CLI for existing experiments. Explicit
+        // market arguments select the three-stability, symmetry-reduced runner.
+        bool three_stabilities = false;
+        for (int i = 1; i < argc; ++i) {
+            const std::string argument = argv[i];
+            const std::string arg = argument.substr(0, argument.find('='));
+            if (arg == "--firms" || arg == "--capacities" || arg == "--forbidden-pairs"
+                || arg == "--resume") three_stabilities = true;
+        }
+        if (three_stabilities) {
+            std::vector<std::string> arguments = {"python3", RDA_STABILITY_DRIVER,
+                                                  "--engine", RDA_STABILITY_ENGINE};
+            for (int i = 1; i < argc; ++i) arguments.emplace_back(argv[i]);
+            std::vector<char *> pointers;
+            for (auto &arg : arguments) pointers.push_back(arg.data());
+            pointers.push_back(nullptr);
+            execvp(pointers[0], pointers.data());
+            throw std::runtime_error("could not start Python 3 stability runner");
+        }
         int workers = 0;
         Count start = 0, progress_every = 10000;
         std::optional<Count> count;

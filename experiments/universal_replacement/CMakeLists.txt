@@ -46,6 +46,18 @@ target_include_directories(run_rda_batch PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_compile_features(run_rda_batch PRIVATE cxx_std_17)
 
 add_executable(
+    rda_stability_engine
+    rda_stability_engine.cpp
+    ${CMAKE_SOURCE_DIR}/src/Matching.cpp
+    ${CMAKE_SOURCE_DIR}/src/Utils.cpp
+    ${CMAKE_SOURCE_DIR}/src/MatchingUtils.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithms.cpp
+    ${CMAKE_SOURCE_DIR}/src/algorithmsUtils.cpp
+)
+target_include_directories(rda_stability_engine PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_compile_features(rda_stability_engine PRIVATE cxx_std_17)
+
+add_executable(
     run_rda_exhaustive
     run_rda_exhaustive.cpp
     ${CMAKE_SOURCE_DIR}/src/Matching.cpp
@@ -56,4 +68,15 @@ add_executable(
 )
 target_include_directories(run_rda_exhaustive PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_compile_features(run_rda_exhaustive PRIVATE cxx_std_17)
+add_dependencies(run_rda_exhaustive rda_stability_engine)
+target_compile_definitions(run_rda_exhaustive PRIVATE
+    RDA_STABILITY_DRIVER="${CMAKE_CURRENT_SOURCE_DIR}/run_rda_stability_exhaustive.py"
+    RDA_STABILITY_ENGINE="$<TARGET_FILE:rda_stability_engine>")
+find_package(Python3 COMPONENTS Interpreter)
+if(Python3_Interpreter_FOUND)
+    add_test(NAME RDAThreeStabilitiesCLI
+        COMMAND "${Python3_EXECUTABLE}"
+            "${CMAKE_SOURCE_DIR}/tests/algorithms/test_rda_three_stabilities_cli.py"
+            "$<TARGET_FILE:run_rda_exhaustive>")
+endif()
 # Distribute disjoint input-ID ranges across processes; avoid tiny per-DA OpenMP regions.
