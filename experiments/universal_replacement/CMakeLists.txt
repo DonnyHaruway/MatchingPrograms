@@ -78,5 +78,9 @@ if(Python3_Interpreter_FOUND)
         COMMAND "${Python3_EXECUTABLE}"
             "${CMAKE_SOURCE_DIR}/tests/algorithms/test_rda_three_stabilities_cli.py"
             "$<TARGET_FILE:run_rda_exhaustive>")
+    add_test(NAME RDAChunkManagerCLI
+        COMMAND "${Python3_EXECUTABLE}"
+            "${CMAKE_SOURCE_DIR}/tests/algorithms/test_rda_chunk_manager.py"
+            "$<TARGET_FILE:run_rda_exhaustive>")
 endif()
 # Distribute disjoint input-ID ranges across processes; avoid tiny per-DA OpenMP regions.
